@@ -4,10 +4,6 @@
  */
 package com.bdii.stimfx.gui;
 
-/**
- *
- * @author alumnogreibd
- */
-public class FachadaGUI {
+public class FachadaGUI{
     
 }
