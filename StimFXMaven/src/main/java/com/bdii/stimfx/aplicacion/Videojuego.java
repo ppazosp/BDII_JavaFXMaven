@@ -20,6 +20,7 @@ public class Videojuego {
     private String descripcion;
     private List<DLC> DLCs;
     private double precio;
+    private List<Reseña> reseñas;
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio) {
         this.id = id;
@@ -82,7 +83,17 @@ public class Videojuego {
     public void setFechaSubida(Date fechaSubida) {
         this.fechaSubida = fechaSubida;
     }
-    
+
+    public List<Reseña> getReseñas() {
+        return reseñas;
+    }
+
+    public void setReseñas(List<Reseña> reseñas) {
+        this.reseñas = reseñas;
+    }
+    public void addReseña(Reseña rs){
+        this.reseñas.add(rs);
+    }
     
     
 }

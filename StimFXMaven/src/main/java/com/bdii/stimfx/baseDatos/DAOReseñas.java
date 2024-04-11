@@ -5,6 +5,7 @@
 package com.bdii.stimfx.baseDatos;
 import java.util.List;
 import java.util.ArrayList;
+import com.bdii.stimfx.aplicacion.Videojuego;
 import java.sql.Connection;
 import com.bdii.stimfx.aplicacion.Reseña;
 import java.time.LocalDate;
@@ -43,6 +44,34 @@ public class DAOReseñas extends AbstractDAO {
             stmReseñas.setString(3, r.getComentario());
             stmReseñas.setDate(4, fechaActual);
             stmReseñas.executeUpdate();
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmReseñas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
+    public void consultarReseña(Videojuego vj){
+        Connection con;
+        PreparedStatement stmReseñas=null;
+        ResultSet rsReseña = null;
+        
+        con=super.getConexion();
+
+        
+        String consulta= "select * from reseñas where id_juego = ?;";
+                try {
+            stmReseñas=con.prepareStatement(consulta);
+            stmReseñas.setInt(1, vj.getId());
+            rsReseña=stmReseñas.executeQuery();
+            
+            while(rsReseña.next()){
+                Reseña reseña = new Reseña(vj, rsReseña.getInt("id"), rsReseña.getString("comentario"),
+                    rsReseña.getDate("fecha"),  rsReseña.getFloat("valoracion"));
+                vj.addReseña(reseña);
+            }
+            
         } catch (SQLException e){
           System.out.println(e.getMessage());
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());

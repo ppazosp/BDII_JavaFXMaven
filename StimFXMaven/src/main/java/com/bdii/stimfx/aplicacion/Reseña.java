@@ -11,20 +11,29 @@ import java.sql.*;
  * @author alumnogreibd
  */
 public class Reseña {
-    private int idVideojuego;
+    private Videojuego videojuego;
     private int idReseña;
     private String comentario;
     private Date fecha;
     private float valoracion;
 
-    public Reseña(int idVideojuego, int idReseña, String comentario) {
-        this.idVideojuego = idVideojuego;
+    public Reseña(Videojuego videojuego, int idReseña, String comentario) {
+        this.videojuego = videojuego;
         this.idReseña = idReseña;
         this.comentario = comentario;
     }
 
-    public int getIdVideojuego() {
-        return idVideojuego;
+    public Reseña(Videojuego videojuego, int idReseña, String comentario, Date fecha, float valoracion) {
+        this.videojuego = videojuego;
+        this.idReseña = idReseña;
+        this.comentario = comentario;
+        this.fecha = fecha;
+        this.valoracion = valoracion;
+    }
+    
+
+    public Videojuego getIdVideojuego() {
+        return videojuego;
     }
 
     public int getIdReseña() {
