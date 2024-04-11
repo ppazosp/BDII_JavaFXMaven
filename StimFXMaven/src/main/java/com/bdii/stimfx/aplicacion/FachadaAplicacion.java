@@ -1,35 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.bdii.stimfx.aplicacion;
 
-/**
- *
- * @author alumnogreibd
- */
-public class FachadaAplicacion {
-    com.bdii.stimfx.gui.FachadaGUI fgui;
-    com.bdii.stimfx.baseDatos.FachadaBaseDatos fbd;
-    GestionVideojuegos gv;
-    GestionUsuarios gu;
-    
-    
- public FachadaAplicacion(){
-   //fgui=new gui.FachadaGUI(this);
-   fbd= new com.bdii.stimfx.baseDatos.FachadaBaseDatos(this);
-   gv= new GestionVideojuegos(fgui, fbd);
-   //gu= new GestionUsuarios(fgui, fbd);
- }
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
- public static void main(String args[]) {
-     FachadaAplicacion fa;
-     
-     fa= new FachadaAplicacion();
-     //fa.iniciaInterfazUsuario();
- }
- 
-  public void muestraExcepcion(String e){
-     //fgui.muestraExcepcion(e);
- }
+import java.io.IOException;
+
+public class FachadaAplicacion extends Application {
+
+    private static Scene scene;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/aplicacion/primary.fxml"));
+            Parent root = loader.load();
+            primaryStage.setTitle("Mi Aplicación JavaFX");
+            scene = new Scene(root, 600, 250);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            muestraExcepcion("Error al iniciar la aplicación: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void setRoot(String ventanaNombre) throws IOException {
+        try{
+            FXMLLoader loader = new FXMLLoader(FachadaAplicacion.class.getResource("/com/bdii/stimfx/aplicacion/" + ventanaNombre + ".fxml"));
+            Parent root = loader.load();
+            scene.setRoot(root);
+        } catch (IOException e) {
+            muestraExcepcion("Error al cargar la ventana " + ventanaNombre + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void muestraExcepcion(String e){
+        //fgui.muestraExcepcion(e);
+    }
 }
