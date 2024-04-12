@@ -22,8 +22,9 @@ public class FachadaAplicacion extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/aplicacion/primary.fxml"));
             Parent root = loader.load();
             primaryStage.setTitle("Mi Aplicación JavaFX");
-            scene = new Scene(root, 600, 250);
+            scene = new Scene(root, 1000, 600);
             primaryStage.setScene(scene);
+            primaryStage.resizableProperty().set(false);
             primaryStage.show();
         } catch (IOException e) {
             muestraExcepcion("Error al iniciar la aplicación: " + e.getMessage());

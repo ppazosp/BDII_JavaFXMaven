@@ -39,7 +39,7 @@ public class DAOReseñas extends AbstractDAO {
 
             r.setFecha(fechaActual);
             
-            stmReseñas.setInt(1, r.getIdVideojuego());
+            //DA ERROR MI GENTE stmReseñas.setInt(1, r.getIdVideojuego());
             stmReseñas.setInt(2, r.getIdReseña());
             stmReseñas.setString(3, r.getComentario());
             stmReseñas.setDate(4, fechaActual);
