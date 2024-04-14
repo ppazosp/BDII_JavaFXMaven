@@ -1,49 +1,38 @@
 package com.bdii.stimfx.aplicacion;
 
+import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
+import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+public class FachadaAplicacion {
 
-public class FachadaAplicacion extends Application {
+    private FachadaGUI fg;
+    private FachadaBaseDatos fbd;
 
     private static Scene scene;
 
+    public FachadaAplicacion() {
+        //fbd = new FachadaBaseDatos(this);
+    }
+
+    public void setFachadaGUI(FachadaGUI fg) {
+        this.fg = fg;
+    }
+
     public static void main(String[] args) {
-        launch(args);
+        FachadaGUI fg = new FachadaGUI();
+        Application.launch(FachadaGUI.class, args);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/aplicacion/primary.fxml"));
-            Parent root = loader.load();
-            primaryStage.setTitle("Mi Aplicación JavaFX");
-            scene = new Scene(root, 1000, 600);
-            primaryStage.setScene(scene);
-            primaryStage.resizableProperty().set(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            muestraExcepcion("Error al iniciar la aplicación: " + e.getMessage());
-            e.printStackTrace();
-        }
+    public static void muestraExcepcion(String e) {
+        // fg.muestraExcepcion(e);
     }
 
-    public static void setRoot(String ventanaNombre) throws IOException {
-        try{
-            FXMLLoader loader = new FXMLLoader(FachadaAplicacion.class.getResource("/com/bdii/stimfx/aplicacion/" + ventanaNombre + ".fxml"));
-            Parent root = loader.load();
-            scene.setRoot(root);
-        } catch (IOException e) {
-            muestraExcepcion("Error al cargar la ventana " + ventanaNombre + ": " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
-    public static void muestraExcepcion(String e){
-        //fgui.muestraExcepcion(e);
+    //METHODS
+    public boolean checkCredentials(String username, String password)
+    {
+        return true;
     }
 }

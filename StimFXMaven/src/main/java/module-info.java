@@ -1,9 +1,9 @@
-module com.bdii.stimfx.aplicacion {
+module com.bdii.stimfx.gui {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
 
-    opens com.bdii.stimfx.aplicacion to javafx.fxml;
-    exports com.bdii.stimfx.aplicacion;
+    opens com.bdii.stimfx.gui to javafx.fxml;
+    exports com.bdii.stimfx.gui;
 }
