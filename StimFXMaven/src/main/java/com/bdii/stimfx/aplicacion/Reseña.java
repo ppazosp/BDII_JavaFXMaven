@@ -31,7 +31,6 @@ public class Reseña {
         this.valoracion = valoracion;
     }
     
-
     public Videojuego getIdVideojuego() {
         return videojuego;
     }

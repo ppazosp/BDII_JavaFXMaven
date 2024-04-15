@@ -25,7 +25,6 @@ public class DAODLCs extends AbstractDAO{
     }
     
     public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
-        
         java.util.List<DLC> resultado = new java.util.ArrayList<DLC>();
         DLC dlcActual =null;
         Connection con;
