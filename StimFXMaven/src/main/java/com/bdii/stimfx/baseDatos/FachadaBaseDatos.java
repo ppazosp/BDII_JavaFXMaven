@@ -113,6 +113,10 @@ public class FachadaBaseDatos {
         daoU.borrarUsuario(id);
     }
     
+    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+        return daoU.consultarUsuarios(id, nombre);
+    }
+    
     public void insertarCompra(int id_videojuego, int id_usuario, int precio){
         daoCompras.insertarCompra(id_videojuego, id_usuario, precio);
     }

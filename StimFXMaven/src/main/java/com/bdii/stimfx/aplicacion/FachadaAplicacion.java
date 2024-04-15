@@ -66,6 +66,11 @@ public class FachadaAplicacion {
     public java.util.List<Categoria> consultarCategorias(String nombre){
         return fbd.consultarCategorias(nombre);
     }
+    
+    // Funcion para buscar usuarios en la gestion de usuarios
+    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+        return fbd.consultarUsuarios(id, nombre);
+    }
 
     //METHODS
     public boolean checkCredentials(String username, String password)

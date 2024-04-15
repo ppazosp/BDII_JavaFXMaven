@@ -62,12 +62,54 @@ public class DAOUsuarios extends AbstractDAO{
         }finally{
           try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
-        
     }
     
-    
-    
-    
+    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        Usuario usuarioActual;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuarios;
+
+        con=this.getConexion();
+        
+        String consulta = "select * from usuario ";
+        
+        if (!nombre.isEmpty()) consulta += "where nombre like ?";
+        
+        if (id==null) {
+            if (!nombre.isEmpty()) consulta += "and ";
+            else consulta += "where ";
+            consulta += "id_usuario = ?";
+        }
+        
+
+        try  {
+        stmUsuarios=con.prepareStatement(consulta);
+        if (!nombre.isEmpty()) stmUsuarios.setString(1, "%"+nombre+"%");
+        if (id == null) {
+            if (!nombre.isEmpty()) stmUsuarios.setString(2, "%"+id+"%");
+            else stmUsuarios.setString(1, "%"+id+"%");
+            
+        }
+        rsUsuarios=stmUsuarios.executeQuery();
+        while (rsUsuarios.next())
+        {
+            usuarioActual = new Usuario(rsUsuarios.getInt("id"), rsUsuarios.getString("nombre"),
+                                  rsUsuarios.getString("contraseña"), rsUsuarios.getString("tipo"), 
+                                      rsUsuarios.getString("email"), rsUsuarios.getString("telefono"));  //TELEFONO ESTA EN LA BASE?
+            
+            resultado.add(usuarioActual);
+        }
+
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmUsuarios.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
     
     
     
