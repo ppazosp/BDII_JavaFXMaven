@@ -71,6 +71,15 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return fbd.consultarUsuarios(id, nombre);
     }
+    
+    // Funciones para crear y borrar DLC de videojuegos
+    public void insertarDLC(DLC d){
+        fbd.insertarDLC(d);
+    }
+    
+    public void borrarDLC(int d){
+        fbd.borrarDLC(d);
+    }
 
     //METHODS
     public boolean checkCredentials(String username, String password)

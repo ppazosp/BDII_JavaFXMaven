@@ -133,5 +133,13 @@ public class FachadaBaseDatos {
         return daoCategorias.consultarCategorias(nombre);
     }
     
+    public void insertarDLC(DLC d){
+        daoD.insertarDLC(d);
+    }
+    
+    public void borrarDLC(int d){
+        daoD.borrarDLC(d);
+    }
+    
     
 }

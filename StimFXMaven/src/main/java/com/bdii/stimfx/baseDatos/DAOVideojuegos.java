@@ -35,8 +35,6 @@ public class DAOVideojuegos extends AbstractDAO{
                                             "values (?,?,?,?,?)");
             // Obtener la fecha actual como un objeto java.sql.Date
             java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
-            // Convertir la fecha actual a LocalDate
-            LocalDate localDate = fechaActual.toLocalDate();
 
             v.setFechaSubida(fechaActual);
             
