@@ -29,11 +29,30 @@ public class FachadaAplicacion {
         // fg.muestraExcepcion(e);
     }
     
-    public java.util.List<Videojuego> consultarVideojuegos(String n){ // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
+    // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
+    public java.util.List<Videojuego> consultarVideojuegos(String n){ 
         return fbd.consultaVideojuegos(n);
     }
 
+    // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.
+    public void insertarTorneo(Torneo t){
+        fbd.insertarTorneo(t);
+    }
     
+    // Escribir una nueva reseña
+    public void insertarReseña(Reseña r){
+        fbd.insertarReseña(r);
+    }
+    
+    // Funcion para borrar un usuario a partir de un id.
+    public void borrarUsuario(String id){
+        fbd.borrarUsuario(id);
+    }
+    
+    // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
+    public void insertarCompra(int id_videojuego, int id_usuario, int precio){
+        fbd.insertarCompra(id_videojuego, id_usuario, precio);
+    }
 
     //METHODS
     public boolean checkCredentials(String username, String password)

@@ -27,10 +27,11 @@ public class FachadaBaseDatos {
     private java.sql.Connection conexion;
     private DAOVideojuegos daoV;
     private DAODLCs daoD;
-    private DAOCategorias daoC;
+    private DAOCategorias daoCategorias;
     private DAOReseñas daoR;
     private DAOUsuarios daoU;
     private DAOTorneos daoT;
+    private DAOCompras daoCompras;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -93,7 +94,7 @@ public class FachadaBaseDatos {
     }
     
     public java.util.List<Integer> consultarVideojuegosCategoria(String c){
-        return daoC.consultarVideojuegosCategoria(c);
+        return daoCategorias.consultarVideojuegosCategoria(c);
     }
     
     public void insertarReseña(Reseña r){
@@ -105,6 +106,16 @@ public class FachadaBaseDatos {
     }
     
     public void insertarTorneo(Torneo t){
-        
+        daoT.insertarTorneo(t);
     }
+    
+    public void borrarUsuario(String id){
+        daoU.borrarUsuario(id);
+    }
+    
+    public void insertarCompra(int id_videojuego, int id_usuario, int precio){
+        daoCompras.insertarCompra(id_videojuego, id_usuario, precio);
+    }
+    
+    
 }

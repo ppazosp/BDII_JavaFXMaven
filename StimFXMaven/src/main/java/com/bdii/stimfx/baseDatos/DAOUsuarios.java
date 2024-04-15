@@ -45,6 +45,26 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
     
+    public void borrarUsuario(String id){
+        Connection con;
+        PreparedStatement stmUsuario=null;
+        
+        con=super.getConexion();
+        
+        try{
+            stmUsuario=con.prepareStatement("delete from usuario where id_usuario = ?");
+            stmUsuario.setString(1, id);
+            stmUsuario.executeUpdate();
+        
+        }catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        
+    }
+    
     
     
     

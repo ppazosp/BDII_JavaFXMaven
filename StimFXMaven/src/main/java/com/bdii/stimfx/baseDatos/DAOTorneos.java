@@ -20,35 +20,54 @@ import java.time.LocalDate;
  */
 public class DAOTorneos extends AbstractDAO{
     
-    public DAOTorneos (Connection conexion, com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
+    public DAOTorneos (Connection conexion, com.bdii.stimfx.aplicacion.FachadaAplicacion fa){  //MIRAR TEMA FECHAS, POR AHORA AUTOMATICO
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
     
         public void insertarTorneo(Torneo t){
         Connection con;
-        PreparedStatement stmUsuario=null;
- /*       
+        PreparedStatement stmTorneo=null;
+        
         con=super.getConexion();
         
+        
+        
         try {
-            stmUsuario=con.prepareStatement("insert into usuario(id, nombre, contraseña, email, telefono, tipoUsuario) "+
-                                            "values (?,?,?,?,?,?)");          
-            stmUsuario.setInt(1, u.getId());
-            stmUsuario.setString(2, u.getNombre());
-            stmUsuario.setString(3, u.getContrasena());
-            stmUsuario.setString(4, u.getEmail());
-            stmUsuario.setString(5, u.getTelefono());
-            stmUsuario.setString(6, u.getTipoUsuario());
-            stmUsuario.executeUpdate();
+            stmTorneo=con.prepareStatement("insert into torneo(id, nombre, fecha_inicio, fecha_fin, premio, id_videojuego, id_usradmin) "+
+                                            "values (?,?,?,?,?,?,?)");
+            
+            // Obtener la fecha actual como un objeto java.sql.Date
+            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
+            
+            // Convertir la fecha actual a LocalDate
+            LocalDate localDate = fechaActual.toLocalDate();
+
+            // Sumar 30 días
+            LocalDate nuevaFecha = localDate.plusDays(30);
+
+            // Convertir la nueva fecha de LocalDate a java.sql.Date
+            Date fechaSumada = Date.valueOf(nuevaFecha);
+            
+            t.setFecha_inicio(fechaActual);
+            t.setFecha_final(fechaSumada);
+            
+            stmTorneo.setInt(1, t.getId());
+            stmTorneo.setString(2, t.getNombre());
+            stmTorneo.setDate(3, fechaActual);
+            stmTorneo.setDate(4, fechaSumada);
+            stmTorneo.setInt(5, t.getPremio());
+            stmTorneo.setInt(6, t.getVideojuego().getId());
+            stmTorneo.setInt(7, t.getAdministrador().getId());
+            stmTorneo.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
-          try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+          try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
 
-*/
+
     }
     
 }
