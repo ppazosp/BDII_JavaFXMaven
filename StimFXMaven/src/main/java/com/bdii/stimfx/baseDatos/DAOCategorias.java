@@ -6,9 +6,6 @@ package com.bdii.stimfx.baseDatos;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
-import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.Editor;
-import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Categoria;
 
 
@@ -127,4 +124,6 @@ public class DAOCategorias extends AbstractDAO{
         }
         return resultado;   
     }
+    
+    
 }

@@ -158,4 +158,35 @@ public class FachadaBaseDatos {
         return daoV.consultarPlataformasVideojuego(id_videojuego);
     }
     
+    public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
+        daoP.insertarPlataformaVideojuego(nombre, id_videojuego);
+    }
+    
+    public void borrarPlataformaVideojuego(String nombre, int id_videojuego){
+        daoP.borrarPlataformaVideojuego(nombre, id_videojuego);
+    }
+    
+    public java.util.List<String> consultarCategoriasVideojuego(int id_videojuego){
+        return daoV.consultarCategoriasVideojuego(id_videojuego);
+    }
+    
+    public void seguir(int idU1, int idU2){
+        daoU.seguir(idU1, idU2);
+    }
+    
+    public void dejarSeguir(int idU1, int idU2){
+        daoU.dejarSeguir(idU1, idU2);
+    }
+    
+    public java.util.List<Integer> consultarSeguidos(int idU1){
+        return daoU.consultarSeguidos(idU1);
+    }
+    
+    public java.util.List<Integer> consultarSeguidores(int idU2){
+        return daoU.consultarSeguidores(idU2);
+    }
+    
+    public void bloquearSeguidor(int idU1, int idU2){
+        daoU.bloquearSeguidor(idU2, idU1);
+    }
 }

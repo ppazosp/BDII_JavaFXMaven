@@ -97,7 +97,39 @@ public class FachadaAplicacion {
         return fbd.consultarPlataformasVideojuego(id_videojuego);
     }
     
+    // Funciones para gestionar las plataformas de un videojuego, se podrian mostrar por pantalla
+    public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
+        fbd.insertarPlataformaVideojuego(nombre, id_videojuego);
+    }
+    public void borrarPlataformaVideojuego(String nombre, int videojuego){
+        fbd.borrarPlataformaVideojuego(nombre, videojuego);
+    }
     
+    // Funcion para obtener las categorias asociadas a un juego, se podrian mostrar por pantalla
+    public java.util.List<String> consultarCategoriasVideojuego(int id_videojuego){
+        return fbd.consultarCategoriasVideojuego(id_videojuego);
+    }
+    
+    // Funciones relacionadas con los seguidores
+    public void seguir(int idU1, int idU2){
+        fbd.seguir(idU1, idU2);
+    }
+    
+    public void dejarSeguir(int idU1, int idU2){
+        fbd.dejarSeguir(idU1, idU2);
+    }
+    
+    public java.util.List<Integer> consultarSeguidos(int idU1){
+        return fbd.consultarSeguidos(idU1);
+    }
+    
+    public java.util.List<Integer> consultarSeguidores(int idU2){
+        return fbd.consultarSeguidores(idU2);
+    }
+    
+    public void bloquearSeguidor(int idU1, int idU2){
+        fbd.bloquearSeguidor(idU1, idU2);
+    }
 
     //METHODS
     public boolean checkCredentials(String username, String password)

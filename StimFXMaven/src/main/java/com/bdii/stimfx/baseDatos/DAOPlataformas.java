@@ -93,4 +93,44 @@ public class DAOPlataformas extends AbstractDAO{
     }
     
     
+    public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
+        Connection con;
+        PreparedStatement stmPlataforma=null;
+        
+        con=super.getConexion();
+        
+        try {
+            stmPlataforma=con.prepareStatement("insert into plataforma_tiene_videojuego(nombre_plataforma, id_videojuego) "+
+                                            "values (?,?)");          
+            stmPlataforma.setString(1, nombre);
+            stmPlataforma.setInt(2, id_videojuego);
+            stmPlataforma.executeUpdate();
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmPlataforma.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
+    public void borrarPlataformaVideojuego(String nombre, int id_videojuego){
+        Connection con;
+        PreparedStatement stmPlataforma=null;
+        
+        con=super.getConexion();
+        
+        try{
+            stmPlataforma=con.prepareStatement("delete from plataforma_tiene_videojuego where nombre_plataforma = ? and id_videojuego = ?");
+            stmPlataforma.setString(1, nombre);
+            stmPlataforma.setInt(2, id_videojuego);
+            stmPlataforma.executeUpdate();
+        }catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmPlataforma.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }  
+    }
+    
+    
 }

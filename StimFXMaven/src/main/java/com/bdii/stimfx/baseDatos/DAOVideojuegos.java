@@ -52,6 +52,25 @@ public class DAOVideojuegos extends AbstractDAO{
         }
     }
     
+    public void borrarVideojuego(int id){
+                Connection con;
+        PreparedStatement stmVideojuego=null;
+        
+        con=super.getConexion();
+        
+        try{
+            stmVideojuego=con.prepareStatement("delete from videojuegos where id = ?");
+            stmVideojuego.setInt(1, id);
+            stmVideojuego.executeUpdate();
+        
+        }catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
     public Videojuego consultarVideojuego(Integer idVideojuego){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
         Videojuego videojuego=null;
         Connection con;
@@ -170,6 +189,36 @@ public class DAOVideojuegos extends AbstractDAO{
           try {stmPlataformas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
         return resultado;   
+    }
+    
+    public java.util.List<String> consultarCategoriasVideojuego(int id_videojuego){
+        java.util.List<String> resultado = new java.util.ArrayList<String>();
+        String categoriaActual;
+        Connection con;
+        PreparedStatement stmCategorias=null;
+        ResultSet rsCategorias;
+        
+        con=this.getConexion();
+        
+        String consulta = "select nombrecategoria from tenercategoria where idvideojuego = ?";
+        
+        try{
+            stmCategorias=con.prepareStatement(consulta);
+            stmCategorias.setInt(1, id_videojuego);
+            rsCategorias=stmCategorias.executeQuery();
+            while (rsCategorias.next())
+            {
+                categoriaActual = rsCategorias.getString("nombrecategoria");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
+                                        //rsPrestamos.getInt("num_ejemplar"), rsPrestamos.getInt("libro"), rsPrestamos.getString("id_usuario"));
+                resultado.add(categoriaActual);
+            }
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;  
     }
     
     

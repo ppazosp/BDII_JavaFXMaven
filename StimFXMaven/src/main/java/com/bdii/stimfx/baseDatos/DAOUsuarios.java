@@ -111,6 +111,126 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
     
+    public void seguir(int idU1, int idU2){
+        Connection con;
+        PreparedStatement stmSeguidos=null;
+        
+        con=super.getConexion();
+        
+        try {
+            stmSeguidos=con.prepareStatement("insert into ser_amigo(id_usr1, id_usr2) "+
+                                            "values (?,?)");       
+            stmSeguidos.setInt(1, idU1);
+            stmSeguidos.setInt(2, idU2);
+            stmSeguidos.executeUpdate();
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
+    public void dejarSeguir(int idU1, int idU2){
+        Connection con;
+        PreparedStatement stmSeguidos=null;
+        
+        con=super.getConexion();
+        
+        try{
+            stmSeguidos=con.prepareStatement("delete from ser_amigo where id_usr1 = ? and id_usr2 = ?");
+            stmSeguidos.setInt(1, idU1);
+            stmSeguidos.setInt(2, idU2);
+            stmSeguidos.executeUpdate();
+        
+        }catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
+    public java.util.List<Integer> consultarSeguidos(int idU1){
+        java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
+        Integer idUsuarioActual;
+        Connection con;
+        PreparedStatement stmSeguidos=null;
+        ResultSet rsSeguidos;
+        
+        con=this.getConexion();
+        
+        String consulta = "select id_usr2 from ser_amigo where id_usr1 = ?";
+        
+        try{
+            stmSeguidos=con.prepareStatement(consulta);
+            stmSeguidos.setInt(1, idU1);
+            rsSeguidos=stmSeguidos.executeQuery();
+            while (rsSeguidos.next())
+            {
+                idUsuarioActual = rsSeguidos.getInt("id_usr2");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
+                                        //rsPrestamos.getInt("num_ejemplar"), rsPrestamos.getInt("libro"), rsPrestamos.getString("id_usuario"));
+                resultado.add(idUsuarioActual);
+            }
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;  
+    }
+    
+    public java.util.List<Integer> consultarSeguidores(int idU2){
+        java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
+        Integer idUsuarioActual;
+        Connection con;
+        PreparedStatement stmSeguidos=null;
+        ResultSet rsSeguidos;
+        
+        con=this.getConexion();
+        
+        String consulta = "select id_usr1 from ser_amigo where id_usr2 = ?";
+        
+        try{
+            stmSeguidos=con.prepareStatement(consulta);
+            stmSeguidos.setInt(1, idU2);
+            rsSeguidos=stmSeguidos.executeQuery();
+            while (rsSeguidos.next())
+            {
+                idUsuarioActual = rsSeguidos.getInt("id_usr2");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
+                                        //rsPrestamos.getInt("num_ejemplar"), rsPrestamos.getInt("libro"), rsPrestamos.getString("id_usuario"));
+                resultado.add(idUsuarioActual);
+            }
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado; 
+    }
+    
+    public void bloquearSeguidor(int idU2, int idU1){
+        Connection con;
+        PreparedStatement stmSeguidos=null;
+        
+        con=super.getConexion();
+        
+        try{
+            stmSeguidos=con.prepareStatement("delete from ser_amigo where id_usr1 = ? and id_usr2 = ?");
+            stmSeguidos.setInt(1, idU1);
+            stmSeguidos.setInt(2, idU2);
+            stmSeguidos.executeUpdate();
+        
+        }catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
     
     
    /* 
