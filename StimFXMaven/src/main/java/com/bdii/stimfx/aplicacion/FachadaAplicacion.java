@@ -29,11 +29,15 @@ public class FachadaAplicacion {
         // fg.muestraExcepcion(e);
     }
     
-    public java.util.List<Videojuego> consultarVideojuegos(String n){ // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
+    // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
+    public java.util.List<Videojuego> consultarVideojuegos(String n){ 
         return fbd.consultaVideojuegos(n);
     }
 
-    
+    // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.
+    public void insertarTorneo(Torneo t){
+        fbd.insertarTorneo(t);
+    }
 
     //METHODS
     public boolean checkCredentials(String username, String password)

@@ -105,6 +105,6 @@ public class FachadaBaseDatos {
     }
     
     public void insertarTorneo(Torneo t){
-        
+        daoT.insertarTorneo(t);
     }
 }

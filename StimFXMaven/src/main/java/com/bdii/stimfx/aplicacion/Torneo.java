@@ -22,13 +22,21 @@ public class Torneo {
     private Videojuego videojuego;
     private Usuario administrador;
 
-    public Torneo(int id, String nombre, Date fecha_inicio, Date fecha_final, int premio, int ganador, Videojuego videojuego, Usuario administrador) {
+    public Torneo(int id, String nombre, Date fecha_inicio, Date fecha_final, int premio, Videojuego videojuego, Usuario administrador) {
         this.id = id;
         this.nombre = nombre;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
         this.premio = premio;
         this.ganador = ganador;
+        this.videojuego = videojuego;
+        this.administrador = administrador;
+    }
+
+    public Torneo(int id, String nombre, int premio, Videojuego videojuego, Usuario administrador) {
+        this.id = id;
+        this.nombre = nombre;
+        this.premio = premio;
         this.videojuego = videojuego;
         this.administrador = administrador;
     }
@@ -63,6 +71,18 @@ public class Torneo {
 
     public Usuario getAdministrador() {
         return administrador;
+    }
+
+    public void setFecha_inicio(Date fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
+    }
+
+    public void setFecha_final(Date fecha_final) {
+        this.fecha_final = fecha_final;
+    }
+
+    public void setGanador(int ganador) {
+        this.ganador = ganador;
     }
     
 }
