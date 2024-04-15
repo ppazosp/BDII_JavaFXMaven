@@ -33,8 +33,8 @@ public class FachadaGUI extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setMinWidth(1000);
         this.primaryStage.setMaxWidth(1000);
-        this.primaryStage.setMinHeight(625);
-        this.primaryStage.setMaxHeight(625);
+        this.primaryStage.setMinHeight(630);
+        this.primaryStage.setMaxHeight(630);
         showLoginWindow();
     }
 
@@ -74,10 +74,10 @@ public class FachadaGUI extends Application {
     public void showMainWindow() {
         Stage old = primaryStage;
         primaryStage = new Stage();
-        this.primaryStage.setMinWidth(1000);
-        this.primaryStage.setMaxWidth(1000);
-        this.primaryStage.setMinHeight(625);
-        this.primaryStage.setMaxHeight(625);
+        this.primaryStage.setMinWidth(1250);
+        this.primaryStage.setMaxWidth(1250);
+        this.primaryStage.setMinHeight(750);
+        this.primaryStage.setMaxHeight(750);
         MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", "Stim", MainWController.class);
         assert mainWController != null;
         mainWController.setMainApp(this);
