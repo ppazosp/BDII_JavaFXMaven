@@ -16,7 +16,7 @@ import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Reseña;
 import com.bdii.stimfx.aplicacion.Usuario;
 import com.bdii.stimfx.aplicacion.Torneo;
-
+import com.bdii.stimfx.aplicacion.Categoria;
 
 /**
  *
@@ -109,12 +109,24 @@ public class FachadaBaseDatos {
         daoT.insertarTorneo(t);
     }
     
-    public void borrarUsuario(String id){
+    public void borrarUsuario(int id){
         daoU.borrarUsuario(id);
     }
     
     public void insertarCompra(int id_videojuego, int id_usuario, int precio){
         daoCompras.insertarCompra(id_videojuego, id_usuario, precio);
+    }
+    
+    public void insertarCategoria(Categoria c){
+        daoCategorias.insertarCategoria(c);
+    }
+    
+    public void borrarCategoria(String nombre){
+        daoCategorias.borrarCategoria(nombre);
+    }
+    
+    public java.util.List<Categoria> consultarCategorias(String nombre){
+        return daoCategorias.consultarCategorias(nombre);
     }
     
     

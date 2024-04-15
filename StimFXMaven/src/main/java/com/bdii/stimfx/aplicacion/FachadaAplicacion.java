@@ -45,13 +45,26 @@ public class FachadaAplicacion {
     }
     
     // Funcion para borrar un usuario a partir de un id.
-    public void borrarUsuario(String id){
+    public void borrarUsuario(int id){
         fbd.borrarUsuario(id);
     }
     
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
     public void insertarCompra(int id_videojuego, int id_usuario, int precio){
         fbd.insertarCompra(id_videojuego, id_usuario, precio);
+    }
+    
+    // Funciones relacionadas con la gestion de las categorias de los juegos
+    public void insertarCategoria(Categoria c){
+        fbd.insertarCategoria(c);
+    }
+    
+    public void borrarCategoria(String nombre){
+        fbd.borrarCategoria(nombre);
+    }
+    
+    public java.util.List<Categoria> consultarCategorias(String nombre){
+        return fbd.consultarCategorias(nombre);
     }
 
     //METHODS

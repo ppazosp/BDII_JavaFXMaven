@@ -25,6 +25,77 @@ public class DAOCategorias extends AbstractDAO{
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
+        
+    public void insertarCategoria(Categoria c){
+        Connection con;
+        PreparedStatement stmCategoria=null;
+        
+        con=super.getConexion();
+        
+        try {
+            stmCategoria=con.prepareStatement("insert into categoria(nombre, descripcion) "+
+                                            "values (?,?)");          
+            stmCategoria.setString(1, c.getNombre());
+            stmCategoria.setString(2, c.getDescripcion());
+            stmCategoria.executeUpdate();
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmCategoria.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
+    public void borrarCategoria(String nombre){
+        Connection con;
+        PreparedStatement stmUsuario=null;
+        
+        con=super.getConexion();
+        
+        try{
+            stmUsuario=con.prepareStatement("delete from categoria where nombre = ?");
+            stmUsuario.setString(1, nombre);
+            stmUsuario.executeUpdate();
+        }catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }  
+    }
+    
+    public java.util.List<Categoria> consultarCategorias(String nombre){
+        java.util.List<Categoria> resultado = new java.util.ArrayList<Categoria>();
+        Categoria categoriaActual;
+        Connection con;
+        PreparedStatement stmCategorias=null;
+        ResultSet rsCategorias;
+
+        con=this.getConexion();
+        
+        String consulta = "select * from categoria ";
+        
+        if (!nombre.isEmpty()) consulta += "where nombre like ?";
+
+        try  {
+        stmCategorias=con.prepareStatement(consulta);
+        if (!nombre.isEmpty()) stmCategorias.setString(1, "%"+nombre+"%");
+        rsCategorias=stmCategorias.executeQuery();
+        while (rsCategorias.next())
+        {
+            categoriaActual = new Categoria(rsCategorias.getString("nombre"), rsCategorias.getString("descripcion"));
+            
+            resultado.add(categoriaActual);
+        }
+
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
     
     
     public java.util.List<Integer> consultarVideojuegosCategoria(String nombreCategoria){
@@ -56,12 +127,4 @@ public class DAOCategorias extends AbstractDAO{
         }
         return resultado;   
         }
-    
-    
-    
-    
-    
-    
-    
-    
 }

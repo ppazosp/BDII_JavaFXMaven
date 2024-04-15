@@ -45,7 +45,7 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
     
-    public void borrarUsuario(String id){
+    public void borrarUsuario(int id){
         Connection con;
         PreparedStatement stmUsuario=null;
         
@@ -53,7 +53,7 @@ public class DAOUsuarios extends AbstractDAO{
         
         try{
             stmUsuario=con.prepareStatement("delete from usuario where id_usuario = ?");
-            stmUsuario.setString(1, id);
+            stmUsuario.setInt(1, id);
             stmUsuario.executeUpdate();
         
         }catch (SQLException e){
