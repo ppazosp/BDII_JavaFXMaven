@@ -15,7 +15,7 @@ import com.bdii.stimfx.aplicacion.Videojuego;
 import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Reseña;
 import com.bdii.stimfx.aplicacion.Usuario;
-
+import com.bdii.stimfx.aplicacion.Torneo;
 
 
 /**
@@ -30,6 +30,7 @@ public class FachadaBaseDatos {
     private DAOCategorias daoC;
     private DAOReseñas daoR;
     private DAOUsuarios daoU;
+    private DAOTorneos daoT;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -101,5 +102,9 @@ public class FachadaBaseDatos {
     
     public void insertarUsuario(Usuario u){
         daoU.insertarUsuario(u);
+    }
+    
+    public void insertarTorneo(Torneo t){
+        
     }
 }

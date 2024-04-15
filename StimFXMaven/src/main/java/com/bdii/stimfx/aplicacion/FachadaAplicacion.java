@@ -28,7 +28,12 @@ public class FachadaAplicacion {
     public static void muestraExcepcion(String e) {
         // fg.muestraExcepcion(e);
     }
+    
+    public java.util.List<Videojuego> consultarVideojuegos(String n){ // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
+        return fbd.consultaVideojuegos(n);
+    }
 
+    
 
     //METHODS
     public boolean checkCredentials(String username, String password)

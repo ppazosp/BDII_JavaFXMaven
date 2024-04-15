@@ -55,7 +55,6 @@ public class DAOVideojuegos extends AbstractDAO{
     }
     
     public Videojuego consultarVideojuego(Integer idVideojuego){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
-        
         Videojuego videojuego=null;
         Connection con;
         PreparedStatement stmVideojuego=null;
@@ -86,8 +85,6 @@ public class DAOVideojuegos extends AbstractDAO{
         return videojuego;
     }
         
-    
-    
     public List<Videojuego> consultaVideojuegos(String nombre){
         Videojuego libroActual;
         Connection con;
