@@ -141,4 +141,36 @@ public class DAOVideojuegos extends AbstractDAO{
         }
         return resultado;
     }
+    
+    public java.util.List<String> consultarPlataformasVideojuego(int id_videojuego){
+        java.util.List<String> resultado = new java.util.ArrayList<String>();
+        String plataformaActual;
+        Connection con;
+        PreparedStatement stmPlataformas=null;
+        ResultSet rsPlataformas;
+        
+        con=this.getConexion();
+        
+        String consulta = "select nombre_plataforma from plataforma_tiene_videojuego where id_videojuego = ?";
+        
+        try{
+            stmPlataformas=con.prepareStatement(consulta);
+            stmPlataformas.setInt(1, id_videojuego);
+            rsPlataformas=stmPlataformas.executeQuery();
+            while (rsPlataformas.next())
+            {
+                plataformaActual = rsPlataformas.getString("nombre_plataforma");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
+                                        //rsPrestamos.getInt("num_ejemplar"), rsPrestamos.getInt("libro"), rsPrestamos.getString("id_usuario"));
+                resultado.add(plataformaActual);
+            }
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmPlataformas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;   
+    }
+    
+    
 }

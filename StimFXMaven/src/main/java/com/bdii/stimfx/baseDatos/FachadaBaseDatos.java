@@ -32,6 +32,7 @@ public class FachadaBaseDatos {
     private DAOUsuarios daoU;
     private DAOTorneos daoT;
     private DAOCompras daoCompras;
+    private DAOPlataformas daoP;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -141,5 +142,20 @@ public class FachadaBaseDatos {
         daoD.borrarDLC(d);
     }
     
+    public void insertarPlataforma(String nombre){
+        daoP.insertarPlataforma(nombre);
+    }
+    
+    public void borrarPlataforma(String nombre){
+        daoP.borrarPlataforma(nombre);
+    }
+    
+    public java.util.List<String> consultarPlataformas(String nombre){
+        return daoP.consultarPlataformas(nombre);
+    }
+    
+    public java.util.List<String> consultarPlataformasVideojuego(int id_videojuego){
+        return daoV.consultarPlataformasVideojuego(id_videojuego);
+    }
     
 }

@@ -80,6 +80,24 @@ public class FachadaAplicacion {
     public void borrarDLC(int d){
         fbd.borrarDLC(d);
     }
+    
+    // Funciones relacionadas con la gestion de las plataformas. No veo necesario crear una clase
+    public void insertarPlataforma(String nombre){
+        fbd.insertarPlataforma(nombre);
+    }
+    public void borrarPlataforma(String nombre){
+        fbd.borrarPlataforma(nombre);
+    }
+    public java.util.List<String> consultarPlataformas(String nombre){
+        return fbd.consultarPlataformas(nombre);
+    }
+    
+    // Funcion para obtener las plataformas asociadas a un videojuego.
+    public java.util.List<String> consultarPlataformasVideojuego(int id_videojuego){
+        return fbd.consultarPlataformasVideojuego(id_videojuego);
+    }
+    
+    
 
     //METHODS
     public boolean checkCredentials(String username, String password)

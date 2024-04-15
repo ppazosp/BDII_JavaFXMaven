@@ -48,19 +48,19 @@ public class DAOCategorias extends AbstractDAO{
     
     public void borrarCategoria(String nombre){
         Connection con;
-        PreparedStatement stmUsuario=null;
+        PreparedStatement stmCategoria=null;
         
         con=super.getConexion();
         
         try{
-            stmUsuario=con.prepareStatement("delete from categoria where nombre = ?");
-            stmUsuario.setString(1, nombre);
-            stmUsuario.executeUpdate();
+            stmCategoria=con.prepareStatement("delete from categoria where nombre = ?");
+            stmCategoria.setString(1, nombre);
+            stmCategoria.executeUpdate();
         }catch (SQLException e){
           System.out.println(e.getMessage());
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
-          try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+          try {stmCategoria.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }  
     }
     
@@ -126,5 +126,5 @@ public class DAOCategorias extends AbstractDAO{
           try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
         return resultado;   
-        }
+    }
 }
