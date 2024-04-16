@@ -76,8 +76,8 @@ public class FachadaGUI extends Application {
         primaryStage = new Stage();
         this.primaryStage.setMinWidth(1250);
         this.primaryStage.setMaxWidth(1250);
-        this.primaryStage.setMinHeight(750);
-        this.primaryStage.setMaxHeight(750);
+        this.primaryStage.setMinHeight(785);
+        this.primaryStage.setMaxHeight(785);
         MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", "Stim", MainWController.class);
         assert mainWController != null;
         mainWController.setMainApp(this);
