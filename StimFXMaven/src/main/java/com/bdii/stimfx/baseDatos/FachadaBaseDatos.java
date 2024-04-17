@@ -38,16 +38,11 @@ public class FachadaBaseDatos {
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
-
-    this.fa=fa;
-    daoV = new DAOVideojuegos(conexion, fa);
-    daoCategorias = new DAOCategorias(conexion, fa);
-
         try {
-            Class.forName("C:\\Users\\Usuario\\.m2\\repository\\org\\postgresql\\Driver");
+            Class.forName("org.postgresql.Driver");
         }
         catch (java.lang.ClassNotFoundException e) {
-            System.out.println("EXCEPCION: " +e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         String url = "jdbc:postgresql://surus.db.elephantsql.com:5432/vzgfiqrg";
@@ -56,12 +51,15 @@ public class FachadaBaseDatos {
 
         try {
             conexion = DriverManager.getConnection(url, username, password);
-
         }
         catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
+        this.fa=fa;
+        daoV = new DAOVideojuegos(conexion, fa);
+        daoCategorias = new DAOCategorias(conexion, fa);
+
     }
     
     //Hace falta el id

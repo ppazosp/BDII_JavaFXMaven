@@ -18,7 +18,7 @@ public class FachadaAplicacion {
     public FachadaAplicacion(){
         fbd =new FachadaBaseDatos(this);
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
-        System.out.println(cats);
+        System.out.println(cats.get(0).getDescripcion());
     }
 
     public void setFachadaGUI(FachadaGUI fg) {

@@ -26,8 +26,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version> <!-- Usando la nueva versión definida -->
         </dependency>
-
-
     </dependencies>
 
     <build>

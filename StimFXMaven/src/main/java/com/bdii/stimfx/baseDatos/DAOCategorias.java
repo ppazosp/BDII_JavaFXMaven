@@ -70,9 +70,15 @@ public class DAOCategorias extends AbstractDAO{
         ResultSet rsCategorias;
 
         con=this.getConexion();
-        
+
+        try {
+            System.out.println(con.isValid(2));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         String consulta = "select * from categoria ";
-        
+
         if (!nombre.isEmpty()) consulta += "where nombre like ?";
 
         try  {
@@ -91,7 +97,10 @@ public class DAOCategorias extends AbstractDAO{
           System.out.println(e.getMessage());
             FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
-          try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+          try {
+              assert stmCategorias != null;
+              stmCategorias.close();
+          } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
         return resultado;
     }
