@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
-import java.util.ArrayList;
 import java.util.List;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import com.bdii.stimfx.aplicacion.DLC;

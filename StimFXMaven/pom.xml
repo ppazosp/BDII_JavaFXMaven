@@ -25,7 +25,13 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version> <!-- Usando la nueva versión definida -->
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
