@@ -4,6 +4,7 @@
  */
 package com.bdii.stimfx.baseDatos;
 
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,7 +53,7 @@ public class DAOUsuarios extends AbstractDAO{
         con=super.getConexion();
         
         try{
-            stmUsuario=con.prepareStatement("delete from usuario where id_usuario = ?");
+            stmUsuario=con.prepareStatement("delete from usuario where id = ?");
             stmUsuario.setInt(1, id);
             stmUsuario.executeUpdate();
         
@@ -75,20 +76,20 @@ public class DAOUsuarios extends AbstractDAO{
         
         String consulta = "select * from usuario ";
         
-        if (!nombre.isEmpty()) consulta += "where nombre like ?";
+        if (nombre != null) consulta += "where nombre like ? ";
         
-        if (id==null) {
-            if (!nombre.isEmpty()) consulta += "and ";
+        if (id != null) {
+            if (nombre != null) consulta += "and ";
             else consulta += "where ";
-            consulta += "id_usuario = ?";
+            consulta += "id = ?";
         }
         
 
         try  {
         stmUsuarios=con.prepareStatement(consulta);
-        if (!nombre.isEmpty()) stmUsuarios.setString(1, "%"+nombre+"%");
-        if (id == null) {
-            if (!nombre.isEmpty()) stmUsuarios.setString(2, "%"+id+"%");
+        stmUsuarios.setString(1, "%"+nombre+"%");
+        if (id != null) {
+            if (nombre==null) stmUsuarios.setString(2, "%"+id+"%");
             else stmUsuarios.setString(1, "%"+id+"%");
             
         }
@@ -97,16 +98,20 @@ public class DAOUsuarios extends AbstractDAO{
         {
             usuarioActual = new Usuario(rsUsuarios.getInt("id"), rsUsuarios.getString("nombre"),
                                   rsUsuarios.getString("contraseña"), rsUsuarios.getString("tipo"), 
-                                      rsUsuarios.getString("email"), rsUsuarios.getString("telefono"));  //TELEFONO ESTA EN LA BASE?
+                                      rsUsuarios.getString("email"));  //TELEFONO ESTA EN LA BASE?
             
             resultado.add(usuarioActual);
         }
 
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
-          try {stmUsuarios.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+          try {
+              if (stmUsuarios != null) {
+                  stmUsuarios.close();
+              }
+          } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
         return resultado;
     }

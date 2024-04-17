@@ -59,6 +59,8 @@ public class FachadaBaseDatos {
         this.fa=fa;
         daoV = new DAOVideojuegos(conexion, fa);
         daoCategorias = new DAOCategorias(conexion, fa);
+        daoU = new DAOUsuarios(conexion, fa);
+        daoD = new DAODLCs(conexion, fa);
 
     }
     

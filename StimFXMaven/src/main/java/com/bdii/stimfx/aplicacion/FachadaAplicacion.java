@@ -14,11 +14,16 @@ public class FachadaAplicacion {
     private FachadaBaseDatos fbd;
 
     private static Scene scene;
-
-    public FachadaAplicacion(){
-        fbd =new FachadaBaseDatos(this);
+    private void pruebas_DAO(){
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
         System.out.println(cats.get(0).getDescripcion());
+        List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
+        System.out.println(usrs.get(0).getNombre());
+    }
+    public FachadaAplicacion(){
+        fbd =new FachadaBaseDatos(this);
+        pruebas_DAO();
+
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
