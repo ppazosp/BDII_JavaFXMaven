@@ -18,16 +18,16 @@ public class LogInWController {
     PasswordField passwordField;
 
     @FXML
-    public void showSiginWindow(ActionEvent event)
+    public void showSiginScene(ActionEvent event)
     {
-        fg.showSigninWindow();
+        fg.showSigninScene();
     }
 
     public void loginCheck (ActionEvent event)
     {
         if(fg.checkCredentials(usernameField.toString(), passwordField.toString()))
         {
-            fg.showMainWindow();
+            fg.showMainWindow(true);
         }
         else{
             usernameField.clear();

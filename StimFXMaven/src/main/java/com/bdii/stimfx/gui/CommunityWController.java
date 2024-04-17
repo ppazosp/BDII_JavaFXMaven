@@ -1,14 +1,9 @@
 package com.bdii.stimfx.gui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class MainWController {
-
+public class CommunityWController {
     FachadaGUI fg;
 
     @FXML
@@ -24,9 +19,9 @@ public class MainWController {
     }
 
     @FXML
-    public void showCommunityScene(MouseEvent event)
+    public void showMainScene(MouseEvent event)
     {
-        fg.showCommunityScene();
+        fg.showMainWindow(false);
     }
 
     @FXML
@@ -35,10 +30,9 @@ public class MainWController {
         fg.showSettingsScene();
     }
 
-
-
     public void setMainApp(FachadaGUI mainApp)
     {
         this.fg = mainApp;
     }
+
 }

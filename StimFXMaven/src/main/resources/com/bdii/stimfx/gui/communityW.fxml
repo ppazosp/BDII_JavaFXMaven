@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
+        <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../../../images/steam.png" />
+        </ImageView>
+        <VBox layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
+            <children>
+                <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                    <children>
+                        <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../images/profile.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="32.0" prefWidth="117.0" text="Perfil" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" onMouseClicked="#showShopScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                    <children>
+                        <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../images/shop.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="32.0" prefWidth="117.0" text="Tienda" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                    <children>
+                        <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../images/library.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="32.0" prefWidth="117.0" text="Biblioteca" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+                    <children>
+                        <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../images/community.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="32.0" prefWidth="117.0" text="Comunidad" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                    </children>
+               <styleClass>
+                  <String fx:value="selected" />
+                  <String fx:value="selected-border" />
+               </styleClass>
+                </HBox>
+            </children>
+        </VBox>
+        <Label layoutX="82.0" layoutY="51.0" text="STIM" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER" layoutY="704.0" onMouseClicked="#showSettingsScene" prefHeight="32.0" prefWidth="200.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+            <children>
+                <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../images/settings.png" />
+                    </image>
+                </ImageView>
+                <Label prefHeight="32.0" prefWidth="114.0" text="Ajustes" textFill="WHITE">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+            </children>
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+        </HBox>
+    </AnchorPane>
+    <AnchorPane layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
+      <children>
+         <Label layoutX="488.0" layoutY="367.0" text="community" />
+      </children></AnchorPane>
+</AnchorPane>

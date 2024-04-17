@@ -47,6 +47,7 @@ public class FachadaGUI extends Application {
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
+            if (windowTitle == null) windowTitle = "Stim";
             primaryStage.setTitle(windowTitle);
             primaryStage.show();
 
@@ -65,24 +66,51 @@ public class FachadaGUI extends Application {
         logInWController.setMainApp(this);
     }
 
-    public void showSigninWindow() {
+    public void showSigninScene() {
         SignInWController signInWController = loadFXML("/com/bdii/stimfx/gui/signinW.fxml", "Registrarse", SignInWController.class);
         assert signInWController != null;
         signInWController.setMainApp(this);
     }
 
-    public void showMainWindow() {
-        Stage old = primaryStage;
-        primaryStage = new Stage();
-        this.primaryStage.setMinWidth(1250);
-        this.primaryStage.setMaxWidth(1250);
-        this.primaryStage.setMinHeight(785);
-        this.primaryStage.setMaxHeight(785);
-        MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", "Stim", MainWController.class);
+    public void showMainWindow(boolean createWindow) {
+        if(createWindow)
+        {
+            Stage old = primaryStage;
+            primaryStage = new Stage();
+            this.primaryStage.setMinWidth(1250);
+            this.primaryStage.setMaxWidth(1250);
+            this.primaryStage.setMinHeight(785);
+            this.primaryStage.setMaxHeight(785);
+
+            old.close();
+        }
+        MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", null, MainWController.class);
         assert mainWController != null;
         mainWController.setMainApp(this);
+    }
 
-        old.close();
+    public void showShopScene() {
+        ShopWController shopWController = loadFXML("/com/bdii/stimfx/gui/shopW.fxml", null, ShopWController.class);
+        assert shopWController != null;
+        shopWController.setMainApp(this);
+    }
+
+    public void showLibraryScene() {
+        LibraryWController libraryWController = loadFXML("/com/bdii/stimfx/gui/libraryW.fxml", null, LibraryWController.class);
+        assert libraryWController != null;
+        libraryWController.setMainApp(this);
+    }
+
+    public void showCommunityScene() {
+        CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
+        assert communityWController != null;
+        communityWController.setMainApp(this);
+    }
+
+    public void showSettingsScene() {
+        SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, SettingsWController.class);
+        assert settingsWController != null;
+        settingsWController.setMainApp(this);
     }
 
 

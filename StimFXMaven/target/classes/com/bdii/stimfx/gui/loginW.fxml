@@ -46,7 +46,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="473.0" mnemonicParsing="false" onAction="#showSiginWindow" prefHeight="55.0" prefWidth="400.0" style="-fx-background-color: #AEB6BF; -fx-border-radius: 5; -fx-border-color: #1B2631;" text="¿No tienes una cuenta? Registrate" textFill="#1b2631">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="473.0" mnemonicParsing="false" onAction="#showSiginScene" prefHeight="55.0" prefWidth="400.0" style="-fx-background-color: #AEB6BF; -fx-border-radius: 5; -fx-border-color: #1B2631;" text="¿No tienes una cuenta? Registrate" textFill="#1b2631">
          <font>
             <Font size="14.0" />
          </font>

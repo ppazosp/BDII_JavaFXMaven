@@ -9,6 +9,6 @@ public class SignInWController {
     }
     public void showMainWindow()
     {
-        fg.showMainWindow();
+        fg.showMainWindow(true);
     }
 }
