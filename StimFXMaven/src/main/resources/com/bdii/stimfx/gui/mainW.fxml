@@ -138,7 +138,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -157,7 +157,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <PasswordField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <PasswordField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -176,7 +176,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -195,7 +195,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>

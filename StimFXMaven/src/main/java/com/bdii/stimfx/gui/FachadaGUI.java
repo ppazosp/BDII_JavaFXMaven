@@ -73,20 +73,21 @@ public class FachadaGUI extends Application {
     }
 
     public void showMainWindow(boolean createWindow) {
+        Stage old = primaryStage;
+
         if(createWindow)
         {
-            Stage old = primaryStage;
             primaryStage = new Stage();
             this.primaryStage.setMinWidth(1250);
             this.primaryStage.setMaxWidth(1250);
             this.primaryStage.setMinHeight(785);
             this.primaryStage.setMaxHeight(785);
-
-            old.close();
         }
         MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", null, MainWController.class);
         assert mainWController != null;
         mainWController.setMainApp(this);
+
+        if(createWindow) old.close();
     }
 
     public void showShopScene() {
