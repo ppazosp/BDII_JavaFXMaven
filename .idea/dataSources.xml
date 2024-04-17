@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Stim" uuid="4ef2681d-955b-462c-bb4a-476b647214ef">
+    <data-source source="LOCAL" name="Stim" uuid="34796b9a-738d-4a4a-a3fd-7e74c0c1001e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <remarks>BDII FInal Project</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ella.db.elephantsql.com:5432/hmoierbw</jdbc-url>
+      <jdbc-url>jdbc:postgresql://surus.db.elephantsql.com:5432/vzgfiqrg</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
         <property name="com.intellij.clouds.kubernetes.db.container.port" />
       </jdbc-additional-properties>
+      <vm-options>-Dfile.encoding=UTF-8</vm-options>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
