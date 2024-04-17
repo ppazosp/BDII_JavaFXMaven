@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
 import com.bdii.stimfx.aplicacion.Categoria;
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 
 
 import java.sql.*;
@@ -75,6 +76,7 @@ public class DAOCategorias extends AbstractDAO{
         if (!nombre.isEmpty()) consulta += "where nombre like ?";
 
         try  {
+
         stmCategorias=con.prepareStatement(consulta);
         if (!nombre.isEmpty()) stmCategorias.setString(1, "%"+nombre+"%");
         rsCategorias=stmCategorias.executeQuery();
@@ -87,7 +89,7 @@ public class DAOCategorias extends AbstractDAO{
 
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }

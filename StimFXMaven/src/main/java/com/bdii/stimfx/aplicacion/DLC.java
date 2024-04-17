@@ -14,15 +14,15 @@ public class DLC {
     private int idDLC;
     private String nombre;
     private String descripcion;
-    private double preciofechaLanzamiento;
+    private double precio;
     private Date fechaLanzamiento;
 
-    public DLC(int idVideojuego, int idDLC, String nombre, String descripcion, double preciofechaLanzamiento, Date fechaLanzamiento) {
+    public DLC(int idVideojuego, int idDLC, String nombre, String descripcion, double precio, Date fechaLanzamiento) {
         this.idVideojuego = idVideojuego;
         this.idDLC = idDLC;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.preciofechaLanzamiento = preciofechaLanzamiento;
+        this.precio= precio;
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
@@ -42,8 +42,8 @@ public class DLC {
         return descripcion;
     }
 
-    public double getPreciofechaLanzamiento() {
-        return preciofechaLanzamiento;
+    public double getPrecio() {
+        return precio;
     }
 
     public Date getFechaLanzamiento() {
