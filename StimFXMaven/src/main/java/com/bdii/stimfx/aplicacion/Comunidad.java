@@ -8,11 +8,11 @@ package com.bdii.stimfx.aplicacion;
  *
  * @author alumnogreibd
  */
-public class EquipoCompetitivo {
+public class Comunidad {
     private String nombre;
     private int id;
 
-    public EquipoCompetitivo(String nombre, int id) {
+    public Comunidad(String nombre, int id) {
         this.nombre = nombre;
         this.id = id;
     }
