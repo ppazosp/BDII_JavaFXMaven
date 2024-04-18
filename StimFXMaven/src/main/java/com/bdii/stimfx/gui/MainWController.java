@@ -18,15 +18,9 @@ public class MainWController {
     FachadaGUI fg;
 
     @FXML
-    public void loadGameWeb(ActionEvent event) {
-        try {
-            Desktop.getDesktop().browse(URI.create("https://ppazosp.itch.io/robin-run"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void loadGameWindow(MouseEvent event) {
+        fg.loadGameWindow();
     }
-
-
 
     @FXML
     public void showProfileScene(MouseEvent event)
