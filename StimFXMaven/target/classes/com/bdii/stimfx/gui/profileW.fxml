@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../../images/steam.png" />
+      </ImageView>
+      <VBox alignment="TOP_CENTER" layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/shop.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Tienda" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/library.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="116.0" text="Biblioteca" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/community.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="116.0" text="Comunidad" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label layoutX="82.0" layoutY="51.0" text="STIM" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <VBox alignment="BOTTOM_CENTER" layoutY="536.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="115.0" text="Perfil" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+               <styleClass>
+                  <String fx:value="selected-border" />
+                  <String fx:value="selected" />
+               </styleClass>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showSettingsScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/settings.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="115.0" text="Ajustes" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </AnchorPane>
+   <AnchorPane focusTraversable="true" layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../images/blackProfile.png" />
+            </image>
+         </ImageView>
+         <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="384.0" prefHeight="250.0" prefWidth="900.0" spacing="15.0">
+            <children>
+               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
+                  <children>
+                     <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/name.png" />
+                        </image>
+                     </ImageView>
+                     <Label prefHeight="30.0" prefWidth="100.0" text="Nombre">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
+                  <children>
+                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/password.png" />
+                        </image>
+                     </ImageView>
+                     <Label prefHeight="40.0" prefWidth="100.0" text="Contraseña">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <PasswordField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </PasswordField>
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
+                  <children>
+                     <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/email.png" />
+                        </image>
+                     </ImageView>
+                     <Label prefHeight="30.0" prefWidth="100.0" text="Email">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
+                  <children>
+                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/phone.png" />
+                        </image>
+                     </ImageView>
+                     <Label prefHeight="30.0" prefWidth="100.0" text="Telefono">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+         <Label alignment="CENTER" layoutX="430.0" layoutY="229.0" prefHeight="26.0" prefWidth="191.0" text="Username">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Button layoutX="476.0" layoutY="634.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" styleClass="secondary-color" stylesheets="@../css/styles.css" text="Guardar">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <HBox alignment="CENTER" layoutX="76.0" layoutY="255.0" prefHeight="100.0" prefWidth="900.0" spacing="20.0">
+            <children>
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                  <children>
+                     <Label text="Juegos">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label text="0">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                  <children>
+                     <Label text="Victorias">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label text="0">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+      </children></AnchorPane>
+</AnchorPane>
