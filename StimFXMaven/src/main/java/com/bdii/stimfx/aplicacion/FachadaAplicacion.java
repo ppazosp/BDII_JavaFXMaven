@@ -23,7 +23,6 @@ public class FachadaAplicacion {
     public FachadaAplicacion(){
         fbd =new FachadaBaseDatos(this);
         pruebas_DAO();
-
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -40,7 +39,53 @@ public class FachadaAplicacion {
         // fg.muestraExcepcion(e);
         System.out.println("Excepcion: "+ e);
     }
-    
+
+    // Funcion para crear una nueva comunidad
+    public void insertarEquipoCompetitivo(Comunidad c){
+        fbd.insertarEquipoCompetitivo(c);
+    }
+
+    // Funcion para borrar una comunidad
+    public void borrarEquipoCompetitivo(Comunidad c){
+        fbd.borrarEquipoCompetitivo(c);
+    }
+
+    // Funcion para mirar comunidades en el buscador, encontrar una comunidad especifica, a partir de algo o todas si la barra esta vacía
+    public java.util.List<Comunidad> consultarEquipos(String nombre){
+        return fbd.consultarEquipos(nombre);
+    }
+
+    // Funcion para insertar a un usuario en una comunidad.
+    // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
+    public void insertarJugadorEquipo(int id_usuario, Comunidad c){
+        fbd.insertarJugadorEquipo(id_usuario, c);
+    }
+
+    // Funcion para hacer salir de una comunidad a un usuario
+    public void salirJugadorEquipo(int id_usuario, Comunidad c){
+        fbd.salirJugadorEquipo(id_usuario, c);
+    }
+
+    // Funcion para consultar el equipo en el que esta un usuario
+    public Comunidad consultarEquipoJugador(int id_usuario){
+        return fbd.consultarEquipoJugador(id_usuario);
+    }
+
+    // Funcion para consultar los jugadores que pertenecen a un equipo en concreto
+    public java.util.List<Integer> consultarJugadoresEquipo(Comunidad c){
+        return fbd.consultarJugadoresEquipo(c);
+    }
+
+    // Funcion para contar los miembros de un equipo
+    public Integer contarMiembrosEquipo(Comunidad c) {
+        return fbd.contarMiembrosEquipo(c);
+    }
+
+    // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
+    public Integer contarJuegosUsuario(int id_usuario){
+        return fbd.contarJuegosUsuario(id_usuario);
+    }
+
     // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
     public java.util.List<Videojuego> consultarVideojuegos(String n){ 
         return fbd.consultaVideojuegos(n);
