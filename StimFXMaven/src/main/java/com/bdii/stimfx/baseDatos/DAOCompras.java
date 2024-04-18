@@ -47,6 +47,35 @@ public class DAOCompras extends AbstractDAO{
           try {stmCompra.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
+
+    public Integer contarJuegosUsuario(int id_usuario){
+        Integer juegosUsuario=0;
+        Connection con;
+        PreparedStatement stmCompras=null;
+        ResultSet rsCompras;
+
+        con=this.getConexion();
+
+        String consulta = "select count(*) "+
+                "from comprar "+
+                "where id_usr like ? ";
+
+        try {
+            stmCompras=con.prepareStatement(consulta);
+            stmCompras.setString(1, "%"+id_usuario+"%");
+            rsCompras=stmCompras.executeQuery();
+
+            if (rsCompras.next()) {
+                juegosUsuario = rsCompras.getInt(1);
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmCompras.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return juegosUsuario;
+    }
     
     
     

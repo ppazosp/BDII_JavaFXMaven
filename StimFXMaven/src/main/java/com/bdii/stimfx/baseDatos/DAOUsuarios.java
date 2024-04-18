@@ -87,7 +87,7 @@ public class DAOUsuarios extends AbstractDAO{
 
         try  {
         stmUsuarios=con.prepareStatement(consulta);
-        stmUsuarios.setString(1, "%"+nombre+"%");
+        if (nombre != null) stmUsuarios.setString(1, "%"+nombre+"%");
         if (id != null) {
             if (nombre==null) stmUsuarios.setString(2, "%"+id+"%");
             else stmUsuarios.setString(1, "%"+id+"%");

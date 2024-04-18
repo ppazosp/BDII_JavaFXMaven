@@ -10,12 +10,11 @@ package com.bdii.stimfx.aplicacion;
  */
 public class Comunidad {
     private String nombre;
-    private int id;
 
-    public Comunidad(String nombre, int id) {
+    public Comunidad(String nombre) {
         this.nombre = nombre;
-        this.id = id;
     }
-    
-    
+    public String getNombre() {
+        return nombre;
+    }
 }

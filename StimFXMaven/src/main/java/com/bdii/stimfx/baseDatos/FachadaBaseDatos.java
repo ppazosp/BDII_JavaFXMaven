@@ -19,7 +19,7 @@ import com.bdii.stimfx.aplicacion.Reseña;
 import com.bdii.stimfx.aplicacion.Usuario;
 import com.bdii.stimfx.aplicacion.Torneo;
 import com.bdii.stimfx.aplicacion.Categoria;
-
+import com.bdii.stimfx.aplicacion.Comunidad;
 /**
  *
  * @author alumnogreibd
@@ -35,6 +35,7 @@ public class FachadaBaseDatos {
     private DAOTorneos daoT;
     private DAOCompras daoCompras;
     private DAOPlataformas daoP;
+    private DAOComunidades daoComunidades;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -61,6 +62,11 @@ public class FachadaBaseDatos {
         daoCategorias = new DAOCategorias(conexion, fa);
         daoU = new DAOUsuarios(conexion, fa);
         daoD = new DAODLCs(conexion, fa);
+        daoCompras = new DAOCompras(conexion, fa);
+        daoComunidades = new DAOComunidades(conexion, fa);
+        daoR = new DAOReseñas(conexion, fa);
+        daoT = new DAOTorneos(conexion, fa);
+        daoP = new DAOPlataformas(conexion, fa);
 
     }
     
@@ -176,4 +182,41 @@ public class FachadaBaseDatos {
     public void bloquearSeguidor(int idU1, int idU2){
         daoU.bloquearSeguidor(idU2, idU1);
     }
+
+    public Integer contarJuegosUsuario(int id_usuario){
+        return daoCompras.contarJuegosUsuario(id_usuario);
+    }
+
+    public void insertarEquipoCompetitivo(Comunidad c){
+        daoComunidades.insertarEquipoCompetitivo(c);
+    }
+
+    public void borrarEquipoCompetitivo(Comunidad c){
+        daoComunidades.borrarEquipoCompetitivo(c);
+    }
+
+    public java.util.List<Comunidad> consultarEquipos(String nombre){
+        return daoComunidades.consultarEquipos(nombre);
+    }
+
+    public void insertarJugadorEquipo(int id_usuario, Comunidad c){
+        daoComunidades.insertarJugadorEquipo(id_usuario, c);
+    }
+
+    public void salirJugadorEquipo(int id_usuario, Comunidad c){
+        daoComunidades.salirJugadorEquipo(id_usuario, c);
+    }
+
+    public Comunidad consultarEquipoJugador(int id_usuario){
+        return daoComunidades.consultarEquipoJugador(id_usuario);
+    }
+
+    public java.util.List<Integer> consultarJugadoresEquipo(Comunidad c){
+        return daoComunidades.consultarJugadoresEquipo(c);
+    }
+
+    public Integer contarMiembrosEquipo(Comunidad c) {
+        return daoComunidades.contarMiembrosEquipo(c);
+    }
+
 }
