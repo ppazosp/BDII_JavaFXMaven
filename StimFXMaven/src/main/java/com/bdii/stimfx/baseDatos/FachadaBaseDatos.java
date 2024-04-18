@@ -7,9 +7,11 @@ package com.bdii.stimfx.baseDatos;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
-import java.util.ArrayList;
 import java.util.List;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import com.bdii.stimfx.aplicacion.DLC;
@@ -36,45 +38,30 @@ public class FachadaBaseDatos {
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
-    Properties configuracion = new Properties();
-    this.fa=fa;
-    FileInputStream arqConfiguracion;
-
-    try {
-        arqConfiguracion = new FileInputStream("baseDatos.properties");
-        configuracion.load(arqConfiguracion);
-        arqConfiguracion.close();
-
-        Properties usuario = new Properties();
-
-
-        String gestor = configuracion.getProperty("gestor");
-
-        usuario.setProperty("user", configuracion.getProperty("usuario"));
-        usuario.setProperty("password", configuracion.getProperty("clave"));
-        this.conexion=java.sql.DriverManager.getConnection("jdbc:"+gestor+"://"+
-                configuracion.getProperty("servidor")+":"+
-                configuracion.getProperty("puerto")+"/"+
-                configuracion.getProperty("baseDatos"),
-                usuario);
-
-        //Crear DAOs
-        daoV= new DAOVideojuegos(conexion, fa);
-
-        } catch (FileNotFoundException f){
-            System.out.println(f.getMessage());
-            //fa.muestraExcepcion(f.getMessage());
-        } catch (IOException i){
-            System.out.println(i.getMessage());
-            //fa.muestraExcepcion(i.getMessage());
-        } 
-        catch (java.sql.SQLException e){
-            System.out.println(e.getMessage());
-            //fa.muestraExcepcion(e.getMessage());
+        try {
+            Class.forName("org.postgresql.Driver");
         }
-        
-        
-        
+        catch (java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        String url = "jdbc:postgresql://surus.db.elephantsql.com:5432/vzgfiqrg";
+        String username = "vzgfiqrg";
+        String password = "VguSZP9OqTMKB_gk-05FtRIK-OmTPTLF";
+
+        try {
+            conexion = DriverManager.getConnection(url, username, password);
+        }
+        catch (java.sql.SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        this.fa=fa;
+        daoV = new DAOVideojuegos(conexion, fa);
+        daoCategorias = new DAOCategorias(conexion, fa);
+        daoU = new DAOUsuarios(conexion, fa);
+        daoD = new DAODLCs(conexion, fa);
+
     }
     
     //Hace falta el id

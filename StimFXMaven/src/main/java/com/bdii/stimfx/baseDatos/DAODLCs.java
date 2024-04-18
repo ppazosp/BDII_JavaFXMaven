@@ -41,7 +41,7 @@ public class DAODLCs extends AbstractDAO{
             stmDLC.setInt(2, d.getIdDLC());
             stmDLC.setString(3, d.getNombre());
             stmDLC.setString(4, d.getDescripcion());
-            stmDLC.setDouble(5, d.getPreciofechaLanzamiento());
+            stmDLC.setDouble(5, d.getPrecio());
             stmDLC.setDate(6, fechaActual);
             stmDLC.executeUpdate();
         } catch (SQLException e){

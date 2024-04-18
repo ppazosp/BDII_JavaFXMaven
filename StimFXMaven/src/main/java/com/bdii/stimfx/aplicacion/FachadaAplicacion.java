@@ -1,19 +1,29 @@
 package com.bdii.stimfx.aplicacion;
 
 import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
+import com.bdii.stimfx.baseDatos.DAOCategorias;
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
-public class FachadaAplicacion {
+import java.util.List;
 
+public class FachadaAplicacion {
+    private FachadaAplicacion fa;
     private FachadaGUI fg;
     private FachadaBaseDatos fbd;
 
     private static Scene scene;
+    private void pruebas_DAO(){
+        List<Categoria> cats = fbd.consultarCategorias("Aventura");
+        System.out.println(cats.get(0).getDescripcion());
+        List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
+        System.out.println(usrs.get(0).getNombre());
+    }
+    public FachadaAplicacion(){
+        fbd =new FachadaBaseDatos(this);
+        pruebas_DAO();
 
-    public FachadaAplicacion() {
-        //fbd = new FachadaBaseDatos(this);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -25,8 +35,10 @@ public class FachadaAplicacion {
         Application.launch(FachadaGUI.class, args);
     }
 
+
     public static void muestraExcepcion(String e) {
         // fg.muestraExcepcion(e);
+        System.out.println("Excepcion: "+ e);
     }
     
     // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main

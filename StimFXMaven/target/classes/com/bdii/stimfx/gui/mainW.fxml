@@ -124,7 +124,7 @@
                <Image url="@../../../../images/blackProfile.png" />
             </image>
          </ImageView>
-         <VBox alignment="TOP_CENTER" layoutX="75.0" layoutY="300.0" prefHeight="250.0" prefWidth="900.0" spacing="15.0">
+         <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="384.0" prefHeight="250.0" prefWidth="900.0" spacing="15.0">
             <children>
                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
                   <children>
@@ -138,7 +138,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -157,7 +157,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <PasswordField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <PasswordField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -176,7 +176,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -195,7 +195,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="320.0">
+                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -206,13 +206,45 @@
          </VBox>
          <Label alignment="CENTER" layoutX="430.0" layoutY="229.0" prefHeight="26.0" prefWidth="191.0" text="Username">
             <font>
-               <Font size="14.0" />
+               <Font size="18.0" />
             </font>
          </Label>
-         <Button layoutX="475.0" layoutY="550.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" styleClass="secondary-color" stylesheets="@../css/styles.css" text="Guardar">
+         <Button layoutX="476.0" layoutY="634.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" styleClass="secondary-color" stylesheets="@../css/styles.css" text="Guardar">
             <font>
                <Font size="14.0" />
             </font>
          </Button>
+         <HBox alignment="CENTER" layoutX="76.0" layoutY="255.0" prefHeight="100.0" prefWidth="900.0" spacing="20.0">
+            <children>
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                  <children>
+                     <Label text="Juegos">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label text="0">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                  <children>
+                     <Label text="Victorias">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label text="0">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
       </children></AnchorPane>
 </AnchorPane>
