@@ -90,10 +90,10 @@ public class FachadaGUI extends Application {
         if(createWindow) old.close();
     }
 
-    public void showShopScene() {
-        ShopWController shopWController = loadFXML("/com/bdii/stimfx/gui/shopW.fxml", null, ShopWController.class);
-        assert shopWController != null;
-        shopWController.setMainApp(this);
+    public void showProfileScene() {
+        ProfileWController profileWController = loadFXML("/com/bdii/stimfx/gui/profileW.fxml", null, ProfileWController.class);
+        assert profileWController != null;
+        profileWController.setMainApp(this);
     }
 
     public void showLibraryScene() {
@@ -112,6 +112,19 @@ public class FachadaGUI extends Application {
         SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, SettingsWController.class);
         assert settingsWController != null;
         settingsWController.setMainApp(this);
+    }
+
+
+    public void loadGameWindow()
+    {
+        primaryStage = new Stage();
+        primaryStage.setResizable(true);
+        this.primaryStage.setWidth(1920);
+        this.primaryStage.setHeight(1105);
+
+        LoadGameWController loadGameWController = loadFXML("/com/bdii/stimfx/gui/loadGameW.fxml", null, LoadGameWController.class);
+        assert loadGameWController != null;
+        loadGameWController.setMainApp(this);
     }
 
 

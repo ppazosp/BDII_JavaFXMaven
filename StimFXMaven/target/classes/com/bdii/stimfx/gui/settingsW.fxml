@@ -21,23 +21,6 @@
                <children>
                   <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/profile.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="32.0" prefWidth="117.0" text="Perfil" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" onMouseClicked="#showShopScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
-               <children>
-                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../../images/shop.png" />
                      </image>
                   </ImageView>
@@ -92,27 +75,48 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutY="704.0" prefHeight="32.0" prefWidth="200.0" spacing="10.0" stylesheets="@../css/styles.css">
+      <VBox alignment="BOTTOM_CENTER" layoutY="522.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../images/settings.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="32.0" prefWidth="114.0" text="Ajustes" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER" onMouseClicked="#showProfileScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Perfil" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/settings.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Ajustes" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+               <styleClass>
+                  <String fx:value="selected" />
+                  <String fx:value="selected-border" />
+               </styleClass>
+            </HBox>
          </children>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-         <styleClass>
-            <String fx:value="selected" />
-            <String fx:value="selected-border" />
-         </styleClass>
-      </HBox>
+      </VBox>
    </AnchorPane>
    <AnchorPane layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
