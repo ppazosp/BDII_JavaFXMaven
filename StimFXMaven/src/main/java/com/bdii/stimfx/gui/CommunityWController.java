@@ -7,9 +7,9 @@ public class CommunityWController {
     FachadaGUI fg;
 
     @FXML
-    public void showShopScene(MouseEvent event)
+    public void showProfileScene(MouseEvent event)
     {
-        fg.showShopScene();
+        fg.showProfileScene();
     }
 
     @FXML

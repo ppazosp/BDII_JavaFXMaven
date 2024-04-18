@@ -26,6 +26,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version> <!-- Usando la nueva versión definida -->
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>21</version>
+        </dependency>
     </dependencies>
 
     <build>
