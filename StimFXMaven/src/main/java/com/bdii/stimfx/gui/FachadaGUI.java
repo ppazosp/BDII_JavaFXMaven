@@ -117,6 +117,7 @@ public class FachadaGUI extends Application {
 
     public void loadGameWindow()
     {
+        Stage old = primaryStage;
         primaryStage = new Stage();
         primaryStage.setResizable(true);
         this.primaryStage.setWidth(1920);
@@ -125,6 +126,8 @@ public class FachadaGUI extends Application {
         LoadGameWController loadGameWController = loadFXML("/com/bdii/stimfx/gui/loadGameW.fxml", null, LoadGameWController.class);
         assert loadGameWController != null;
         loadGameWController.setMainApp(this);
+
+        primaryStage = old;
     }
 
 
