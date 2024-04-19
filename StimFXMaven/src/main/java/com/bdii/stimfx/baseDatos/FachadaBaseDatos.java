@@ -11,15 +11,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import com.bdii.stimfx.aplicacion.FachadaAplicacion;
+
+import com.bdii.stimfx.aplicacion.*;
+
 import java.util.List;
-import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.DLC;
-import com.bdii.stimfx.aplicacion.Reseña;
-import com.bdii.stimfx.aplicacion.Usuario;
-import com.bdii.stimfx.aplicacion.Torneo;
-import com.bdii.stimfx.aplicacion.Categoria;
-import com.bdii.stimfx.aplicacion.Comunidad;
+
 /**
  *
  * @author alumnogreibd
@@ -229,5 +225,13 @@ public class FachadaBaseDatos {
 
     public Videojuego proximoVideojuego(){
         return  daoV.proximoVideojuego();
+    }
+
+    public int torneosGanados(String id){
+        return daoT.torneosGanados(id);
+    }
+
+    public List<Plataforma> consultarPlataformasVideoJuego(int id){
+        return daoP.consultarPlataformasVideoJuego(id);
     }
 }

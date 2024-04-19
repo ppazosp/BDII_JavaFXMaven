@@ -277,8 +277,8 @@ public class DAOUsuarios extends AbstractDAO{
         }
         return resultado;
     }
-    
-    
+
+
     
    /* 
     public List<Usuario> consultarUsuario(String nombre){

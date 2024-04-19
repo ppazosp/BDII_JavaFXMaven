@@ -258,4 +258,10 @@ public class FachadaAplicacion {
     public Videojuego proximoVideojuego(){
         return fbd.proximoVideojuego();
     }
+    public int torneosGanados(Usuario u){
+        return fbd.torneosGanados(u.getId());
+    }
+    public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
+        return fbd.consultarPlataformasVideoJuego(v.getId());
+    }
 }
