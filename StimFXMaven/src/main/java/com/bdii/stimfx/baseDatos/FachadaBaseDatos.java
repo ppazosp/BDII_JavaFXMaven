@@ -219,4 +219,15 @@ public class FachadaBaseDatos {
         return daoComunidades.contarMiembrosEquipo(c);
     }
 
+    public List<Videojuego> consultaVideoJuegosInicio(){
+        return daoV.consultaVideoJuegosInicio();
+    }
+
+    public Usuario validarUsuario(String nombre, String clave){
+        return daoU.validarUsuario(nombre, clave);
+    }
+
+    public Videojuego proximoVideojuego(){
+        return  daoV.proximoVideojuego();
+    }
 }

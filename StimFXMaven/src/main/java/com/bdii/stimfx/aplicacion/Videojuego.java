@@ -20,6 +20,7 @@ public class Videojuego {
     private String descripcion;
     private List<DLC> DLCs;
     private double precio;
+    private int numDescargas;
     private List<Reseña> reseñas;
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio) {
@@ -29,6 +30,7 @@ public class Videojuego {
         this.descripcion = descripcion;
         this.DLCs = new ArrayList<>();
         this.precio= precio;
+        this.numDescargas=0;
     }
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio,List<DLC> DLCs) {
@@ -38,6 +40,7 @@ public class Videojuego {
         this.descripcion = descripcion;
                 this.precio= precio;
         this.DLCs = DLCs;
+        this.numDescargas=0;
     }
     
     public Videojuego(int id, String nombre, String descripcion, double precio) {
@@ -46,6 +49,11 @@ public class Videojuego {
         this.descripcion = descripcion;
         this.DLCs = new ArrayList<>();
         this.precio= precio;
+        this.numDescargas=0;
+    }
+
+    public void setNumDescargas(int numDescargas) {
+        this.numDescargas = numDescargas;
     }
 
     public Editor getEditor() {

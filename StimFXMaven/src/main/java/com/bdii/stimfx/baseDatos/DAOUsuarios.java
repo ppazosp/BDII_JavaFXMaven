@@ -155,7 +155,8 @@ public class DAOUsuarios extends AbstractDAO{
           try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
-    
+
+    //usuarios en vez de ints
     public java.util.List<Integer> consultarSeguidos(int idU1){
         java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
         Integer idUsuarioActual;
@@ -185,7 +186,8 @@ public class DAOUsuarios extends AbstractDAO{
         }
         return resultado;  
     }
-    
+
+    //MEter usuarios en vez de ids, no?
     public java.util.List<Integer> consultarSeguidores(int idU2){
         java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
         Integer idUsuarioActual;
@@ -234,6 +236,45 @@ public class DAOUsuarios extends AbstractDAO{
         }finally{
           try {stmSeguidos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
+    }
+
+    public Usuario validarUsuario(String nombre, String clave){
+        Usuario resultado = null;
+        Usuario usuarioActual;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuarios;
+
+        con=this.getConexion();
+
+        String consulta = "select * from usuario where nombre like ? and contraseña like ?";
+
+
+
+        try  {
+            stmUsuarios=con.prepareStatement(consulta);
+            stmUsuarios.setString(1, nombre);
+            stmUsuarios.setString(1, clave);
+            rsUsuarios=stmUsuarios.executeQuery();
+            if (rsUsuarios.next())
+            {
+                resultado = new Usuario(rsUsuarios.getInt("id"), rsUsuarios.getString("nombre"),
+                        rsUsuarios.getString("contraseña"), rsUsuarios.getString("tipo"),
+                        rsUsuarios.getString("email"));  //TELEFONO ESTA EN LA BASE?
+
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {
+                if (stmUsuarios != null) {
+                    stmUsuarios.close();
+                }
+            } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
     }
     
     
