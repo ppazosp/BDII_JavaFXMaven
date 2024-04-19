@@ -4,8 +4,15 @@ import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.awt.Toolkit;
+import java.io.ByteArrayInputStream;
 
 public class FachadaAplicacion {
     private FachadaAplicacion fa;
@@ -16,6 +23,48 @@ public class FachadaAplicacion {
     public Usuario usuario;
 
     private static Scene scene;
+
+    public static byte[] imageToBytes(String path)
+    {
+        try {
+
+            File imageFile = new File(path);
+            FileInputStream fis = new FileInputStream(imageFile);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+            return baos.toByteArray();
+
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static Image bytesToImage(byte[] imageData) {
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+            Image image = new Image(bis);
+            bis.close();
+
+            return image;
+        } catch (IOException e) {
+            System.out.println("Error converting byte array to image: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
+
+
+
     private void pruebas_DAO(){
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
         System.out.println(cats.get(0).getDescripcion());
@@ -25,7 +74,7 @@ public class FachadaAplicacion {
     public FachadaAplicacion(FachadaGUI fg){
         this.fg = fg;
         fbd =new FachadaBaseDatos(this);
-       pruebas_DAO();
+        pruebas_DAO();
         gu = new GestionUsuarios(this.fg, fbd);
     }
 
@@ -143,8 +192,8 @@ public class FachadaAplicacion {
     }
     
     // Funciones relacionadas con la gestion de las plataformas. No veo necesario crear una clase
-    public void insertarPlataforma(String nombre){
-        fbd.insertarPlataforma(nombre);
+    public void insertarPlataforma(String nombre, byte[] icono){
+        fbd.insertarPlataforma(nombre, icono);
     }
     public void borrarPlataforma(String nombre){
         fbd.borrarPlataforma(nombre);

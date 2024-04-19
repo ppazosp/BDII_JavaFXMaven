@@ -135,8 +135,8 @@ public class FachadaBaseDatos {
         daoD.borrarDLC(d);
     }
     
-    public void insertarPlataforma(String nombre){
-        daoP.insertarPlataforma(nombre);
+    public void insertarPlataforma(String nombre, byte[] icono){
+        daoP.insertarPlataforma(nombre, icono);
     }
     
     public void borrarPlataforma(String nombre){
