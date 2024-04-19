@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.aplicacion;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.ArrayList;
 

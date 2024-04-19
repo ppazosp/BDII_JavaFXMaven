@@ -287,7 +287,7 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.descripcion\n" +
+        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion\n" +
                 "   from videojuegos v  \n" +
                 "   where fechasubida  > current_date\n" +
                 "   order by fechasubida desc\n" +
@@ -305,11 +305,11 @@ public class DAOVideojuegos extends AbstractDAO{
                         "  where id= ?;";
                 try {
                     stmVideojuego = con.prepareStatement(consulta1);
-                    stmVideojuego.setInt(1, rsVideojuegos.getInt("id_usreditor"));
+                    stmVideojuego.setString(1, rsVideojuegos.getString("id_usreditor"));
                     rsEditor = stmVideojuego.executeQuery();
                     while (rsEditor.next()) {
                         Editor editor = new Editor(rsEditor.getString("id"), rsEditor.getString("nombre"), rsEditor.getString("contraseña"),
-                                rsEditor.getString("tipo"), rsEditor.getString("email"));
+                                null, rsEditor.getString("email"));
                         resultado.setEditor(editor);
                     }
                 }
