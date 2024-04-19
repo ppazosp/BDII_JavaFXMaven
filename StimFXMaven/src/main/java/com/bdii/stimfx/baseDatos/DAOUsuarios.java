@@ -31,7 +31,7 @@ public class DAOUsuarios extends AbstractDAO{
         try {
             stmUsuario=con.prepareStatement("insert into usuario(id, nombre, contraseña, email, telefono, tipoUsuario) "+
                                             "values (?,?,?,?,?,?)");          
-            stmUsuario.setInt(1, u.getId());
+            stmUsuario.setString(1, u.getId());
             stmUsuario.setString(2, u.getNombre());
             stmUsuario.setString(3, u.getContrasena());
             stmUsuario.setString(4, u.getEmail());
@@ -96,8 +96,8 @@ public class DAOUsuarios extends AbstractDAO{
         rsUsuarios=stmUsuarios.executeQuery();
         while (rsUsuarios.next())
         {
-            usuarioActual = new Usuario(rsUsuarios.getInt("id"), rsUsuarios.getString("nombre"),
-                                  rsUsuarios.getString("contraseña"), rsUsuarios.getString("tipo"), 
+            usuarioActual = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
+                                  rsUsuarios.getString("contraseña"), null,
                                       rsUsuarios.getString("email"));  //TELEFONO ESTA EN LA BASE?
             
             resultado.add(usuarioActual);
@@ -238,7 +238,7 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
 
-    public Usuario validarUsuario(String nombre, String clave){
+    public Usuario validarUsuario(String id, String clave){
         Usuario resultado = null;
         Usuario usuarioActual;
         Connection con;
@@ -247,19 +247,20 @@ public class DAOUsuarios extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select * from usuario where nombre like ? and contraseña like ?";
+        String consulta = "select * from usuario where id like ? and contraseña like ?";
 
 
 
         try  {
             stmUsuarios=con.prepareStatement(consulta);
-            stmUsuarios.setString(1, nombre);
-            stmUsuarios.setString(1, clave);
+            stmUsuarios.setString(1, id);
+            stmUsuarios.setString(2, clave);
             rsUsuarios=stmUsuarios.executeQuery();
+
             if (rsUsuarios.next())
             {
-                resultado = new Usuario(rsUsuarios.getInt("id"), rsUsuarios.getString("nombre"),
-                        rsUsuarios.getString("contraseña"), rsUsuarios.getString("tipo"),
+                resultado = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
+                        rsUsuarios.getString("contraseña"), null,
                         rsUsuarios.getString("email"));  //TELEFONO ESTA EN LA BASE?
 
             }

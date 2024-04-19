@@ -43,7 +43,7 @@ public class DAOVideojuegos extends AbstractDAO{
             stmVideojuego.setInt(1, v.getId());
             stmVideojuego.setString(2, v.getNombre());
             stmVideojuego.setDate(3, fechaActual);
-            stmVideojuego.setInt(4, v.getEditor().getId());
+            stmVideojuego.setString(4, v.getEditor().getId());
             stmVideojuego.setString(5, v.getDescripcion());
             stmVideojuego.executeUpdate();
         } catch (SQLException e){
@@ -127,7 +127,7 @@ public class DAOVideojuegos extends AbstractDAO{
             Videojuego videojuego = new Videojuego(id, rsCatalogo.getString("v.nombre"),
                         rsCatalogo.getDate("v.fechaSubida"),
                     rsCatalogo.getString("v.descripcion"), rsCatalogo.getDouble("precio"));
-            Editor editor = new Editor(rsCatalogo.getInt("e.id"), rsCatalogo.getString("e.nombre"),
+            Editor editor = new Editor(rsCatalogo.getString("e.id"), rsCatalogo.getString("e.nombre"),
                     rsCatalogo.getString("e.contraseña"), rsCatalogo.getString("tipo"), rsCatalogo.getString("email"));
             videojuego.setEditor(editor);
             resultado.add(videojuego);
@@ -254,11 +254,11 @@ public class DAOVideojuegos extends AbstractDAO{
                         "  where id= ?;";
                 try {
                     stmVideojuego = con.prepareStatement(consulta1);
-                    stmVideojuego.setInt(1, rsVideojuegos.getInt("id_usreditor"));
+                    stmVideojuego.setString(1, rsVideojuegos.getString("id_usreditor"));
                     rsEditor = stmVideojuego.executeQuery();
                     while (rsEditor.next()) {
-                        Editor editor = new Editor(rsEditor.getInt("id"), rsEditor.getString("nombre"), rsEditor.getString("contraseña"),
-                                rsEditor.getString("tipo"), rsEditor.getString("email"));
+                        Editor editor = new Editor(rsEditor.getString("id"), rsEditor.getString("nombre"), rsEditor.getString("contraseña"),
+                                null, rsEditor.getString("email"));
                         videojuego.setEditor(editor);
                     }
                 }
@@ -308,7 +308,7 @@ public class DAOVideojuegos extends AbstractDAO{
                     stmVideojuego.setInt(1, rsVideojuegos.getInt("id_usreditor"));
                     rsEditor = stmVideojuego.executeQuery();
                     while (rsEditor.next()) {
-                        Editor editor = new Editor(rsEditor.getInt("id"), rsEditor.getString("nombre"), rsEditor.getString("contraseña"),
+                        Editor editor = new Editor(rsEditor.getString("id"), rsEditor.getString("nombre"), rsEditor.getString("contraseña"),
                                 rsEditor.getString("tipo"), rsEditor.getString("email"));
                         resultado.setEditor(editor);
                     }

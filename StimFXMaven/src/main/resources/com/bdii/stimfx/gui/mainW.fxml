@@ -147,7 +147,7 @@
                      <Insets />
                   </VBox.margin>
                   <children>
-                     <ImageView fitHeight="74.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="demoIconImage" fitHeight="74.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../images/RobinRun.png" />
                         </image>
@@ -157,34 +157,34 @@
                      </ImageView>
                      <VBox alignment="CENTER" prefHeight="120.0" prefWidth="550.0" spacing="5.0">
                         <children>
-                           <Label prefHeight="14.0" prefWidth="422.0" text="Robin Run">
+                           <Label fx:id="demoNameLabel" prefHeight="14.0" prefWidth="422.0" text="Robin Run">
                               <font>
                                  <Font name="System Bold" size="20.0" />
                               </font>
                            </Label>
                            <HBox prefHeight="20.0" prefWidth="200.0" spacing="2.0">
                               <children>
-                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="demoMicrosoftIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/microsoft.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="demoAppleIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/apple.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="demoPlayStationIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/playstation.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="demoXboxIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/xbox.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="demoAndroidIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/android.png" />
                                     </image>
@@ -197,7 +197,7 @@
                         <children>
                            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="304.0">
                               <children>
-                                 <Label prefHeight="18.0" prefWidth="210.0" text="1 Enero 2024" textAlignment="CENTER">
+                                 <Label fx:id="demoDateLabel" prefHeight="18.0" prefWidth="210.0" text="1 Enero 2024" textAlignment="CENTER">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -251,44 +251,41 @@
                </Label>
                <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="620.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
                   <children>
-                     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/minecraft.png" />
-                        </image>
+                     <ImageView fx:id="top1IconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                         <HBox.margin>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                      </ImageView>
                      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="515.0">
                         <children>
-                           <Label prefHeight="34.0" prefWidth="500.0" text="Minecraft">
+                           <Label fx:id="top1NameLabel" prefHeight="34.0" prefWidth="500.0" text="Minecraft">
                               <font>
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
+                           <HBox fx:id="top1IconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
                               <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top1MicrosoftIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/microsoft.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top1AppleIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/apple.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top1PlayStationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/playstation.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top1XboxIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/xbox.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top1AndroidIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/android.png" />
                                     </image>
@@ -301,12 +298,12 @@
                         <children>
                            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="180.0">
                               <children>
-                                 <Label prefHeight="18.0" prefWidth="185.0" text="1 Enero 2024" textAlignment="CENTER">
+                                 <Label fx:id="top1DateLabel" prefHeight="18.0" prefWidth="185.0" text="1 Enero 2024" textAlignment="CENTER">
                                     <font>
                                        <Font size="12.0" />
                                     </font>
                                  </Label>
-                                 <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="75.0" text="9,99€">
+                                 <Label fx:id="top1PriceLabel" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="75.0" text="9,99€">
                                     <font>
                                        <Font name="System Bold" size="14.0" />
                                     </font>
@@ -326,43 +323,40 @@
                <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/cs2.png" />
-                        </image>
                         <HBox.margin>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                      </ImageView>
                      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="515.0">
                         <children>
-                           <Label prefHeight="34.0" prefWidth="500.0" text="Counter-Strike 2">
+                           <Label fx:id="top2NameLabel" prefHeight="34.0" prefWidth="500.0" text="Counter-Strike 2">
                               <font>
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
                            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
                               <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top2MicrosoftIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/microsoft.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top2AppleIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/apple.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top2PlayStationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/playstation.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top2XboxIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/xbox.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top2AndroidIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/android.png" />
                                     </image>
@@ -375,12 +369,12 @@
                         <children>
                            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="180.0">
                               <children>
-                                 <Label prefHeight="18.0" prefWidth="185.0" text="1 Enero 2024" textAlignment="CENTER">
+                                 <Label fx:id="top2DateLabel" prefHeight="18.0" prefWidth="185.0" text="1 Enero 2024" textAlignment="CENTER">
                                     <font>
                                        <Font size="12.0" />
                                     </font>
                                  </Label>
-                                 <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="75.0" text="20,00€">
+                                 <Label fx:id="top2PriceLabel" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="75.0" text="20,00€">
                                     <font>
                                        <Font name="System Bold" size="14.0" />
                                     </font>
@@ -400,43 +394,40 @@
                <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/gow.jpg" />
-                        </image>
                         <HBox.margin>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                      </ImageView>
                      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="515.0">
                         <children>
-                           <Label prefHeight="34.0" prefWidth="500.0" text="God of War">
+                           <Label fx:id="top3NameLabel" prefHeight="34.0" prefWidth="500.0" text="God of War">
                               <font>
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
                            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
                               <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top3MicrosoftIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/microsoft.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top3AppleIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/apple.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top3PlayStationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/playstation.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top3XboxIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/xbox.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fx:id="top3AndroidIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/android.png" />
                                     </image>
@@ -449,12 +440,12 @@
                         <children>
                            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="180.0">
                               <children>
-                                 <Label prefHeight="18.0" prefWidth="185.0" text="1 Enero 2024" textAlignment="CENTER">
+                                 <Label fx:id="top3DateLabel" prefHeight="18.0" prefWidth="185.0" text="1 Enero 2024" textAlignment="CENTER">
                                     <font>
                                        <Font size="12.0" />
                                     </font>
                                  </Label>
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="23.0" prefWidth="75.0" text="49,99€">
+                                 <Label fx:id="top3PriceLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="23.0" prefWidth="75.0" text="49,99€">
                                     <font>
                                        <Font name="System Bold" size="14.0" />
                                     </font>

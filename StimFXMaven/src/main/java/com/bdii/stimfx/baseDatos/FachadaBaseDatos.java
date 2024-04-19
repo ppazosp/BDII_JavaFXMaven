@@ -183,7 +183,7 @@ public class FachadaBaseDatos {
         daoU.bloquearSeguidor(idU2, idU1);
     }
 
-    public Integer contarJuegosUsuario(int id_usuario){
+    public Integer contarJuegosUsuario(String id_usuario){
         return daoCompras.contarJuegosUsuario(id_usuario);
     }
 
@@ -223,8 +223,8 @@ public class FachadaBaseDatos {
         return daoV.consultaVideoJuegosInicio();
     }
 
-    public Usuario validarUsuario(String nombre, String clave){
-        return daoU.validarUsuario(nombre, clave);
+    public Usuario validarUsuario(String id, String clave){
+        return daoU.validarUsuario(id, clave);
     }
 
     public Videojuego proximoVideojuego(){

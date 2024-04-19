@@ -5,6 +5,7 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
+import com.bdii.stimfx.baseDatos.AbstractDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,10 +38,11 @@ public class FachadaGUI extends Application {
         showLoginWindow();
     }
 
-    private <T> T loadFXML(String fxmlFile, String windowTitle, Class<T> controllerClass) {
+    private <T extends Controller> T loadFXML(String fxmlFile, String windowTitle, Class<T> controllerClass) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             T controllerInstance = controllerClass.getDeclaredConstructor().newInstance();
+            controllerInstance.setMainApp(this);
             loader.setController(controllerInstance);
             Parent root = loader.load();
 
@@ -57,6 +59,7 @@ public class FachadaGUI extends Application {
             return null;
         }
     }
+
 
 
     public void showLoginWindow() {
@@ -92,25 +95,21 @@ public class FachadaGUI extends Application {
     public void showProfileScene() {
         ProfileWController profileWController = loadFXML("/com/bdii/stimfx/gui/profileW.fxml", null, ProfileWController.class);
         assert profileWController != null;
-        profileWController.setMainApp(this);
     }
 
     public void showLibraryScene() {
         LibraryWController libraryWController = loadFXML("/com/bdii/stimfx/gui/libraryW.fxml", null, LibraryWController.class);
         assert libraryWController != null;
-        libraryWController.setMainApp(this);
     }
 
     public void showCommunityScene() {
         CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
         assert communityWController != null;
-        communityWController.setMainApp(this);
     }
 
     public void showSettingsScene() {
         SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, SettingsWController.class);
         assert settingsWController != null;
-        settingsWController.setMainApp(this);
     }
 
 

@@ -1,7 +1,6 @@
 package com.bdii.stimfx.aplicacion;
 
 import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
-import com.bdii.stimfx.baseDatos.DAOCategorias;
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,6 +13,8 @@ public class FachadaAplicacion {
     private FachadaBaseDatos fbd;
     private GestionUsuarios gu;
 
+    public Usuario usuario;
+
     private static Scene scene;
     private void pruebas_DAO(){
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
@@ -24,7 +25,7 @@ public class FachadaAplicacion {
     public FachadaAplicacion(FachadaGUI fg){
         this.fg = fg;
         fbd =new FachadaBaseDatos(this);
-        pruebas_DAO();
+       pruebas_DAO();
         gu = new GestionUsuarios(this.fg, fbd);
     }
 
@@ -33,8 +34,6 @@ public class FachadaAplicacion {
     }
 
     public static void main(String[] args) {
-        FachadaGUI fg = new FachadaGUI();
-
         Application.launch(FachadaGUI.class, args);
 
     }
@@ -87,7 +86,7 @@ public class FachadaAplicacion {
     }
 
     // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
-    public Integer contarJuegosUsuario(int id_usuario){
+    public Integer contarJuegosUsuario(String id_usuario){
         return fbd.contarJuegosUsuario(id_usuario);
     }
 
@@ -197,8 +196,8 @@ public class FachadaAplicacion {
     //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
     public boolean checkCredentials(String username, String password)
     {
-        return true;
-        //return gu.comprobarAutentificacion(username, password);
+        this.usuario = gu.comprobarAutentificacion(username, password);
+        return usuario != null;
     }
 
     public List<Videojuego> consultaVideoJuegosInicio(){

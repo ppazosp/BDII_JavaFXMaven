@@ -58,7 +58,7 @@ public class DAOTorneos extends AbstractDAO{
             stmTorneo.setDate(4, fechaSumada);
             stmTorneo.setInt(5, t.getPremio());
             stmTorneo.setInt(6, t.getVideojuego().getId());
-            stmTorneo.setInt(7, t.getAdministrador().getId());
+            stmTorneo.setString(7, t.getAdministrador().getId());
             stmTorneo.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());

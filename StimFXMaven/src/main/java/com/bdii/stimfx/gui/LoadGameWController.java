@@ -7,7 +7,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoadGameWController implements Initializable {
+public class LoadGameWController implements Initializable, Controller {
     FachadaGUI fg;
 
     @FXML

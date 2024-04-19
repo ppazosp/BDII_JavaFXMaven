@@ -3,7 +3,7 @@ package com.bdii.stimfx.gui;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
-public class CommunityWController {
+public class CommunityWController implements Controller{
     FachadaGUI fg;
 
     @FXML

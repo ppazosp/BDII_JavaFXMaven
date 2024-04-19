@@ -10,11 +10,11 @@ package com.bdii.stimfx.aplicacion;
  */
 public class UsuarioEditor extends Usuario{
 
-    public UsuarioEditor(int id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
+    public UsuarioEditor(String id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
         super(id, nombre, contrasena, TipoUsuario, email, telefono);
     }
 
-    public UsuarioEditor(int id, String nombre, String contrasena, String TipoUsuario, String email) {
+    public UsuarioEditor(String id, String nombre, String contrasena, String TipoUsuario, String email) {
         super(id, nombre, contrasena, TipoUsuario, email);
     }
     

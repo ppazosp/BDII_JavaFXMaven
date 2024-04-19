@@ -1,6 +1,6 @@
 package com.bdii.stimfx.gui;
 
-public class SignInWController {
+public class SignInWController implements Controller{
 
     FachadaGUI fg;
 

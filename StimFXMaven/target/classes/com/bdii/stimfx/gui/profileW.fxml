@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
+   <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../../images/steam.png" />
       </ImageView>
@@ -128,7 +128,7 @@
                <Image url="@../../../../images/blackProfile.png" />
             </image>
          </ImageView>
-         <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="384.0" prefHeight="250.0" prefWidth="900.0" spacing="15.0">
+         <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="384.0" prefHeight="200.0" prefWidth="900.0" spacing="15.0">
             <children>
                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
                   <children>
@@ -142,7 +142,26 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                     <TextField fx:id="nameField" focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
+                  <children>
+                     <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/email.png" />
+                        </image>
+                     </ImageView>
+                     <Label prefHeight="30.0" prefWidth="100.0" text="Email">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="emailField" focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
@@ -161,59 +180,21 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <PasswordField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
+                     <PasswordField fx:id="passField" focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                         <font>
                            <Font size="14.0" />
                         </font>
                      </PasswordField>
                   </children>
                </HBox>
-               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
-                  <children>
-                     <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/email.png" />
-                        </image>
-                     </ImageView>
-                     <Label prefHeight="30.0" prefWidth="100.0" text="Email">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </TextField>
-                  </children>
-               </HBox>
-               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
-                  <children>
-                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/phone.png" />
-                        </image>
-                     </ImageView>
-                     <Label prefHeight="30.0" prefWidth="100.0" text="Telefono">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </Label>
-                     <TextField focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </TextField>
-                  </children>
-               </HBox>
             </children>
          </VBox>
-         <Label alignment="CENTER" layoutX="430.0" layoutY="229.0" prefHeight="26.0" prefWidth="191.0" text="Username">
+         <Label fx:id="userField" alignment="CENTER" layoutX="430.0" layoutY="229.0" prefHeight="26.0" prefWidth="191.0" text="Username">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Button layoutX="476.0" layoutY="634.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" styleClass="secondary-color" stylesheets="@../css/styles.css" text="Guardar">
+         <Button layoutX="476.0" layoutY="584.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" styleClass="secondary-color" stylesheets="@../css/styles.css" text="Guardar">
             <font>
                <Font size="14.0" />
             </font>
@@ -227,7 +208,7 @@
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Label>
-                     <Label text="0">
+                     <Label fx:id="nGamesLabel" text="0">
                         <font>
                            <Font size="18.0" />
                         </font>
@@ -241,7 +222,7 @@
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Label>
-                     <Label text="0">
+                     <Label fx:id="nWinsLabel" text="0">
                         <font>
                            <Font size="18.0" />
                         </font>
