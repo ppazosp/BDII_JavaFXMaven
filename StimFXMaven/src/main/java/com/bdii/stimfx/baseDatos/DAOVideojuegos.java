@@ -279,6 +279,52 @@ public class DAOVideojuegos extends AbstractDAO{
         return resultado;
     }
 
+    public void inicializarBaseDatos(){
+        Connection con;
+        PreparedStatement stmVideojuego=null;
+        ResultSet rsVideojuegos, rsEditor;
+        Videojuego resultado = null;
+
+        con=this.getConexion();
+
+        String consulta = "select v.id, v.nombre" +
+                "   from videojuegos v;";
+
+        try{
+            stmVideojuego=con.prepareStatement(consulta);
+            rsVideojuegos=stmVideojuego.executeQuery();
+            while (rsVideojuegos.next())
+            {
+                String nombre = rsVideojuegos.getString("nombre");
+                int id = rsVideojuegos.getInt("id");
+                String ruta = "StimFXMaven/src/imagenes/" + nombre + ".png";
+                byte[] img = FachadaAplicacion.imageToBytes(ruta);
+
+                try {
+                    stmVideojuego=con.prepareStatement("UPDATE videojuegos\n" +
+                            "SET imagen = ?" +
+                            "WHERE id= ?");
+                    stmVideojuego.setBytes(1, img);
+                    stmVideojuego.setInt(2, id);
+
+                    stmVideojuego.executeUpdate();
+                }
+                catch (SQLException e){
+                    System.out.println(e.getMessage());
+                    FachadaAplicacion.muestraExcepcion(e.getMessage());
+                }
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+    }
+
+
+
     public Videojuego proximoVideojuego(){
         Connection con;
         PreparedStatement stmVideojuego=null;

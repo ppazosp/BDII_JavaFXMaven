@@ -23,6 +23,8 @@ public class Videojuego {
     private int numDescargas;
     private List<Reseña> reseñas;
 
+
+
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio) {
         this.id = id;
         this.nombre = nombre;
