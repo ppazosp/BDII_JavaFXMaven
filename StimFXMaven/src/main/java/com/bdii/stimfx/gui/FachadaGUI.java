@@ -27,8 +27,7 @@ public class FachadaGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        fa = new FachadaAplicacion();
-        fa.setFachadaGUI(this);
+        fa = new FachadaAplicacion(this);
 
         this.primaryStage = primaryStage;
         this.primaryStage.setMinWidth(1000);

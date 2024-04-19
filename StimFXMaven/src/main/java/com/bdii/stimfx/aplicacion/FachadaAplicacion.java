@@ -12,6 +12,7 @@ public class FachadaAplicacion {
     private FachadaAplicacion fa;
     private FachadaGUI fg;
     private FachadaBaseDatos fbd;
+    private GestionUsuarios gu;
 
     private static Scene scene;
     private void pruebas_DAO(){
@@ -20,9 +21,11 @@ public class FachadaAplicacion {
         List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         System.out.println(usrs.get(0).getNombre());
     }
-    public FachadaAplicacion(){
+    public FachadaAplicacion(FachadaGUI fg){
+        this.fg = fg;
         fbd =new FachadaBaseDatos(this);
         pruebas_DAO();
+        gu = new GestionUsuarios(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -31,7 +34,9 @@ public class FachadaAplicacion {
 
     public static void main(String[] args) {
         FachadaGUI fg = new FachadaGUI();
+
         Application.launch(FachadaGUI.class, args);
+
     }
 
 
@@ -189,8 +194,18 @@ public class FachadaAplicacion {
     }
 
     //METHODS
+    //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
     public boolean checkCredentials(String username, String password)
     {
         return true;
+        //return gu.comprobarAutentificacion(username, password);
+    }
+
+    public List<Videojuego> consultaVideoJuegosInicio(){
+        return fbd.consultaVideoJuegosInicio();
+    }
+
+    public Videojuego proximoVideojuego(){
+        return fbd.proximoVideojuego();
     }
 }
