@@ -1,7 +1,7 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Plataforma;
 import com.bdii.stimfx.aplicacion.Videojuego;
+import com.bdii.stimfx.aplicacion.Demo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -21,11 +22,19 @@ import java.util.ResourceBundle;
 public class MainWController implements Controller, Initializable {
 
     FachadaGUI fg;
-    //PROXIMO LANZAMIENTO
+    //PANE
     @FXML
     AnchorPane rightPane;
 
+    //DEMO
+    @FXML
+    ImageView demoIconImage;
+    @FXML
+    Label demoNameLabel;
+    @FXML
+    Label demoDateLabel;
 
+    //NEXT LAUNCH
     @FXML
     VBox nextLaunchVbox;
     @FXML
@@ -85,6 +94,12 @@ public class MainWController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Demo currDemo = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+        if(currDemo != null) {
+            demoIconImage.setImage(currDemo.getImagen());
+            demoNameLabel.setText(currDemo.getNombre());
+        }
+
         Videojuego nextLaunch = fg.fa.proximoVideojuego();
         if (nextLaunch != null) {
             launchIconImage.setImage(nextLaunch.getImagen());

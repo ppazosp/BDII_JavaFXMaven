@@ -4,13 +4,8 @@
  */
 package com.bdii.stimfx.baseDatos;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
 
 import com.bdii.stimfx.aplicacion.*;
 
@@ -32,6 +27,7 @@ public class FachadaBaseDatos {
     private DAOCompras daoCompras;
     private DAOPlataformas daoP;
     private DAOComunidades daoComunidades;
+    private DAODemos daoDemos;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -63,14 +59,17 @@ public class FachadaBaseDatos {
         daoR = new DAOReseñas(conexion, fa);
         daoT = new DAOTorneos(conexion, fa);
         daoP = new DAOPlataformas(conexion, fa);
-
+        daoDemos = new DAODemos(conexion, fa);
     }
 
     public void inicializarbd()
     {
         daoV.inicializarBaseDatos();
     }
-    
+
+    public void insertarDemo(Demo d) {daoDemos.insertarDemo(d);}
+    public Demo consultarDemo(int mes, int ano){return daoDemos.consultarDemo(mes, ano);};
+
     //Hace falta el id
     public List<Videojuego> consultaVideojuegos(String nombre){  // Abajo hay una con id, aunq con nombre hace falta
         return daoV.consultaVideojuegos(nombre);

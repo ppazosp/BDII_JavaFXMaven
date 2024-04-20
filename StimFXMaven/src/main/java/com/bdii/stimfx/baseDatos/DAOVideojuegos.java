@@ -33,7 +33,7 @@ public class DAOVideojuegos extends AbstractDAO{
         con=super.getConexion();
         
         try {
-            stmVideojuego=con.prepareStatement("insert into videojuego(id, nombre, fechasubida, id_usreditos, descripcion) "+
+            stmVideojuego=con.prepareStatement("insert into videojuego(id, nombre, fechasubida, id_usreditor, descripcion) "+
                                             "values (?,?,?,?,?)");
             // Obtener la fecha actual como un objeto java.sql.Date
             Date fechaActual = new Date(System.currentTimeMillis());
@@ -115,8 +115,8 @@ public class DAOVideojuegos extends AbstractDAO{
         con=this.getConexion();
         //Cambiar consulta para q devulva tb nombre de usuario
         String consulta = "select *" +
-                                         "from videojuego as v join editor e on e.id= v.idUsuarioEditor"+
-                                         "where nombre like ?";
+                                         "from videojuego as v join editor e on e.id= v.id_usreditor and "+
+                                         " v.nombre like ?";
         try  {
         stmCatalogo= con.prepareStatement(consulta);
         stmCatalogo.setString(1, "%"+nombre+"%");
@@ -133,7 +133,7 @@ public class DAOVideojuegos extends AbstractDAO{
             resultado.add(videojuego);
             
             
-            consulta= "select * from DLC where idVideojuego = ?;";
+            consulta= "select * from DLC where id_videojuego = ?;";
             try{
             stmDLC=con.prepareStatement(consulta);
             stmDLC.setInt(1, id);
@@ -203,7 +203,7 @@ public class DAOVideojuegos extends AbstractDAO{
         
         con=this.getConexion();
         
-        String consulta = "select nombrecategoria from tenercategoria where idvideojuego = ?";
+        String consulta = "select nombrecategoria from tenercategoria where id_videojuego = ?";
         
         try{
             stmCategorias=con.prepareStatement(consulta);
@@ -299,7 +299,7 @@ public class DAOVideojuegos extends AbstractDAO{
                 String nombre = rsVideojuegos.getString("nombre");
                 int id = rsVideojuegos.getInt("id");
                 String ruta = "StimFXMaven/src/imagenes/" + nombre + ".png";
-                byte[] img = FachadaAplicacion.imageToBytes(ruta);
+                byte[] img = FachadaAplicacion.pathToBytes(ruta);
 
                 try {
                     stmVideojuego=con.prepareStatement("UPDATE videojuego\n" +

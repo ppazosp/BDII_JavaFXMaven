@@ -152,25 +152,19 @@
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                      </ImageView>
-                     <VBox alignment="CENTER" prefHeight="120.0" prefWidth="550.0" spacing="5.0">
+                     <VBox alignment="CENTER" prefHeight="103.0" prefWidth="422.0" spacing="5.0">
                         <children>
-                           <Label fx:id="demoNameLabel" prefHeight="14.0" prefWidth="422.0" text="xxxxxxxxxxxxx">
+                           <Label fx:id="demoNameLabel" contentDisplay="CENTER" prefHeight="14.0" prefWidth="422.0" text="xxxxxxxxxxxxx">
                               <font>
                                  <Font name="System Bold" size="20.0" />
                               </font>
                            </Label>
-                           <HBox fx:id="demoIconsHbox" prefHeight="20.0" prefWidth="200.0" spacing="2.0" />
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="84.0" prefWidth="500.0">
                         <children>
-                           <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="304.0">
+                           <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="421.0">
                               <children>
-                                 <Label fx:id="demoDateLabel" prefHeight="18.0" prefWidth="210.0" text="xxxxxxxxxxxxxxx" textAlignment="CENTER">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
                                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="80.0" text="Gratis">
                                     <font>
                                        <Font name="System Bold" size="16.0" />
