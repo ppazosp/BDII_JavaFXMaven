@@ -97,19 +97,25 @@ public class FachadaAplicacion {
         System.out.println("Excepcion: "+ e);
     }
 
+    // Funcion para actualizar el correo, nombre o contraseña de un usuario
+    public void modificarUsuario(Usuario u){
+        fbd.modificarUsuario(u);
+    }
+
+
     // Funcion para crear una nueva comunidad
-    public void insertarEquipoCompetitivo(Comunidad c){
-        fbd.insertarEquipoCompetitivo(c);
+    public void insertarComunidad(Comunidad c){
+        fbd.insertarComunidad(c);
     }
 
     // Funcion para borrar una comunidad
-    public void borrarEquipoCompetitivo(Comunidad c){
-        fbd.borrarEquipoCompetitivo(c);
+    public void borrarComunidad(Comunidad c){
+        fbd.borrarComunidad(c);
     }
 
     // Funcion para mirar comunidades en el buscador, encontrar una comunidad especifica, a partir de algo o todas si la barra esta vacía
-    public java.util.List<Comunidad> consultarEquipos(String nombre){
-        return fbd.consultarEquipos(nombre);
+    public java.util.List<Comunidad> consultarComunidades(String nombre){
+        return fbd.consultarComunidades(nombre);
     }
 
     // Funcion para insertar a un usuario en una comunidad.

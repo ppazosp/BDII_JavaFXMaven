@@ -14,15 +14,12 @@ public class Usuario {
     private String contrasena;
     private String TipoUsuario;
     private String email;
-    private String telefono;
 
-    public Usuario(String id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
+    public Usuario(String id, String nombre, String contrasena, String email) {
         this.id = id;
         this.nombre = nombre;
         this.contrasena = contrasena;
-        this.TipoUsuario = TipoUsuario;
         this.email = email;
-        this.telefono = telefono;
     }
 
     public Usuario(String id, String nombre, String contrasena, String TipoUsuario, String email) {
@@ -53,9 +50,6 @@ public class Usuario {
         return email;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
     
     
     

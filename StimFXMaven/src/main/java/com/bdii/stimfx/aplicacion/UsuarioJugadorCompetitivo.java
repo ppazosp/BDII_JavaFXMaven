@@ -11,7 +11,7 @@ package com.bdii.stimfx.aplicacion;
 public class UsuarioJugadorCompetitivo extends Usuario{
 
     public UsuarioJugadorCompetitivo(String id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
-        super(id, nombre, contrasena, TipoUsuario, email, telefono);
+        super(id, nombre, contrasena, email);
     }
 
     public UsuarioJugadorCompetitivo(String id, String nombre, String contrasena, String TipoUsuario, String email) {

@@ -25,14 +25,14 @@ public class DAOComunidades extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
     
-    public void insertarEquipoCompetitivo(Comunidad c){
+    public void insertarComunidad(Comunidad c){
         Connection con;
         PreparedStatement stmEquipo=null;
         
         con=super.getConexion();
         
         try {
-            stmEquipo=con.prepareStatement("insert into equipo_competitivo(nombre) "+
+            stmEquipo=con.prepareStatement("insert into comunidad(nombre) "+
                                             "values (?)");
             stmEquipo.setString(1, c.getNombre());
             stmEquipo.executeUpdate();
@@ -44,14 +44,14 @@ public class DAOComunidades extends AbstractDAO{
         }
     }
 
-    public void borrarEquipoCompetitivo(Comunidad c){
+    public void borrarComunidad(Comunidad c){
         Connection con;
         PreparedStatement stmEquipo=null;
 
         con=super.getConexion();
 
         try{
-            stmEquipo=con.prepareStatement("delete from equipo_competitivo where nombre = ?");
+            stmEquipo=con.prepareStatement("delete from comunidad where nombre = ?");
             stmEquipo.setString(1, c.getNombre());
             stmEquipo.executeUpdate();
 
@@ -63,7 +63,7 @@ public class DAOComunidades extends AbstractDAO{
         }
     }
 
-    public java.util.List<Comunidad> consultarEquipos(String nombre){
+    public java.util.List<Comunidad> consultarComunidades(String nombre){
         java.util.List<Comunidad> resultado = new java.util.ArrayList<Comunidad>();
         Comunidad comunidadActual;
         Connection con;

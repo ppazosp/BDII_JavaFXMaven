@@ -188,16 +188,16 @@ public class FachadaBaseDatos {
         return daoCompras.contarJuegosUsuario(id_usuario);
     }
 
-    public void insertarEquipoCompetitivo(Comunidad c){
-        daoComunidades.insertarEquipoCompetitivo(c);
+    public void insertarComunidad(Comunidad c){
+        daoComunidades.insertarComunidad(c);
     }
 
-    public void borrarEquipoCompetitivo(Comunidad c){
-        daoComunidades.borrarEquipoCompetitivo(c);
+    public void borrarComunidad(Comunidad c){
+        daoComunidades.borrarComunidad(c);
     }
 
-    public java.util.List<Comunidad> consultarEquipos(String nombre){
-        return daoComunidades.consultarEquipos(nombre);
+    public java.util.List<Comunidad> consultarComunidades(String nombre){
+        return daoComunidades.consultarComunidades(nombre);
     }
 
     public void insertarJugadorEquipo(int id_usuario, Comunidad c){
@@ -239,4 +239,10 @@ public class FachadaBaseDatos {
     public List<Plataforma> consultarPlataformasVideoJuego(int id){
         return daoP.consultarPlataformasVideoJuego(id);
     }
+
+    public void modificarUsuario(Usuario u){
+        daoU.modificarUsuario(u);
+    }
+
+
 }

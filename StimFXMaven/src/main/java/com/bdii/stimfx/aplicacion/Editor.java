@@ -14,7 +14,7 @@ public class Editor extends Usuario {
 
 
     public Editor(String id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
-        super(id, nombre, contrasena, TipoUsuario, email, telefono);
+        super(id, nombre, contrasena, email);
     }
 
     public Editor(String id, String nombre, String contrasena, String TipoUsuario, String email) {
