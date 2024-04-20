@@ -33,19 +33,9 @@ public class MainWController implements Controller, Initializable {
     @FXML
     Label launchNameLabel;
     @FXML
-    Label launchDaysLabel;
-    @FXML
     HBox launchIconsHbox;
     @FXML
-    ImageView launchMicrosoftIcon;
-    @FXML
-    ImageView launchAppleIcon;
-    @FXML
-    ImageView launchPlayStationIcon;
-    @FXML
-    ImageView launchXboxIcon;
-    @FXML
-    ImageView launchAndroidIcon;
+    Label launchDaysLabel;
 
 
     @FXML
@@ -59,22 +49,11 @@ public class MainWController implements Controller, Initializable {
     @FXML
     Label top1NameLabel;
     @FXML
+    HBox top1IconsHbox;
+    @FXML
     Label top1DateLabel;
     @FXML
     Label top1PriceLabel;
-    @FXML
-    HBox top1IconsHbox;
-    @FXML
-    ImageView top1MicrosoftIcon;
-    @FXML
-    ImageView top1AppleIcon;
-    @FXML
-    ImageView top1PlayStationIcon;
-    @FXML
-    ImageView top1XboxIcon;
-    @FXML
-    ImageView top1AndroidIcon;
-
 
     //TOP2
     @FXML
@@ -84,20 +63,11 @@ public class MainWController implements Controller, Initializable {
     @FXML
     Label top2NameLabel;
     @FXML
+    HBox top2IconsHbox;
+    @FXML
     Label top2DateLabel;
     @FXML
     Label top2PriceLabel;
-    @FXML
-    ImageView top2MicrosoftIcon;
-    @FXML
-    ImageView top2AppleIcon;
-    @FXML
-    ImageView top2PlayStationIcon;
-    @FXML
-    ImageView top2XboxIcon;
-    @FXML
-    ImageView top2AndroidIcon;
-
 
     //TOP3
     @FXML
@@ -107,36 +77,19 @@ public class MainWController implements Controller, Initializable {
     @FXML
     Label top3NameLabel;
     @FXML
+    HBox top3IconsHbox;
+    @FXML
     Label top3DateLabel;
     @FXML
     Label top3PriceLabel;
-    @FXML
-    ImageView top3MicrosoftIcon;
-    @FXML
-    ImageView top3AppleIcon;
-    @FXML
-    ImageView top3PlayStationIcon;
-    @FXML
-    ImageView top3XboxIcon;
-    @FXML
-    ImageView top3AndroidIcon;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Videojuego nextLaunch = fg.fa.proximoVideojuego();
         if (nextLaunch != null) {
+            launchIconImage.setImage(nextLaunch.getImagen());
             launchNameLabel.setText(nextLaunch.getNombre());
-            List< Plataforma > nextLaunchplatforms = fg.fa.consultarPlataformasVideoJuego(nextLaunch);
-            for(Plataforma p : nextLaunchplatforms)
-            {
-                ImageView v = new ImageView(p.getIcono());
-                launchIconsHbox.getChildren().add(v);
-                v.setFitWidth(24);
-                v.setFitHeight(24);
-            }
-
+            fg.showPlatforms(nextLaunch, launchIconsHbox);
             long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunch.getFechaSubida().toLocalDate());
             launchDaysLabel.setText(Long.toString(daysToLaunch));
             System.out.println(Long.toString(daysToLaunch));
@@ -153,6 +106,7 @@ public class MainWController implements Controller, Initializable {
                 Videojuego top1 = topSellers.get(0);
                 top1IconImage.setImage(top1.getImagen());
                 top1NameLabel.setText(top1.getNombre());
+                fg.showPlatforms(top1, top1IconsHbox);
                 top1DateLabel.setText(top1.getFechaSubida().toString());
                 top1PriceLabel.setText(top1.getPrecio() + "€");
             }else
@@ -165,6 +119,7 @@ public class MainWController implements Controller, Initializable {
                 Videojuego top2 = topSellers.get(1);
                 top2IconImage.setImage(top2.getImagen());
                 top2NameLabel.setText(top2.getNombre());
+                fg.showPlatforms(top2, top2IconsHbox);
                 top2DateLabel.setText(top2.getFechaSubida().toString());
                 top2PriceLabel.setText(top2.getPrecio() + "€");
             }else
@@ -177,6 +132,7 @@ public class MainWController implements Controller, Initializable {
                 Videojuego top3 = topSellers.get(2);
                 top3IconImage.setImage(top3.getImagen());
                 top3NameLabel.setText(top3.getNombre());
+                fg.showPlatforms(top3, top3IconsHbox);
                 top3DateLabel.setText(top3.getFechaSubida().toString());
                 top3PriceLabel.setText(top3.getPrecio()+"€");
             }else
