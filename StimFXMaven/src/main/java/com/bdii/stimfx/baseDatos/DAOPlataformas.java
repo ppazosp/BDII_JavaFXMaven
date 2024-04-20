@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Plataforma;
+import javafx.scene.image.Image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -28,18 +30,20 @@ public class DAOPlataformas extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
         
-    public void insertarPlataforma(String nombre, byte[]icono){
+    public void insertarPlataforma(String nombre, String path){
         Connection con;
         PreparedStatement stmPlataforma=null;
         
         con=super.getConexion();
 
+        byte[] icono = FachadaAplicacion.imageToBytes(path);
 
         try {
-            stmPlataforma=con.prepareStatement("insert into plataforma(nombre, icono) "+
-                                            "values (?, ?)");
-            stmPlataforma.setString(1, nombre);
-            stmPlataforma.setBytes(2, icono);
+            stmPlataforma=con.prepareStatement("update plataforma "+
+                                                    "set icono = ? " +
+                                                    "where nombre = ?;");
+            stmPlataforma.setBytes(1, icono);
+            stmPlataforma.setString(2, nombre);
             stmPlataforma.executeUpdate();
 
         } catch (SQLException e){
@@ -112,10 +116,11 @@ public class DAOPlataformas extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select nombre_plataforma\n" +
-                "from videojuegos v\n" +
-                "join plataforma_tiene_videojuego p on v.id = p.id_videojuego \n" +
-                "where v.id = ?";
+        String consulta = "SELECT ptv.nombre_plataforma, p.icono\n" +
+                "FROM videojuego v\n" +
+                "JOIN plataforma_tiene_videojuego ptv ON v.id = ptv.id_videojuego \n" +
+                "JOIN plataforma p ON ptv.nombre_plataforma = p.nombre\n" +
+                "WHERE v.id = ?;";
 
         try  {
             stmPlataformas=con.prepareStatement(consulta);
@@ -123,7 +128,8 @@ public class DAOPlataformas extends AbstractDAO{
             rsPlataformas=stmPlataformas.executeQuery();
             while (rsPlataformas.next())
             {
-                plataformaActual = new Plataforma(rsPlataformas.getString("nombre_plataforma"));
+                plataformaActual = new Plataforma(rsPlataformas.getString("nombre_plataforma"),
+                        FachadaAplicacion.bytesToImage(rsPlataformas.getBytes("icono")));
 
                 resultado.add(plataformaActual);
             }

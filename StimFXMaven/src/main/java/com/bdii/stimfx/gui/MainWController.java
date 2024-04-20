@@ -1,5 +1,6 @@
 package com.bdii.stimfx.gui;
 
+import com.bdii.stimfx.aplicacion.Plataforma;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -127,6 +128,15 @@ public class MainWController implements Controller, Initializable {
         Videojuego nextLaunch = fg.fa.proximoVideojuego();
         if (nextLaunch != null) {
             launchNameLabel.setText(nextLaunch.getNombre());
+            List< Plataforma > nextLaunchplatforms = fg.fa.consultarPlataformasVideoJuego(nextLaunch);
+            for(Plataforma p : nextLaunchplatforms)
+            {
+                ImageView v = new ImageView(p.getIcono());
+                launchIconsHbox.getChildren().add(v);
+                v.setFitWidth(24);
+                v.setFitHeight(24);
+            }
+
             long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunch.getFechaSubida().toLocalDate());
             launchDaysLabel.setText(Long.toString(daysToLaunch));
             System.out.println(Long.toString(daysToLaunch));
@@ -141,6 +151,7 @@ public class MainWController implements Controller, Initializable {
         {
             if(topSellers.get(0)!= null) {
                 Videojuego top1 = topSellers.get(0);
+                top1IconImage.setImage(top1.getImagen());
                 top1NameLabel.setText(top1.getNombre());
                 top1DateLabel.setText(top1.getFechaSubida().toString());
                 top1PriceLabel.setText(top1.getPrecio() + "€");
@@ -152,6 +163,7 @@ public class MainWController implements Controller, Initializable {
 
             if(topSellers.get(1)!= null) {
                 Videojuego top2 = topSellers.get(1);
+                top2IconImage.setImage(top2.getImagen());
                 top2NameLabel.setText(top2.getNombre());
                 top2DateLabel.setText(top2.getFechaSubida().toString());
                 top2PriceLabel.setText(top2.getPrecio() + "€");
@@ -163,6 +175,7 @@ public class MainWController implements Controller, Initializable {
 
             if(topSellers.get(2)!= null) {
                 Videojuego top3 = topSellers.get(2);
+                top3IconImage.setImage(top3.getImagen());
                 top3NameLabel.setText(top3.getNombre());
                 top3DateLabel.setText(top3.getFechaSubida().toString());
                 top3PriceLabel.setText(top3.getPrecio()+"€");

@@ -65,6 +65,11 @@ public class FachadaBaseDatos {
         daoP = new DAOPlataformas(conexion, fa);
 
     }
+
+    public void inicializarbd()
+    {
+        daoV.inicializarBaseDatos();
+    }
     
     //Hace falta el id
     public List<Videojuego> consultaVideojuegos(String nombre){  // Abajo hay una con id, aunq con nombre hace falta
@@ -131,8 +136,8 @@ public class FachadaBaseDatos {
         daoD.borrarDLC(d);
     }
     
-    public void insertarPlataforma(String nombre, byte[] icono){
-        daoP.insertarPlataforma(nombre, icono);
+    public void insertarPlataforma(String nombre, String path){
+        daoP.insertarPlataforma(nombre, path);
     }
     
     public void borrarPlataforma(String nombre){
