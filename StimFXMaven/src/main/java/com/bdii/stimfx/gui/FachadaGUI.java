@@ -5,15 +5,20 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
+import com.bdii.stimfx.aplicacion.Plataforma;
+import com.bdii.stimfx.aplicacion.Videojuego;
 import com.bdii.stimfx.baseDatos.AbstractDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class FachadaGUI extends Application {
 
@@ -57,6 +62,18 @@ public class FachadaGUI extends Application {
                  InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void showPlatforms(Videojuego v, HBox hbox)
+    {
+        List<Plataforma> vp = fa.consultarPlataformasVideoJuego(v);
+        for(Plataforma p : vp)
+        {
+            ImageView iV = new ImageView(p.getIcono());
+            hbox.getChildren().add(iV);
+            iV.setFitWidth(24);
+            iV.setFitHeight(24);
         }
     }
 

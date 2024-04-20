@@ -142,62 +142,31 @@
                      <Font name="System Bold" size="20.0" />
                   </font>
                </Label>
-               <HBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="950.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 30; -fx-border-width: 7;" styleClass="button" stylesheets="@../css/styles.css">
+               <HBox alignment="CENTER_LEFT" prefHeight="85.0" prefWidth="950.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 30; -fx-border-width: 7;" styleClass="button" stylesheets="@../css/styles.css">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                   <children>
                      <ImageView fx:id="demoIconImage" fitHeight="74.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/RobinRun.png" />
-                        </image>
                         <HBox.margin>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
                      </ImageView>
                      <VBox alignment="CENTER" prefHeight="120.0" prefWidth="550.0" spacing="5.0">
                         <children>
-                           <Label fx:id="demoNameLabel" prefHeight="14.0" prefWidth="422.0" text="Robin Run">
+                           <Label fx:id="demoNameLabel" prefHeight="14.0" prefWidth="422.0" text="xxxxxxxxxxxxx">
                               <font>
                                  <Font name="System Bold" size="20.0" />
                               </font>
                            </Label>
-                           <HBox prefHeight="20.0" prefWidth="200.0" spacing="2.0">
-                              <children>
-                                 <ImageView fx:id="demoMicrosoftIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/microsoft.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="demoAppleIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/apple.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="demoPlayStationIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/playstation.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="demoXboxIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/xbox.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="demoAndroidIcon" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/android.png" />
-                                    </image>
-                                 </ImageView>
-                              </children>
-                           </HBox>
+                           <HBox fx:id="demoIconsHbox" prefHeight="20.0" prefWidth="200.0" spacing="2.0" />
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="84.0" prefWidth="500.0">
                         <children>
                            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="304.0">
                               <children>
-                                 <Label fx:id="demoDateLabel" prefHeight="18.0" prefWidth="210.0" text="1 Enero 2024" textAlignment="CENTER">
+                                 <Label fx:id="demoDateLabel" prefHeight="18.0" prefWidth="210.0" text="xxxxxxxxxxxxxxx" textAlignment="CENTER">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -263,35 +232,7 @@
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <HBox fx:id="top1IconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
-                              <children>
-                                 <ImageView fx:id="top1MicrosoftIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/microsoft.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top1AppleIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/apple.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top1PlayStationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/playstation.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top1XboxIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/xbox.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top1AndroidIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/android.png" />
-                                    </image>
-                                 </ImageView>
-                              </children>
-                           </HBox>
+                           <HBox fx:id="top1IconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0" />
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="550.0">
@@ -337,35 +278,7 @@
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
-                              <children>
-                                 <ImageView fx:id="top2MicrosoftIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/microsoft.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top2AppleIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/apple.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top2PlayStationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/playstation.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top2XboxIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/xbox.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top2AndroidIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/android.png" />
-                                    </image>
-                                 </ImageView>
-                              </children>
-                           </HBox>
+                           <HBox fx:id="top2IconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0" />
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="550.0">
@@ -408,35 +321,7 @@
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
-                              <children>
-                                 <ImageView fx:id="top3MicrosoftIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/microsoft.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top3AppleIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/apple.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top3PlayStationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/playstation.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top3XboxIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/xbox.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fx:id="top3AndroidIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/android.png" />
-                                    </image>
-                                 </ImageView>
-                              </children>
-                           </HBox>
+                           <HBox fx:id="top3IconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0" />
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="550.0">
@@ -481,7 +366,7 @@
                   <children>
                      <VBox alignment="TOP_CENTER" prefHeight="340.0" prefWidth="232.0" spacing="10.0">
                         <children>
-                           <ImageView fitHeight="216.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fx:id="launchIconImage" fitHeight="216.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                               <VBox.margin>
                                  <Insets />
                               </VBox.margin>

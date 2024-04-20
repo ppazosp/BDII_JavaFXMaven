@@ -334,7 +334,7 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion\n" +
+        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen\n" +
                 "   from videojuego v  \n" +
                 "   where fechasubida  > current_date\n" +
                 "   order by fechasubida desc\n" +
@@ -346,7 +346,8 @@ public class DAOVideojuegos extends AbstractDAO{
             while (rsVideojuegos.next())
             {
                 resultado = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
-                        rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"), rsVideojuegos.getDouble("precio"));
+                        rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
+                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")));
 
                 String consulta1= "  select * from usuario u " +
                         "  where id= ?;";
