@@ -11,15 +11,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import com.bdii.stimfx.aplicacion.FachadaAplicacion;
+
+import com.bdii.stimfx.aplicacion.*;
+
 import java.util.List;
-import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.DLC;
-import com.bdii.stimfx.aplicacion.Reseña;
-import com.bdii.stimfx.aplicacion.Usuario;
-import com.bdii.stimfx.aplicacion.Torneo;
-import com.bdii.stimfx.aplicacion.Categoria;
-import com.bdii.stimfx.aplicacion.Comunidad;
+
 /**
  *
  * @author alumnogreibd
@@ -135,8 +131,8 @@ public class FachadaBaseDatos {
         daoD.borrarDLC(d);
     }
     
-    public void insertarPlataforma(String nombre){
-        daoP.insertarPlataforma(nombre);
+    public void insertarPlataforma(String nombre, byte[] icono){
+        daoP.insertarPlataforma(nombre, icono);
     }
     
     public void borrarPlataforma(String nombre){
@@ -183,7 +179,7 @@ public class FachadaBaseDatos {
         daoU.bloquearSeguidor(idU2, idU1);
     }
 
-    public Integer contarJuegosUsuario(int id_usuario){
+    public Integer contarJuegosUsuario(String id_usuario){
         return daoCompras.contarJuegosUsuario(id_usuario);
     }
 
@@ -219,4 +215,23 @@ public class FachadaBaseDatos {
         return daoComunidades.contarMiembrosEquipo(c);
     }
 
+    public List<Videojuego> consultaVideoJuegosInicio(){
+        return daoV.consultaVideoJuegosInicio();
+    }
+
+    public Usuario validarUsuario(String id, String clave){
+        return daoU.validarUsuario(id, clave);
+    }
+
+    public Videojuego proximoVideojuego(){
+        return  daoV.proximoVideojuego();
+    }
+
+    public int torneosGanados(String id){
+        return daoT.torneosGanados(id);
+    }
+
+    public List<Plataforma> consultarPlataformasVideoJuego(int id){
+        return daoP.consultarPlataformasVideoJuego(id);
+    }
 }

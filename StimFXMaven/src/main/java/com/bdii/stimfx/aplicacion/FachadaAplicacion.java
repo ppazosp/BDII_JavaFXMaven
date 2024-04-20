@@ -1,28 +1,83 @@
 package com.bdii.stimfx.aplicacion;
 
 import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
-import com.bdii.stimfx.baseDatos.DAOCategorias;
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.awt.Toolkit;
+import java.io.ByteArrayInputStream;
 
 public class FachadaAplicacion {
     private FachadaAplicacion fa;
     private FachadaGUI fg;
     private FachadaBaseDatos fbd;
+    private GestionUsuarios gu;
+
+    public Usuario usuario;
 
     private static Scene scene;
+
+    public static byte[] imageToBytes(String path)
+    {
+        try {
+
+            File imageFile = new File(path);
+            FileInputStream fis = new FileInputStream(imageFile);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+            return baos.toByteArray();
+
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static Image bytesToImage(byte[] imageData) {
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+            Image image = new Image(bis);
+            bis.close();
+
+            return image;
+        } catch (IOException e) {
+            System.out.println("Error converting byte array to image: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
+
+
+
     private void pruebas_DAO(){
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
         System.out.println(cats.get(0).getDescripcion());
         List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         System.out.println(usrs.get(0).getNombre());
     }
-    public FachadaAplicacion(){
+    public FachadaAplicacion(FachadaGUI fg){
+        this.fg = fg;
         fbd =new FachadaBaseDatos(this);
         pruebas_DAO();
+        gu = new GestionUsuarios(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -30,8 +85,10 @@ public class FachadaAplicacion {
     }
 
     public static void main(String[] args) {
-        FachadaGUI fg = new FachadaGUI();
+        String currentDirectory = System.getProperty("user.dir");
+        System.out.println("Current working directory: " + currentDirectory);
         Application.launch(FachadaGUI.class, args);
+
     }
 
 
@@ -82,7 +139,7 @@ public class FachadaAplicacion {
     }
 
     // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
-    public Integer contarJuegosUsuario(int id_usuario){
+    public Integer contarJuegosUsuario(String id_usuario){
         return fbd.contarJuegosUsuario(id_usuario);
     }
 
@@ -139,8 +196,8 @@ public class FachadaAplicacion {
     }
     
     // Funciones relacionadas con la gestion de las plataformas. No veo necesario crear una clase
-    public void insertarPlataforma(String nombre){
-        fbd.insertarPlataforma(nombre);
+    public void insertarPlataforma(String nombre, byte[] icono){
+        fbd.insertarPlataforma(nombre, icono);
     }
     public void borrarPlataforma(String nombre){
         fbd.borrarPlataforma(nombre);
@@ -189,8 +246,24 @@ public class FachadaAplicacion {
     }
 
     //METHODS
+    //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
     public boolean checkCredentials(String username, String password)
     {
-        return true;
+        this.usuario = gu.comprobarAutentificacion(username, password);
+        return usuario != null;
+    }
+
+    public List<Videojuego> consultaVideoJuegosInicio(){
+        return fbd.consultaVideoJuegosInicio();
+    }
+
+    public Videojuego proximoVideojuego(){
+        return fbd.proximoVideojuego();
+    }
+    public int torneosGanados(Usuario u){
+        return fbd.torneosGanados(u.getId());
+    }
+    public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
+        return fbd.consultarPlataformasVideoJuego(v.getId());
     }
 }

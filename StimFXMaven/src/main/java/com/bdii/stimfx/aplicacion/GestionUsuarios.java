@@ -74,4 +74,13 @@ public class GestionUsuarios {
         }
     }
 
+    //Si no encuentra al usuario con esa contraseña, devuelve un null
+    public Usuario comprobarAutentificacion(String idUsuario, String clave){
+        Usuario u;
+        //hashear en el futuro
+        //String hashedPassword= hashPassword(clave);
+        u=fbd.validarUsuario(idUsuario, clave);
+        return u;
+    }
+
 }

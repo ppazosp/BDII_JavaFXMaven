@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LogInWController {
+public class LogInWController implements Controller{
 
     FachadaGUI fg;
 
@@ -25,7 +25,8 @@ public class LogInWController {
 
     public void loginCheck (ActionEvent event)
     {
-        if(fg.checkCredentials(usernameField.toString(), passwordField.toString()))
+
+        if(fg.checkCredentials(usernameField.getText(), passwordField.getText()))
         {
             fg.showMainWindow(true);
         }

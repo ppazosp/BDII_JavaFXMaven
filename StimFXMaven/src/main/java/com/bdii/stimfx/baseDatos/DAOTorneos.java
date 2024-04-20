@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
 
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import com.bdii.stimfx.aplicacion.Usuario;
 import com.bdii.stimfx.aplicacion.Torneo;
@@ -58,7 +59,7 @@ public class DAOTorneos extends AbstractDAO{
             stmTorneo.setDate(4, fechaSumada);
             stmTorneo.setInt(5, t.getPremio());
             stmTorneo.setInt(6, t.getVideojuego().getId());
-            stmTorneo.setInt(7, t.getAdministrador().getId());
+            stmTorneo.setString(7, t.getAdministrador().getId());
             stmTorneo.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -68,6 +69,44 @@ public class DAOTorneos extends AbstractDAO{
         }
 
 
+    }
+
+    public int torneosGanados(String id){
+        int resultado = 0;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuarios;
+
+        con=this.getConexion();
+
+        String consulta = "select count(*) as torneos_ganados\n" +
+                "from torneo \n" +
+                "where ganador like ?";
+
+
+
+        try  {
+            stmUsuarios=con.prepareStatement(consulta);
+            stmUsuarios.setString(1, id);
+            rsUsuarios=stmUsuarios.executeQuery();
+
+            if (rsUsuarios.next())
+            {
+                resultado = rsUsuarios.getInt("torneos_ganados");
+
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {
+                if (stmUsuarios != null) {
+                    stmUsuarios.close();
+                }
+            } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
     }
     
 }

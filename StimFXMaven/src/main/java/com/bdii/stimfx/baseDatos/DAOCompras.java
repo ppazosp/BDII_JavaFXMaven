@@ -48,8 +48,8 @@ public class DAOCompras extends AbstractDAO{
         }
     }
 
-    public Integer contarJuegosUsuario(int id_usuario){
-        Integer juegosUsuario=0;
+    public Integer contarJuegosUsuario(String id_usuario){
+        int juegosUsuario=0;
         Connection con;
         PreparedStatement stmCompras=null;
         ResultSet rsCompras;
@@ -58,7 +58,7 @@ public class DAOCompras extends AbstractDAO{
 
         String consulta = "select count(*) "+
                 "from comprar "+
-                "where id_usr like ? ";
+                "where id_usr::text like ? ";
 
         try {
             stmCompras=con.prepareStatement(consulta);

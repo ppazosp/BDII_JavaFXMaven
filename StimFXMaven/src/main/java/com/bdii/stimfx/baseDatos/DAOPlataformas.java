@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
+import com.bdii.stimfx.aplicacion.Plataforma;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -22,25 +28,30 @@ public class DAOPlataformas extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
         
-    public void insertarPlataforma(String nombre){
+    public void insertarPlataforma(String nombre, byte[]icono){
         Connection con;
         PreparedStatement stmPlataforma=null;
         
         con=super.getConexion();
-        
+
+
         try {
-            stmPlataforma=con.prepareStatement("insert into plataforma(nombre) "+
-                                            "values (?)");          
+            stmPlataforma=con.prepareStatement("insert into plataforma(nombre, icono) "+
+                                            "values (?, ?)");
             stmPlataforma.setString(1, nombre);
+            stmPlataforma.setBytes(2, icono);
             stmPlataforma.executeUpdate();
+
         } catch (SQLException e){
           System.out.println(e.getMessage());
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
-          try {stmPlataforma.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+          try {
+              assert stmPlataforma != null;
+              stmPlataforma.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
-    
+
     public void borrarPlataforma(String nombre){
         Connection con;
         PreparedStatement stmPlataforma=null;
@@ -91,7 +102,40 @@ public class DAOPlataformas extends AbstractDAO{
         }
         return resultado;
     }
-    
+
+    public java.util.List<Plataforma> consultarPlataformasVideoJuego(int id){
+        java.util.List<Plataforma> resultado = new java.util.ArrayList<Plataforma>();
+        Plataforma plataformaActual;
+        Connection con;
+        PreparedStatement stmPlataformas=null;
+        ResultSet rsPlataformas;
+
+        con=this.getConexion();
+
+        String consulta = "select nombre_plataforma\n" +
+                "from videojuegos v\n" +
+                "join plataforma_tiene_videojuego p on v.id = p.id_videojuego \n" +
+                "where v.id = ?";
+
+        try  {
+            stmPlataformas=con.prepareStatement(consulta);
+            stmPlataformas.setInt(1, id);
+            rsPlataformas=stmPlataformas.executeQuery();
+            while (rsPlataformas.next())
+            {
+                plataformaActual = new Plataforma(rsPlataformas.getString("nombre_plataforma"));
+
+                resultado.add(plataformaActual);
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmPlataformas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
     
     public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
         Connection con;

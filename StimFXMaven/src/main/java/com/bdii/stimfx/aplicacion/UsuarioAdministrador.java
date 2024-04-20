@@ -10,11 +10,11 @@ package com.bdii.stimfx.aplicacion;
  */
 public class UsuarioAdministrador extends Usuario{
 
-    public UsuarioAdministrador(int id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
+    public UsuarioAdministrador(String id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
         super(id, nombre, contrasena, TipoUsuario, email, telefono);
     }
 
-    public UsuarioAdministrador(int id, String nombre, String contrasena, String TipoUsuario, String email) {
+    public UsuarioAdministrador(String id, String nombre, String contrasena, String TipoUsuario, String email) {
         super(id, nombre, contrasena, TipoUsuario, email);
     }
     
