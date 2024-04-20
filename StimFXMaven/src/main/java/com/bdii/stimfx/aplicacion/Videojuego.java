@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.aplicacion;
+import javafx.scene.image.Image;
+
 import java.sql.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class Videojuego {
     private double precio;
     private int numDescargas;
     private List<Reseña> reseñas;
+    private Image imagen;
 
 
 
@@ -35,12 +38,23 @@ public class Videojuego {
         this.numDescargas=0;
     }
 
+    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechaSubida = fechaSubida;
+        this.descripcion = descripcion;
+        this.DLCs = new ArrayList<>();
+        this.precio= precio;
+        this.numDescargas=0;
+        this.imagen = imagen;
+    }
+
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio,List<DLC> DLCs) {
         this.id = id;
         this.nombre = nombre;
         this.fechaSubida = fechaSubida;
         this.descripcion = descripcion;
-                this.precio= precio;
+        this.precio= precio;
         this.DLCs = DLCs;
         this.numDescargas=0;
     }
@@ -104,6 +118,8 @@ public class Videojuego {
     public void addReseña(Reseña rs){
         this.reseñas.add(rs);
     }
-    
-    
+
+    public Image getImagen() {
+        return imagen;
+    }
 }

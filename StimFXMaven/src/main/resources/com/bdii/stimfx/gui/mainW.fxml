@@ -325,7 +325,7 @@
                </HBox>
                <HBox fx:id="top2Hbox" alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
                   <children>
-                     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="top2IconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                         <HBox.margin>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
@@ -396,7 +396,7 @@
                </HBox>
                <HBox fx:id="top3Hbox" alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
                   <children>
-                     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="top3IconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                         <HBox.margin>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
@@ -479,7 +479,7 @@
                </Label>
                <HBox alignment="CENTER_LEFT" prefHeight="440.0" prefWidth="284.0" spacing="20.0" style="-fx-border-radius: 25; -fx-border-width: 10; -fx-border-color: #1B2631;" styleClass="button" stylesheets="@../css/styles.css">
                   <children>
-                     <VBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="515.0" spacing="10.0">
+                     <VBox alignment="TOP_CENTER" prefHeight="340.0" prefWidth="232.0" spacing="10.0">
                         <children>
                            <ImageView fitHeight="216.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
                               <VBox.margin>
@@ -491,34 +491,7 @@
                                  <Font name="System Bold" size="20.0" />
                               </font>
                            </Label>
-                           <HBox alignment="CENTER" prefHeight="25.0" prefWidth="492.0" spacing="2.0">
-                              <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/microsoft.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/apple.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/playstation.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/xbox.png" />
-                                    </image>
-                                 </ImageView>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/android.png" />
-                                    </image>
-                                 </ImageView>
-                              </children>
+                           <HBox fx:id="launchIconsHbox" alignment="CENTER" prefHeight="31.0" prefWidth="232.0" spacing="2.0">
                               <VBox.margin>
                                  <Insets top="5.0" />
                               </VBox.margin>

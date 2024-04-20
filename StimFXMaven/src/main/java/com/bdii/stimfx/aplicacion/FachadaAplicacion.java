@@ -10,10 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
 
 public class FachadaAplicacion {
@@ -62,16 +59,19 @@ public class FachadaAplicacion {
     }
 
 
-
-
-
-
-
     private void pruebas_DAO(){
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
         System.out.println(cats.get(0).getDescripcion());
         List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         System.out.println(usrs.get(0).getNombre());
+
+        insertarPlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
+        insertarPlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
+        insertarPlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
+        insertarPlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
+        insertarPlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
+
+        fbd.inicializarbd();
     }
     public FachadaAplicacion(FachadaGUI fg){
         this.fg = fg;
@@ -196,8 +196,8 @@ public class FachadaAplicacion {
     }
     
     // Funciones relacionadas con la gestion de las plataformas. No veo necesario crear una clase
-    public void insertarPlataforma(String nombre, byte[] icono){
-        fbd.insertarPlataforma(nombre, icono);
+    public void insertarPlataforma(String nombre, String path){
+        fbd.insertarPlataforma(nombre, path);
     }
     public void borrarPlataforma(String nombre){
         fbd.borrarPlataforma(nombre);

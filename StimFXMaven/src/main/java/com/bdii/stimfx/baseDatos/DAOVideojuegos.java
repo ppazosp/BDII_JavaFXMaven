@@ -33,7 +33,7 @@ public class DAOVideojuegos extends AbstractDAO{
         con=super.getConexion();
         
         try {
-            stmVideojuego=con.prepareStatement("insert into videojuegos(id, nombre, fechasubida, id_usreditos, descripcion) "+
+            stmVideojuego=con.prepareStatement("insert into videojuego(id, nombre, fechasubida, id_usreditos, descripcion) "+
                                             "values (?,?,?,?,?)");
             // Obtener la fecha actual como un objeto java.sql.Date
             Date fechaActual = new Date(System.currentTimeMillis());
@@ -61,7 +61,7 @@ public class DAOVideojuegos extends AbstractDAO{
         con=super.getConexion();
         
         try{
-            stmVideojuego=con.prepareStatement("delete from videojuegos where id = ?");
+            stmVideojuego=con.prepareStatement("delete from videojuego where id = ?");
             stmVideojuego.setInt(1, id);
             stmVideojuego.executeUpdate();
         
@@ -91,7 +91,7 @@ public class DAOVideojuegos extends AbstractDAO{
             stmVideojuego.setInt(1, idVideojuego);
             rsVideojuego=stmVideojuego.executeQuery();
             if (rsVideojuego.next()){
-                videojuego = new Videojuego(rsVideojuego.getInt("id"), rsVideojuego.getString("nombre"), 
+                videojuego = new Videojuego(rsVideojuego.getInt("id"), rsVideojuego.getString("nombre"),
                                                 rsVideojuego.getDate("fechaSubida"), rsVideojuego.getString("descripcion"), rsVideojuego.getDouble("precio"));
             }
         } catch (SQLException e){
@@ -115,7 +115,7 @@ public class DAOVideojuegos extends AbstractDAO{
         con=this.getConexion();
         //Cambiar consulta para q devulva tb nombre de usuario
         String consulta = "select *" +
-                                         "from videojuegos as v join editor e on e.id= v.idUsuarioEditor"+
+                                         "from videojuego as v join editor e on e.id= v.idUsuarioEditor"+
                                          "where nombre like ?";
         try  {
         stmCatalogo= con.prepareStatement(consulta);
@@ -232,8 +232,8 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, count(*) as totalCompras\n" +
-                "   from videojuegos v \n" +
+        String consulta = "   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, count(*) as totalCompras\n" +
+                "   from videojuego v \n" +
                 "   join comprar c on v.id=c.id_videojuego \n" +
                 "   group by v.id\n" +
                 "   order by totalCompras desc\n" +
@@ -245,7 +245,8 @@ public class DAOVideojuegos extends AbstractDAO{
             while (rsVideojuegos.next())
             {
                 Videojuego videojuego = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
-                                        rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"), rsVideojuegos.getDouble("precio"));
+                                        rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
+                                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")));
                 videojuego.setNumDescargas(rsVideojuegos.getInt("totalCompras"));
 
                 //Consulta para editor
@@ -288,7 +289,7 @@ public class DAOVideojuegos extends AbstractDAO{
         con=this.getConexion();
 
         String consulta = "select v.id, v.nombre" +
-                "   from videojuegos v;";
+                "   from videojuego v;";
 
         try{
             stmVideojuego=con.prepareStatement(consulta);
@@ -301,7 +302,7 @@ public class DAOVideojuegos extends AbstractDAO{
                 byte[] img = FachadaAplicacion.imageToBytes(ruta);
 
                 try {
-                    stmVideojuego=con.prepareStatement("UPDATE videojuegos\n" +
+                    stmVideojuego=con.prepareStatement("UPDATE videojuego\n" +
                             "SET imagen = ?" +
                             "WHERE id= ?");
                     stmVideojuego.setBytes(1, img);
@@ -334,7 +335,7 @@ public class DAOVideojuegos extends AbstractDAO{
         con=this.getConexion();
 
         String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion\n" +
-                "   from videojuegos v  \n" +
+                "   from videojuego v  \n" +
                 "   where fechasubida  > current_date\n" +
                 "   order by fechasubida desc\n" +
                 "   limit 1;";
