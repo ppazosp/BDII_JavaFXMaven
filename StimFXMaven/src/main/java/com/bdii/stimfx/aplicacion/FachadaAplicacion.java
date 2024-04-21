@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FachadaAplicacion {
@@ -136,6 +137,21 @@ public class FachadaAplicacion {
     {
         return fbd.consultarDemo(mes, ano);
     }
+
+    // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.
+    // Si pones un buscador se añade facil.
+    // DEVUELVE LOS VIDEOJUEGOS DIERECTAMENTE
+    public java.util.List<Videojuego> consultarJuegosUsuario(int id_usuario){
+        java.util.List<Videojuego> resultado = new ArrayList<Videojuego>();
+        Videojuego videojuegoActual;
+        java.util.List<Integer> id_juegos = fbd.consultarJuegosUsuario(id_usuario);
+        for (Integer i : id_juegos){
+            videojuegoActual = fbd.consultarVideojuego(i);
+            resultado.add(videojuegoActual);
+        }
+        return resultado;
+    }
+
 
     // Funcion para actualizar el correo, nombre o contraseña de un usuario
     public void modificarUsuario(Usuario u){

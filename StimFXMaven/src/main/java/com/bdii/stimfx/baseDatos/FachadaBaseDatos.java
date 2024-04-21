@@ -67,7 +67,12 @@ public class FachadaBaseDatos {
         daoV.inicializarBaseDatos();
     }
 
+    public java.util.List<Integer> consultarJuegosUsuario(int id_usuario){
+        return daoCompras.consultarJuegosUsuario(id_usuario);
+    }
+
     public void insertarDemo(Demo d) {daoDemos.insertarDemo(d);}
+
     public Demo consultarDemo(int mes, int ano){return daoDemos.consultarDemo(mes, ano);};
 
     //Hace falta el id
@@ -112,7 +117,7 @@ public class FachadaBaseDatos {
     }
     
     public void insertarCompra(int id_videojuego, int id_usuario, int precio){
-        daoCompras.insertarCompra(id_videojuego, id_usuario, precio);
+        daoCompras.insertarCompra(id_videojuego, id_usuario);
     }
     
     public void insertarCategoria(Categoria c){
