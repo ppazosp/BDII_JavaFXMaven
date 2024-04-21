@@ -282,12 +282,13 @@ public class FachadaAplicacion {
     public java.util.List<Integer> consultarSeguidos(int idU1){
         return fbd.consultarSeguidos(idU1);
     }
-    
-    public java.util.List<Integer> consultarSeguidores(int idU2){
+
+    // esta funcion devuelve ids, no sería mejor q devolviese Usuarios enteros, ns si merece la pena cambiar
+    public java.util.List<String> consultarSeguidores(String idU2){
         return fbd.consultarSeguidores(idU2);
     }
     
-    public void bloquearSeguidor(int idU1, int idU2){
+    public void bloquearSeguidor(String idU1, String idU2){
         fbd.bloquearSeguidor(idU1, idU2);
     }
     //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
@@ -311,5 +312,9 @@ public class FachadaAplicacion {
     }
     public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
         return fbd.consultarPlataformasVideoJuego(v.getId());
+    }
+
+    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
+        return fbd.consultarVideojuegosUsuario(id);
     }
 }

@@ -4,8 +4,11 @@
  */
 package com.bdii.stimfx.baseDatos;
 
+import com.bdii.stimfx.aplicacion.Editor;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Usuario;
+import com.bdii.stimfx.aplicacion.Videojuego;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -216,9 +219,9 @@ public class DAOUsuarios extends AbstractDAO{
     }
 
     //MEter usuarios en vez de ids, no?
-    public java.util.List<Integer> consultarSeguidores(int idU2){
-        java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
-        Integer idUsuarioActual;
+    public java.util.List<String> consultarSeguidores(String idU2){
+        java.util.List<String> resultado = new java.util.ArrayList<String>();
+        String idUsuarioActual;
         Connection con;
         PreparedStatement stmSeguidos=null;
         ResultSet rsSeguidos;
@@ -229,11 +232,11 @@ public class DAOUsuarios extends AbstractDAO{
         
         try{
             stmSeguidos=con.prepareStatement(consulta);
-            stmSeguidos.setInt(1, idU2);
+            stmSeguidos.setString(1, idU2);
             rsSeguidos=stmSeguidos.executeQuery();
             while (rsSeguidos.next())
             {
-                idUsuarioActual = rsSeguidos.getInt("id_usr2");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
+                idUsuarioActual = rsSeguidos.getString("id_usr2");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
                                         //rsPrestamos.getInt("num_ejemplar"), rsPrestamos.getInt("libro"), rsPrestamos.getString("id_usuario"));
                 resultado.add(idUsuarioActual);
             }
@@ -246,7 +249,7 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado; 
     }
     
-    public void bloquearSeguidor(int idU2, int idU1){
+    public void bloquearSeguidor(String idU2, String idU1){
         Connection con;
         PreparedStatement stmSeguidos=null;
         
@@ -254,8 +257,8 @@ public class DAOUsuarios extends AbstractDAO{
         
         try{
             stmSeguidos=con.prepareStatement("delete from ser_amigo where id_usr1 = ? and id_usr2 = ?");
-            stmSeguidos.setInt(1, idU1);
-            stmSeguidos.setInt(2, idU2);
+            stmSeguidos.setString(1, idU1);
+            stmSeguidos.setString(2, idU2);
             stmSeguidos.executeUpdate();
         
         }catch (SQLException e){
@@ -306,9 +309,41 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
 
+    public java.util.List<Videojuego> consultarVideojuegos(String id){
+        java.util.List<Videojuego> resultado = new java.util.ArrayList<>();
+        Connection con;
+        PreparedStatement stmVideojuego=null;
+        ResultSet rs;
 
+        con=this.getConexion();
+
+        String consulta = "select  v.id, v.nombre , v.fechasubida , v.id_usreditor , v.precio , v.descripcion \n" +
+                "from comprar as c join videojuego as v on c.id_videojuego=v.id\n" +
+                "where c.id_usr like ?;";
+        //un segundo porfa
+        try{
+            stmVideojuego=con.prepareStatement(consulta);
+            stmVideojuego.setString(1, id);
+            rs=stmVideojuego.executeQuery();
+            while (rs.next())
+            {
+                Videojuego videojuego = new Videojuego(rs.getInt("id"),rs.getString("nombre"),
+                        rs.getDate("fechasubida"), rs.getString("descripcion"), rs.getDouble("precio"));
+                // SOlo tiene nombre este usuario
+                Editor usuario = new Editor(rs.getString("id_usr"));
+                videojuego.setEditor(usuario);
+                resultado.add(videojuego);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
     
-   /* 
+/*
     public List<Usuario> consultarUsuario(String nombre){
         Usuario usuarioActual;
         Connection con;
@@ -364,7 +399,6 @@ public class DAOUsuarios extends AbstractDAO{
           try {busqueda.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
         return resultado;
-    }
-*/
+    }*/
 }
 

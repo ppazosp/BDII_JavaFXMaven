@@ -114,25 +114,26 @@ public class DAOVideojuegos extends AbstractDAO{
         List<Videojuego> resultado = new ArrayList<Videojuego>();
         con=this.getConexion();
         //Cambiar consulta para q devulva tb nombre de usuario
-        String consulta = "select *" +
-                                         "from videojuego as v join editor e on e.id= v.id_usreditor and "+
+        String consulta = "select * " +
+                                         "from videojuego as v join editor e on e.id= v.id_usreditor join usuario u on u.id = e.id and "+
                                          " v.nombre like ?";
+
         try  {
         stmCatalogo= con.prepareStatement(consulta);
         stmCatalogo.setString(1, "%"+nombre+"%");
         rsCatalogo=stmCatalogo.executeQuery();
         while (rsCatalogo.next())
         {
-            int id=rsCatalogo.getInt("v.id");
-            Videojuego videojuego = new Videojuego(id, rsCatalogo.getString("v.nombre"),
-                        rsCatalogo.getDate("v.fechaSubida"),
-                    rsCatalogo.getString("v.descripcion"), rsCatalogo.getDouble("precio"));
-            Editor editor = new Editor(rsCatalogo.getString("e.id"), rsCatalogo.getString("e.nombre"),
-                    rsCatalogo.getString("e.contraseña"), rsCatalogo.getString("tipo"), rsCatalogo.getString("email"));
+            int id=rsCatalogo.getInt("id");
+            Videojuego videojuego = new Videojuego(id, rsCatalogo.getString("nombre"),
+                        rsCatalogo.getDate("fechaSubida"),
+                    rsCatalogo.getString("descripcion"), rsCatalogo.getDouble("precio"), FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("imagen")));
+            Editor editor = new Editor(rsCatalogo.getString("id_usreditor"), rsCatalogo.getString("nombre"),
+                    rsCatalogo.getString("contraseña"), null, rsCatalogo.getString("email"));
             videojuego.setEditor(editor);
             resultado.add(videojuego);
-            
-            
+
+
             consulta= "select * from DLC where id_videojuego = ?;";
             try{
             stmDLC=con.prepareStatement(consulta);
@@ -140,27 +141,25 @@ public class DAOVideojuegos extends AbstractDAO{
             rsDLC= stmDLC.executeQuery();
             while(rsDLC.next()){
                 DLC dlc= new DLC(id, rsDLC.getInt("idDLC"),rsDLC.getString("nombre"),
-                        rsDLC.getString("descripcion"), rsDLC.getDouble("precio"), 
+                        rsDLC.getString("descripcion"), rsDLC.getDouble("precio"),
                         rsDLC.getDate("fechaLanzamiento"));
                 videojuego.addDLC(dlc);
             }
                    // (idVideojuego, idDLC, nombre, descripcion, precio, fechaLanzamiento)
             } catch (SQLException e){
-          System.out.println(e.getMessage());
-          //Mostar excepcion
-          //this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
-          try {stmCatalogo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
-        }
-        }
-        
+              System.out.println(e.getMessage());
+              //Mostar excepcion
+              //this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            }
+        }// si yo ejecuto tu lo ves?
         } catch (SQLException e){
           System.out.println(e.getMessage());
           //Mostar excepcion
           //this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
+        }finally{// este esta bien pq es al final
           try {stmCatalogo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
-        }
+        }//cierra cursosr haya o no excepcion de sql
+            //VA cargate todo
         return resultado;
     }
     

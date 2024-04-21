@@ -2,8 +2,10 @@ package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Videojuego;
 import com.bdii.stimfx.aplicacion.Demo;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +27,9 @@ public class MainWController implements Controller, Initializable {
     //PANE
     @FXML
     AnchorPane rightPane;
+
+    @FXML
+    TextField searchBar;
 
     //DEMO
     @FXML
@@ -190,6 +195,12 @@ public class MainWController implements Controller, Initializable {
     public void showSettingsScene(MouseEvent event)
     {
         fg.showSettingsScene();
+    }
+
+    @FXML
+    public void showSearchScene(ActionEvent event)
+    {
+        fg.showSearchScene(searchBar.getText());
     }
 
     public void setMainApp(FachadaGUI mainApp)

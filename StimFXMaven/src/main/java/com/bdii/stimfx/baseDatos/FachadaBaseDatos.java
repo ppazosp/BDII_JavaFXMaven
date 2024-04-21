@@ -175,11 +175,11 @@ public class FachadaBaseDatos {
         return daoU.consultarSeguidos(idU1);
     }
     
-    public java.util.List<Integer> consultarSeguidores(int idU2){
+    public java.util.List<String> consultarSeguidores(String idU2){
         return daoU.consultarSeguidores(idU2);
     }
     
-    public void bloquearSeguidor(int idU1, int idU2){
+    public void bloquearSeguidor(String idU1, String idU2){
         daoU.bloquearSeguidor(idU2, idU1);
     }
 
@@ -243,5 +243,7 @@ public class FachadaBaseDatos {
         daoU.modificarUsuario(u);
     }
 
-
+    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
+        return daoU.consultarVideojuegos(id);
+    };
 }

@@ -21,6 +21,10 @@ public class Editor extends Usuario {
         super(id, nombre, contrasena, TipoUsuario, email);
     }
 
+    public Editor(String idUsr) {
+        super(idUsr);
+    }
+
     public String getId() {
         return id;
     }
