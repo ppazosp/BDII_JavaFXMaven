@@ -3,15 +3,17 @@ package com.bdii.stimfx.aplicacion;
 import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
+import javafx.scene.paint.Color;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.sql.Date;
 import java.util.List;
-import java.io.ByteArrayInputStream;
 
 public class FachadaAplicacion {
     private FachadaAplicacion fa;
@@ -23,8 +25,18 @@ public class FachadaAplicacion {
 
     private static Scene scene;
 
-    public static byte[] imageToBytes(String path)
-    {
+    public static Image pathToImage(String path) {
+        try {
+            File imageFile = new File(path);
+            FileInputStream inputStream = new FileInputStream(imageFile);
+            return new Image(inputStream);
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + path);
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static byte[] pathToBytes(String path) {
         try {
 
             File imageFile = new File(path);
@@ -44,7 +56,30 @@ public class FachadaAplicacion {
 
         return null;
     }
+    public static byte[] imageToBytes(Image image) {
+        try {
+            // Convert JavaFX Image to BufferedImage
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
+            // Create ByteArrayOutputStream to hold the encoded image data
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+            // Write the BufferedImage to the ByteArrayOutputStream with compression
+            ImageIO.write(bufferedImage, "png", outputStream);
+
+            // Get the byte array from the ByteArrayOutputStream
+            byte[] byteArray = outputStream.toByteArray();
+
+            // Close the ByteArrayOutputStream
+            outputStream.close();
+
+            return byteArray;
+        } catch (IOException e) {
+            // Handle IOException
+            e.printStackTrace();
+            return null;
+        }
+    }
     public static Image bytesToImage(byte[] imageData) {
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -58,25 +93,25 @@ public class FachadaAplicacion {
         }
     }
 
-
     private void pruebas_DAO(){
         List<Categoria> cats = fbd.consultarCategorias("Aventura");
         System.out.println(cats.get(0).getDescripcion());
         List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         System.out.println(usrs.get(0).getNombre());
 
-        insertarPlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
-        insertarPlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
-        insertarPlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
-        insertarPlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
-        insertarPlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
-
-        fbd.inicializarbd();
+        //Demo d = new Demo("RobinRun", 2, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "pablo");
+        //fbd.insertarDemo(d);
+        //insertarPlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
+        //insertarPlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
+        //insertarPlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
+        //insertarPlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
+        //insertarPlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
+        //fbd.inicializarbd();
     }
     public FachadaAplicacion(FachadaGUI fg){
         this.fg = fg;
         fbd =new FachadaBaseDatos(this);
-        pruebas_DAO();
+        //pruebas_DAO();
         gu = new GestionUsuarios(this.fg, fbd);
     }
 
@@ -95,6 +130,11 @@ public class FachadaAplicacion {
     public static void muestraExcepcion(String e) {
         // fg.muestraExcepcion(e);
         System.out.println("Excepcion: "+ e);
+    }
+
+    public Demo consultarDemo(int mes, int ano)
+    {
+        return fbd.consultarDemo(mes, ano);
     }
 
     // Funcion para actualizar el correo, nombre o contraseña de un usuario
@@ -242,16 +282,15 @@ public class FachadaAplicacion {
     public java.util.List<Integer> consultarSeguidos(int idU1){
         return fbd.consultarSeguidos(idU1);
     }
-    
-    public java.util.List<Integer> consultarSeguidores(int idU2){
+
+    // esta funcion devuelve ids, no sería mejor q devolviese Usuarios enteros, ns si merece la pena cambiar
+    public java.util.List<String> consultarSeguidores(String idU2){
         return fbd.consultarSeguidores(idU2);
     }
     
-    public void bloquearSeguidor(int idU1, int idU2){
+    public void bloquearSeguidor(String idU1, String idU2){
         fbd.bloquearSeguidor(idU1, idU2);
     }
-
-    //METHODS
     //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
     public boolean checkCredentials(String username, String password)
     {
@@ -259,6 +298,8 @@ public class FachadaAplicacion {
         return usuario != null;
     }
 
+
+//METHODS
     public List<Videojuego> consultaVideoJuegosInicio(){
         return fbd.consultaVideoJuegosInicio();
     }
@@ -271,5 +312,9 @@ public class FachadaAplicacion {
     }
     public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
         return fbd.consultarPlataformasVideoJuego(v.getId());
+    }
+
+    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
+        return fbd.consultarVideojuegosUsuario(id);
     }
 }

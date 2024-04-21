@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="950.0" spacing="10.0" style="-fx-border-width: 5; -fx-background-radius: 30; -fx-border-radius: 25; -fx-border-color: AEB6BF; -fx-background-color: FFFFFF;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.GameSearchItemController">
+   <children>
+      <ImageView fx:id="iconImage" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </HBox.margin>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="515.0">
+         <children>
+            <Label fx:id="nameLabel" prefHeight="34.0" prefWidth="500.0" text="xxxxxxxxxxxxx">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox fx:id="iconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="44.0" prefWidth="400.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="dateLabel" prefHeight="18.0" prefWidth="304.0" text="xxxxxxxxxxxx" textAlignment="CENTER">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="priceLabel" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="122.0" text="xx,xx€">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </VBox>
+   </children>
+   <padding>
+      <Insets right="5.0" />
+   </padding>
+</HBox>

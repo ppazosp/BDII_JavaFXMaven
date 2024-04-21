@@ -30,6 +30,10 @@ public class Usuario {
         this.email = email;
     }
 
+    public Usuario(String idUsr) {
+        this.id = idUsr;
+    }
+
     public String getId() {
         return id;
     }

@@ -36,7 +36,7 @@ public class DAOPlataformas extends AbstractDAO{
         
         con=super.getConexion();
 
-        byte[] icono = FachadaAplicacion.imageToBytes(path);
+        byte[] icono = FachadaAplicacion.pathToBytes(path);
 
         try {
             stmPlataforma=con.prepareStatement("update plataforma "+

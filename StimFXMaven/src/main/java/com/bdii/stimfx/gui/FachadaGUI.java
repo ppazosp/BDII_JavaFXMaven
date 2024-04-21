@@ -145,6 +145,14 @@ public class FachadaGUI extends Application {
         primaryStage = old;
     }
 
+    public void showSearchScene(String search)
+    {
+        MainSearchWController mainSearchWController = loadFXML("/com/bdii/stimfx/gui/mainSearchW.fxml", null, MainSearchWController.class);
+        assert mainSearchWController != null;
+        mainSearchWController.setSearchBar(search);
+        mainSearchWController.showSearchResults();
+    }
+
 
 
     public static void main(String[] args) {

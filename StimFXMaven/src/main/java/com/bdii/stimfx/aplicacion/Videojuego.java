@@ -68,6 +68,8 @@ public class Videojuego {
         this.numDescargas=0;
     }
 
+
+
     public void setNumDescargas(int numDescargas) {
         this.numDescargas = numDescargas;
     }
