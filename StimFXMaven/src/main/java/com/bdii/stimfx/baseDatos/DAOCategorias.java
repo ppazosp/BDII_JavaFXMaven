@@ -3,15 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
-import java.util.List;
-import java.util.ArrayList;
 import java.sql.Connection;
 import com.bdii.stimfx.aplicacion.Categoria;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 
 
 import java.sql.*;
-import java.time.LocalDate;
 
 /**
  *

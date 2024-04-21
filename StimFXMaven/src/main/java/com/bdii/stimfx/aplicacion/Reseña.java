@@ -11,28 +11,32 @@ import java.sql.*;
  * @author alumnogreibd
  */
 public class Reseña {
-    private Videojuego videojuego;
+    private int id_videojuego;
+    private int id_usuario;
     private int idReseña;
     private String comentario;
     private Date fecha;
     private float valoracion;
 
-    public Reseña(Videojuego videojuego, int idReseña, String comentario) {
-        this.videojuego = videojuego;
+    public Reseña(int id_videojuego, int idReseña, String comentario) {
+        this.id_videojuego = id_videojuego;
         this.idReseña = idReseña;
         this.comentario = comentario;
     }
 
-    public Reseña(Videojuego videojuego, int idReseña, String comentario, Date fecha, float valoracion) {
-        this.videojuego = videojuego;
+    public Reseña(int id_videojuego, int id_usuario, int idReseña, String comentario) {
+        this.id_videojuego = id_videojuego;
+        this.id_usuario = id_usuario;
+        this.idReseña = idReseña;
+        this.comentario = comentario;
+    }
+
+    public Reseña(int id_videojuego, int idReseña, String comentario, Date fecha, float valoracion) {
+        this.id_videojuego = id_usuario;
         this.idReseña = idReseña;
         this.comentario = comentario;
         this.fecha = fecha;
         this.valoracion = valoracion;
-    }
-    
-    public Videojuego getIdVideojuego() {
-        return videojuego;
     }
 
     public int getIdReseña() {
@@ -51,8 +55,15 @@ public class Reseña {
         return valoracion;
     }
 
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public int getId_videojuego() {
+        return id_videojuego;
+    }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
 }

@@ -82,8 +82,8 @@ public class DAODLCs extends AbstractDAO{
         con=this.getConexion();
         
         String consulta = "select * "+
-                            "from DLC "+
-                            "where idVideojuego = ?";
+                            "from dlc "+
+                            "where id_videojuego = ?";
         
         
         try{

@@ -23,22 +23,21 @@ public class DAOCompras extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
     
-    public void insertarCompra(int id_videojuego, int id_usuario, int precio){
+    public void insertarCompra(int id_videojuego, int id_usuario){
         Connection con;
         PreparedStatement stmCompra=null;
         
         con=super.getConexion();
         
         try {   // ID DE COMPRA AUTOMATICO???
-            stmCompra=con.prepareStatement("insert into comprar(id_videojuego, id_usr, fecha_compra, precio) "+
-                                            "values (?,?,?,?)");
+            stmCompra=con.prepareStatement("insert into comprar(id_videojuego, id_usr, fecha_compra) "+
+                                            "values (?,?,?)");
             // Obtener la fecha actual como un objeto java.sql.Date
             java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
             
             stmCompra.setInt(1, id_videojuego);
             stmCompra.setInt(2, id_usuario);
             stmCompra.setDate(3, fechaActual);
-            stmCompra.setDouble(4, precio);
             stmCompra.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -77,7 +76,37 @@ public class DAOCompras extends AbstractDAO{
         return juegosUsuario;
     }
     
-    
+    public java.util.List<Integer> consultarJuegosUsuario(int id_usr){
+        List<Integer> resultado = new ArrayList<Integer>();
+        Integer videojuegoActual;
+        Connection con;
+        PreparedStatement stmCompras=null;
+        ResultSet rsCompras;
+
+        con=this.getConexion();
+
+        String consulta = "select id_videojuego from comprar " +
+                            "where id_usr = ? " +
+                            "and fecha_devolucion is null " +
+                            "order by fecha_compra desc";
+
+        try{
+            stmCompras=con.prepareStatement(consulta);
+            stmCompras.setInt(1, id_usr);
+            rsCompras=stmCompras.executeQuery();
+            while (rsCompras.next())
+            {
+                videojuegoActual = rsCompras.getInt("id_usr");
+                resultado.add(videojuegoActual);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmCompras.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
     
     
     
