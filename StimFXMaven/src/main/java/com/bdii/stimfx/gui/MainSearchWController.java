@@ -32,15 +32,17 @@ public class MainSearchWController implements Controller {
     @FXML
     VBox searchVbox;
 
-    public void setResultsLabel(String text) {
-        resultsLabel.setText(text);
+    public void setSearchBar(String text) {
+        searchBar.setText(text);
     }
 
     @FXML
     public void showSearchResults()
     {
         searchVbox.getChildren().clear();
+        resultsLabel.setText("Resultados para \"" + searchBar.getText() + "\"");
         List<Videojuego> gamesList = fg.fa.consultarVideojuegos(searchBar.getText());
+        searchBar.clear();
 
         try {
             for (Videojuego v : gamesList) { // Add 10 instances as an example
@@ -53,7 +55,7 @@ public class MainSearchWController implements Controller {
                 controller.getNameLabel().setText(v.getNombre());
                 fg.showPlatforms(v, controller.getIconsHbox());
                 controller.getDateLabel().setText(v.getFechaSubida().toString());
-                controller.getPriceLabel().setText(String.valueOf(v.getPrecio()));
+                controller.getPriceLabel().setText(v.getPrecio()+"€");
             }
         } catch (IOException e) {
             e.printStackTrace();

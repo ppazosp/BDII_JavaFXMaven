@@ -112,7 +112,6 @@ public class MainWController implements Controller, Initializable {
             fg.showPlatforms(nextLaunch, launchIconsHbox);
             long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunch.getFechaSubida().toLocalDate());
             launchDaysLabel.setText(Long.toString(daysToLaunch));
-            System.out.println(Long.toString(daysToLaunch));
         }else {
             rightPane.getChildren().remove(nextLaunchVbox);
             nextLaunchVbox= null;

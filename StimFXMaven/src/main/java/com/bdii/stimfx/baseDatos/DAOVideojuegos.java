@@ -140,9 +140,9 @@ public class DAOVideojuegos extends AbstractDAO{
             stmDLC.setInt(1, id);
             rsDLC= stmDLC.executeQuery();
             while(rsDLC.next()){
-                DLC dlc= new DLC(id, rsDLC.getInt("idDLC"),rsDLC.getString("nombre"),
+                DLC dlc= new DLC(id, rsDLC.getInt("id_dlc"),rsDLC.getString("nombre"),
                         rsDLC.getString("descripcion"), rsDLC.getDouble("precio"),
-                        rsDLC.getDate("fechaLanzamiento"));
+                        rsDLC.getDate("fecha_lanzamiento"));
                 videojuego.addDLC(dlc);
             }
                    // (idVideojuego, idDLC, nombre, descripcion, precio, fechaLanzamiento)
@@ -151,7 +151,7 @@ public class DAOVideojuegos extends AbstractDAO{
               //Mostar excepcion
               //this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
             }
-        }// si yo ejecuto tu lo ves?
+        }
         } catch (SQLException e){
           System.out.println(e.getMessage());
           //Mostar excepcion

@@ -149,7 +149,7 @@ public class FachadaGUI extends Application {
     {
         MainSearchWController mainSearchWController = loadFXML("/com/bdii/stimfx/gui/mainSearchW.fxml", null, MainSearchWController.class);
         assert mainSearchWController != null;
-        mainSearchWController.setResultsLabel("Resultados para \"" + search + "\"");
+        mainSearchWController.setSearchBar(search);
         mainSearchWController.showSearchResults();
     }
 
