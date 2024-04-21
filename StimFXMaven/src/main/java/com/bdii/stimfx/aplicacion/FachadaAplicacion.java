@@ -153,6 +153,7 @@ public class FachadaAplicacion {
     }
 
 
+
     // Funcion para actualizar el correo, nombre o contraseña de un usuario
     public void modificarUsuario(Usuario u){
         fbd.modificarUsuario(u);
@@ -208,6 +209,10 @@ public class FachadaAplicacion {
     // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
     public java.util.List<Videojuego> consultarVideojuegos(String n){ 
         return fbd.consultaVideojuegos(n);
+    }
+
+    public Videojuego consultarVideojuego(String n){
+        return fbd.consultarVideojuego(n);
     }
 
     // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.

@@ -9,9 +9,6 @@ package com.bdii.stimfx.aplicacion;
  * @author alumnogreibd
  */
 public class Editor extends Usuario {
-    private String id;
-    private String nombre;
-
 
     public Editor(String id, String nombre, String contrasena, String TipoUsuario, String email, String telefono) {
         super(id, nombre, contrasena, email);
@@ -24,14 +21,4 @@ public class Editor extends Usuario {
     public Editor(String idUsr) {
         super(idUsr);
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-    
-    
 }

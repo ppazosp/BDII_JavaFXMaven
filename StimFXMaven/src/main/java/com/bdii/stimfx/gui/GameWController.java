@@ -1,42 +1,78 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Demo;
+import com.bdii.stimfx.aplicacion.Categoria;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class GameWController implements Controller, Initializable {
+public class GameWController implements Controller {
 
     FachadaGUI fg;
+    Videojuego game;
+
     //PANE
     @FXML
     AnchorPane rightPane;
 
     @FXML
-    TextField searchBar;
+    ImageView bannerImage;
+    @FXML
+    Label nameLabel;
+    @FXML
+    Label dateLabel;
+    @FXML
+    HBox buyHbox;
+    @FXML
+    Label priceLabel;
+    @FXML
+    TextArea descrpArea;
+    @FXML
+    Label creatorLabel;
+    @FXML
+    Label downloadsLabel;
+    @FXML
+    VBox catVbox;
+    @FXML
+    HBox reviewsHbox;
+    @FXML
+    HBox addHbox;
 
 
+    public void setVideojuego(Videojuego v) {this.game = v;}
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void initializeWindow()
+    {
+        bannerImage.setImage(game.getBanner());
+        nameLabel.setText(game.getNombre());
+        dateLabel.setText("Fecha de publicacion: "+game.getFechaSubida().toString());
+        priceLabel.setText(game.getPrecio()+"€");
+        descrpArea.setText(game.getDescripcion());
+        creatorLabel.setText("Creador: "+game.getEditor().getId());
+        downloadsLabel.setText("Descargas: " + game.getNumDescargas());
+        catVbox.getChildren().clear();
+        List<String> cats = fg.fa.consultarCategoriasVideojuego(game.getId());
+        for(String s : cats){
+            Label l = new Label(s);
+            catVbox.getChildren().add(l);
+        }
     }
 
+    @FXML
+    public void showMainScene(MouseEvent event)
+    {
+        fg.showMainWindow(false);
+    }
 
     @FXML
     public void loadGameWindow(MouseEvent event) {
@@ -65,12 +101,6 @@ public class GameWController implements Controller, Initializable {
     public void showSettingsScene(MouseEvent event)
     {
         fg.showSettingsScene();
-    }
-
-    @FXML
-    public void showSearchScene(ActionEvent event)
-    {
-        fg.showSearchScene(searchBar.getText());
     }
 
     public void setMainApp(FachadaGUI mainApp)

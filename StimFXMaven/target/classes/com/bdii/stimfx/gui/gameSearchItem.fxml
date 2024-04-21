@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="950.0" spacing="10.0" style="-fx-border-width: 5; -fx-background-radius: 30; -fx-border-radius: 25; -fx-border-color: AEB6BF; -fx-background-color: FFFFFF;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.GameSearchItemController">
+<HBox alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="59.0" prefWidth="950.0" spacing="10.0" style="-fx-border-width: 5; -fx-background-radius: 30; -fx-border-radius: 25; -fx-border-color: AEB6BF; -fx-background-color: FFFFFF;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.GameSearchItemController">
    <children>
       <ImageView fx:id="iconImage" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>

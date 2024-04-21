@@ -103,6 +103,58 @@ public class DAOVideojuegos extends AbstractDAO{
         
         return videojuego;
     }
+
+    public Videojuego consultarVideojuego(String nombreVideojuego) {
+        Videojuego videojuego=null;
+        Connection con;
+        PreparedStatement stmVideojuego=null;
+        ResultSet rsVideojuego;
+        ResultSet rsEditor;
+
+        con=this.getConexion();
+
+        String consulta = "SELECT v.id, v.nombre, v.descripcion, v.id_usreditor, v.fechasubida, v.precio, v.imagen, v.banner, COUNT(c.id_videojuego) AS totalCompras\n" +
+                "FROM videojuego AS v\n" +
+                "LEFT JOIN comprar AS c ON v.id = c.id_videojuego\n" +
+                "WHERE v.nombre = ?\n" +
+                "GROUP BY v.id, v.nombre, v.descripcion, v.id_usreditor, v.fechasubida, v.precio, v.imagen, v.banner;";
+
+        try{
+            stmVideojuego=con.prepareStatement(consulta);
+            stmVideojuego.setString(1, nombreVideojuego);
+            rsVideojuego=stmVideojuego.executeQuery();
+            if(rsVideojuego.next())
+            {
+                videojuego = new Videojuego(rsVideojuego.getInt("id"), rsVideojuego.getString("nombre"),
+                        rsVideojuego.getDate("fechasubida"), rsVideojuego.getString("descripcion"),
+                        rsVideojuego.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuego.getBytes("imagen")),
+                        FachadaAplicacion.bytesToImage(rsVideojuego.getBytes("banner")));
+
+                String consulta1= "  select * from usuario u " +
+                        "  where id= ?;";
+                try {
+                    stmVideojuego = con.prepareStatement(consulta1);
+                    stmVideojuego.setString(1, rsVideojuego.getString("id_usreditor"));
+                    rsEditor = stmVideojuego.executeQuery();
+                    while (rsEditor.next()) {
+                        Editor editor = new Editor(rsEditor.getString("id"), rsEditor.getString("nombre"), rsEditor.getString("contraseña"),
+                                null, rsEditor.getString("email"));
+                        videojuego.setEditor(editor);
+                    }
+                }catch (SQLException e){
+                    System.out.println(e.getMessage());
+                    FachadaAplicacion.muestraExcepcion(e.getMessage());
+                }
+            }
+        }catch (SQLException e){
+                System.out.println(e.getMessage());
+                FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return videojuego;
+    }
         
     public List<Videojuego> consultaVideojuegos(String nombre){
         Videojuego libroActual;
@@ -127,7 +179,8 @@ public class DAOVideojuegos extends AbstractDAO{
             int id=rsCatalogo.getInt("id");
             Videojuego videojuego = new Videojuego(id, rsCatalogo.getString("nombre"),
                         rsCatalogo.getDate("fechaSubida"),
-                    rsCatalogo.getString("descripcion"), rsCatalogo.getDouble("precio"), FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("imagen")));
+                    rsCatalogo.getString("descripcion"), rsCatalogo.getDouble("precio"),
+                    FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("imagen")), FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("banner")));
             Editor editor = new Editor(rsCatalogo.getString("id_usreditor"), rsCatalogo.getString("nombre"),
                     rsCatalogo.getString("contraseña"), null, rsCatalogo.getString("email"));
             videojuego.setEditor(editor);
@@ -231,7 +284,7 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, count(*) as totalCompras\n" +
+        String consulta = "   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, count(*) as totalCompras\n" +
                 "   from videojuego v \n" +
                 "   join comprar c on v.id=c.id_videojuego \n" +
                 "   group by v.id\n" +
@@ -245,7 +298,8 @@ public class DAOVideojuegos extends AbstractDAO{
             {
                 Videojuego videojuego = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
                                         rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
-                                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")));
+                                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
+                                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")));
                 videojuego.setNumDescargas(rsVideojuegos.getInt("totalCompras"));
 
                 //Consulta para editor
@@ -297,12 +351,12 @@ public class DAOVideojuegos extends AbstractDAO{
             {
                 String nombre = rsVideojuegos.getString("nombre");
                 int id = rsVideojuegos.getInt("id");
-                String ruta = "StimFXMaven/src/imagenes/" + nombre + ".png";
+                String ruta = "StimFXMaven/src/imagenes/" + nombre + "Banner.png";
                 byte[] img = FachadaAplicacion.pathToBytes(ruta);
 
                 try {
                     stmVideojuego=con.prepareStatement("UPDATE videojuego\n" +
-                            "SET imagen = ?" +
+                            "SET banner = ?" +
                             "WHERE id= ?");
                     stmVideojuego.setBytes(1, img);
                     stmVideojuego.setInt(2, id);
@@ -333,7 +387,7 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen\n" +
+        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner\n" +
                 "   from videojuego v  \n" +
                 "   where fechasubida  > current_date\n" +
                 "   order by fechasubida desc\n" +
@@ -346,7 +400,8 @@ public class DAOVideojuegos extends AbstractDAO{
             {
                 resultado = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
                         rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
-                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")));
+                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")));
 
                 String consulta1= "  select * from usuario u " +
                         "  where id= ?;";

@@ -7,7 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class GameSearchItemController{
+public class GameSearchItemController implements Controller {
+
+    FachadaGUI fg;
 
     @FXML
     ImageView iconImage;
@@ -34,5 +36,15 @@ public class GameSearchItemController{
     }
     public Label getPriceLabel() {
         return priceLabel;
+    }
+
+    public void showGameScene ()
+    {
+        fg.showGameScene(fg.fa.consultarVideojuego(nameLabel.getText()));
+    }
+
+    public void setMainApp(FachadaGUI fg)
+    {
+        this.fg = fg;
     }
 }
