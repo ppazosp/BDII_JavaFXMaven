@@ -176,4 +176,8 @@ public class FachadaGUI extends Application {
     {
         return this.fa.checkCredentials(username, password);
     }
+
+    public boolean register(String id, String clave, String nombre, String email){
+        return this.fa.registrar(id, clave, nombre, email);
+    }
 }

@@ -331,9 +331,10 @@ public class FachadaAplicacion {
     }
 
     //hacer void? a quien le preguntas maquinote
-    public Usuario registrar(String id, String clave, String nombre, String email){
-        Usuario usuario = gu.registrarUsuario(id, clave, nombre, email);
-        return usuario;
+    public boolean registrar(String id, String clave, String nombre, String email){
+
+        this.usuario  = gu.registrarUsuario(id, clave, nombre, email);
+        return usuario!=null;
     }
 
 //METHODS
