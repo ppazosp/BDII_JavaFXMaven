@@ -29,23 +29,28 @@ public class SignInWController implements Controller{
 
     public void signInCheck (ActionEvent event)
     {
-        if(pass2Field.getText().equals(passField.getText())) {
-            if (fg.register(userField.getText(), passField.getText(), nameField.getText(), emailField.getText())) {
-                fg.showMainWindow(true);
-            }
-            else{
-                errorLabel.setText("Ese id de usuario ya existe");
+        if(!userField.getText().isEmpty() && !passField.getText().isEmpty() && !pass2Field.getText().isEmpty()
+        && !nameField.getText().isEmpty()) {
+            if (pass2Field.getText().equals(passField.getText())) {
+                if (fg.register(userField.getText(), passField.getText(), nameField.getText(), emailField.getText())) {
+                    fg.showMainWindow(true);
+                } else {
+                    errorLabel.setText("Ese id de usuario ya existe!");
+                    errorLabel.setVisible(true);
+                }
+            } else {
+                errorLabel.setText("Las dos contraseñas no coinciden!");
                 errorLabel.setVisible(true);
+                //credentialsErrorLabel.setVisible(true);
             }
+            userField.clear();
+            passField.clear();
+            pass2Field.clear();
         }
         else{
-            errorLabel.setText("Las dos contraseñas no coinciden");
+            errorLabel.setText("Hay campos vacíos");
             errorLabel.setVisible(true);
-            //credentialsErrorLabel.setVisible(true);
         }
-        userField.clear();
-        passField.clear();
-        pass2Field.clear();
     }
 
     public void showMainWindow()

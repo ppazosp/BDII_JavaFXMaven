@@ -33,7 +33,7 @@ public class DAOUsuarios extends AbstractDAO{
 
         try {
             stmUsuario=con.prepareStatement("insert into usuario(id, nombre, contraseña, email) "+
-                                            "values (?,?,?,?,?,?)");
+                                            "values (?,?,?,?)");
             stmUsuario.setString(1, u.getId());
             stmUsuario.setString(2, u.getNombre());
             stmUsuario.setString(3, u.getContrasena());
