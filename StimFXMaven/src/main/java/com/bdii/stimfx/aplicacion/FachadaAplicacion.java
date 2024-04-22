@@ -152,6 +152,11 @@ public class FachadaAplicacion {
         return resultado;
     }
 
+    // Funcion para actualizar el numero de descargas de un videojuego actualmente.
+    // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
+    public void consultarNumeroDescargas(Videojuego v){
+        fbd.consultarNumeroDescargas(v);
+    }
 
 
     // Funcion para actualizar el correo, nombre o contraseña de un usuario

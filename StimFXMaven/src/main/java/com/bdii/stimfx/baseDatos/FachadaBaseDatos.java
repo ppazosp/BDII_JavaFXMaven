@@ -71,6 +71,10 @@ public class FachadaBaseDatos {
         return daoCompras.consultarJuegosUsuario(id_usuario);
     }
 
+    public void consultarNumeroDescargas(Videojuego v){
+        daoCompras.contarComprasJuego(v);
+    }
+
     public void insertarDemo(Demo d) {daoDemos.insertarDemo(d);}
 
     public Demo consultarDemo(int mes, int ano){return daoDemos.consultarDemo(mes, ano);};
