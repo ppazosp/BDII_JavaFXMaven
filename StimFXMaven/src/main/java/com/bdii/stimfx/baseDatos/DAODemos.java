@@ -24,7 +24,7 @@ public class DAODemos extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            stmDemo = con.prepareStatement("insert into demo(nombre, mes, ano, imagen, id_usreditor) " +
+            stmDemo = con.prepareStatement("insert into demo(nombre, mes, ano, imagen, id_usradmin) " +
                     "values (?,?,?,?,?)");
 
             stmDemo.setString(1, d.getNombre());
@@ -56,7 +56,7 @@ public class DAODemos extends AbstractDAO {
 
         con=this.getConexion();
 
-        String consulta = "select nombre, mes, ano, imagen, id_usreditor " +
+        String consulta = "select nombre, mes, ano, imagen, id_usradmin" +
                 "   from demo  \n" +
                 "   where mes = ? and ano = ?;";
 
@@ -70,7 +70,7 @@ public class DAODemos extends AbstractDAO {
                 resultado = new Demo(rsDemos.getString("nombre"),
                         rsDemos.getInt("mes"), rsDemos.getInt("ano"),
                         FachadaAplicacion.bytesToImage(rsDemos.getBytes("imagen")),
-                        rsDemos.getString("id_usreditor"));
+                        rsDemos.getString("id_usradmin"));
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());

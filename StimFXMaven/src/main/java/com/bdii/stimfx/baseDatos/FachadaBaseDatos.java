@@ -251,8 +251,8 @@ public class FachadaBaseDatos {
         return daoP.consultarPlataformasVideoJuego(id);
     }
 
-    public void modificarUsuario(Usuario u){
-        daoU.modificarUsuario(u);
+    public Usuario modificarUsuario(Usuario u){
+        return daoU.modificarUsuario(u);
     }
 
     public boolean existeUsuario(String id){

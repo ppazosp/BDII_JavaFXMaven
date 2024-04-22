@@ -13,8 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
+
 /**
  *
  * @author alumnogreibd
@@ -66,7 +65,7 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
 
-    public void modificarUsuario(Usuario u){
+    public Usuario modificarUsuario(Usuario u){
         Connection con;
         PreparedStatement stmUsuario=null;
 
@@ -74,22 +73,21 @@ public class DAOUsuarios extends AbstractDAO{
         String consulta = "update usuario "+
                 " set nombre=?, "+
                 "contraseña=?, "+
-                "email=? ";
-        if (u.getFotoPerfil()!= null)
-            consulta+=" foto= ? ";
+                "email=?, "+
+                "foto=? ";
         consulta += " where id = ?";
         try{
-
             stmUsuario=con.prepareStatement(consulta);
 
             stmUsuario.setString(1, u.getNombre());
             stmUsuario.setString(2, u.getContrasena());
             stmUsuario.setString(3, u.getEmail());
-            stmUsuario.setString(4, u.getId());
-            if (u.getFotoPerfil()!= null)
-                stmUsuario.setBytes(5, FachadaAplicacion.imageToBytes(u.getFotoPerfil()));
+            stmUsuario.setBytes(4, FachadaAplicacion.imageToBytes(u.getFotoPerfil()));
+            stmUsuario.setString(5, u.getId());
             stmUsuario.executeUpdate();
 
+            if(u.getFotoPerfil()!=null){System.out.println("cambio la imagen");}
+            return u;
 
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -97,7 +95,7 @@ public class DAOUsuarios extends AbstractDAO{
         }finally{
             try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
-
+        return null;
     }
 
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
@@ -132,8 +130,8 @@ public class DAOUsuarios extends AbstractDAO{
         while (rsUsuarios.next())
         {
             usuarioActual = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
-                                  rsUsuarios.getString("contraseña"), null,
-                                      rsUsuarios.getString("email"));
+                                  rsUsuarios.getString("contraseña"),
+                                      rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));
             
             resultado.add(usuarioActual);
         }
@@ -294,8 +292,8 @@ public class DAOUsuarios extends AbstractDAO{
             if (rsUsuarios.next())
             {
                 resultado = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
-                        rsUsuarios.getString("contraseña"), null,
-                        rsUsuarios.getString("email"));  //TELEFONO ESTA EN LA BASE?
+                        rsUsuarios.getString("contraseña"),
+                        rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));  //TELEFONO ESTA EN LA BASE?
 
             }
 

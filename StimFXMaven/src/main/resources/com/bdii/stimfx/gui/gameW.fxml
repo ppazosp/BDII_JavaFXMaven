@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -123,7 +124,7 @@
    </AnchorPane>
    <AnchorPane fx:id="rightPane" focusTraversable="true" layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
-         <ImageView fx:id="bannerImage" fitHeight="338.0" fitWidth="710.0" layoutX="50.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+         <ImageView fx:id="bannerImage" fitHeight="332.0" fitWidth="710.0" layoutX="50.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
          <VBox layoutX="50.0" layoutY="416.0" prefHeight="290.0" prefWidth="710.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
             <children>
                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="890.0">
@@ -309,5 +310,10 @@
                <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
             </padding>
          </VBox>
+         <Hyperlink fx:id="linkRef" alignment="CENTER" layoutX="670.0" layoutY="355.0" onAction="#openTrailer" prefHeight="24.0" prefWidth="90.0" style="-fx-background-color: #1B2631;" text="Ver trailer" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Hyperlink>
       </children></AnchorPane>
 </AnchorPane>

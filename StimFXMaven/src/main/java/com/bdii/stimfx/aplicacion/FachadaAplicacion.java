@@ -59,6 +59,8 @@ public class FachadaAplicacion {
         return null;
     }
     public static byte[] imageToBytes(Image image) {
+        if (image == null) return null;
+
         try {
             // Convert JavaFX Image to BufferedImage
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
@@ -83,6 +85,8 @@ public class FachadaAplicacion {
         }
     }
     public static Image bytesToImage(byte[] imageData) {
+        if (imageData == null) return null;
+
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
             Image image = new Image(bis);
@@ -158,12 +162,6 @@ public class FachadaAplicacion {
     // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
     public void consultarNumeroDescargas(Videojuego v){
         fbd.consultarNumeroDescargas(v);
-    }
-
-
-    // Funcion para actualizar el correo, nombre o contraseña de un usuario
-    public void modificarUsuario(Usuario u){
-        fbd.modificarUsuario(u);
     }
 
     public java.util.List<String> consultarSeguidores(String idU2){
@@ -349,7 +347,10 @@ public class FachadaAplicacion {
     }
 
     public void modificarUsuario(String nombre, String clave, String email, Image imagen){
-        gu.modificarUsuario(this.usuario.getId(), nombre, clave, email, imagen);
+        Usuario u = gu.modificarUsuario(this.usuario.getId(), nombre, clave, email, imagen);
+        if (u != null) {
+            this.usuario = u;
+        }
     }
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);

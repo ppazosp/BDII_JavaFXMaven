@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -199,11 +198,6 @@
                <Font size="18.0" />
             </font>
          </Label>
-         <Button layoutX="476.0" layoutY="584.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" styleClass="secondary-color" stylesheets="@../css/styles.css" text="Guardar">
-            <font>
-               <Font size="14.0" />
-            </font>
-         </Button>
          <HBox alignment="CENTER" layoutX="76.0" layoutY="255.0" prefHeight="100.0" prefWidth="900.0" spacing="20.0">
             <children>
                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -234,6 +228,22 @@
                      </Label>
                   </children>
                </VBox>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" layoutX="475.0" layoutY="584.0" onMouseClicked="#modificarUsuario" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" stylesheets="@../css/styles.css">
+            <children>
+               <HBox alignment="CENTER" prefHeight="32.0" prefWidth="119.0" spacing="10.0" style="-fx-background-radius: 20;" styleClass="selected" stylesheets="@../css/styles.css">
+                  <children>
+                     <Label prefHeight="32.0" prefWidth="67.0" text="Guardar" textFill="WHITE">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </Label>
+                  </children>
+               </HBox>
             </children>
          </HBox>
       </children></AnchorPane>

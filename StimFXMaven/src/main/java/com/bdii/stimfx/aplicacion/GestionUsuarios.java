@@ -29,9 +29,9 @@ public class GestionUsuarios {
     }  
 
     //pasar id desde FA
-    public void modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
+    public Usuario modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
             Usuario usuario = new Usuario(id, nombre, clave, email, imagen);
-            fbd.modificarUsuario(usuario);
+            return fbd.modificarUsuario(usuario);
 
     }
 

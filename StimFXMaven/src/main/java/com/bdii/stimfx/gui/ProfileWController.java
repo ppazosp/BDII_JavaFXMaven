@@ -39,6 +39,7 @@ public class ProfileWController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(fg.fa.usuario.getFotoPerfil() != null) profileImage.setImage(fg.fa.usuario.getFotoPerfil());
         userField.setText(fg.fa.usuario.getId());
         nGamesLabel.setText(fg.fa.contarJuegosUsuario(fg.fa.usuario.getId()).toString());
         nWinsLabel.setText(String.valueOf(fg.fa.torneosGanados(fg.fa.usuario)));
@@ -47,9 +48,8 @@ public class ProfileWController implements Controller, Initializable {
         emailField.setText(fg.fa.usuario.getEmail());
     }
     @FXML
-    public void modificarUsuario(ActionEvent event) {
-        Usuario u = new Usuario(fg.fa.usuario.getId(),nameField.getText(), passField.getText(), emailField.getText());
-        fg.fa.modificarUsuario(u);
+    public void modificarUsuario(MouseEvent event) {
+        fg.fa.modificarUsuario(nameField.getText(), passField.getText(), emailField.getText(), profileImage.getImage());
     }
 
     @FXML
