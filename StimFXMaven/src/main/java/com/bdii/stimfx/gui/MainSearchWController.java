@@ -45,7 +45,7 @@ public class MainSearchWController implements Controller {
         searchBar.clear();
 
         try {
-            for (Videojuego v : gamesList) { // Add 10 instances as an example
+            for (Videojuego v : gamesList) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/gameSearchItem.fxml"));
                 searchVbox.getChildren().add(loader.load());
 
