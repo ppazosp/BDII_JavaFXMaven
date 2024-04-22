@@ -91,8 +91,8 @@ public class DAODLCs extends AbstractDAO{
             rsDLC=stmDLC.executeQuery();
             while (rsDLC.next())
             {
-                dlcActual = new DLC(v.getId(), rsDLC.getInt("idDLC"), rsDLC.getString("nombre"),
-                                        rsDLC.getString("nombre"), rsDLC.getInt("precio"), rsDLC.getDate("fechaLanzamiento"));
+                dlcActual = new DLC(v.getId(), rsDLC.getInt("id_dlc"), rsDLC.getString("nombre"),
+                                        rsDLC.getString("nombre"), rsDLC.getInt("precio"), rsDLC.getDate("fecha_lanzamiento"));
                 resultado.add(dlcActual);
             }
         } catch (SQLException e){

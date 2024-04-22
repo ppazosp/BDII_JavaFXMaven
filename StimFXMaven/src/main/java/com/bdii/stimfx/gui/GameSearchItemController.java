@@ -38,6 +38,7 @@ public class GameSearchItemController implements Controller {
         return priceLabel;
     }
 
+    @FXML
     public void showGameScene ()
     {
         fg.showGameScene(fg.fa.consultarVideojuego(nameLabel.getText()));

@@ -119,7 +119,8 @@ public class DAOCompras extends AbstractDAO{
 
         String consulta = "select count(*) "+
                 "from comprar "+
-                "where id_videojuego = ? ";
+                "where id_videojuego = ? " +
+                "and fecha_devolucion is null ";
 
         try {
             stmCompras=con.prepareStatement(consulta);

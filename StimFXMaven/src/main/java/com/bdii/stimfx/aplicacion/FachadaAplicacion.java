@@ -324,6 +324,15 @@ public class FachadaAplicacion {
         return usuario != null;
     }
 
+    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
+        return gv.consultarDLCsVideojuego(v);
+    }
+
+    //hacer void? a quien le preguntas maquinote
+    public Usuario registrar(String id, String clave, String nombre, String email){
+        Usuario usuario = gu.registrarUsuario(id, clave, nombre, email);
+        return usuario;
+    }
 
 //METHODS
     public List<Videojuego> consultaVideoJuegosInicio(){
