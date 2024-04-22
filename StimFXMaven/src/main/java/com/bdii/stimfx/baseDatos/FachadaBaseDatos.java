@@ -84,7 +84,7 @@ public class FachadaBaseDatos {
         daoV.insertarVideojuego(v);
     }
     
-    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
+    public java.util.List<DLC> consultarDLCsVideojuego(int v){
         return daoD.consultarDLCsVideojuego(v);
     }
     

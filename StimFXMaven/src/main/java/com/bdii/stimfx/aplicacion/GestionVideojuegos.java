@@ -26,7 +26,7 @@ public class GestionVideojuegos {
     }
     
     public void consultarDLCsVideojuego(Videojuego v){
-        fbd.consultarDLCsVideojuego(v);
+        fbd.consultarDLCsVideojuego(v.getId());
     }
     
     
