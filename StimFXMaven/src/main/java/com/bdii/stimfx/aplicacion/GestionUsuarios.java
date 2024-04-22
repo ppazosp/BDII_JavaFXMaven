@@ -109,4 +109,11 @@ public class GestionUsuarios {
         }
         return usuario;
     }
+
+    // Funcion para borrar un usuario a partir de un id.
+    public void borrarUsuario(int id){
+        fbd.borrarUsuario(u);
+    }
+
+
 }

@@ -377,8 +377,6 @@ public class DAOVideojuegos extends AbstractDAO{
 
     }
 
-
-
     public Videojuego proximoVideojuego(){
         Connection con;
         PreparedStatement stmVideojuego=null;

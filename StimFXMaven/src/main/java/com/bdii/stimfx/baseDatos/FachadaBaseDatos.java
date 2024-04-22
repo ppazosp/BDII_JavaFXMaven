@@ -87,6 +87,10 @@ public class FachadaBaseDatos {
     public void insertarVideojuego(Videojuego v){
         daoV.insertarVideojuego(v);
     }
+
+    public void borrarVideojuego(int id) {
+        daoV.borrarVideojuego(id);
+    }
     
     public Videojuego consultarVideojuego(Integer v){
         return daoV.consultarVideojuego(v);
@@ -119,7 +123,7 @@ public class FachadaBaseDatos {
         return daoU.consultarUsuarios(id, nombre);
     }
     
-    public void insertarCompra(int id_videojuego, int id_usuario){
+    public void insertarCompra(int id_videojuego, String id_usuario){
         daoCompras.insertarCompra(id_videojuego, id_usuario);
     }
     
@@ -157,10 +161,6 @@ public class FachadaBaseDatos {
     
     public java.util.List<String> consultarPlataformas(String nombre){
         return daoP.consultarPlataformas(nombre);
-    }
-    
-    public java.util.List<String> consultarPlataformasVideojuego(int id_videojuego){
-        return daoV.consultarPlataformasVideojuego(id_videojuego);
     }
     
     public void insertarPlataformaVideojuego(String nombre, int id_videojuego){

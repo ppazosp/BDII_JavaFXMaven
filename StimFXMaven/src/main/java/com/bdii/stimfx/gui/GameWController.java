@@ -64,7 +64,7 @@ public class GameWController implements Controller {
         creatorLabel.setText("Creador: "+game.getEditor().getId());
         downloadsLabel.setText("Descargas: " + game.getNumDescargas());
         catVbox.getChildren().clear();
-        List<String> cats = fg.fa.consultarCategoriasVideojuego(game.getId());
+        List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
         for(String s : cats){
             Label l = new Label(s);
             catVbox.getChildren().add(l);
@@ -95,7 +95,14 @@ public class GameWController implements Controller {
     @FXML
     public void buyGame(MouseEvent event)
     {
-        //fg.fa.insertarCompra(game.getId());
+        fg.fa.insertarCompra(game.getId());
+        buyHbox.setDisable(true);
+    }
+
+    @FXML
+    public void addDLCs(MouseEvent event)
+    {
+        //fg.fa.();
     }
 
     @FXML
