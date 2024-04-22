@@ -24,6 +24,18 @@ import java.util.ResourceBundle;
 public class MainWController implements Controller, Initializable {
 
     FachadaGUI fg;
+
+    @FXML
+    Demo demoGame;
+    @FXML
+    Videojuego top1Game;
+    @FXML
+    Videojuego top2Game;
+    @FXML
+    Videojuego top3Game;
+    @FXML
+    Videojuego nextLaunchGame;
+
     //PANE
     @FXML
     AnchorPane rightPane;
@@ -41,7 +53,7 @@ public class MainWController implements Controller, Initializable {
 
     //NEXT LAUNCH
     @FXML
-    VBox nextLaunchVbox;
+    HBox nextLaunchVbox;
     @FXML
     ImageView launchIconImage;
     @FXML
@@ -99,18 +111,18 @@ public class MainWController implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Demo currDemo = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
-        if(currDemo != null) {
-            demoIconImage.setImage(currDemo.getImagen());
-            demoNameLabel.setText(currDemo.getNombre());
+        demoGame = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+        if(demoGame != null) {
+            demoIconImage.setImage(demoGame.getImagen());
+            demoNameLabel.setText(demoGame.getNombre());
         }
 
-        Videojuego nextLaunch = fg.fa.proximoVideojuego();
-        if (nextLaunch != null) {
-            launchIconImage.setImage(nextLaunch.getImagen());
-            launchNameLabel.setText(nextLaunch.getNombre());
-            fg.showPlatforms(nextLaunch, launchIconsHbox);
-            long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunch.getFechaSubida().toLocalDate());
+        nextLaunchGame = fg.fa.proximoVideojuego();
+        if (nextLaunchGame != null) {
+            launchIconImage.setImage(nextLaunchGame.getImagen());
+            launchNameLabel.setText(nextLaunchGame.getNombre());
+            fg.showPlatforms(nextLaunchGame, launchIconsHbox);
+            long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunchGame.getFechaSubida().toLocalDate());
             launchDaysLabel.setText(Long.toString(daysToLaunch));
         }else {
             rightPane.getChildren().remove(nextLaunchVbox);
@@ -122,12 +134,12 @@ public class MainWController implements Controller, Initializable {
         if(topSellers != null)
         {
             if(topSellers.get(0)!= null) {
-                Videojuego top1 = topSellers.get(0);
-                top1IconImage.setImage(top1.getImagen());
-                top1NameLabel.setText(top1.getNombre());
-                fg.showPlatforms(top1, top1IconsHbox);
-                top1DateLabel.setText(top1.getFechaSubida().toString());
-                top1PriceLabel.setText(top1.getPrecio() + "€");
+                top1Game = topSellers.get(0);
+                top1IconImage.setImage(top1Game.getImagen());
+                top1NameLabel.setText(top1Game.getNombre());
+                fg.showPlatforms(top1Game, top1IconsHbox);
+                top1DateLabel.setText(top1Game.getFechaSubida().toString());
+                top1PriceLabel.setText(top1Game.getPrecio() + "€");
             }else
             {
                 topSellersVbox.getChildren().remove(top1Hbox);
@@ -135,12 +147,12 @@ public class MainWController implements Controller, Initializable {
             }
 
             if(topSellers.get(1)!= null) {
-                Videojuego top2 = topSellers.get(1);
-                top2IconImage.setImage(top2.getImagen());
-                top2NameLabel.setText(top2.getNombre());
-                fg.showPlatforms(top2, top2IconsHbox);
-                top2DateLabel.setText(top2.getFechaSubida().toString());
-                top2PriceLabel.setText(top2.getPrecio() + "€");
+                top2Game = topSellers.get(1);
+                top2IconImage.setImage(top2Game.getImagen());
+                top2NameLabel.setText(top2Game.getNombre());
+                fg.showPlatforms(top2Game, top2IconsHbox);
+                top2DateLabel.setText(top2Game.getFechaSubida().toString());
+                top2PriceLabel.setText(top2Game.getPrecio() + "€");
             }else
             {
                 topSellersVbox.getChildren().remove(top2Hbox);
@@ -148,12 +160,12 @@ public class MainWController implements Controller, Initializable {
             }
 
             if(topSellers.get(2)!= null) {
-                Videojuego top3 = topSellers.get(2);
-                top3IconImage.setImage(top3.getImagen());
-                top3NameLabel.setText(top3.getNombre());
-                fg.showPlatforms(top3, top3IconsHbox);
-                top3DateLabel.setText(top3.getFechaSubida().toString());
-                top3PriceLabel.setText(top3.getPrecio()+"€");
+                top3Game = topSellers.get(2);
+                top3IconImage.setImage(top3Game.getImagen());
+                top3NameLabel.setText(top3Game.getNombre());
+                fg.showPlatforms(top3Game, top3IconsHbox);
+                top3DateLabel.setText(top3Game.getFechaSubida().toString());
+                top3PriceLabel.setText(top3Game.getPrecio()+"€");
             }else
             {
                 topSellersVbox.getChildren().remove(top3Hbox);
@@ -200,6 +212,27 @@ public class MainWController implements Controller, Initializable {
     public void showSearchScene(ActionEvent event)
     {
         fg.showSearchScene(searchBar.getText());
+    }
+
+    @FXML
+    public void showGameScene(MouseEvent event)
+    {
+        HBox clickedHBox = (HBox) event.getSource();
+
+        if (clickedHBox == top1Hbox) {
+            callShowGameScene(top1Game);
+        } else if (clickedHBox == top2Hbox) {
+            callShowGameScene(top2Game);
+        } else if (clickedHBox == top3Hbox) {
+            callShowGameScene(top3Game);
+        }else {
+            callShowGameScene(nextLaunchGame);
+        }
+    }
+
+    public void callShowGameScene(Videojuego v)
+    {
+        fg.showGameScene(v);
     }
 
     public void setMainApp(FachadaGUI mainApp)
