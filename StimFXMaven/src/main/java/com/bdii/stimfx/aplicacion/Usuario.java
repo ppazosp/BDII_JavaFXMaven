@@ -21,6 +21,7 @@ public class Usuario {
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.email = email;
+        this.fotoPerfil=null;
     }
 
     public Usuario(String id, String nombre, String contrasena, String TipoUsuario, String email) {
@@ -29,6 +30,7 @@ public class Usuario {
         this.contrasena = contrasena;
         this.TipoUsuario = TipoUsuario;
         this.email = email;
+        this.fotoPerfil=null;
     }
 
     public Usuario(String idUsr) {

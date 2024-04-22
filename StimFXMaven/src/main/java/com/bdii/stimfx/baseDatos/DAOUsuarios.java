@@ -71,19 +71,23 @@ public class DAOUsuarios extends AbstractDAO{
         PreparedStatement stmUsuario=null;
 
         con=super.getConexion();
-
+        String consulta = "update usuario "+
+                " set nombre=?, "+
+                "contraseña=?, "+
+                "email=? ";
+        if (u.getFotoPerfil()!= null)
+            consulta+=" foto= ? ";
+        consulta += " where id = ?";
         try{
 
-            stmUsuario=con.prepareStatement("update usuario "+
-                    " set nombre=?, "+
-                         "contraseña=?, "+
-                         "email=? "+
-                    "where id = ?");
+            stmUsuario=con.prepareStatement(consulta);
 
             stmUsuario.setString(1, u.getNombre());
             stmUsuario.setString(2, u.getContrasena());
             stmUsuario.setString(3, u.getEmail());
             stmUsuario.setString(4, u.getId());
+            if (u.getFotoPerfil()!= null)
+                stmUsuario.setBytes(5, u.getFotoPerfil());
             stmUsuario.executeUpdate();
 
 

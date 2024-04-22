@@ -23,7 +23,7 @@ public class GestionUsuarios {
     FachadaGUI fgui;
     FachadaBaseDatos fbd;
     
-        public GestionUsuarios(FachadaGUI fgui, FachadaBaseDatos fbd){
+    public GestionUsuarios(FachadaGUI fgui, FachadaBaseDatos fbd){
      this.fgui=fgui;
      this.fbd=fbd;
     }  
@@ -112,7 +112,7 @@ public class GestionUsuarios {
 
     // Funcion para borrar un usuario a partir de un id.
     public void borrarUsuario(int id){
-        fbd.borrarUsuario(u);
+        fbd.borrarUsuario(id);
     }
 
 
