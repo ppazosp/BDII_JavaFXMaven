@@ -14,6 +14,7 @@ public class Usuario {
     private String contrasena;
     private String TipoUsuario;
     private String email;
+    private byte[] fotoPerfil;
 
     public Usuario(String id, String nombre, String contrasena, String email) {
         this.id = id;
@@ -54,8 +55,11 @@ public class Usuario {
         return email;
     }
 
-    
-    
-    
-    
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
 }

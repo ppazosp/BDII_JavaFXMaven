@@ -9,6 +9,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import com.bdii.stimfx.gui.FachadaGUI;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -23,6 +28,14 @@ public class GestionUsuarios {
      this.fbd=fbd;
     }  
 
+    //pasar id desde FA
+    public void modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
+            Usuario usuario = new Usuario(id, nombre, clave, email);
+            byte [] img = FachadaAplicacion.imageToBytes(imagen);
+            usuario.setFotoPerfil(img);
+            fbd.modificarUsuario(usuario);
+
+    }
 
     /*
     public java.util.List<Usuario> obtenerUsuarios(String id, String nombre){

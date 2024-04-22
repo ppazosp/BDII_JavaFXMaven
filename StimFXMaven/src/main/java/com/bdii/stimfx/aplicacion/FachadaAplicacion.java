@@ -352,6 +352,9 @@ public class FachadaAplicacion {
         return fbd.consultarPlataformasVideoJuego(v.getId());
     }
 
+    public void modificarUsuario(String nombre, String clave, String email, Image imagen){
+        gu.modificarUsuario(this.usuario.getId(), nombre, clave, email, imagen);
+    }
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);
     }

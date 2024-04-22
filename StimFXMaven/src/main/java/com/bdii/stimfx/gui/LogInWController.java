@@ -17,6 +17,7 @@ public class LogInWController implements Controller{
     @FXML
     PasswordField passwordField;
 
+    //Añadir xml para enlace que te lleve a Steam
     @FXML
     public void showSiginScene(ActionEvent event)
     {
@@ -34,6 +35,7 @@ public class LogInWController implements Controller{
             usernameField.clear();
             passwordField.clear();
             credentialsErrorLabel.setVisible(true);
+
         }
     }
 
