@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +20,7 @@
       </ImageView>
       <VBox layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+            <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -123,34 +123,35 @@
    </AnchorPane>
    <AnchorPane fx:id="rightPane" focusTraversable="true" layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
-         <VBox layoutX="50.0" layoutY="386.0" prefHeight="320.0" prefWidth="950.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;">
+         <ImageView fx:id="bannerImage" fitHeight="338.0" fitWidth="710.0" layoutX="50.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+         <VBox layoutX="50.0" layoutY="416.0" prefHeight="290.0" prefWidth="710.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
             <children>
                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="890.0">
                   <children>
-                     <VBox prefHeight="64.0" prefWidth="775.0">
+                     <VBox prefHeight="64.0" prefWidth="540.0">
                         <children>
-                           <Label prefHeight="44.0" prefWidth="769.0" text="ELDEN RING" textFill="WHITE">
+                           <Label fx:id="nameLabel" prefHeight="44.0" prefWidth="597.0" text="XXX" textFill="WHITE">
                               <font>
                                  <Font name="System Bold" size="36.0" />
                               </font>
                            </Label>
-                           <Label prefHeight="20.0" prefWidth="773.0" text="Fecha de Publicacion: 11/21/2024" textFill="WHITE">
+                           <Label fx:id="dateLabel" prefHeight="20.0" prefWidth="773.0" text="Fecha de Publicacion: XXX" textFill="WHITE">
                               <font>
                                  <Font size="16.0" />
                               </font>
                            </Label>
                         </children>
                      </VBox>
-                     <VBox alignment="CENTER" prefHeight="64.0" prefWidth="120.0">
+                     <VBox alignment="CENTER" prefHeight="64.0" prefWidth="125.0">
                         <children>
-                           <HBox alignment="CENTER" onMouseClicked="#loadGameWindow" prefHeight="39.0" prefWidth="131.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #1B2631; -fx-border-width: 2; -fx-background-color: FFFFFF;" stylesheets="@../css/styles.css">
+                           <HBox fx:id="buyHbox" alignment="CENTER" onMouseClicked="#loadGameWindow" prefHeight="11.0" prefWidth="118.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
                               <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@../../../../images/add.png" />
+                                       <Image url="@../../../../images/addW.png" />
                                     </image>
                                  </ImageView>
-                                 <Label prefHeight="32.0" prefWidth="70.0" text="Comprar">
+                                 <Label prefHeight="18.0" prefWidth="61.0" text="Comprar" textFill="WHITE">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -167,7 +168,7 @@
                                  <Insets left="5.0" right="5.0" />
                               </padding>
                            </HBox>
-                           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="118.0" text="23.99€" textFill="WHITE">
+                           <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="118.0" text="XX.XX€" textFill="WHITE">
                               <font>
                                  <Font size="14.0" />
                               </font>
@@ -179,7 +180,7 @@
                <HBox prefHeight="0.0" prefWidth="890.0" />
                <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                   <content>
-                     <TextArea prefHeight="184.0" prefWidth="873.0" />
+                     <TextArea fx:id="descrpArea" prefHeight="184.0" prefWidth="633.0" text="vbygoygg6gggy" />
                   </content>
                </ScrollPane>
             </children>
@@ -190,15 +191,173 @@
                <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
             </padding>
          </VBox>
-         <VBox layoutX="770.0" layoutY="47.0" prefHeight="307.0" prefWidth="230.0" style="-fx-background-color: #1B2631; -fx-background-radius: 25;" />
-         <Pane layoutX="50.0" layoutY="47.0" prefHeight="307.0" prefWidth="950.0" style="-fx-background-radius: 30;">
+         <VBox layoutX="790.0" layoutY="47.0" prefHeight="332.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
             <children>
-               <ImageView fitHeight="350.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../../../images/eldenringbanner.jpg" />
-                  </image>
-               </ImageView>
+               <VBox prefHeight="30.0" prefWidth="185.0">
+                  <children>
+                     <Label fx:id="creatorLabel" text="Creador: xxx" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="downloadsLabel" text="Nº de decargas: xxx" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox prefHeight="241.0" prefWidth="185.0" spacing="5.0">
+                  <children>
+                     <Label text="Categorias" textFill="WHITE">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <VBox fx:id="catVbox" prefHeight="12.0" prefWidth="185.0" spacing="5.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 5;">
+                        <children>
+                           <Label text="XXX">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                     </VBox>
+                  </children>
+               </VBox>
+               <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="32.0" prefWidth="189.0" spacing="10.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
+                  <children>
+                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/eye.png" />
+                        </image>
+                     </ImageView>
+                     <Label alignment="CENTER" prefHeight="0.0" prefWidth="86.0" text="Ver reseñas" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </Label>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="15.0" right="15.0" />
+                  </VBox.margin>
+               </HBox>
             </children>
-         </Pane>
+            <padding>
+               <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
+            </padding></VBox>
+         <VBox layoutX="790.0" layoutY="416.0" prefHeight="290.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+            <children>
+               <VBox prefHeight="278.0" prefWidth="185.0" spacing="10.0">
+                  <children>
+                     <Label alignment="CENTER" prefHeight="20.0" prefWidth="184.0" text="Contenido Extra" textFill="WHITE">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <VBox prefHeight="238.0" prefWidth="185.0" spacing="5.0">
+                        <children>
+                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
+                              <children>
+                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </CheckBox>
+                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="95.0" text="XX.XX€" textFill="WHITE" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
+                              <children>
+                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </CheckBox>
+                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="95.0" text="XX.XX€" textFill="WHITE" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
+                              <children>
+                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </CheckBox>
+                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="94.0" text="XX.XX€" textFill="WHITE" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
+                              <children>
+                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </CheckBox>
+                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="95.0" text="XX.XX€" textFill="WHITE" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
+                              <children>
+                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </CheckBox>
+                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="94.0" text="XX.XX€" textFill="WHITE" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
+                              <children>
+                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </CheckBox>
+                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="94.0" text="XX.XX€" textFill="WHITE" />
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                  </children>
+               </VBox>
+               <HBox fx:id="addHbox" alignment="CENTER" onMouseClicked="#loadGameWindow" prefHeight="0.0" prefWidth="115.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                  <children>
+                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/addW.png" />
+                        </image>
+                     </ImageView>
+                     <Label prefHeight="18.0" prefWidth="61.0" text="Adquirir" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </Label>
+                  </children>
+                  <styleClass>
+                     <String fx:value="selected" />
+                     <String fx:value="primary-color" />
+                  </styleClass>
+                  <padding>
+                     <Insets left="5.0" right="5.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets left="35.0" right="35.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+            <padding>
+               <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
+            </padding>
+         </VBox>
       </children></AnchorPane>
 </AnchorPane>

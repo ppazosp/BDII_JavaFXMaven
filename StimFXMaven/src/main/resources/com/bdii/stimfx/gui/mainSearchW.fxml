@@ -20,7 +20,7 @@
       </ImageView>
       <VBox layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+            <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -25,6 +25,7 @@ public class Videojuego {
     private int numDescargas;
     private List<Reseña> reseñas;
     private Image imagen;
+    private Image banner;
 
 
 
@@ -38,7 +39,7 @@ public class Videojuego {
         this.numDescargas=0;
     }
 
-    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen) {
+    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen, Image banner) {
         this.id = id;
         this.nombre = nombre;
         this.fechaSubida = fechaSubida;
@@ -47,6 +48,7 @@ public class Videojuego {
         this.precio= precio;
         this.numDescargas=0;
         this.imagen = imagen;
+        this.banner = banner;
     }
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio,List<DLC> DLCs) {
@@ -123,5 +125,13 @@ public class Videojuego {
 
     public Image getImagen() {
         return imagen;
+    }
+
+    public Image getBanner() {
+        return banner;
+    }
+
+    public int getNumDescargas() {
+        return numDescargas;
     }
 }

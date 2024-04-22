@@ -91,6 +91,9 @@ public class FachadaBaseDatos {
     public Videojuego consultarVideojuego(Integer v){
         return daoV.consultarVideojuego(v);
     }
+    public Videojuego consultarVideojuego(String v){
+        return daoV.consultarVideojuego(v);
+    }
     
     public java.util.List<Integer> consultarVideojuegosCategoria(String c){
         return daoCategorias.consultarVideojuegosCategoria(c);

@@ -9,4 +9,5 @@ module com.bdii.stimfx.gui {
 
     opens com.bdii.stimfx.gui to javafx.fxml;
     exports com.bdii.stimfx.gui;
+    exports com.bdii.stimfx.aplicacion;
 }

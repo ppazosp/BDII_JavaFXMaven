@@ -50,6 +50,7 @@ public class MainSearchWController implements Controller {
                 searchVbox.getChildren().add(loader.load());
 
                 GameSearchItemController controller = loader.getController();
+                controller.setMainApp(fg);
 
                 controller.getIconImage().setImage(v.getImagen());
                 controller.getNameLabel().setText(v.getNombre());
@@ -61,10 +62,10 @@ public class MainSearchWController implements Controller {
             e.printStackTrace();
         }
     }
-
     @FXML
-    public void loadGameWindow(MouseEvent event) {
-        fg.loadGameWindow();
+    public void showMainScene(MouseEvent event)
+    {
+        fg.showMainWindow(false);
     }
 
     @FXML
