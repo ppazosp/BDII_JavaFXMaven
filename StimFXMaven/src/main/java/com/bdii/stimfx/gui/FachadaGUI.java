@@ -67,7 +67,7 @@ public class FachadaGUI extends Application {
 
     public void showPlatforms(Videojuego v, HBox hbox)
     {
-        List<Plataforma> vp = fa.consultarPlataformasVideojuego(v);
+        List<Plataforma> vp = fa.consultarPlataformasVideoJuego(v);
         for(Plataforma p : vp)
         {
             ImageView iV = new ImageView(p.getIcono());
@@ -160,6 +160,7 @@ public class FachadaGUI extends Application {
         assert gameWController != null;
         gameWController.setMainApp(this);
         gameWController.setVideojuego(v);
+        gameWController.setApp(this);
         gameWController.initializeWindow();
     }
 

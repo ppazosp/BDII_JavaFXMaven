@@ -2,8 +2,11 @@ package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -11,6 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,12 +26,15 @@ import java.util.List;
 public class GameWController implements Controller {
 
     FachadaGUI fg;
+    Application app;
     Videojuego game;
 
     //PANE
     @FXML
     AnchorPane rightPane;
 
+    @FXML
+    Hyperlink linkRef;
     @FXML
     ImageView bannerImage;
     @FXML
@@ -64,7 +74,7 @@ public class GameWController implements Controller {
         creatorLabel.setText("Creador: "+game.getEditor().getId());
         downloadsLabel.setText("Descargas: " + game.getNumDescargas());
         catVbox.getChildren().clear();
-        List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
+        List<String> cats = fg.fa.consultarCategoriasVideojuego(game.getId());
         for(String s : cats){
             Label l = new Label(s);
             catVbox.getChildren().add(l);
@@ -90,6 +100,12 @@ public class GameWController implements Controller {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    private void openTrailer(ActionEvent event) {
+        String trailerURL = "https://www.youtube.com/embed/K_03kFqWfqs";
+        app.getHostServices().showDocument(trailerURL);
     }
 
     @FXML
@@ -143,5 +159,9 @@ public class GameWController implements Controller {
     public void setMainApp(FachadaGUI mainApp)
     {
         this.fg = mainApp;
+    }
+
+    public void setApp(Application app) {
+        this.app = app;
     }
 }

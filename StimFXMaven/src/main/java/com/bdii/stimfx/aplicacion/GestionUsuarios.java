@@ -23,17 +23,15 @@ public class GestionUsuarios {
     FachadaGUI fgui;
     FachadaBaseDatos fbd;
     
-    public GestionUsuarios(FachadaGUI fgui, FachadaBaseDatos fbd){
+        public GestionUsuarios(FachadaGUI fgui, FachadaBaseDatos fbd){
      this.fgui=fgui;
      this.fbd=fbd;
     }  
 
     //pasar id desde FA
-    public void modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
-            Usuario usuario = new Usuario(id, nombre, clave, email);
-            byte [] img = FachadaAplicacion.imageToBytes(imagen);
-            usuario.setFotoPerfil(img);
-            fbd.modificarUsuario(usuario);
+    public Usuario modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
+            Usuario usuario = new Usuario(id, nombre, clave, email, imagen);
+            return fbd.modificarUsuario(usuario);
 
     }
 
@@ -111,8 +109,8 @@ public class GestionUsuarios {
     }
 
     // Funcion para borrar un usuario a partir de un id.
-    public void borrarUsuario(int id){
-        fbd.borrarUsuario(id);
+    public void borrarUsuario(Usuario u){
+        fbd.borrarUsuario(u.getId());
     }
 
 
