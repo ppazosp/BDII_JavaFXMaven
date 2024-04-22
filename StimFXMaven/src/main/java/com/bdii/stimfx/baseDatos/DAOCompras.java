@@ -23,7 +23,7 @@ public class DAOCompras extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
     
-    public void insertarCompra(int id_videojuego, int id_usuario){
+    public void insertarCompra(int id_videojuego, String id_usuario){
         Connection con;
         PreparedStatement stmCompra=null;
         
@@ -36,7 +36,7 @@ public class DAOCompras extends AbstractDAO{
             java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
             
             stmCompra.setInt(1, id_videojuego);
-            stmCompra.setInt(2, id_usuario);
+            stmCompra.setString(2, id_usuario);
             stmCompra.setDate(3, fechaActual);
             stmCompra.executeUpdate();
         } catch (SQLException e){

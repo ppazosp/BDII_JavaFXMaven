@@ -5,14 +5,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 
-import java.awt.*;
+import javax.swing.*;
+import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProfileWController implements Controller, Initializable {
     FachadaGUI fg;
+
+    @FXML
+    ImageView profileImage;
     @FXML
     Label userField;
     @FXML

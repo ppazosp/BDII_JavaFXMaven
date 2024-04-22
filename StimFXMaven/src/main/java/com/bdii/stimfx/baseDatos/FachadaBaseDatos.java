@@ -119,7 +119,7 @@ public class FachadaBaseDatos {
         return daoU.consultarUsuarios(id, nombre);
     }
     
-    public void insertarCompra(int id_videojuego, int id_usuario){
+    public void insertarCompra(int id_videojuego, String id_usuario){
         daoCompras.insertarCompra(id_videojuego, id_usuario);
     }
     

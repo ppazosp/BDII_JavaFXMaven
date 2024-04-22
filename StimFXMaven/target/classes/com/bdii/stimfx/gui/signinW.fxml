@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #1B2631;">
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="170.0" prefHeight="80.0" prefWidth="441.0" text="Bienvenido a stim" textFill="WHITE">
             <font>
@@ -22,30 +27,44 @@
                 <Font name="System Bold" size="26.0" />
             </font>
         </Label>
-        <TextField fx:id="userField" layoutX="50.0" layoutY="190.0" prefHeight="50.0" prefWidth="400.0" promptText="Usuario">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </TextField>
-        <PasswordField fx:id="pass2Field" layoutX="50.0" layoutY="330.0" prefHeight="50.0" prefWidth="400.0" promptText="Repetir contraseña">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </PasswordField>
-        <Button fx:id="getStartedButton" layoutX="300.0" layoutY="500.0" mnemonicParsing="false" onAction="#showMainWindow" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1B2631;" text="Comenzar" textFill="WHITE">
+        <Button fx:id="getStartedButton" layoutX="300.0" layoutY="500.0" mnemonicParsing="false" onAction="#signInCheck" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #1B2631;" text="Comenzar" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
         </Button>
-        <TextField fx:id="emailField" layoutX="50.0" layoutY="120.0" prefHeight="50.0" prefWidth="400.0" promptText="Email">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="passField" layoutX="50.0" layoutY="260.0" prefHeight="50.0" prefWidth="400.0" promptText="Contraseña">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </TextField>
+      <VBox layoutX="50.0" layoutY="136.0" prefHeight="330.0" prefWidth="400.0" spacing="30.0">
+         <children>
+              <TextField fx:id="userField" prefHeight="50.0" prefWidth="400.0" promptText="Usuario">
+                  <font>
+                      <Font size="16.0" />
+                  </font>
+              </TextField>
+            <TextField fx:id="nameField" prefHeight="50.0" prefWidth="400.0" promptText="Nombre">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+              <TextField fx:id="emailField" prefHeight="50.0" prefWidth="400.0" promptText="Email">
+                  <font>
+                      <Font size="16.0" />
+                  </font>
+              </TextField>
+              <TextField fx:id="passField" prefHeight="50.0" prefWidth="400.0" promptText="Contraseña">
+                  <font>
+                      <Font size="16.0" />
+                  </font>
+              </TextField>
+              <PasswordField fx:id="pass2Field" prefHeight="50.0" prefWidth="400.0" promptText="Repetir contraseña">
+                  <font>
+                      <Font size="16.0" />
+                  </font>
+              </PasswordField>
+         </children>
+      </VBox>
+      <Label fx:id="errorLabel" layoutX="50.0" layoutY="91.0" prefHeight="31.0" prefWidth="400.0" text="¡!" textAlignment="CENTER" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
     </AnchorPane>
 </AnchorPane>

@@ -95,7 +95,14 @@ public class GameWController implements Controller {
     @FXML
     public void buyGame(MouseEvent event)
     {
-        //fg.fa.insertarCompra(game.getId());
+        fg.fa.insertarCompra(game.getId());
+        buyHbox.setDisable(true);
+    }
+
+    @FXML
+    public void addDLCs(MouseEvent event)
+    {
+        //fg.fa.();
     }
 
     @FXML

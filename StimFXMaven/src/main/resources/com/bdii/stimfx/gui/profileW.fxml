@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -123,11 +124,15 @@
    </AnchorPane>
    <AnchorPane focusTraversable="true" layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
-         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../../../../images/blackProfile.png" />
-            </image>
-         </ImageView>
+         <Pane layoutX="450.0" layoutY="72.0" onDragDropped="#onDragDropped" onDragOver="#onDragOver">
+            <children>
+               <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/blackProfile.png" />
+                  </image>
+               </ImageView>
+            </children>
+         </Pane>
          <VBox alignment="TOP_CENTER" layoutX="76.0" layoutY="384.0" prefHeight="200.0" prefWidth="900.0" spacing="15.0">
             <children>
                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="950.0" spacing="10.0">
