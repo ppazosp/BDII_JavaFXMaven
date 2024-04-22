@@ -21,6 +21,7 @@ public class FachadaAplicacion {
     private FachadaGUI fg;
     private FachadaBaseDatos fbd;
     private GestionUsuarios gu;
+    private GestionVideojuegos gv;
 
     public Usuario usuario;
 
@@ -114,6 +115,7 @@ public class FachadaAplicacion {
         fbd =new FachadaBaseDatos(this);
         //pruebas_DAO();
         gu = new GestionUsuarios(this.fg, fbd);
+        gv = new GestionVideojuegos(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -152,6 +154,11 @@ public class FachadaAplicacion {
         return resultado;
     }
 
+    // Funcion para actualizar el numero de descargas de un videojuego actualmente.
+    // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
+    public void consultarNumeroDescargas(Videojuego v){
+        fbd.consultarNumeroDescargas(v);
+    }
 
 
     // Funcion para actualizar el correo, nombre o contraseña de un usuario
@@ -231,8 +238,8 @@ public class FachadaAplicacion {
     }
     
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
-    public void insertarCompra(int id_videojuego, int id_usuario, int precio){
-        fbd.insertarCompra(id_videojuego, id_usuario, precio);
+    public void insertarCompra(int id_videojuego, int id_usuario) {
+        fbd.insertarCompra(id_videojuego, id_usuario);
     }
     
     // Funciones relacionadas con la gestion de las categorias de los juegos
@@ -319,6 +326,15 @@ public class FachadaAplicacion {
         return usuario != null;
     }
 
+    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
+        return gv.consultarDLCsVideojuego(v);
+    }
+
+    //hacer void? a quien le preguntas maquinote
+    public Usuario registrar(String id, String clave, String nombre, String email){
+        Usuario usuario = gu.registrarUsuario(id, clave, nombre, email);
+        return usuario;
+    }
 
 //METHODS
     public List<Videojuego> consultaVideoJuegosInicio(){

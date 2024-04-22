@@ -22,7 +22,8 @@ public class GestionUsuarios {
      this.fgui=fgui;
      this.fbd=fbd;
     }  
-    
+
+
     /*
     public java.util.List<Usuario> obtenerUsuarios(String id, String nombre){
         return fbd.consultarUsuarios(id, nombre);
@@ -83,4 +84,16 @@ public class GestionUsuarios {
         return u;
     }
 
+    public Usuario registrarUsuario(String id, String clave, String nombre, String email){
+        Usuario usuario;
+        if (fbd.existeUsuario(id)){
+            System.out.println("El usuario ya existe");
+            return null;
+        }
+        else{
+            usuario = new Usuario(id, clave, nombre, email);
+            fbd.insertarUsuario(usuario);
+        }
+        return usuario;
+    }
 }

@@ -72,7 +72,7 @@ public class DAODLCs extends AbstractDAO{
     }
     
     
-    public java.util.List<DLC> consultarDLCsVideojuego(int v){
+    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
         java.util.List<DLC> resultado = new java.util.ArrayList<DLC>();
         DLC dlcActual =null;
         Connection con;
@@ -88,12 +88,12 @@ public class DAODLCs extends AbstractDAO{
         
         try{
             stmDLC=con.prepareStatement(consulta);
-            stmDLC.setInt(1, v);
+            stmDLC.setInt(1, v.getId());
             rsDLC=stmDLC.executeQuery();
             while (rsDLC.next())
             {
-                dlcActual = new DLC(v, rsDLC.getInt("idDLC"), rsDLC.getString("nombre"),
-                                        rsDLC.getString("nombre"), rsDLC.getInt("precio"), rsDLC.getDate("fechaLanzamiento"));
+                dlcActual = new DLC(v.getId(), rsDLC.getInt("id_dlc"), rsDLC.getString("nombre"),
+                                        rsDLC.getString("nombre"), rsDLC.getInt("precio"), rsDLC.getDate("fecha_lanzamiento"));
                 resultado.add(dlcActual);
             }
         } catch (SQLException e){

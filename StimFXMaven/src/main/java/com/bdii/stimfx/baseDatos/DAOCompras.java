@@ -107,10 +107,37 @@ public class DAOCompras extends AbstractDAO{
         }
         return resultado;
     }
-    
-    
-    
-    
-    
-    
+
+
+    public void contarComprasJuego(Videojuego v){
+        int comprasJuego=0;
+        Connection con;
+        PreparedStatement stmCompras=null;
+        ResultSet rsCompras;
+
+        con=this.getConexion();
+
+        String consulta = "select count(*) "+
+                "from comprar "+
+                "where id_videojuego = ? " +
+                "and fecha_devolucion is null ";
+
+        try {
+            stmCompras=con.prepareStatement(consulta);
+            stmCompras.setInt(1, v.getId());
+            rsCompras=stmCompras.executeQuery();
+
+            if (rsCompras.next()) {
+                comprasJuego = rsCompras.getInt(1);
+            }
+
+            v.setNumDescargas(comprasJuego);
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmCompras.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
 }

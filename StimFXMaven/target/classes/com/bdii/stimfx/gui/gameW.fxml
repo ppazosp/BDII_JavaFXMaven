@@ -261,7 +261,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <VBox prefHeight="238.0" prefWidth="185.0" spacing="5.0">
+                     <VBox fx:id="checkVbox" prefHeight="238.0" prefWidth="185.0" spacing="5.0">
                         <children>
                            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
                               <children>
@@ -271,56 +271,6 @@
                                     </font>
                                  </CheckBox>
                                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="95.0" text="XX.XX€" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
-                              <children>
-                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </CheckBox>
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="95.0" text="XX.XX€" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
-                              <children>
-                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </CheckBox>
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="94.0" text="XX.XX€" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
-                              <children>
-                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </CheckBox>
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="95.0" text="XX.XX€" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
-                              <children>
-                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </CheckBox>
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="94.0" text="XX.XX€" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0">
-                              <children>
-                                 <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="XXX" textFill="WHITE">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </CheckBox>
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="94.0" text="XX.XX€" textFill="WHITE" />
                               </children>
                            </HBox>
                         </children>

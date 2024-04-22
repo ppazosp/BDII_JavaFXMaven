@@ -1,19 +1,19 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Categoria;
+import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Videojuego;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class GameWController implements Controller {
@@ -44,6 +44,8 @@ public class GameWController implements Controller {
     @FXML
     VBox catVbox;
     @FXML
+    VBox checkVbox;
+    @FXML
     HBox reviewsHbox;
     @FXML
     HBox addHbox;
@@ -56,6 +58,7 @@ public class GameWController implements Controller {
         bannerImage.setImage(game.getBanner());
         nameLabel.setText(game.getNombre());
         dateLabel.setText("Fecha de publicacion: "+game.getFechaSubida().toString());
+        if (game.getFechaSubida().toLocalDate().isAfter(LocalDate.now())) buyHbox.setDisable(true);
         priceLabel.setText(game.getPrecio()+"€");
         descrpArea.setText(game.getDescripcion());
         creatorLabel.setText("Creador: "+game.getEditor().getId());
@@ -66,6 +69,33 @@ public class GameWController implements Controller {
             Label l = new Label(s);
             catVbox.getChildren().add(l);
         }
+
+        checkVbox.getChildren().clear();
+        List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
+
+        try {
+            for (DLC d : dlcList) { // Add 10 instances as an example
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/dlcCheckItem.fxml"));
+                checkVbox.getChildren().add(loader.load());
+
+                DLCCheckItemController controller = loader.getController();
+                controller.setMainApp(fg);
+
+                controller.getCheckBox().setText(d.getNombre());
+                controller.getPriceLabel().setText(d.getPrecio()+"€");
+            }
+            if (dlcList.isEmpty()) addHbox.setDisable(true);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void buyGame(MouseEvent event)
+    {
+        //fg.fa.insertarCompra(game.getId());
     }
 
     @FXML
