@@ -1,5 +1,6 @@
 package com.bdii.stimfx.gui;
-
+import com.bdii.stimfx.aplicacion.Usuario;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -40,10 +41,42 @@ public class ProfileWController implements Controller, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userField.setText(fg.fa.usuario.getId());
         nGamesLabel.setText(fg.fa.contarJuegosUsuario(fg.fa.usuario.getId()).toString());
-        //nWinsLabel.setText(fg.fa.ga(fg.fa.victorias.getId()).toString());
+        nWinsLabel.setText(fg.fa.ga(fg.fa.victorias.getId()).toString());
         nameField.setText(fg.fa.usuario.getNombre());
         passField.setText(fg.fa.usuario.getContrasena());
         emailField.setText(fg.fa.usuario.getEmail());
+    }
+    @FXML
+    public void modificarUsuario(ActionEvent event) {
+        Usuario u= fg.fa.consultarUsuarios();
+        userField.getText();
+        Usuario u = new Usuario(null,nameField.getText(), passField.getText(), emailField.getText());
+        fg.fa.modificarUsuario(u);
+    }
+
+    @FXML
+    private void onDragOver(DragEvent event) {
+        if (event.getDragboard().hasFiles()) {
+            event.acceptTransferModes(TransferMode.COPY);
+        }
+        event.consume();
+    }
+
+    @FXML
+    private void onDragDropped(DragEvent event) {
+        Dragboard dragboard = event.getDragboard();
+        if (dragboard.hasFiles()) {
+            List<File> files = dragboard.getFiles();
+            if (!files.isEmpty()) {
+                File file = files.get(0);
+                if (file.getName().toLowerCase().endsWith(".png") || file.getName().toLowerCase().endsWith(".jpg")) {
+                    javafx.scene.image.Image image = new Image(file.toURI().toString());
+                    profileImage.setImage(image);
+                }
+            }
+        }
+        event.setDropCompleted(true);
+        event.consume();
     }
 
     @FXML
