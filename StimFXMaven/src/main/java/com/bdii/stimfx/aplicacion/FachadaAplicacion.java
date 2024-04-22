@@ -166,6 +166,9 @@ public class FachadaAplicacion {
         fbd.modificarUsuario(u);
     }
 
+    public java.util.List<String> consultarSeguidores(String idU2){
+        return fbd.consultarSeguidores(idU2);
+    }
 
     // Funcion para crear una nueva comunidad
     public void insertarComunidad(Comunidad c){
@@ -186,6 +189,22 @@ public class FachadaAplicacion {
     // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
     public void insertarJugadorEquipo(int id_usuario, Comunidad c){
         fbd.insertarJugadorEquipo(id_usuario, c);
+    }
+    // Funcion para buscar usuarios en la gestion de usuarios
+    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+        return gu.fbd.consultarUsuarios(id, nombre);
+    }
+    // Funciones para empezar a seguir a un usuario
+    public void seguir(Usuario u1, Usuario u2){
+        gu.fbd.seguir(u1.getId(), u2.getId());
+    }
+    // Funcion para dejar de seguir a un usuario
+    public void dejarSeguir(Usuario u1, Usuario u2){
+        gu.fbd.dejarSeguir(u1.getId(), u2.getId());
+    }
+    // Funcion para consultar a las personas que sigue un usuario // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRR
+    public java.util.List<Integer> consultarSeguidos(Usuario u1){
+        return gu.fbd.consultarSeguidos(u1.getId());
     }
 
     // Funcion para hacer salir de una comunidad a un usuario
@@ -233,13 +252,13 @@ public class FachadaAplicacion {
     }
     
     // Funcion para borrar un usuario a partir de un id.
-    public void borrarUsuario(int id){
+    public void borrarUsuario(String id){
         fbd.borrarUsuario(id);
     }
     
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
-    public void insertarCompra(int id_videojuego, int id_usuario) {
-        fbd.insertarCompra(id_videojuego, id_usuario);
+    public void insertarCompra(int id_videojuego) {
+        fbd.insertarCompra(id_videojuego, usuario.getId());
     }
     
     // Funciones relacionadas con la gestion de las categorias de los juegos
@@ -253,11 +272,6 @@ public class FachadaAplicacion {
     
     public java.util.List<Categoria> consultarCategorias(String nombre){
         return fbd.consultarCategorias(nombre);
-    }
-    
-    // Funcion para buscar usuarios en la gestion de usuarios
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return fbd.consultarUsuarios(id, nombre);
     }
     
     // Funciones para crear y borrar DLC de videojuegos
@@ -281,8 +295,8 @@ public class FachadaAplicacion {
     }
     
     // Funcion para obtener las plataformas asociadas a un videojuego.
-    public java.util.List<String> consultarPlataformasVideojuego(int id_videojuego){
-        return fbd.consultarPlataformasVideojuego(id_videojuego);
+    public java.util.List<Plataforma> consultarPlataformasVideojuego(int id_videojuego){
+        return fbd.consultarPlataformasVideoJuego(id_videojuego);
     }
     
     // Funciones para gestionar las plataformas de un videojuego, se podrian mostrar por pantalla
@@ -296,24 +310,6 @@ public class FachadaAplicacion {
     // Funcion para obtener las categorias asociadas a un juego, se podrian mostrar por pantalla
     public java.util.List<String> consultarCategoriasVideojuego(int id_videojuego){
         return fbd.consultarCategoriasVideojuego(id_videojuego);
-    }
-    
-    // Funciones relacionadas con los seguidores
-    public void seguir(int idU1, int idU2){
-        fbd.seguir(idU1, idU2);
-    }
-    
-    public void dejarSeguir(int idU1, int idU2){
-        fbd.dejarSeguir(idU1, idU2);
-    }
-    
-    public java.util.List<Integer> consultarSeguidos(int idU1){
-        return fbd.consultarSeguidos(idU1);
-    }
-
-    // esta funcion devuelve ids, no sería mejor q devolviese Usuarios enteros, ns si merece la pena cambiar
-    public java.util.List<String> consultarSeguidores(String idU2){
-        return fbd.consultarSeguidores(idU2);
     }
     
     public void bloquearSeguidor(String idU1, String idU2){

@@ -41,16 +41,14 @@ public class ProfileWController implements Controller, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userField.setText(fg.fa.usuario.getId());
         nGamesLabel.setText(fg.fa.contarJuegosUsuario(fg.fa.usuario.getId()).toString());
-        nWinsLabel.setText(fg.fa.ga(fg.fa.victorias.getId()).toString());
+        nWinsLabel.setText(String.valueOf(fg.fa.torneosGanados(fg.fa.usuario)));
         nameField.setText(fg.fa.usuario.getNombre());
         passField.setText(fg.fa.usuario.getContrasena());
         emailField.setText(fg.fa.usuario.getEmail());
     }
     @FXML
     public void modificarUsuario(ActionEvent event) {
-        Usuario u= fg.fa.consultarUsuarios();
-        userField.getText();
-        Usuario u = new Usuario(null,nameField.getText(), passField.getText(), emailField.getText());
+        Usuario u = new Usuario(fg.fa.usuario.getId(),nameField.getText(), passField.getText(), emailField.getText());
         fg.fa.modificarUsuario(u);
     }
 

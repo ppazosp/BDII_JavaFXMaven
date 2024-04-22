@@ -4,6 +4,8 @@
  */
 package com.bdii.stimfx.aplicacion;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author alumnogreibd
@@ -14,7 +16,7 @@ public class Usuario {
     private String contrasena;
     private String TipoUsuario;
     private String email;
-    private byte[] fotoPerfil;
+    private Image fotoPerfil;
 
     public Usuario(String id, String nombre, String contrasena, String email) {
         this.id = id;
@@ -22,6 +24,14 @@ public class Usuario {
         this.contrasena = contrasena;
         this.email = email;
         this.fotoPerfil=null;
+    }
+
+    public Usuario(String id, String nombre, String contrasena, String email, Image fotoPerfil) {
+        this.id = id;
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.email = email;
+        this.fotoPerfil=fotoPerfil;
     }
 
     public Usuario(String id, String nombre, String contrasena, String TipoUsuario, String email) {
@@ -57,11 +67,7 @@ public class Usuario {
         return email;
     }
 
-    public byte[] getFotoPerfil() {
+    public Image getFotoPerfil() {
         return fotoPerfil;
-    }
-
-    public void setFotoPerfil(byte[] fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
     }
 }

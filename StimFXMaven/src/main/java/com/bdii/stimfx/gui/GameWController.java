@@ -64,7 +64,7 @@ public class GameWController implements Controller {
         creatorLabel.setText("Creador: "+game.getEditor().getId());
         downloadsLabel.setText("Descargas: " + game.getNumDescargas());
         catVbox.getChildren().clear();
-        List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
+        List<String> cats = fg.fa.consultarCategoriasVideojuego(game.getId());
         for(String s : cats){
             Label l = new Label(s);
             catVbox.getChildren().add(l);

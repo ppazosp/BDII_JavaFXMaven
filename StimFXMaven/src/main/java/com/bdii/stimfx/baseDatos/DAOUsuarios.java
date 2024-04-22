@@ -47,7 +47,7 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
     
-    public void borrarUsuario(int id){
+    public void borrarUsuario(String id){
         Connection con;
         PreparedStatement stmUsuario=null;
         
@@ -55,7 +55,7 @@ public class DAOUsuarios extends AbstractDAO{
         
         try{
             stmUsuario=con.prepareStatement("delete from usuario where id = ?");
-            stmUsuario.setInt(1, id);
+            stmUsuario.setString(1, id);
             stmUsuario.executeUpdate();
         
         }catch (SQLException e){
@@ -87,7 +87,7 @@ public class DAOUsuarios extends AbstractDAO{
             stmUsuario.setString(3, u.getEmail());
             stmUsuario.setString(4, u.getId());
             if (u.getFotoPerfil()!= null)
-                stmUsuario.setBytes(5, u.getFotoPerfil());
+                stmUsuario.setBytes(5, FachadaAplicacion.imageToBytes(u.getFotoPerfil()));
             stmUsuario.executeUpdate();
 
 
@@ -151,7 +151,7 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
     
-    public void seguir(int idU1, int idU2){
+    public void seguir(String idU1, String idU2){
         Connection con;
         PreparedStatement stmSeguidos=null;
         
@@ -160,8 +160,8 @@ public class DAOUsuarios extends AbstractDAO{
         try {
             stmSeguidos=con.prepareStatement("insert into ser_amigo(id_usr1, id_usr2) "+
                                             "values (?,?)");       
-            stmSeguidos.setInt(1, idU1);
-            stmSeguidos.setInt(2, idU2);
+            stmSeguidos.setString(1, idU1);
+            stmSeguidos.setString(2, idU2);
             stmSeguidos.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -171,7 +171,7 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
     
-    public void dejarSeguir(int idU1, int idU2){
+    public void dejarSeguir(String idU1, String idU2){
         Connection con;
         PreparedStatement stmSeguidos=null;
         
@@ -179,8 +179,8 @@ public class DAOUsuarios extends AbstractDAO{
         
         try{
             stmSeguidos=con.prepareStatement("delete from ser_amigo where id_usr1 = ? and id_usr2 = ?");
-            stmSeguidos.setInt(1, idU1);
-            stmSeguidos.setInt(2, idU2);
+            stmSeguidos.setString(1, idU1);
+            stmSeguidos.setString(2, idU2);
             stmSeguidos.executeUpdate();
         
         }catch (SQLException e){
@@ -191,8 +191,7 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
 
-    //usuarios en vez de ints
-    public java.util.List<Integer> consultarSeguidos(int idU1){
+    public java.util.List<Integer> consultarSeguidos(String idU1){
         java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
         Integer idUsuarioActual;
         Connection con;
@@ -205,7 +204,7 @@ public class DAOUsuarios extends AbstractDAO{
         
         try{
             stmSeguidos=con.prepareStatement(consulta);
-            stmSeguidos.setInt(1, idU1);
+            stmSeguidos.setString(1, idU1);
             rsSeguidos=stmSeguidos.executeQuery();
             while (rsSeguidos.next())
             {
