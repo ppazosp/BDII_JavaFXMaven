@@ -342,6 +342,44 @@ public class DAOUsuarios extends AbstractDAO{
         }
         return resultado;
     }
+
+
+    public boolean existeUsuario(String id){
+        boolean resultado = false;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuarios;
+
+        con=this.getConexion();
+
+        String consulta = "select * from usuario where id like ?";
+
+
+
+        try  {
+            stmUsuarios=con.prepareStatement(consulta);
+            stmUsuarios.setString(1, id);
+            rsUsuarios=stmUsuarios.executeQuery();
+
+            if (rsUsuarios.next())
+            {
+                resultado=true;
+
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {
+                if (stmUsuarios != null) {
+                    stmUsuarios.close();
+                }
+            } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
+
     
 /*
     public List<Usuario> consultarUsuario(String nombre){

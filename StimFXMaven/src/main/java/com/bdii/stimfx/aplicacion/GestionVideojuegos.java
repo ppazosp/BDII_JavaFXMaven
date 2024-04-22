@@ -25,8 +25,8 @@ public class GestionVideojuegos {
         fbd.insertarVideojuego(v);
     }
     
-    public void consultarDLCsVideojuego(Videojuego v){
-        fbd.consultarDLCsVideojuego(v);
+    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
+        return fbd.consultarDLCsVideojuego(v);
     }
     
     

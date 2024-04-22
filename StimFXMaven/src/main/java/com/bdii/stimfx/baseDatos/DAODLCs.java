@@ -88,6 +88,7 @@ public class DAODLCs extends AbstractDAO{
         
         try{
             stmDLC=con.prepareStatement(consulta);
+            stmDLC.setInt(1, v.getId());
             rsDLC=stmDLC.executeQuery();
             while (rsDLC.next())
             {
