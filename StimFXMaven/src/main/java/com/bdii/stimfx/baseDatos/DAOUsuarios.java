@@ -148,6 +148,37 @@ public class DAOUsuarios extends AbstractDAO{
         }
         return resultado;
     }
+
+    public Usuario consultarUsuario(Integer id){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
+        Usuario usuario=null;
+        Connection con;
+        PreparedStatement stmUsuario=null;
+        ResultSet rsUsuario;
+
+        con=this.getConexion();
+
+        String consulta = "select * "+
+                "from usuario "+
+                "where id = ?";
+
+
+        try{
+            stmUsuario=con.prepareStatement(consulta);
+            stmUsuario.setInt(1, id);
+            rsUsuario=stmUsuario.executeQuery();
+            if (rsUsuario.next()){
+                usuario = new Usuario(rsUsuario.getString("id"), rsUsuario.getString("nombre"),
+                        rsUsuario.getString("contraseña"), rsUsuario.getString("email"));
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return usuario;
+    }
     
     public void seguir(String idU1, String idU2){
         Connection con;

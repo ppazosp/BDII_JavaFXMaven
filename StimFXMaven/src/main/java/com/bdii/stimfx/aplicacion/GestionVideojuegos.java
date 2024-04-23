@@ -58,14 +58,16 @@ public class GestionVideojuegos {
     public java.util.List<String> consultarCategoriasVideojuego(Videojuego v){
         return fbd.consultarCategoriasVideojuego(v.getId());
     }
-/*
-    public java.util.List<String> consultarPlataformasVideojuego(Videojuego v){
-        return fbd.consultarPlataformasVideojuego(v.getId());
-    }
-*/
+
     public void borrarVideojuego(Videojuego v) {
         fbd.borrarVideojuego(v.getId());
     }
     
-    
+    /*
+    public java.util.List<String> consultarPlataformasVideojuego(Videojuego v){
+        return fbd.consultarPlataformasVideojuego(v.getId());
+    }
+*/
+
+
 }
