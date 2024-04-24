@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-
+//PONER A TODOS LOS USUARIOS RESPONABILIDADES DE PASAR DE IMAGE A BYTES
 /**
  *
  * @author alumnogreibd
