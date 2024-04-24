@@ -130,7 +130,7 @@
                </Label>
                <ScrollPane focusTraversable="false" hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0" vbarPolicy="ALWAYS">
                   <content>
-                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="5.0" />
+                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0" />
                   </content>
                </ScrollPane>
             </children>

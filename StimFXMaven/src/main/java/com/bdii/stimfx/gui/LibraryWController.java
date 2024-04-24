@@ -31,8 +31,6 @@ public class LibraryWController implements Controller{
                 LibrarySearchItemController controller = loader.getController();
                 controller.setMainApp(fg);
                 controller.initializeWindow(v);
-
-                System.out.println("hola");
             }
         } catch (IOException e) {
             e.printStackTrace();
