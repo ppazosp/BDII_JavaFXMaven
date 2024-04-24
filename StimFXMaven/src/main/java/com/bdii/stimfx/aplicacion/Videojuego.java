@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import java.sql.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 /**
@@ -133,5 +134,18 @@ public class Videojuego {
 
     public int getNumDescargas() {
         return numDescargas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Videojuego that = (Videojuego) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

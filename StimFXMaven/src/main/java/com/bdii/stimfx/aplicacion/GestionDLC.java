@@ -27,4 +27,9 @@ public class GestionDLC {
     public void devolverDLC(DLC d, Usuario u){
         fbd.devolverDLC(d, u.getId());
     }
+
+    public boolean tieneDLC(Usuario usuario, DLC dlc){
+
+        return result;
+    }
 }
