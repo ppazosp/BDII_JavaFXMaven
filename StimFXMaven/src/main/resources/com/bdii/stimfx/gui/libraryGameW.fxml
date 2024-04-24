@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -130,18 +131,101 @@
                </Label>
                <ScrollPane hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0" vbarPolicy="ALWAYS">
                   <content>
-                     <VBox prefHeight="662.0" prefWidth="237.0" />
+                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0" />
                   </content>
                </ScrollPane>
             </children>
          </AnchorPane>
        <AnchorPane layoutX="276.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="775.0" style="-fx-background-color: #1B2631;">
             <children>
-               <ImageView fitHeight="332.0" fitWidth="728.0" layoutX="33.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="bannerImage" fitHeight="332.0" fitWidth="728.0" layoutX="33.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../../../../../../imagenes/God%20of%20WarBanner.png" />
                   </image>
                </ImageView>
+               <VBox layoutX="33.0" layoutY="399.0" prefHeight="322.0" prefWidth="710.0" spacing="5.0" style="-fx-border-radius: 20; -fx-border-color: FFFFFF; -fx-border-width: 5;">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="660.0">
+                        <children>
+                           <VBox prefHeight="52.0" prefWidth="549.0">
+                              <children>
+                                 <Label fx:id="nameLabel" prefHeight="44.0" prefWidth="551.0" text="XXXXXXXXX" textFill="WHITE">
+                                    <font>
+                                       <Font name="System Bold" size="36.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="dateLabel" prefHeight="10.0" prefWidth="565.0" text="XXXXXXXXXXXXXXXXX" textFill="WHITE">
+                                    <font>
+                                       <Font size="16.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="49.0" prefWidth="112.0">
+                              <children>
+                                 <HBox fx:id="playHbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="111.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                                    <children>
+                                       <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../../images/playW.png" />
+                                          </image>
+                                       </ImageView>
+                                       <Label prefHeight="32.0" prefWidth="45.0" text="Play" textFill="WHITE">
+                                          <font>
+                                             <Font name="System Bold" size="18.0" />
+                                          </font>
+                                          <opaqueInsets>
+                                             <Insets />
+                                          </opaqueInsets>
+                                       </Label>
+                                    </children>
+                                    <styleClass>
+                                       <String fx:value="selected" />
+                                       <String fx:value="primary-color" />
+                                    </styleClass>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="2.0" prefWidth="660.0" />
+                     <HBox prefHeight="224.0" prefWidth="660.0" spacing="50.0">
+                        <children>
+                           <ScrollPane hbarPolicy="NEVER" prefHeight="205.0" prefWidth="469.0" vbarPolicy="ALWAYS">
+                              <content>
+                                 <TextArea fx:id="descrpArea" editable="false" focusTraversable="false" prefHeight="201.0" prefWidth="390.0" wrapText="true" />
+                              </content>
+                           </ScrollPane>
+                           <VBox fx:id="extraContentVbox" prefHeight="205.0" prefWidth="265.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: FFFFFF; -fx-border-width: 2;" visible="false">
+                              <children>
+                                 <VBox prefHeight="278.0" prefWidth="185.0" spacing="10.0">
+                                    <children>
+                                       <Label alignment="CENTER" prefHeight="20.0" prefWidth="184.0" text="Contenido Extra" textFill="WHITE">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                       <VBox fx:id="dlcVbox" prefHeight="238.0" prefWidth="185.0" spacing="5.0">
+                                          <children>
+                                             <HBox alignment="CENTER" prefHeight="20.0" prefWidth="175.0" />
+                                          </children>
+                                       </VBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="15.0" />
+                  </padding>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+               </VBox>
             </children></AnchorPane>
       </children></AnchorPane>
 </AnchorPane>

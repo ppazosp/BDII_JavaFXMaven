@@ -112,21 +112,26 @@ public class FachadaGUI extends Application {
     public void showProfileScene() {
         ProfileWController profileWController = loadFXML("/com/bdii/stimfx/gui/profileW.fxml", null, ProfileWController.class);
         assert profileWController != null;
+        profileWController.setMainApp(this);
     }
 
     public void showLibraryScene() {
         LibraryWController libraryWController = loadFXML("/com/bdii/stimfx/gui/libraryW.fxml", null, LibraryWController.class);
         assert libraryWController != null;
+        libraryWController.setMainApp(this);
+        libraryWController.initializeWindow();
     }
 
     public void showCommunityScene() {
         CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
         assert communityWController != null;
+        communityWController.setMainApp(this);
     }
 
     public void showSettingsScene() {
         SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, SettingsWController.class);
         assert settingsWController != null;
+        settingsWController.setMainApp(this);
     }
 
 
@@ -162,6 +167,14 @@ public class FachadaGUI extends Application {
         gameWController.setVideojuego(v);
         gameWController.setApp(this);
         gameWController.initializeWindow();
+    }
+
+    public void showGameLibraryScene(Videojuego v)
+    {
+        LibraryGameWController libraryGameWController = loadFXML("/com/bdii/stimfx/gui/libraryGameW.fxml", null, LibraryGameWController.class);
+        assert libraryGameWController != null;
+        libraryGameWController.setMainApp(this);
+        libraryGameWController.initializeWindow(v);
     }
 
 

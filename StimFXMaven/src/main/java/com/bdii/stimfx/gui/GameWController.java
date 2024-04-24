@@ -104,8 +104,7 @@ public class GameWController implements Controller {
 
     @FXML
     private void openTrailer(ActionEvent event) {
-        String trailerURL = "https://www.youtube.com/embed/K_03kFqWfqs";
-        app.getHostServices().showDocument(trailerURL);
+        app.getHostServices().showDocument(game.getTrailer());
     }
 
     @FXML

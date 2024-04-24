@@ -181,7 +181,7 @@
                <HBox prefHeight="0.0" prefWidth="890.0" />
                <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                   <content>
-                     <TextArea fx:id="descrpArea" prefHeight="184.0" prefWidth="633.0" text="vbygoygg6gggy" />
+                     <TextArea fx:id="descrpArea" editable="false" prefHeight="184.0" prefWidth="633.0" text="vbygoygg6gggy" wrapText="true" />
                   </content>
                </ScrollPane>
             </children>

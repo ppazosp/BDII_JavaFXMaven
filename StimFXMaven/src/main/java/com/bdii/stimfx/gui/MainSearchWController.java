@@ -51,12 +51,7 @@ public class MainSearchWController implements Controller {
 
                 GameSearchItemController controller = loader.getController();
                 controller.setMainApp(fg);
-
-                controller.getIconImage().setImage(v.getImagen());
-                controller.getNameLabel().setText(v.getNombre());
-                fg.showPlatforms(v, controller.getIconsHbox());
-                controller.getDateLabel().setText(v.getFechaSubida().toString());
-                controller.getPriceLabel().setText(v.getPrecio()+"€");
+                controller.initializeWindow(v);
             }
         } catch (IOException e) {
             e.printStackTrace();

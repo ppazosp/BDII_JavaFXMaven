@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -129,9 +128,9 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Label>
-               <ScrollPane layoutX="21.0" layoutY="72.0" prefHeight="662.0" prefWidth="234.0">
+               <ScrollPane focusTraversable="false" hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0" vbarPolicy="ALWAYS">
                   <content>
-                     <ListView prefHeight="660.0" prefWidth="250.0" />
+                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0" />
                   </content>
                </ScrollPane>
             </children>
