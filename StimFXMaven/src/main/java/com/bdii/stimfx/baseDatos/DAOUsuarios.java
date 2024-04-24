@@ -349,7 +349,7 @@ public class DAOUsuarios extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select  v.id, v.nombre , v.fechasubida , v.id_usreditor , v.precio , v.descripcion \n" +
+        String consulta = "select  v.id, v.nombre , v.fechasubida , v.id_usreditor , v.precio , v.descripcion, v.imagen, v.banner, v.trailer, c.id_usr\n" +
                 "from comprar as c join videojuego as v on c.id_videojuego=v.id\n" +
                 "where c.id_usr like ?;";
         //un segundo porfa
@@ -360,7 +360,8 @@ public class DAOUsuarios extends AbstractDAO{
             while (rs.next())
             {
                 Videojuego videojuego = new Videojuego(rs.getInt("id"),rs.getString("nombre"),
-                        rs.getDate("fechasubida"), rs.getString("descripcion"), rs.getDouble("precio"));
+                        rs.getDate("fechasubida"), rs.getString("descripcion"), rs.getDouble("precio"),
+                        FachadaAplicacion.bytesToImage(rs.getBytes("imagen")), FachadaAplicacion.bytesToImage(rs.getBytes("banner")), rs.getString("trailer"));
                 // SOlo tiene nombre este usuario
                 Editor usuario = new Editor(rs.getString("id_usr"));
                 videojuego.setEditor(usuario);

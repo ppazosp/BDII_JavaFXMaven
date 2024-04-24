@@ -108,8 +108,10 @@ public class FachadaAplicacion {
         List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         System.out.println(usrs.get(0).getNombre());
 
-        //Demo d = new Demo("RobinRun", 2, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "pablo");
+        //Demo d = new Demo("RobinRun", 4, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "sara");
         //fbd.insertarDemo(d);
+        //d = new Demo("RobinRun", 5, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "sara");
+       //fbd.insertarDemo(d);
         //insertarPlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
         //insertarPlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
         //insertarPlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");

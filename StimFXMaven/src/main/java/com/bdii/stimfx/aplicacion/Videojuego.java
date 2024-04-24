@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import java.sql.Date;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 /**
@@ -27,6 +26,7 @@ public class Videojuego {
     private List<Reseña> reseñas;
     private Image imagen;
     private Image banner;
+    private String trailer;
 
 
 
@@ -40,7 +40,7 @@ public class Videojuego {
         this.numDescargas=0;
     }
 
-    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen, Image banner) {
+    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen, Image banner, String trailer) {
         this.id = id;
         this.nombre = nombre;
         this.fechaSubida = fechaSubida;
@@ -50,6 +50,7 @@ public class Videojuego {
         this.numDescargas=0;
         this.imagen = imagen;
         this.banner = banner;
+        this.trailer = trailer;
     }
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio,List<DLC> DLCs) {
@@ -136,16 +137,7 @@ public class Videojuego {
         return numDescargas;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Videojuego that = (Videojuego) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public String getTrailer() {
+        return trailer;
     }
 }
