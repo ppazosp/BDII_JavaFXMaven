@@ -239,7 +239,7 @@ public class FachadaAplicacion {
     
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
     public void insertarCompra(int id_videojuego, int id_usuario) {
-        fbd.insertarCompra(id_videojuego, id_usuario);
+       /// fbd.insertarCompra(id_videojuego, id_usuario);
     }
     
     // Funciones relacionadas con la gestion de las categorias de los juegos
