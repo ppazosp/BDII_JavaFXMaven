@@ -29,7 +29,7 @@ public class GestionDLC {
     }
 
     public boolean tieneDLC(Usuario usuario, DLC dlc){
-
-        return result;
+        List<DLC> dlcs = fbd.consultarDLCsVideojuegoUsuario(dlc.getIdVideojuego(), usuario.getId());
+        return  dlcs.contains(dlc);
     }
 }
