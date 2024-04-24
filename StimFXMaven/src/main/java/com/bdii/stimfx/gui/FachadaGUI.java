@@ -160,6 +160,7 @@ public class FachadaGUI extends Application {
         assert gameWController != null;
         gameWController.setMainApp(this);
         gameWController.setVideojuego(v);
+        gameWController.setApp(this);
         gameWController.initializeWindow();
     }
 

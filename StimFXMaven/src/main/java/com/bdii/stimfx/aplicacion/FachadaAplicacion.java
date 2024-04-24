@@ -59,6 +59,8 @@ public class FachadaAplicacion {
         return null;
     }
     public static byte[] imageToBytes(Image image) {
+        if (image == null) return null;
+
         try {
             // Convert JavaFX Image to BufferedImage
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
@@ -83,6 +85,8 @@ public class FachadaAplicacion {
         }
     }
     public static Image bytesToImage(byte[] imageData) {
+        if (imageData == null) return null;
+
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
             Image image = new Image(bis);
@@ -129,11 +133,101 @@ public class FachadaAplicacion {
 
     }
 
-
     public static void muestraExcepcion(String e) {
         // fg.muestraExcepcion(e);
         System.out.println("Excepcion: "+ e);
     }
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONVIDEOJUEGOS
+    // -----------------------------------------------------------------------
+
+    // Funcion para insertar videojuegos en la base
+    public void insertarVideojuego(Videojuego v){
+        gv.insertarVideojuego(v);
+    }
+    // Funcion para borrar un videojuego en la base
+    public void borrarVideojuego(Videojuego v) {
+        fbd.borrarVideojuego(v.getId());
+    }
+    // Funcion para consultar videojuegos a partir de un nombre
+    public java.util.List<Videojuego> consultarVideojuegos(String n){
+        return gv.consultarVideojuegos(n);
+    }
+    // Funcion para buscar un unico videojuego a partir de un nombre
+    public Videojuego consultarVideojuego(String n){
+        return gv.consultarVideojuego(n);
+    }
+    // Funcion para obtener las plataformas asociadas a un videojuego.
+    public List<Plataforma> consultarPlataformasVideojuego(Videojuego v){
+        return gv.consultarPlataformasVideoJuego(v);
+    }
+    // Funcion para obtener el proximo videojuego que saldra a la venta
+    public Videojuego proximoVideojuego(){
+        return gv.proximoVideojuego();
+    }
+    // Funcion para obtener los 3 videojuegos mas vendidos del momento
+    public List<Videojuego> consultaVideoJuegosInicio(){
+        return gv.consultaVideoJuegosInicio();
+    }
+    // Funcion para actualizar el numero de descargas de un videojuego actualmente.
+    // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
+    public void consultarNumeroDescargas(Videojuego v){
+        gv.consultarNumeroDescargas(v);
+    }
+    // Funcion para obtener las categorias asociadas a un juego, se podrian mostrar por pantalla
+    public java.util.List<String> consultarCategoriasVideojuego(Videojuego v){
+        return gv.consultarCategoriasVideojuego(v);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONUSUARIOS
+    // -----------------------------------------------------------------------
+
+    // Funcion para registrar un usuario en la base
+    public boolean registrar(String id, String clave, String nombre, String email){
+        this.usuario  = gu.registrarUsuario(id, clave, nombre, email);
+        return usuario!=null;
+    }
+    // Funcion para borrar un usuario
+    public void borrarUsuario(Usuario u){
+        gu.borrarUsuario(u);
+    }
+    public void modificarUsuario(String nombre, String clave, String email, Image imagen){
+        Usuario u = gu.modificarUsuario(this.usuario.getId(), nombre, clave, email, imagen);
+        if (u != null) {
+            this.usuario = u;
+        }
+    }
+    // Funcion para buscar usuarios en la base
+    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+        return gu.consultarUsuarios(id, nombre);
+    }
+    // Funcion para empezar a seguir a un usuario
+    public void seguir(Usuario u1, Usuario u2){
+        gu.seguir(u1, u2);
+    }
+    // Funcion para dejar de seguir a un usuario
+    public void dejarSeguir(Usuario u1, Usuario u2){
+        gu.dejarSeguir(u1, u2);
+    }
+    // Funcion para consultar a las personas que sigue un usuario // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRR
+    public java.util.List<Usuario> consultarSeguidos(Usuario u1){
+        return gu.consultarSeguidos(u1);
+    }
+
+
+
+
+
+
+
+
+
 
     public Demo consultarDemo(int mes, int ano)
     {
@@ -154,18 +248,9 @@ public class FachadaAplicacion {
         return resultado;
     }
 
-    // Funcion para actualizar el numero de descargas de un videojuego actualmente.
-    // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
-    public void consultarNumeroDescargas(Videojuego v){
-        fbd.consultarNumeroDescargas(v);
+    public java.util.List<String> consultarSeguidores(String idU2){
+        return fbd.consultarSeguidores(idU2);
     }
-
-
-    // Funcion para actualizar el correo, nombre o contraseña de un usuario
-    public void modificarUsuario(Usuario u){
-        fbd.modificarUsuario(u);
-    }
-
 
     // Funcion para crear una nueva comunidad
     public void insertarComunidad(Comunidad c){
@@ -213,15 +298,6 @@ public class FachadaAplicacion {
         return fbd.contarJuegosUsuario(id_usuario);
     }
 
-    // Funcion para consultar videojuegos a partir de un nombre. Utilizar en scroll del main
-    public java.util.List<Videojuego> consultarVideojuegos(String n){ 
-        return fbd.consultaVideojuegos(n);
-    }
-
-    public Videojuego consultarVideojuego(String n){
-        return fbd.consultarVideojuego(n);
-    }
-
     // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.
     public void insertarTorneo(Torneo t){
         fbd.insertarTorneo(t);
@@ -232,14 +308,9 @@ public class FachadaAplicacion {
         fbd.insertarReseña(r);
     }
     
-    // Funcion para borrar un usuario a partir de un id.
-    public void borrarUsuario(int id){
-        fbd.borrarUsuario(id);
-    }
-    
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
-    public void insertarCompra(int id_videojuego, int id_usuario) {
-       /// fbd.insertarCompra(id_videojuego, id_usuario);
+    public void insertarCompra(int id_videojuego) {
+        fbd.insertarCompra(id_videojuego, usuario.getId());
     }
     
     // Funciones relacionadas con la gestion de las categorias de los juegos
@@ -253,11 +324,6 @@ public class FachadaAplicacion {
     
     public java.util.List<Categoria> consultarCategorias(String nombre){
         return fbd.consultarCategorias(nombre);
-    }
-    
-    // Funcion para buscar usuarios en la gestion de usuarios
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return fbd.consultarUsuarios(id, nombre);
     }
     
     // Funciones para crear y borrar DLC de videojuegos
@@ -280,40 +346,12 @@ public class FachadaAplicacion {
         return fbd.consultarPlataformas(nombre);
     }
     
-    // Funcion para obtener las plataformas asociadas a un videojuego.
-    public java.util.List<String> consultarPlataformasVideojuego(int id_videojuego){
-        return fbd.consultarPlataformasVideojuego(id_videojuego);
-    }
-    
     // Funciones para gestionar las plataformas de un videojuego, se podrian mostrar por pantalla
     public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
         fbd.insertarPlataformaVideojuego(nombre, id_videojuego);
     }
     public void borrarPlataformaVideojuego(String nombre, int videojuego){
         fbd.borrarPlataformaVideojuego(nombre, videojuego);
-    }
-    
-    // Funcion para obtener las categorias asociadas a un juego, se podrian mostrar por pantalla
-    public java.util.List<String> consultarCategoriasVideojuego(int id_videojuego){
-        return fbd.consultarCategoriasVideojuego(id_videojuego);
-    }
-    
-    // Funciones relacionadas con los seguidores
-    public void seguir(int idU1, int idU2){
-        fbd.seguir(idU1, idU2);
-    }
-    
-    public void dejarSeguir(int idU1, int idU2){
-        fbd.dejarSeguir(idU1, idU2);
-    }
-    
-    public java.util.List<Integer> consultarSeguidos(int idU1){
-        return fbd.consultarSeguidos(idU1);
-    }
-
-    // esta funcion devuelve ids, no sería mejor q devolviese Usuarios enteros, ns si merece la pena cambiar
-    public java.util.List<String> consultarSeguidores(String idU2){
-        return fbd.consultarSeguidores(idU2);
     }
     
     public void bloquearSeguidor(String idU1, String idU2){
@@ -330,31 +368,17 @@ public class FachadaAplicacion {
         return gv.consultarDLCsVideojuego(v);
     }
 
-    //hacer void? a quien le preguntas maquinote
-    public boolean registrar(String id, String clave, String nombre, String email){
-
-        this.usuario  = gu.registrarUsuario(id, clave, nombre, email);
-        return usuario!=null;
-    }
-
 //METHODS
-    public List<Videojuego> consultaVideoJuegosInicio(){
-        return fbd.consultaVideoJuegosInicio();
-    }
 
-    public Videojuego proximoVideojuego(){
-        return fbd.proximoVideojuego();
-    }
     public int torneosGanados(Usuario u){
         return fbd.torneosGanados(u.getId());
     }
+
+    /*
     public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
         return fbd.consultarPlataformasVideoJuego(v.getId());
     }
-
-    public void modificarUsuario(String nombre, String clave, String email, Image imagen){
-        gu.modificarUsuario(this.usuario.getId(), nombre, clave, email, imagen);
-    }
+*/
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);
     }

@@ -115,7 +115,7 @@ public class FachadaBaseDatos {
         daoT.insertarTorneo(t);
     }
     
-    public void borrarUsuario(int id){
+    public void borrarUsuario(String id){
         daoU.borrarUsuario(id);
     }
     
@@ -175,15 +175,15 @@ public class FachadaBaseDatos {
         return daoV.consultarCategoriasVideojuego(id_videojuego);
     }
     
-    public void seguir(int idU1, int idU2){
+    public void seguir(String idU1, String idU2){
         daoU.seguir(idU1, idU2);
     }
     
-    public void dejarSeguir(int idU1, int idU2){
+    public void dejarSeguir(String idU1, String idU2){
         daoU.dejarSeguir(idU1, idU2);
     }
     
-    public java.util.List<Integer> consultarSeguidos(int idU1){
+    public java.util.List<Integer> consultarSeguidos(String idU1){
         return daoU.consultarSeguidos(idU1);
     }
     
@@ -251,8 +251,8 @@ public class FachadaBaseDatos {
         return daoP.consultarPlataformasVideoJuego(id);
     }
 
-    public void modificarUsuario(Usuario u){
-        daoU.modificarUsuario(u);
+    public Usuario modificarUsuario(Usuario u){
+        return daoU.modificarUsuario(u);
     }
 
     public boolean existeUsuario(String id){

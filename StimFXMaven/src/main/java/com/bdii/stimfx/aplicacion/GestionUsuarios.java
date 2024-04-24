@@ -7,7 +7,10 @@ package com.bdii.stimfx.aplicacion;
 import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,18 +26,9 @@ public class GestionUsuarios {
     FachadaGUI fgui;
     FachadaBaseDatos fbd;
     
-    public GestionUsuarios(FachadaGUI fgui, FachadaBaseDatos fbd){
+        public GestionUsuarios(FachadaGUI fgui, FachadaBaseDatos fbd){
      this.fgui=fgui;
      this.fbd=fbd;
-    }  
-
-    //pasar id desde FA
-    public void modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
-            Usuario usuario = new Usuario(id, nombre, clave, email);
-            byte [] img = FachadaAplicacion.imageToBytes(imagen);
-            usuario.setFotoPerfil(img);
-            fbd.modificarUsuario(usuario);
-
     }
 
     /*
@@ -111,9 +105,41 @@ public class GestionUsuarios {
     }
 
     // Funcion para borrar un usuario a partir de un id.
-    public void borrarUsuario(int id){
-        fbd.borrarUsuario(id);
+    public void borrarUsuario(Usuario u){
+        fbd.borrarUsuario(u.getId());
+    }
+
+    //pasar id desde FA
+    public Usuario modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
+        Usuario usuario = new Usuario(id, nombre, clave, email, imagen);
+        return fbd.modificarUsuario(usuario);
     }
 
 
+    // Funcion para buscar usuarios en la base
+    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+        return fbd.consultarUsuarios(id, nombre);
+    }
+
+    // Funciones para empezar a seguir a un usuario
+    public void seguir(Usuario u1, Usuario u2){
+        fbd.seguir(u1.getId(), u2.getId());
+    }
+
+    // Funcion para dejar de seguir a un usuario
+    public void dejarSeguir(Usuario u1, Usuario u2){
+        fbd.dejarSeguir(u1.getId(), u2.getId());
+    }
+
+    // Funcion para consultar a las personas que sigue un usuario // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRR
+    public java.util.List<Usuario> consultarSeguidos(Usuario u1){
+        java.util.List<Usuario> resultado = new ArrayList<Usuario>();
+        Usuario usuarioActual;
+
+        List<Integer> idUsuarios = fbd.consultarSeguidos(u1.getId());
+        for (Integer i : idUsuarios) {
+            //usuarioActual = fbd.consultarUsuarios(i, null);
+        }
+        return resultado;
+    }
 }

@@ -6,6 +6,7 @@ module com.bdii.stimfx.gui {
     requires org.postgresql.jdbc;
     requires javafx.web;
     requires javafx.swing;
+    requires javafx.media;
 
     opens com.bdii.stimfx.gui to javafx.fxml;
     exports com.bdii.stimfx.gui;
