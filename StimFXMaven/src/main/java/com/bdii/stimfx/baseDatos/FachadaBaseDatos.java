@@ -255,6 +255,17 @@ public class FachadaBaseDatos {
         return daoU.modificarUsuario(u);
     }
 
+    public List<DLC> consultarDLCsVideojuegoUsuario(int id_v, String id_u){
+        return daoD.consultarDLCsVideojuegoUsuario(id_v, id_u);
+    }
+
+    public void comprarDLC(DLC d, String id_u){
+        daoD.comprarDLC(d, id_u);
+    }
+
+    public void devolverDLC(DLC d, String id_u){
+        daoD.devolverDLC(d, id_u);
+    }
     public boolean existeUsuario(String id){
         return daoU.existeUsuario(id);
     }

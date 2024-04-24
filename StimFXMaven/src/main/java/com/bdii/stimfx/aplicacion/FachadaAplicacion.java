@@ -382,4 +382,15 @@ public class FachadaAplicacion {
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);
     }
+    public List<DLC> consultarDLCsVideojuegoUsuario(Videojuego v, Usuario u){
+        return fbd.consultarDLCsVideojuegoUsuario(v.getId(), u.getId());
+    }
+
+    public void comprarDLC(DLC d, Usuario u){
+        fbd.comprarDLC(d, u.getId());
+    }
+
+    public void devolverDLC(DLC d, Usuario u){
+        fbd.devolverDLC(d, u.getId());
+    }
 }
