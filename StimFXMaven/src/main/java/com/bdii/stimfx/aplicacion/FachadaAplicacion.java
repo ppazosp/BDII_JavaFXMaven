@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
 
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -22,6 +23,8 @@ public class FachadaAplicacion {
     private FachadaBaseDatos fbd;
     private GestionUsuarios gu;
     private GestionVideojuegos gv;
+
+    private GestionDLC gd;
 
     public Usuario usuario;
 
@@ -120,6 +123,7 @@ public class FachadaAplicacion {
         //pruebas_DAO();
         gu = new GestionUsuarios(this.fg, fbd);
         gv = new GestionVideojuegos(this.fg, fbd);
+        gd = new GestionDLC(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -383,14 +387,14 @@ public class FachadaAplicacion {
         return fbd.consultarVideojuegosUsuario(id);
     }
     public List<DLC> consultarDLCsVideojuegoUsuario(Videojuego v, Usuario u){
-        return fbd.consultarDLCsVideojuegoUsuario(v.getId(), u.getId());
+        return gd.consultarDLCsVideojuegoUsuario(v, u);
     }
 
     public void comprarDLC(DLC d, Usuario u){
-        fbd.comprarDLC(d, u.getId());
+        gd.comprarDLC(d, u);
     }
 
     public void devolverDLC(DLC d, Usuario u){
-        fbd.devolverDLC(d, u.getId());
+        gd.devolverDLC(d, u);
     }
 }

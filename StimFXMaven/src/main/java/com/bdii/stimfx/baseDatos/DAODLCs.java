@@ -117,7 +117,7 @@ public class DAODLCs extends AbstractDAO{
         con=this.getConexion();
 
         String consulta = "select * "+
-                "from dlc join on " +//tabla comprar dlc
+                "from dlc  d join comprarDLC  cd on d.id_videojuego = cd.id_videojuego" +//tabla comprar dlc
                 " where id_videojuego = ? and id_usuario = ?";
 
 
@@ -128,8 +128,8 @@ public class DAODLCs extends AbstractDAO{
             rsDLC=stmDLC.executeQuery();
             while (rsDLC.next())
             {
-                dlcActual = new DLC(id_v, rsDLC.getInt("id_dlc"), rsDLC.getString("nombre"),
-                        rsDLC.getString("nombre"), rsDLC.getInt("precio"), rsDLC.getDate("fecha_lanzamiento"));
+                dlcActual = new DLC(id_v, rsDLC.getInt("d.id_dlc"), rsDLC.getString("d.nombre"),
+                        rsDLC.getString("d.descripcion"), rsDLC.getInt("d.precio"), rsDLC.getDate("d.fecha_lanzamiento"));
                 resultado.add(dlcActual);
             }
         } catch (SQLException e){
@@ -142,25 +142,23 @@ public class DAODLCs extends AbstractDAO{
         return resultado;
     }
 
-    public void comprarDLC(DLC d, String id_u){
+    public void comprarDLC(DLC d, String id_u, Date date){
         Connection con;
         PreparedStatement stmDLC=null;
 
         con=super.getConexion();
 
         try {
-            stmDLC=con.prepareStatement("insert into dlc(id_videojuego, id_dlc, nombre, descripcion, precio, fecha_lanzamiento) "+
-                    "values (?,?,?,?,?,?)");//Cambiar insert
+            stmDLC=con.prepareStatement("insert into comprarDLC(id_videojuego, id_dlc, id_usr, fecha_compra) "+
+                    "values (?,?,?,?)");//Cambiar insert
 
             // Obtener la fecha actual como un objeto java.sql.Date
             java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
 
             stmDLC.setInt(1, d.getIdVideojuego());
             stmDLC.setInt(2, d.getIdDLC());
-            stmDLC.setString(3, d.getNombre());
-            stmDLC.setString(4, d.getDescripcion());
-            stmDLC.setDouble(5, d.getPrecio());
-            stmDLC.setDate(6, fechaActual);
+            stmDLC.setString(3, id_u);
+            stmDLC.setDate(4, date);
             stmDLC.executeUpdate();
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -177,8 +175,10 @@ public class DAODLCs extends AbstractDAO{
         con=super.getConexion();
 
         try{
-            stmDLC=con.prepareStatement("delete from dlc where id_dlc = ? and id_usr = ?");
+            stmDLC=con.prepareStatement("delete from comprarDLC where id_dlc = ? and id_videojuego  = ? and id_usr = ?");
             stmDLC.setInt(1, d.getIdDLC());
+            stmDLC.setInt(1, d.getIdVideojuego());
+            stmDLC.setString(1, id_u);
             stmDLC.executeUpdate();
 
         }catch (SQLException e){

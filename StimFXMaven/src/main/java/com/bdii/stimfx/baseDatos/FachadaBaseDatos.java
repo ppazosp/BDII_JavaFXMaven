@@ -259,8 +259,8 @@ public class FachadaBaseDatos {
         return daoD.consultarDLCsVideojuegoUsuario(id_v, id_u);
     }
 
-    public void comprarDLC(DLC d, String id_u){
-        daoD.comprarDLC(d, id_u);
+    public void comprarDLC(DLC d, String id_u, Date date){
+        daoD.comprarDLC(d, id_u, date);
     }
 
     public void devolverDLC(DLC d, String id_u){
