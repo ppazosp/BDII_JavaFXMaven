@@ -121,6 +121,10 @@ public class GestionUsuarios {
         return fbd.consultarUsuarios(id, nombre);
     }
 
+    public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){
+        return fbd.consultarUsuariosNoSeguidos(usuario.getId(), busq);
+    }
+
     // Funciones para empezar a seguir a un usuario
     public void seguir(Usuario u1, Usuario u2){
         fbd.seguir(u1.getId(), u2.getId());
@@ -133,13 +137,6 @@ public class GestionUsuarios {
 
     // Funcion para consultar a las personas que sigue un usuario // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRR
     public java.util.List<Usuario> consultarSeguidos(Usuario u1){
-        java.util.List<Usuario> resultado = new ArrayList<Usuario>();
-        Usuario usuarioActual;
-
-        List<Integer> idUsuarios = fbd.consultarSeguidos(u1.getId());
-        for (Integer i : idUsuarios) {
-            //usuarioActual = fbd.consultarUsuarios(i, null);
-        }
-        return resultado;
+        return fbd.consultarSeguidos(u1.getId());
     }
 }

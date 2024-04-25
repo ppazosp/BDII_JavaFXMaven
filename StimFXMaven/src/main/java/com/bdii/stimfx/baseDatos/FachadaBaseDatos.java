@@ -122,6 +122,10 @@ public class FachadaBaseDatos {
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return daoU.consultarUsuarios(id, nombre);
     }
+
+    public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
+        return daoU.consultarUsuariosNoSeguidos(id, busq);
+    }
     
     public void insertarCompra(int id_videojuego, String id_usuario){
         daoCompras.insertarCompra(id_videojuego, id_usuario);
@@ -184,7 +188,7 @@ public class FachadaBaseDatos {
     }
 
     
-    public java.util.List<Integer> consultarSeguidos(String idU1){
+    public java.util.List<Usuario> consultarSeguidos(String idU1){
         return daoU.consultarSeguidos(idU1);
     }
     
@@ -238,6 +242,11 @@ public class FachadaBaseDatos {
 
     public Usuario validarUsuario(String id, String clave){
         return daoU.validarUsuario(id, clave);
+    }
+
+    public List<Torneo> consultarTorneos()
+    {
+        return daoT.consultarTorneos();
     }
 
     public Videojuego proximoVideojuego(){

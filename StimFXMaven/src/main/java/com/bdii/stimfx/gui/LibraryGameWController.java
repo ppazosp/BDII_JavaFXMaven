@@ -4,7 +4,6 @@ import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -13,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class LibraryGameWController implements Controller{
@@ -91,9 +89,27 @@ public class LibraryGameWController implements Controller{
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
         fg.showCommunityScene();
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

@@ -1,28 +1,31 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Comunidad;
+import com.bdii.stimfx.aplicacion.Torneo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
-public class CommunityWController implements Controller{
+public class CommunityWController implements Controller {
     FachadaGUI fg;
     Comunidad userCom;
     @FXML
     ComboBox<String> filter;
     @FXML
     TextField searchBar;
+
+    // COMMUNITY
     @FXML
     VBox comSearchVbox;
     @FXML
@@ -34,17 +37,36 @@ public class CommunityWController implements Controller{
     @FXML
     Label myComMembers;
 
-    public void initializeWindow()
+
+    // TOURNAMENTS
+    @FXML
+    HBox currTHbox;
+    @FXML
+    HBox oldTHbox;
+
+    public void load() {
+        loadMyCom();
+        showCommunitySearch();
+        showTournamentSearch();
+    }
+
+    public void loadMyCom()
     {
         userCom = fg.fa.consultarEquipoJugador(fg.fa.usuario.getId());
         if (userCom != null){
             myComIcon.setImage(userCom.getEscudo());
             myComName.setText(userCom.getNombre());
-            myComMembers.setText(fg.fa.contarMiembrosEquipo(userCom).toString());
+            myComMembers.setText("Miembros: " + fg.fa.contarMiembrosEquipo(userCom));
+            myComHbox.setVisible(true);
         }else  myComHbox.setVisible(false);
+    }
 
-        showCommunitySearch();;
-        showUserSearch();
+    @FXML
+    public void exitCommunity(MouseEvent event)
+    {
+        fg.fa.salirJugadorEquipo(fg.fa.usuario.getId());
+
+        load();
     }
 
 
@@ -59,12 +81,12 @@ public class CommunityWController implements Controller{
             case "Comunidad":
                 showCommunitySearch();
                 break;
-            case "Usuario":
-                showUserSearch();
+            case "Torneo":
+                showTournamentSearch();
                 break;
             default:
                 showCommunitySearch();
-                showUserSearch();
+                showTournamentSearch();
                 break;
         }
     }
@@ -76,21 +98,69 @@ public class CommunityWController implements Controller{
 
         try {
             for (Comunidad c : comList) {
+                if(userCom != null && userCom.getNombre().equals(c.getNombre())) continue;
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/communitySearchItem.fxml"));
                 comSearchVbox.getChildren().add(loader.load());
 
                 CommunitySearchItemController controller = loader.getController();
                 controller.setMainApp(fg);
-                controller.initializeWindow(c);
-
-                if(userCom != null && userCom.getNombre().equals(c.getNombre())) controller.enterHbox.setDisable(true);
+                controller.initializeWindow(c, this);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void showUserSearch()
+    private void showTournamentSearch()
+    {
+        List<Torneo> tList = fg.fa.consultarTorneos();
+        currTHbox.getChildren().clear();
+        oldTHbox.getChildren().clear();
+        int opt;
+
+        try {
+            for (Torneo t : tList) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/compSearchItem.fxml"));
+
+                if(t.getFecha_final().toLocalDate().isBefore(LocalDate.now())){
+                    oldTHbox.getChildren().add(loader.load());
+                    opt = 1;
+                }
+                else {
+                    currTHbox.getChildren().add(loader.load());
+                    opt = 0;
+                }
+
+                CompSearchItemController controller = loader.getController();
+                controller.setMainApp(fg);
+                controller.initializeWindow(t, opt, this);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
+    public void showCommunityScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
     {
 
     }

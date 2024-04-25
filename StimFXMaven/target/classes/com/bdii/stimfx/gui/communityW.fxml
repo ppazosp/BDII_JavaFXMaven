@@ -21,7 +21,7 @@
         <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../../../images/steam.png" />
         </ImageView>
-        <VBox layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
+        <VBox layoutY="110.0" prefHeight="531.0" prefWidth="200.0" spacing="10.0">
             <children>
                 <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
                     <children>
@@ -57,11 +57,28 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+            <HBox alignment="CENTER" onMouseClicked="#showSocialScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/community.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Social" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+                <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                     <children>
                         <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../images/community.png" />
+                                <Image url="@../../../../images/earth.png" />
                             </image>
                         </ImageView>
                         <Label prefHeight="32.0" prefWidth="117.0" text="Comunidad" textFill="WHITE">
@@ -78,6 +95,40 @@
                   <String fx:value="selected-border" />
                </styleClass>
                 </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showEditScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/edit.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Edicion" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showAdminScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/admin.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Administrar" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
             </children>
         </VBox>
         <Label layoutX="82.0" layoutY="51.0" text="STIM" textFill="WHITE">
@@ -126,60 +177,11 @@
     </AnchorPane>
     <AnchorPane layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
-         <ScrollPane hbarPolicy="NEVER" layoutX="50.0" layoutY="289.0" prefHeight="415.0" prefWidth="460.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+         <ScrollPane hbarPolicy="NEVER" layoutX="50.0" layoutY="289.0" prefHeight="415.0" prefWidth="443.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
             <content>
-               <VBox fx:id="comSearchVbox" prefHeight="413.0" prefWidth="443.0" spacing="5.0" styleClass="white-color" stylesheets="@../css/styles.css">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="56.0" prefWidth="443.0" spacing="25.0" style="-fx-background-radius: 15;" styleClass="primary-color" stylesheets="@../css/styles.css">
-                        <children>
-                           <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                           <VBox alignment="CENTER" prefHeight="56.0" prefWidth="210.0">
-                              <children>
-                                 <Label prefHeight="24.0" prefWidth="254.0" text="Nombre comunidad" textFill="WHITE">
-                                    <font>
-                                       <Font name="System Bold" size="18.0" />
-                                    </font>
-                                 </Label>
-                                 <HBox alignment="CENTER" prefHeight="19.0" prefWidth="198.0" spacing="35.0">
-                                    <children>
-                                       <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="271.0" spacing="10.0">
-                                          <children>
-                                             <Label text="Miembros" textFill="WHITE" />
-                                             <Label text="0" textFill="WHITE" />
-                                          </children>
-                                       </HBox>
-                                    </children>
-                                 </HBox>
-                              </children>
-                           </VBox>
-                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                              <children>
-                                 <HBox alignment="CENTER" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
-                                    <children>
-                                       <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                             <Image url="@../../../../images/enter.png" />
-                                          </image>
-                                       </ImageView>
-                                       <Label text="Entrar" textFill="WHITE">
-                                          <font>
-                                             <Font name="System Bold" size="14.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                    <styleClass>
-                                       <String fx:value="selected" />
-                                       <String fx:value="primary-color" />
-                                    </styleClass>
-                                 </HBox>
-                              </children>
-                           </VBox>
-                        </children>
-                     </HBox>
-                  </children>
-               </VBox>
+               <VBox fx:id="comSearchVbox" prefHeight="413.0" prefWidth="426.0" spacing="5.0" styleClass="white-color" stylesheets="@../css/styles.css" />
             </content></ScrollPane>
-         <HBox fx:id="myComHbox" alignment="CENTER" layoutX="50.0" layoutY="143.0" prefHeight="84.0" prefWidth="443.0" spacing="20.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
+         <HBox fx:id="myComHbox" alignment="CENTER" layoutX="50.0" layoutY="143.0" prefHeight="84.0" prefWidth="443.0" spacing="20.0" style="-fx-background-color: #1B2631; -fx-background-radius: 15;" styleClass="button" stylesheets="@../css/styles.css">
             <children>
                <ImageView fx:id="myComIcon" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
                <VBox alignment="CENTER" prefHeight="76.0" prefWidth="210.0">
@@ -202,7 +204,7 @@
                </VBox>
                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                   <children>
-                     <HBox fx:id="exitHbox" alignment="CENTER" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                     <HBox fx:id="exitHbox" alignment="CENTER" onMouseClicked="#exitCommunity" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
                         <children>
                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -225,7 +227,7 @@
             </children></HBox>
          <HBox alignment="CENTER" layoutX="50.0" layoutY="46.0" prefHeight="45.0" prefWidth="800.0" spacing="10.0">
             <children>
-               <TextField fx:id="searchBar" focusTraversable="false" prefHeight="30.0" prefWidth="916.0" promptText="Escriba el nombre de un usuario o comunidad">
+               <TextField fx:id="searchBar" focusTraversable="false" prefHeight="30.0" prefWidth="916.0" promptText="Escriba el nombre de una comunidad o torneo">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -246,93 +248,40 @@
                <Font name="System Bold" size="16.0" />
             </font>
          </Label>
-         <ScrollPane layoutX="570.0" layoutY="140.0" prefHeight="435.0" prefWidth="200.0" />
          <Separator layoutX="522.0" layoutY="113.0" orientation="VERTICAL" prefHeight="589.0" prefWidth="0.0" style="-fx-background-color: #1B2631;" />
-         <Label layoutX="570.0" layoutY="113.0" prefHeight="20.0" prefWidth="150.0" text="Lista de seguidos">
-            <font>
-               <Font name="System Bold" size="15.0" />
-            </font>
-         </Label>
-         <Label layoutX="800.0" layoutY="113.0" prefHeight="20.0" prefWidth="132.0" text="Resultados">
+         <Label layoutX="570.0" layoutY="426.0" prefHeight="20.0" prefWidth="284.0" text="Torneos terminados">
             <font>
                <Font size="15.0" />
             </font>
          </Label>
-         <ScrollPane layoutX="800.0" layoutY="140.0" prefHeight="435.0" prefWidth="200.0" />
          <Label layoutX="50.0" layoutY="262.0" prefHeight="20.0" prefWidth="132.0" text="Resultados">
             <font>
                <Font size="15.0" />
             </font>
          </Label>
-         <HBox alignment="CENTER" layoutX="570.0" layoutY="618.0" prefHeight="84.0" prefWidth="430.0" spacing="20.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
-            <children>
-               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../../../images/qm.png" />
-                  </image>
-                  <HBox.margin>
-                     <Insets left="5.0" />
-                  </HBox.margin>
-               </ImageView>
-               <VBox alignment="CENTER" prefHeight="76.0" prefWidth="120.0">
-                  <children>
-                     <Label prefHeight="30.0" prefWidth="156.0" text="Username" textFill="WHITE">
-                        <font>
-                           <Font name="System Bold" size="18.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </VBox>
-               <HBox alignment="CENTER" prefHeight="76.0" prefWidth="190.0" spacing="5.0">
-                  <children>
-                     <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="90.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css">
-                        <graphic>
-                           <HBox alignment="CENTER" prefHeight="24.0" prefWidth="50.0" spacing="5.0" stylesheets="@../css/styles.css">
-                              <children>
-                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/add.png" />
-                                    </image>
-                                 </ImageView>
-                                 <Label text="Seguir">
-                                    <font>
-                                       <Font size="12.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </HBox>
-                        </graphic>
-                     </Button>
-                     <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="98.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css">
-                        <graphic>
-                           <HBox alignment="CENTER" prefHeight="24.0" prefWidth="90.0" spacing="5.0" stylesheets="@../css/styles.css">
-                              <children>
-                                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/remove2.png" />
-                                    </image>
-                                 </ImageView>
-                                 <Label text="Eliminar">
-                                    <font>
-                                       <Font size="12.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </HBox>
-                        </graphic>
-                     </Button>
-                  </children>
-               </HBox>
-            </children>
-         </HBox>
           <ComboBox fx:id="filter" focusTraversable="false" layoutX="862.0" layoutY="53.0" prefHeight="32.0" prefWidth="140.0" promptText="Filtro">
               <items>
                   <FXCollections fx:factory="observableArrayList">
                       <String fx:value="Comunidad" />
-                      <String fx:value="Usuario" />
+                      <String fx:value="Torneo" />
                   </FXCollections>
               </items>
           </ComboBox>
+         <Label layoutX="570.0" layoutY="113.0" prefHeight="20.0" prefWidth="284.0" text="Torneos en curso">
+            <font>
+               <Font name="System Bold" size="16.0" />
+            </font>
+         </Label>
+         <ScrollPane hbarPolicy="ALWAYS" layoutX="570.0" layoutY="143.0" prefHeight="245.0" prefWidth="430.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+            <content>
+               <HBox fx:id="currTHbox" prefHeight="229.0" prefWidth="428.0" spacing="3.0" style="-fx-background-color: FFFFFF;" />
+            </content>
+         </ScrollPane>
+         <ScrollPane hbarPolicy="ALWAYS" layoutX="570.0" layoutY="459.0" prefHeight="245.0" prefWidth="430.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+            <content>
+               <HBox fx:id="oldTHbox" prefHeight="214.0" prefWidth="430.0" spacing="3.0" style="-fx-background-color: FFFFFF;" />
+            </content>
+         </ScrollPane>
 
       </children></AnchorPane>
 </AnchorPane>

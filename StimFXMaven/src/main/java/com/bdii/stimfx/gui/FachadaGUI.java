@@ -7,7 +7,6 @@ package com.bdii.stimfx.gui;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Plataforma;
 import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.baseDatos.AbstractDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -122,11 +121,11 @@ public class FachadaGUI extends Application {
         libraryWController.initializeWindow();
     }
 
-    public void showCommunityScene() {
-        CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
-        assert communityWController != null;
-        communityWController.setMainApp(this);
-        communityWController.initializeWindow();
+    public void showSocialScene() {
+        SocialWController socialWController = loadFXML("/com/bdii/stimfx/gui/socialW.fxml", null, SocialWController.class);
+        assert socialWController != null;
+        socialWController.setMainApp(this);
+        socialWController.load();
     }
 
     public void showSettingsScene() {
@@ -134,7 +133,6 @@ public class FachadaGUI extends Application {
         assert settingsWController != null;
         settingsWController.setMainApp(this);
     }
-
 
     public void loadGameWindow()
     {
@@ -176,6 +174,14 @@ public class FachadaGUI extends Application {
         assert libraryGameWController != null;
         libraryGameWController.setMainApp(this);
         libraryGameWController.initializeWindow(v);
+    }
+
+    public void showCommunityScene()
+    {
+        CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
+        assert communityWController != null;
+        communityWController.setMainApp(this);
+        communityWController.load();
     }
 
 

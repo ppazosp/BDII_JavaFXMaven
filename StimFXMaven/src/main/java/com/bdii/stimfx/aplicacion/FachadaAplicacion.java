@@ -107,8 +107,10 @@ public class FachadaAplicacion {
         //System.out.println(cats.get(0).getDescripcion());
         //List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         //System.out.println(usrs.get(0).getNombre());
+        List<Torneo> torneos = consultarTorneos();
+        System.out.println(torneos.size());
 
-        //Comunidad c = new Comunidad("Real Madrid", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/madrid.png"));
+        //Comunidad c = new Comunidad("Racing de Ferrol", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/racing.png"));
         //fbd.insertarComunidad(c);
         //c = new Comunidad("Barcelona", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/barsa.png"));
         //fbd.insertarComunidad(c);
@@ -220,6 +222,11 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return gu.consultarUsuarios(id, nombre);
     }
+
+    public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){
+        return gu.consultarUsuariosNoSeguidos(usuario, busq);
+    }
+
     // Funcion para empezar a seguir a un usuario
     public void seguir(Usuario u1, Usuario u2){
         gu.seguir(u1, u2);
@@ -228,19 +235,11 @@ public class FachadaAplicacion {
     public void dejarSeguir(Usuario u1, Usuario u2){
         gu.dejarSeguir(u1, u2);
     }
-    // Funcion para consultar a las personas que sigue un usuario // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRR
+
+    // Funcion para consultar a las personas que sigue un usuario
     public java.util.List<Usuario> consultarSeguidos(Usuario u1){
         return gu.consultarSeguidos(u1);
     }
-
-
-
-
-
-
-
-
-
 
     public Demo consultarDemo(int mes, int ano)
     {
@@ -385,6 +384,11 @@ public class FachadaAplicacion {
 
     public int torneosGanados(Usuario u){
         return fbd.torneosGanados(u.getId());
+    }
+
+    public List<Torneo> consultarTorneos()
+    {
+        return fbd.consultarTorneos();
     }
 
     /*

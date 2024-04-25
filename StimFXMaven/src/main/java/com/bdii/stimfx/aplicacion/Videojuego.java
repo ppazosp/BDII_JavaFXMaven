@@ -73,6 +73,13 @@ public class Videojuego {
         this.numDescargas=0;
     }
 
+    //para torneos
+    public Videojuego(int id, Image imagen)
+    {
+        this.id = id;
+        this.imagen = imagen;
+    }
+
 
 
     public void setNumDescargas(int numDescargas) {

@@ -110,14 +110,10 @@ public class DAOComunidades extends AbstractDAO{
 
         try {
             stmEquipo=con.prepareStatement("insert into forma_parte_equipo(id_jugador, nombre_equipo, fecha_inicio) "+
-                    "values (?,?,?)");
-
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
+                    "values (?,?, current_timestamp)");
 
             stmEquipo.setString(1, id_usuario);
             stmEquipo.setString(2, c.getNombre());
-            stmEquipo.setDate(3, fechaActual);
             stmEquipo.executeUpdate();
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -135,15 +131,11 @@ public class DAOComunidades extends AbstractDAO{
 
         try {
             stmEquipo=con.prepareStatement("update forma_parte_equipo " +
-                                                "set fecha_fin = ? " +
+                                                "set fecha_fin = current_timestamp " +
                                                 "where id_jugador = ? " +
                                                 "and fecha_fin is null");
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
 
-            stmEquipo.setDate(1, fechaActual);
-            stmEquipo.setString(2, id_usuario);
-            stmEquipo.setString(3, c.getNombre());
+            stmEquipo.setString(1, id_usuario);
             stmEquipo.executeUpdate();
         } catch (SQLException e){
             System.out.println(e.getMessage());

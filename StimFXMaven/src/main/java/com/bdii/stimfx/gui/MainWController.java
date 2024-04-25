@@ -1,7 +1,6 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.Demo;
+import com.bdii.stimfx.aplicacion.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -109,8 +107,24 @@ public class MainWController implements Controller, Initializable {
     @FXML
     Label top3PriceLabel;
 
+
+    //MENU BAR
+    @FXML
+    VBox menuBar;
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //if(!(fg.fa.usuario instanceof UsuarioJugadorCompetitivo)) menuBar.getChildren().remove(comMenu);
+        //if(!(fg.fa.usuario instanceof UsuarioEditor)) menuBar.getChildren().remove(editMenu);
+        //if(!(fg.fa.usuario instanceof UsuarioAdministrador)) menuBar.getChildren().remove(adminMenu);
+
+
         demoGame = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
         if(demoGame != null) {
             demoIconImage.setImage(demoGame.getImagen());
@@ -197,9 +211,27 @@ public class MainWController implements Controller, Initializable {
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
         fg.showCommunityScene();
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

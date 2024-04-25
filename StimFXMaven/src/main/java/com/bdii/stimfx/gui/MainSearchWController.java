@@ -1,25 +1,15 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Demo;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class MainSearchWController implements Controller {
 
@@ -76,9 +66,27 @@ public class MainSearchWController implements Controller {
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
-        fg.showCommunityScene();
+
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

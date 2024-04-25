@@ -149,6 +149,48 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
 
+    public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
+        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        Usuario usuarioActual;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuarios;
+
+        con=this.getConexion();
+
+        try  {
+            stmUsuarios=con.prepareStatement("select * from usuario u " +
+                    " where (u.id like ? or u.nombre like ?) and u.id not in " +
+                    "(select id_usr2 from ser_amigo " +
+                    "where id_usr1 like ?) and u.id not like ?");
+
+            stmUsuarios.setString(1, "%"+busq+"%");
+            stmUsuarios.setString(2, "%"+busq+"%");
+            stmUsuarios.setString(3, "%"+id+"%");
+            stmUsuarios.setString(4, "%"+id+"%");
+            rsUsuarios=stmUsuarios.executeQuery();
+            while (rsUsuarios.next())
+            {
+                usuarioActual = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
+                        rsUsuarios.getString("contraseña"),
+                        rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));
+
+                resultado.add(usuarioActual);
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {
+                if (stmUsuarios != null) {
+                    stmUsuarios.close();
+                }
+            } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
+
     public Usuario consultarUsuario(Integer id){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
         Usuario usuario=null;
         Connection con;
@@ -220,16 +262,18 @@ public class DAOUsuarios extends AbstractDAO{
         }
     }
 
-    public java.util.List<Integer> consultarSeguidos(String idU1){
-        java.util.List<Integer> resultado = new java.util.ArrayList<Integer>();
-        Integer idUsuarioActual;
+    public java.util.List<Usuario> consultarSeguidos(String idU1){
+        java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Connection con;
         PreparedStatement stmSeguidos=null;
+        Usuario usuarioActual;
         ResultSet rsSeguidos;
         
         con=this.getConexion();
         
-        String consulta = "select id_usr2 from ser_amigo where id_usr1 = ?";
+        String consulta = "select * from usuario u " +
+                        "where u.id in " +
+                        "(select id_usr2 from ser_amigo where id_usr1 = ?)";
         
         try{
             stmSeguidos=con.prepareStatement(consulta);
@@ -237,9 +281,10 @@ public class DAOUsuarios extends AbstractDAO{
             rsSeguidos=stmSeguidos.executeQuery();
             while (rsSeguidos.next())
             {
-                idUsuarioActual = rsSeguidos.getInt("id_usr2");//new Prestamo(rsPrestamos.getDate("fecha_prestamo"), rsPrestamos.getDate("fecha_devolucion"), rsPrestamos.getDate("fecha_vencimiento"),
-                                        //rsPrestamos.getInt("num_ejemplar"), rsPrestamos.getInt("libro"), rsPrestamos.getString("id_usuario"));
-                resultado.add(idUsuarioActual);
+                usuarioActual = new Usuario(rsSeguidos.getString("id"), rsSeguidos.getString("nombre"),
+                        rsSeguidos.getString("contraseña"),
+                        rsSeguidos.getString("email"), FachadaAplicacion.bytesToImage(rsSeguidos.getBytes("foto")));
+                resultado.add(usuarioActual);
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
