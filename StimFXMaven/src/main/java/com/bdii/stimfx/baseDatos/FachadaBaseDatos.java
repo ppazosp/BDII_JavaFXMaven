@@ -273,4 +273,8 @@ public class FachadaBaseDatos {
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return daoU.consultarVideojuegos(id);
     };
+
+    public boolean tieneComunidad(String usr_id){
+        return daoComunidades.tieneComunidad(usr_id);
+    }
 }
