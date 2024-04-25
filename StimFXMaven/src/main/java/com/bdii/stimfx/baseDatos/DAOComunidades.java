@@ -72,7 +72,7 @@ public class DAOComunidades extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select * from equipo_competitivo ";
+        String consulta = "select * from comunidad ";
 
         if (nombre != null) consulta += "where nombre like ? ";
 
@@ -83,7 +83,7 @@ public class DAOComunidades extends AbstractDAO{
             rsEquipos=stmEquipos.executeQuery();
             while (rsEquipos.next())
             {
-                comunidadActual = new Comunidad(rsEquipos.getString("nombre"));
+                comunidadActual = new Comunidad(rsEquipos.getString("nombre"),FachadaAplicacion.bytesToImage(rsEquipos.getBytes("escudo")));
 
                 resultado.add(comunidadActual);
             }

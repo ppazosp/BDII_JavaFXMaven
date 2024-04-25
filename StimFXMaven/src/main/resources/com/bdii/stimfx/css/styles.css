@@ -6,6 +6,10 @@
     -fx-background-color: #AEB6BF;
 }
 
+.white-color{
+    -fx-background-color: #FFFFFF;
+}
+
 .button{
  -fx-background-color:  #AEB6BF;
  -fx-background-radius: 30;
