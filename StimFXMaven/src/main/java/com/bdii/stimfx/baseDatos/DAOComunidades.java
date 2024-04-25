@@ -238,6 +238,7 @@ public class DAOComunidades extends AbstractDAO{
             if (rsEquipos.next()) {
                 miembrosEquipo = rsEquipos.getInt(1);
             }
+
         }catch (SQLException e){
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
@@ -247,6 +248,34 @@ public class DAOComunidades extends AbstractDAO{
         return miembrosEquipo;
     }
 
+    public boolean tieneComunidad(String id_usr){
+        boolean tieneComunidad=false;
+        Connection con;
+        PreparedStatement stmEquipos=null;
+        ResultSet rsEquipos;
+
+        con=this.getConexion();
+
+        String consulta = "select * from forma_parte_equipo" +
+                "";
+
+        try {
+            stmEquipos=con.prepareStatement(consulta);
+            stmEquipos.setString(1, c.getNombre());
+            rsEquipos=stmEquipos.executeQuery();
+
+            if (rsEquipos.next()) {
+                miembrosEquipo = rsEquipos.getInt(1);
+            }
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmEquipos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return miembrosEquipo;
+    }
 
 }
 
