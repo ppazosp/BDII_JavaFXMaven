@@ -108,7 +108,7 @@ public class FachadaAplicacion {
         //List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         //System.out.println(usrs.get(0).getNombre());
 
-        //Comunidad c = new Comunidad("Real Madrid", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/madrid.png"));
+        //Comunidad c = new Comunidad("Racing de Ferrol", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/racing.png"));
         //fbd.insertarComunidad(c);
         //c = new Comunidad("Barcelona", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/barsa.png"));
         //fbd.insertarComunidad(c);

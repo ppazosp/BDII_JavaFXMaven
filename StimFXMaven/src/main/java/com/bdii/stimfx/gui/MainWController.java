@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -24,6 +23,10 @@ import java.util.ResourceBundle;
 public class MainWController implements Controller, Initializable {
 
     FachadaGUI fg;
+
+    @FXML
+    VBox menuBar;
+
 
     @FXML
     Demo demoGame;
@@ -197,9 +200,27 @@ public class MainWController implements Controller, Initializable {
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
         fg.showCommunityScene();
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

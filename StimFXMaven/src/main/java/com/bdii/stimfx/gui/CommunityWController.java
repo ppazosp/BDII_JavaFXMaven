@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -40,7 +39,7 @@ public class CommunityWController implements Controller{
         if (userCom != null){
             myComIcon.setImage(userCom.getEscudo());
             myComName.setText(userCom.getNombre());
-            myComMembers.setText(fg.fa.contarMiembrosEquipo(userCom).toString());
+            myComMembers.setText("Miembros: " + fg.fa.contarMiembrosEquipo(userCom));
         }else  myComHbox.setVisible(false);
 
         showCommunitySearch();;
@@ -91,6 +90,30 @@ public class CommunityWController implements Controller{
     }
 
     private void showUserSearch()
+    {
+
+    }
+
+    @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
+    public void showCommunityScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
     {
 
     }

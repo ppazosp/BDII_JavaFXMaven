@@ -31,7 +31,7 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox fx:id="enterHbox" alignment="CENTER" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+            <HBox fx:id="enterHbox" alignment="CENTER" onMouseClicked="#enterCommunity" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
                <children>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
