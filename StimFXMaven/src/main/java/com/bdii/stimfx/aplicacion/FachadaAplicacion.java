@@ -391,6 +391,13 @@ public class FachadaAplicacion {
     public List<DLC> consultarDLCsVideojuegoUsuario(Videojuego v, Usuario u){
         return gd.consultarDLCsVideojuegoUsuario(v, u);
     }
+    public boolean tieneDLC(Usuario usuario, DLC dlc){
+        return gd.tieneDLC(usuario, dlc);
+    }
+
+    public boolean tieneVideojeugo(Usuario usuario, Videojuego videojuego){
+        return gv.tieneVideojuego(usuario, videojuego);
+    }
 
     public void comprarDLC(DLC d, Usuario u){
         gd.comprarDLC(d, u);

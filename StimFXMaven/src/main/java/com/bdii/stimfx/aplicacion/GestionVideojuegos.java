@@ -62,7 +62,11 @@ public class GestionVideojuegos {
     public void borrarVideojuego(Videojuego v) {
         fbd.borrarVideojuego(v.getId());
     }
-    
+
+    public boolean tieneVideojuego(Usuario usuario, Videojuego videojuego){
+        List<Videojuego> videojuegoUsuario = fbd.consultarVideojuegosUsuario(usuario.getId());
+        return  videojuegoUsuario.contains(videojuego);
+    }
     /*
     public java.util.List<String> consultarPlataformasVideojuego(Videojuego v){
         return fbd.consultarPlataformasVideojuego(v.getId());
