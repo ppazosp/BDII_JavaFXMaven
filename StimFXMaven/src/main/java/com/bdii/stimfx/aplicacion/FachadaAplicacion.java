@@ -413,4 +413,8 @@ public class FachadaAplicacion {
     public void devolverDLC(DLC d, Usuario u){
         gd.devolverDLC(d, u);
     }
+
+    public boolean tieneComunidad(Usuario u){
+        return fbd.tieneComunidad(u.getId());
+    }
 }
