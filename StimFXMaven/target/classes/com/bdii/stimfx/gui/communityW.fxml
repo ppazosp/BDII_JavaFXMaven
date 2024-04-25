@@ -126,92 +126,127 @@
     </AnchorPane>
     <AnchorPane layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
-         <ScrollPane layoutX="50.0" layoutY="289.0" prefHeight="280.0" prefWidth="430.0" />
-         <HBox alignment="CENTER" layoutX="50.0" layoutY="143.0" prefHeight="100.0" prefWidth="430.0" spacing="20.0" style="-fx-background-color: #1B2631;" styleClass="button" stylesheets="@../css/styles.css">
+         <ScrollPane hbarPolicy="NEVER" layoutX="50.0" layoutY="289.0" prefHeight="415.0" prefWidth="460.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+            <content>
+               <VBox fx:id="comSearchVbox" prefHeight="413.0" prefWidth="443.0" spacing="5.0" styleClass="white-color" stylesheets="@../css/styles.css">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="56.0" prefWidth="443.0" spacing="25.0" style="-fx-background-radius: 15;" styleClass="primary-color" stylesheets="@../css/styles.css">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../images/gow.jpg" />
+                              </image>
+                           </ImageView>
+                           <VBox alignment="CENTER" prefHeight="56.0" prefWidth="210.0">
+                              <children>
+                                 <Label prefHeight="24.0" prefWidth="254.0" text="Nombre comunidad" textFill="WHITE">
+                                    <font>
+                                       <Font name="System Bold" size="18.0" />
+                                    </font>
+                                 </Label>
+                                 <HBox alignment="CENTER" prefHeight="19.0" prefWidth="198.0" spacing="35.0">
+                                    <children>
+                                       <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="271.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Miembros" textFill="WHITE" />
+                                             <Label text="0" textFill="WHITE" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <HBox alignment="CENTER" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                                    <children>
+                                       <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../../images/enter.png" />
+                                          </image>
+                                       </ImageView>
+                                       <Label text="Entrar" textFill="WHITE">
+                                          <font>
+                                             <Font name="System Bold" size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                    <styleClass>
+                                       <String fx:value="selected" />
+                                       <String fx:value="primary-color" />
+                                    </styleClass>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </content></ScrollPane>
+         <HBox fx:id="myComHbox" alignment="CENTER" layoutX="50.0" layoutY="143.0" prefHeight="84.0" prefWidth="443.0" spacing="20.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
             <children>
-               <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="myComIcon" fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../../../../images/qm.png" />
+                     <Image url="@../../../../images/gow.jpg" />
                   </image>
                </ImageView>
-               <VBox alignment="CENTER" prefHeight="92.0" prefWidth="198.0">
+               <VBox alignment="CENTER" prefHeight="76.0" prefWidth="210.0">
                   <children>
-                     <Label prefHeight="30.0" prefWidth="198.0" text="Nombre comunidad" textFill="WHITE">
+                     <Label fx:id="myComName" prefHeight="30.0" prefWidth="214.0" text="Nombre comunidad" textFill="WHITE">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Label>
                      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="198.0" spacing="35.0">
                         <children>
-                           <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="94.0" spacing="10.0">
+                           <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="318.0" spacing="10.0">
                               <children>
-                                 <Label text="Miembros" textFill="WHITE" />
-                                 <Label text="0" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="80.0" spacing="10.0">
-                              <children>
-                                 <Label prefHeight="16.0" prefWidth="35.0" text="Posts" textFill="WHITE" />
-                                 <Label text="0" textFill="WHITE" />
+                                 <Label fx:id="myComMembers" text="Miembros" textFill="WHITE" />
                               </children>
                            </HBox>
                         </children>
                      </HBox>
                   </children>
                </VBox>
-               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                   <children>
-                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="95.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css">
-                        <graphic>
-                           <HBox alignment="CENTER" prefHeight="32.0" prefWidth="98.0" spacing="5.0">
-                              <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/chat.png" />
-                                    </image>
-                                 </ImageView>
-                                 <Label text="Foro">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </HBox>
-                        </graphic>
-                     </Button>
-                     <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css">
-                        <graphic>
-                           <HBox alignment="CENTER" prefHeight="23.0" prefWidth="75.0" spacing="5.0" stylesheets="@../css/styles.css">
-                              <children>
-                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/exit.png" />
-                                    </image>
-                                 </ImageView>
-                                 <Label text="Salir">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </HBox>
-                        </graphic>
-                     </Button>
+                     <HBox fx:id="exitHbox" alignment="CENTER" prefHeight="35.0" prefWidth="100.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                        <children>
+                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../images/exit.png" />
+                              </image>
+                           </ImageView>
+                           <Label text="Salir" textFill="WHITE">
+                              <font>
+                                 <Font name="System Bold" size="14.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <styleClass>
+                           <String fx:value="selected" />
+                           <String fx:value="primary-color" />
+                        </styleClass>
+                     </HBox>
                   </children>
                </VBox>
             </children></HBox>
          <HBox alignment="CENTER" layoutX="50.0" layoutY="46.0" prefHeight="45.0" prefWidth="800.0" spacing="10.0">
             <children>
-               <TextField prefHeight="30.0" prefWidth="916.0" promptText="Escriba el nombre de un usuario o comunidad">
+               <TextField fx:id="searchBar" focusTraversable="false" prefHeight="30.0" prefWidth="916.0" promptText="Escriba el nombre de un usuario o comunidad">
                   <font>
                      <Font size="14.0" />
                   </font>
                </TextField>
-               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../../../images/search.png" />
-                  </image>
-               </ImageView>
+               <Button focusTraversable="false" mnemonicParsing="false" onAction="#showSearchResults" prefHeight="24.0" prefWidth="28.0">
+                  <graphic>
+                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/search.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
             </children>
          </HBox>
          <Label layoutX="50.0" layoutY="113.0" prefHeight="20.0" prefWidth="132.0" text="Tu comunidad">
@@ -219,59 +254,7 @@
                <Font name="System Bold" size="16.0" />
             </font>
          </Label>
-         <ScrollPane layoutX="570.0" layoutY="140.0" prefHeight="425.0" prefWidth="200.0" />
-         <HBox alignment="CENTER" layoutX="50.0" layoutY="600.0" prefHeight="100.0" prefWidth="430.0" spacing="20.0" style="-fx-background-color: #1B2631;" styleClass="button" stylesheets="@../css/styles.css">
-            <children>
-               <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../../../images/qm.png" />
-                  </image>
-               </ImageView>
-               <VBox alignment="CENTER" prefHeight="92.0" prefWidth="198.0">
-                  <children>
-                     <Label prefHeight="30.0" prefWidth="198.0" text="Nombre comunidad" textFill="WHITE">
-                        <font>
-                           <Font name="System Bold" size="18.0" />
-                        </font>
-                     </Label>
-                     <HBox alignment="CENTER" prefHeight="30.0" prefWidth="198.0" spacing="35.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="130.0" spacing="10.0">
-                              <children>
-                                 <Label text="Miembros" textFill="WHITE" />
-                                 <Label text="0" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="120.0" spacing="10.0">
-                              <children>
-                                 <Label prefHeight="16.0" prefWidth="35.0" text="Posts" textFill="WHITE" />
-                                 <Label text="0" textFill="WHITE" />
-                              </children>
-                           </HBox>
-                        </children>
-                     </HBox>
-                  </children>
-               </VBox>
-               <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-border-radius: 40; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css">
-                  <graphic>
-                     <HBox alignment="CENTER" prefHeight="32.0" prefWidth="98.0" spacing="5.0" stylesheets="@../css/styles.css">
-                        <children>
-                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../../images/enter.png" />
-                              </image>
-                           </ImageView>
-                           <Label text="Entrar">
-                              <font>
-                                 <Font size="14.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </HBox>
-                  </graphic>
-               </Button>
-            </children>
-         </HBox>
+         <ScrollPane layoutX="570.0" layoutY="140.0" prefHeight="435.0" prefWidth="200.0" />
          <Separator layoutX="522.0" layoutY="113.0" orientation="VERTICAL" prefHeight="589.0" prefWidth="0.0" style="-fx-background-color: #1B2631;" />
          <Label layoutX="570.0" layoutY="113.0" prefHeight="20.0" prefWidth="150.0" text="Lista de seguidos">
             <font>
@@ -283,13 +266,13 @@
                <Font size="15.0" />
             </font>
          </Label>
-         <ScrollPane layoutX="800.0" layoutY="140.0" prefHeight="425.0" prefWidth="200.0" />
+         <ScrollPane layoutX="800.0" layoutY="140.0" prefHeight="435.0" prefWidth="200.0" />
          <Label layoutX="50.0" layoutY="262.0" prefHeight="20.0" prefWidth="132.0" text="Resultados">
             <font>
                <Font size="15.0" />
             </font>
          </Label>
-         <HBox alignment="CENTER" layoutX="570.0" layoutY="608.0" prefHeight="84.0" prefWidth="430.0" spacing="20.0" style="-fx-background-color: #1B2631;" styleClass="button" stylesheets="@../css/styles.css">
+         <HBox alignment="CENTER" layoutX="570.0" layoutY="618.0" prefHeight="84.0" prefWidth="430.0" spacing="20.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
             <children>
                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -350,7 +333,7 @@
                </HBox>
             </children>
          </HBox>
-          <ComboBox layoutX="862.0" layoutY="57.0" prefHeight="24.0" prefWidth="140.0" promptText="Filtro">
+          <ComboBox fx:id="filter" focusTraversable="false" layoutX="862.0" layoutY="53.0" prefHeight="32.0" prefWidth="140.0" promptText="Filtro">
               <items>
                   <FXCollections fx:factory="observableArrayList">
                       <String fx:value="Comunidad" />
