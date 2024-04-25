@@ -182,6 +182,7 @@ public class FachadaBaseDatos {
     public void dejarSeguir(String idU1, String idU2){
         daoU.dejarSeguir(idU1, idU2);
     }
+
     
     public java.util.List<Integer> consultarSeguidos(String idU1){
         return daoU.consultarSeguidos(idU1);
@@ -211,15 +212,15 @@ public class FachadaBaseDatos {
         return daoComunidades.consultarComunidades(nombre);
     }
 
-    public void insertarJugadorEquipo(int id_usuario, Comunidad c){
+    public void insertarJugadorEquipo(String id_usuario, Comunidad c){
         daoComunidades.insertarJugadorEquipo(id_usuario, c);
     }
 
-    public void salirJugadorEquipo(int id_usuario, Comunidad c){
-        daoComunidades.salirJugadorEquipo(id_usuario, c);
+    public void salirJugadorEquipo(String id_usuario){
+        daoComunidades.salirJugadorEquipo(id_usuario);
     }
 
-    public Comunidad consultarEquipoJugador(int id_usuario){
+    public Comunidad consultarEquipoJugador(String id_usuario){
         return daoComunidades.consultarEquipoJugador(id_usuario);
     }
 

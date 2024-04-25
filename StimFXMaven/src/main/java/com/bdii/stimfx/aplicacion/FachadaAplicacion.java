@@ -103,10 +103,17 @@ public class FachadaAplicacion {
     }
 
     private void pruebas_DAO(){
-        List<Categoria> cats = fbd.consultarCategorias("Aventura");
-        System.out.println(cats.get(0).getDescripcion());
-        List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
-        System.out.println(usrs.get(0).getNombre());
+        //List<Categoria> cats = fbd.consultarCategorias("Aventura");
+        //System.out.println(cats.get(0).getDescripcion());
+        //List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
+        //System.out.println(usrs.get(0).getNombre());
+
+        //Comunidad c = new Comunidad("Real Madrid", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/madrid.png"));
+        //fbd.insertarComunidad(c);
+        //c = new Comunidad("Barcelona", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/barsa.png"));
+        //fbd.insertarComunidad(c);
+        //c = new Comunidad("Chelsea", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/chelsea.png"));
+        //fbd.insertarComunidad(c);
 
         //Demo d = new Demo("RobinRun", 4, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "sara");
         //fbd.insertarDemo(d);
@@ -122,7 +129,7 @@ public class FachadaAplicacion {
     public FachadaAplicacion(FachadaGUI fg){
         this.fg = fg;
         fbd =new FachadaBaseDatos(this);
-        //pruebas_DAO();
+        pruebas_DAO();
         gu = new GestionUsuarios(this.fg, fbd);
         gv = new GestionVideojuegos(this.fg, fbd);
         gd = new GestionDLC(this.fg, fbd);
@@ -275,17 +282,17 @@ public class FachadaAplicacion {
 
     // Funcion para insertar a un usuario en una comunidad.
     // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
-    public void insertarJugadorEquipo(int id_usuario, Comunidad c){
+    public void insertarJugadorEquipo(String id_usuario, Comunidad c){
         fbd.insertarJugadorEquipo(id_usuario, c);
     }
 
     // Funcion para hacer salir de una comunidad a un usuario
-    public void salirJugadorEquipo(int id_usuario, Comunidad c){
-        fbd.salirJugadorEquipo(id_usuario, c);
+    public void salirJugadorEquipo(String id_usuario){
+        fbd.salirJugadorEquipo(id_usuario);
     }
 
     // Funcion para consultar el equipo en el que esta un usuario
-    public Comunidad consultarEquipoJugador(int id_usuario){
+    public Comunidad consultarEquipoJugador(String id_usuario){
         return fbd.consultarEquipoJugador(id_usuario);
     }
 

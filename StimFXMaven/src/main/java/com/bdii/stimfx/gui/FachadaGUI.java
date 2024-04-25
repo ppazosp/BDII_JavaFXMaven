@@ -126,6 +126,7 @@ public class FachadaGUI extends Application {
         CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
         assert communityWController != null;
         communityWController.setMainApp(this);
+        communityWController.initializeWindow();
     }
 
     public void showSettingsScene() {

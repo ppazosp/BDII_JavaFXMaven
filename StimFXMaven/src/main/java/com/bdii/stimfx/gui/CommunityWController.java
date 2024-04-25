@@ -5,8 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -14,13 +18,34 @@ import java.util.List;
 
 public class CommunityWController implements Controller{
     FachadaGUI fg;
-
+    Comunidad userCom;
     @FXML
     ComboBox<String> filter;
     @FXML
     TextField searchBar;
     @FXML
     VBox comSearchVbox;
+    @FXML
+    HBox myComHbox;
+    @FXML
+    ImageView myComIcon;
+    @FXML
+    Label myComName;
+    @FXML
+    Label myComMembers;
+
+    public void initializeWindow()
+    {
+        userCom = fg.fa.consultarEquipoJugador(fg.fa.usuario.getId());
+        if (userCom != null){
+            myComIcon.setImage(userCom.getEscudo());
+            myComName.setText(userCom.getNombre());
+            myComMembers.setText(fg.fa.contarMiembrosEquipo(userCom).toString());
+        }else  myComHbox.setVisible(false);
+
+        showCommunitySearch();;
+        showUserSearch();
+    }
 
 
     @FXML
@@ -57,6 +82,8 @@ public class CommunityWController implements Controller{
                 CommunitySearchItemController controller = loader.getController();
                 controller.setMainApp(fg);
                 controller.initializeWindow(c);
+
+                if(userCom != null && userCom.getNombre().equals(c.getNombre())) controller.enterHbox.setDisable(true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,7 +94,6 @@ public class CommunityWController implements Controller{
     {
 
     }
-
 
     @FXML
     public void showProfileScene(MouseEvent event)

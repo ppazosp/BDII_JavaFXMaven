@@ -35,7 +35,10 @@ public class CommunitySearchItemController implements Controller {
     @FXML
     public void enterCommunity(MouseEvent event)
     {
-        //fg.;
+        if(fg.) fg.fa.salirJugadorEquipo(fg.fa.usuario.getId());
+        fg.fa.insertarJugadorEquipo(fg.fa.usuario.getId(), com);
+
+        fg.showCommunityScene();
     }
 
     public void setMainApp(FachadaGUI fg)
