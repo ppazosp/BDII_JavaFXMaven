@@ -152,6 +152,7 @@ public class CommunityWController implements Controller {
                     if(fg.fa.isParticipante(fg.fa.usuario, t))
                     {
                         controller.hboxLabel.setText("Jugado");
+                        if (t.getGanador().equals(fg.fa.usuario.getId())) controller.hboxLabel.setText("Ganado");
                     }else controller.hboxLabel.setText("Finalizado");
                 }else
                 {

@@ -1,6 +1,5 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Comunidad;
 import com.bdii.stimfx.aplicacion.Torneo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -46,6 +45,7 @@ public class CompSearchItemController implements Controller {
         {
             startLabel.setText(torn.getFecha_final().toString());
             endLabel.setText(torn.getGanador());
+            endLabel.setStyle("-fx-font-weight: bold;");
         }
         prizeLabel.setText(torn.getPremio() + "€");
     }

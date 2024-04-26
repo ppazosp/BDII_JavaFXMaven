@@ -4,11 +4,10 @@
  */
 package com.bdii.stimfx.baseDatos;
 
-import java.sql.Date;
-import java.sql.DriverManager;
-
 import com.bdii.stimfx.aplicacion.*;
 
+import java.sql.Date;
+import java.sql.DriverManager;
 import java.util.List;
 
 /**
@@ -16,19 +15,19 @@ import java.util.List;
  * @author alumnogreibd
  */
 public class FachadaBaseDatos {
-    private FachadaAplicacion fa;
+    private final FachadaAplicacion fa;
     private java.sql.Connection conexion;
-    private DAOVideojuegos daoV;
-    private DAODLCs daoD;
-    private DAOCategorias daoCategorias;
-    private DAOReseñas daoR;
-    private DAOUsuarios daoU;
-    private DAOTorneos daoT;
-    private DAOCompras daoCompras;
-    private DAOPlataformas daoP;
-    private DAOComunidades daoComunidades;
-    private DAODemos daoDemos;
-    private DAOOpUnicas daoOpUnicas;
+    private final DAOVideojuegos daoV;
+    private final DAODLCs daoD;
+    private final DAOCategorias daoCategorias;
+    private final DAOReseñas daoR;
+    private final DAOUsuarios daoU;
+    private final DAOTorneos daoT;
+    private final DAOCompras daoCompras;
+    private final DAOPlataformas daoP;
+    private final DAOComunidades daoComunidades;
+    private final DAODemos daoDemos;
+    private final DAOOpUnicas daoOpUnicas;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -79,7 +78,9 @@ public class FachadaBaseDatos {
 
     public void insertarDemo(Demo d) {daoDemos.insertarDemo(d);}
 
-    public Demo consultarDemo(int mes, int ano){return daoDemos.consultarDemo(mes, ano);};
+    public Demo consultarDemo(int mes, int ano) {
+        return daoDemos.consultarDemo(mes, ano);
+    }
 
     //Hace falta el id
     public List<Videojuego> consultaVideojuegos(String nombre){  // Abajo hay una con id, aunq con nombre hace falta
@@ -299,11 +300,15 @@ public class FachadaBaseDatos {
 
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return daoU.consultarVideojuegos(id);
-    };
+    }
 
     public boolean tieneComunidad(String usr_id){
         return daoComunidades.tieneComunidad(usr_id);
     }
 
 
+    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
+    public void hashAllPasswords() {
+        daoOpUnicas.hashAllPasswords();
+    }
 }

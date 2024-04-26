@@ -4,7 +4,6 @@
  */
 package com.bdii.stimfx.baseDatos;
 
-import com.bdii.stimfx.aplicacion.Categoria;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 
 import java.security.MessageDigest;
@@ -53,15 +52,15 @@ public class DAOOpUnicas extends AbstractDAO{
             ResultSet resultSet = selectStmt.executeQuery();
             // Iterar sobre los resultados
             while (resultSet.next()) {
-                int userId = resultSet.getInt("id");
-                String oldPassword = resultSet.getString("password");
+                String userId = resultSet.getString("id");
+                String oldPassword = resultSet.getString("contraseña");
                 // Hashear la contraseña antigua
                 String hashedPassword = hashPassword(oldPassword);
                 // Actualizar la contraseña hasheada en la base de datos
                 String updateQuery = "UPDATE usuario SET contraseña = ? WHERE id = ?";
                 try (PreparedStatement updateStmt = con.prepareStatement(updateQuery)) {
                     updateStmt.setString(1, hashedPassword);
-                    updateStmt.setInt(2, userId);
+                    updateStmt.setString(2, userId);
                     updateStmt.executeUpdate();
                     System.out.println("Contraseña hasheada actualizada para el usuario con ID: " + userId);
                 }

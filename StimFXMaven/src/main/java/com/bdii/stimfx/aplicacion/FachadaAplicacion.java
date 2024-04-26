@@ -6,33 +6,28 @@ import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.paint.Color;
 
-//Si vamos a tartar categroria como sring borramos la clase
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FachadaAplicacion {
     private FachadaAplicacion fa;
     private FachadaGUI fg;
-    private FachadaBaseDatos fbd;
-    private GestionUsuarios gu;
-    private GestionVideojuegos gv;
-    private GestionDemo gdem;
-    private GestionDLC gd;
+    private final FachadaBaseDatos fbd;
+    private final GestionUsuarios gu;
+    private final GestionVideojuegos gv;
+    private final GestionDemo gdem;
+    private final GestionDLC gd;
 
-    private GestionComunidad gc;
-    private GestionTorneo gt;
-    private GestionCompra gcom;
-    private GestionPlataforma gpl;
-    private GestionReseña gr;
+    private final GestionComunidad gc;
+    private final GestionTorneos gt;
+    private final GestionCompra gcom;
+    private final GestionPlataforma gpl;
+    private final GestionReseña gr;
 
-    private GestionCategoria gcat;
+    private final GestionCategoria gcat;
 
     public Usuario usuario;
 
@@ -111,15 +106,34 @@ public class FachadaAplicacion {
     }
 
 
+    public FachadaAplicacion(FachadaGUI fg) {
+        this.fg = fg;
+        fbd = new FachadaBaseDatos(this);
+        gu = new GestionUsuarios(this.fg, fbd);
+        gv = new GestionVideojuegos(this.fg, fbd);
+        gd = new GestionDLC(this.fg, fbd);
+        gdem = new GestionDemo(this.fg, fbd);
+        gc = new GestionComunidad(this.fg, fbd);
+        gt = new GestionTorneos(this.fg, fbd);
+        gcom = new GestionCompra(this.fg, fbd);
+        gpl = new GestionPlataforma(this.fg, fbd);
+        gr = new GestionReseña(this.fg, fbd);
+        gcat = new GestionCategoria(this.fg, fbd);
 
+        pruebas_DAO();
+    }
 
     private void pruebas_DAO(){
+
+        ///////////////////NO LA DESCOMENTEIS GRACIAS GRACIAS GRACIAS///////////////////////fbd.hashAllPasswords();
+
+
         //List<Categoria> cats = fbd.consultarCategorias("Aventura");
         //System.out.println(cats.get(0).getDescripcion());
         //List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         //System.out.println(usrs.get(0).getNombre());
-        List<Torneo> torneos = consultarTorneos("");
-        System.out.println(torneos.size());
+        //<Torneo> torneos = consultarTorneos("");
+        //System.out.println(torneos.size());
 
         //Comunidad c = new Comunidad("Racing de Ferrol", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/racing.png"));
         //fbd.insertarComunidad(c);
@@ -138,21 +152,6 @@ public class FachadaAplicacion {
         //insertarPlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
         //insertarPlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
         //fbd.inicializarbd();
-    }
-    public FachadaAplicacion(FachadaGUI fg){
-        this.fg = fg;
-        fbd =new FachadaBaseDatos(this);
-        pruebas_DAO();
-        gu = new GestionUsuarios(this.fg, fbd);
-        gv = new GestionVideojuegos(this.fg, fbd);
-        gd = new GestionDLC(this.fg, fbd);
-        gdem = new GestionDemo(this.fg, fbd);
-        gc = new GestionComunidad(this.fg, fbd);
-        gt = new GestionTorneo(this.fg, fbd);
-        gcom = new GestionCompra(this.fg, fbd);
-        gpl= new GestionPlataforma(this.fg, fbd);
-        gr= new GestionReseña(this.fg, fbd);
-        gcat= new GestionCategoria(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -320,11 +319,6 @@ public class FachadaAplicacion {
     public Integer contarJuegosUsuario(String id_usuario){
         return gu.contarJuegosUsuario(id_usuario);
     }
-
-    // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.
-    public void insertarTorneo(Torneo t){
-        gt.insertarTorneo(t);
-    }
     
     // Escribir una nueva reseña
     public void insertarReseña(Reseña r){
@@ -393,21 +387,41 @@ public class FachadaAplicacion {
 
 //METHODS
 
+    // TORNEOS
+    public void insertarTorneo(Torneo t) {
+        gt.insertarTorneo(t);
+    }
     public int torneosGanados(Usuario u){
         return gt.torneosGanados(u);
     }
-
-
     public List<Torneo> consultarTorneos(String nombre)
     {
         return gt.consultarTorneos(nombre);
     }
 
-    /*
-    public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
-        return fbd.consultarPlataformasVideoJuego(v.getId());
+    public void participarTorneo(Usuario u, Torneo t) {
+        gt.participarTorneo(u, t);
     }
-*/
+
+    public List<Usuario> consultarParticipantes(Torneo t) {
+        return gt.consultarParticipantes(t);
+    }
+
+    public boolean isParticipante(Usuario u, Torneo t) {
+        return gt.isParticipante(u, t);
+    }
+
+    public boolean puedeRetirarse(Torneo t) {
+        return gt.puedeRetirarse(t);
+    }
+
+    public void retirarseTorneo(Usuario u, Torneo t) {
+        gt.retirarseTorneo(u, t);
+    }
+
+
+
+
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return gu.consultarVideojuegosUsuario(id);
     }
