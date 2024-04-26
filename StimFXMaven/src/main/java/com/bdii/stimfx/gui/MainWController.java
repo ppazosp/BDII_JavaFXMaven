@@ -109,8 +109,8 @@ public class MainWController implements Controller, Initializable {
 
 
     //MENU BAR
-    @FXML
-    VBox menuBar;
+    /*@FXML
+    VBox menuBar;*/
     @FXML
     HBox comMenu;
     @FXML
