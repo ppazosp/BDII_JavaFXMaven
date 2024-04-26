@@ -251,7 +251,7 @@
          <Separator layoutX="522.0" layoutY="113.0" orientation="VERTICAL" prefHeight="589.0" prefWidth="0.0" style="-fx-background-color: #1B2631;" />
          <Label layoutX="570.0" layoutY="426.0" prefHeight="20.0" prefWidth="284.0" text="Torneos terminados">
             <font>
-               <Font size="15.0" />
+               <Font name="System Bold" size="16.0" />
             </font>
          </Label>
          <Label layoutX="50.0" layoutY="262.0" prefHeight="20.0" prefWidth="132.0" text="Resultados">

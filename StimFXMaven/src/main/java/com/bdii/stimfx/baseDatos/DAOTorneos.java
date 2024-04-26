@@ -35,26 +35,11 @@ public class DAOTorneos extends AbstractDAO{
         try {
             stmTorneo=con.prepareStatement("insert into torneo(id, nombre, fecha_inicio, fecha_fin, premio, id_videojuego, id_usradmin) "+
                                             "values (?,?,?,?,?,?,?)");
-            
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
-            
-            // Convertir la fecha actual a LocalDate
-            LocalDate localDate = fechaActual.toLocalDate();
 
-            // Sumar 30 días
-            LocalDate nuevaFecha = localDate.plusDays(30);
-
-            // Convertir la nueva fecha de LocalDate a java.sql.Date
-            Date fechaSumada = Date.valueOf(nuevaFecha);
-            
-            t.setFecha_inicio(fechaActual);
-            t.setFecha_final(fechaSumada);
-            
             stmTorneo.setInt(1, t.getId());
             stmTorneo.setString(2, t.getNombre());
-            stmTorneo.setDate(3, fechaActual);
-            stmTorneo.setDate(4, fechaSumada);
+            stmTorneo.setDate(3, t.getFecha_inicio());
+            stmTorneo.setDate(4, t.getFecha_final());
             stmTorneo.setInt(5, t.getPremio());
             stmTorneo.setInt(6, t.getVideojuego().getId());
             stmTorneo.setString(7, t.getAdministrador().getId());
@@ -107,7 +92,7 @@ public class DAOTorneos extends AbstractDAO{
         return resultado;
     }
 
-    public List<Torneo> consultarTorneos()
+    public List<Torneo> consultarTorneos(String nombre)
     {
         List<Torneo> resultado = new ArrayList<>();
         Torneo torneoActual;
@@ -119,7 +104,9 @@ public class DAOTorneos extends AbstractDAO{
 
         try{
             stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, id_usradmin, imagen " +
-                                                "from torneo t join videojuego v on id_videojuego = v.id");
+                                                "from torneo t join videojuego v on id_videojuego = v.id " +
+                                                " where t.nombre like ?");
+            stmTorneos.setString(1, "%"+nombre+"%");
             rsTorneos=stmTorneos.executeQuery();
             while (rsTorneos.next())
             {
@@ -134,6 +121,88 @@ public class DAOTorneos extends AbstractDAO{
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
             try {stmTorneos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return resultado;
+    }
+
+    public void participarTorneo(String u_id, int t_id)
+    {
+        Connection con;
+        PreparedStatement stmTorneo=null;
+
+        con=super.getConexion();
+
+        try {
+            stmTorneo=con.prepareStatement("insert into jug_participa_torneo(id_jugador, id_torneo) "+
+                    "values (?,?)");
+
+            stmTorneo.setString(1, u_id);
+            stmTorneo.setInt(2, t_id);
+
+            stmTorneo.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+    }
+
+    public void retirarseTorneo(String u_id, int t_id)
+    {
+        Connection con;
+        PreparedStatement stmTorneo=null;
+
+        con=super.getConexion();
+
+        try {
+            stmTorneo=con.prepareStatement("delete from jug_participa_torneo " +
+                    "where id_jugador = ? and id_torneo = ? ");
+
+            stmTorneo.setString(1, u_id);
+            stmTorneo.setInt(2, t_id);
+
+            stmTorneo.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public List<Usuario> consultarParticipantes(int t_id)
+    {
+        List<Usuario> resultado = new ArrayList<>();
+        Usuario usuarioActual;
+        Connection con;
+        PreparedStatement stmParticipantes=null;
+        ResultSet rsTorneos;
+
+        con=this.getConexion();
+
+        try{
+            stmParticipantes=con.prepareStatement(" select u.id from usuario u " +
+                    "where u.id in " +
+                    "(select id_jugador from jug_participa_torneo where id_torneo = ?)  ");
+
+            stmParticipantes.setInt(1, t_id);
+            rsTorneos=stmParticipantes.executeQuery();
+            while (rsTorneos.next())
+            {
+                Usuario u = new Usuario(rsTorneos.getString("id"));
+
+                resultado.add(u);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmParticipantes.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
 
         return resultado;

@@ -40,7 +40,7 @@ public class CommunitySearchItemController implements Controller {
         if(fg.fa.tieneComunidad(fg.fa.usuario)) fg.fa.salirJugadorEquipo(fg.fa.usuario.getId());
         fg.fa.insertarJugadorEquipo(fg.fa.usuario.getId(), com);
 
-        superController.load();
+        superController.loadCom();
     }
 
     public void setMainApp(FachadaGUI fg)

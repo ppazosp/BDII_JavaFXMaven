@@ -244,9 +244,9 @@ public class FachadaBaseDatos {
         return daoU.validarUsuario(id, clave);
     }
 
-    public List<Torneo> consultarTorneos()
+    public List<Torneo> consultarTorneos(String nombre)
     {
-        return daoT.consultarTorneos();
+        return daoT.consultarTorneos(nombre);
     }
 
     public Videojuego proximoVideojuego(){
@@ -255,6 +255,21 @@ public class FachadaBaseDatos {
 
     public int torneosGanados(String id){
         return daoT.torneosGanados(id);
+    }
+
+    public void participarTorneo(String u_id, int t_id)
+    {
+        daoT.participarTorneo(u_id, t_id);
+    }
+
+    public void retirarseTorneo(String u_id, int t_id)
+    {
+        daoT.retirarseTorneo(u_id, t_id);
+    }
+
+    public List<Usuario> consultarParticipantes(int t_id)
+    {
+        return daoT.consultarParticipantes(t_id);
     }
 
     public List<Plataforma> consultarPlataformasVideoJuego(int id){

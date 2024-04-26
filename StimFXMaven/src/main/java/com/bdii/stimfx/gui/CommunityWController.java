@@ -44,9 +44,19 @@ public class CommunityWController implements Controller {
     @FXML
     HBox oldTHbox;
 
-    public void load() {
+    public void load()
+    {
+        loadCom();
+        loadComp();
+    }
+
+    public void loadCom() {
         loadMyCom();
         showCommunitySearch();
+    }
+
+    public void loadComp()
+    {
         showTournamentSearch();
     }
 
@@ -114,7 +124,7 @@ public class CommunityWController implements Controller {
 
     private void showTournamentSearch()
     {
-        List<Torneo> tList = fg.fa.consultarTorneos();
+        List<Torneo> tList = fg.fa.consultarTorneos(searchBar.getText());
         currTHbox.getChildren().clear();
         oldTHbox.getChildren().clear();
         int opt;
@@ -135,6 +145,27 @@ public class CommunityWController implements Controller {
                 CompSearchItemController controller = loader.getController();
                 controller.setMainApp(fg);
                 controller.initializeWindow(t, opt, this);
+
+                if(opt==1)
+                {
+                    controller.partHbox.setDisable(true);
+                    if(fg.fa.isParticipante(fg.fa.usuario, t))
+                    {
+                        controller.hboxLabel.setText("Jugado");
+                    }else controller.hboxLabel.setText("Finalizado");
+                }else
+                {
+                    if (fg.fa.isParticipante(fg.fa.usuario, t)) {
+                        if(fg.fa.puedeRetirarse(t))
+                        {
+                            controller.hboxLabel.setText("Retirarse");
+                        }else
+                        {
+                            controller.hboxLabel.setText("Jugando");
+                            controller.partHbox.setDisable(true);
+                        }
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

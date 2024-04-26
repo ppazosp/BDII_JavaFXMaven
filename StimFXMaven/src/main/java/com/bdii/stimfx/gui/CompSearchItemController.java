@@ -29,6 +29,8 @@ public class CompSearchItemController implements Controller {
     Label prizeLabel;
     @FXML
     HBox partHbox;
+    @FXML
+    Label hboxLabel;
 
     public void initializeWindow(Torneo torn, int opt, CommunityWController superController)
     {
@@ -50,9 +52,12 @@ public class CompSearchItemController implements Controller {
 
 
     @FXML
-    public void enterTournament(MouseEvent event)
+    public void interactTournament(MouseEvent event)
     {
+        if (hboxLabel.getText().equals("Retirarse")) fg.fa.retirarseTorneo(fg.fa.usuario, torn);
+        else fg.fa.participarTorneo(fg.fa.usuario, torn);
 
+        superController.loadComp();
     }
 
     public void setMainApp(FachadaGUI fg)
