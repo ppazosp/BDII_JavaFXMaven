@@ -32,4 +32,11 @@ public class GestionDLC {
         List<DLC> dlcs = fbd.consultarDLCsVideojuegoUsuario(dlc.getIdVideojuego(), usuario.getId());
         return  dlcs.contains(dlc);
     }
+    public void insertarDLC(DLC d){
+        fbd.insertarDLC(d);
+    }
+
+    public void borrarDLC(int d){
+        fbd.borrarDLC(d);
+    }
 }

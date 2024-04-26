@@ -115,10 +115,34 @@ public class GestionUsuarios {
         return fbd.modificarUsuario(usuario);
     }
 
+    public java.util.List<Videojuego> consultarJuegosUsuario(int id_usuario){
+        java.util.List<Videojuego> resultado = new ArrayList<Videojuego>();
+        Videojuego videojuegoActual;
+        java.util.List<Integer> id_juegos = fbd.consultarJuegosUsuario(id_usuario);
+        for (Integer i : id_juegos){
+            videojuegoActual = fbd.consultarVideojuego(i);
+            resultado.add(videojuegoActual);
+        }
+        return resultado;
+    }
+    public java.util.List<String> consultarSeguidores(String idU2){
+        return fbd.consultarSeguidores(idU2);
+    }
 
     // Funcion para buscar usuarios en la base
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return fbd.consultarUsuarios(id, nombre);
+    }
+
+    public Integer contarJuegosUsuario(String id_usuario){
+        return fbd.contarJuegosUsuario(id_usuario);
+    }
+
+    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
+        return fbd.consultarVideojuegosUsuario(id);
+    }
+    public void bloquearSeguidor(String idU1, String idU2){
+        fbd.bloquearSeguidor(idU1, idU2);
     }
 
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){

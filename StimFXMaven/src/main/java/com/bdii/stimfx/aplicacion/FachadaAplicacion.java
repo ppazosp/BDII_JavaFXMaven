@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
 
-
+//Si vamos a tartar categroria como sring borramos la clase
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -23,8 +23,16 @@ public class FachadaAplicacion {
     private FachadaBaseDatos fbd;
     private GestionUsuarios gu;
     private GestionVideojuegos gv;
-
+    private GestionDemo gdem;
     private GestionDLC gd;
+
+    private GestionComunidad gc;
+    private GestionTorneo gt;
+    private GestionCompra gcom;
+    private GestionPlataforma gpl;
+    private GestionReseña gr;
+
+    private GestionCategoria gcat;
 
     public Usuario usuario;
 
@@ -135,6 +143,13 @@ public class FachadaAplicacion {
         gu = new GestionUsuarios(this.fg, fbd);
         gv = new GestionVideojuegos(this.fg, fbd);
         gd = new GestionDLC(this.fg, fbd);
+        gdem = new GestionDemo(this.fg, fbd);
+        gc = new GestionComunidad(this.fg, fbd);
+        gt = new GestionTorneo(this.fg, fbd);
+        gcom = new GestionCompra(this.fg, fbd);
+        gpl= new GestionPlataforma(this.fg, fbd);
+        gr= new GestionReseña(this.fg, fbd);
+        gcat= new GestionCategoria(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -164,7 +179,7 @@ public class FachadaAplicacion {
     }
     // Funcion para borrar un videojuego en la base
     public void borrarVideojuego(Videojuego v) {
-        fbd.borrarVideojuego(v.getId());
+        gv.borrarVideojuego(v);
     }
     // Funcion para consultar videojuegos a partir de un nombre
     public java.util.List<Videojuego> consultarVideojuegos(String n){
@@ -243,131 +258,124 @@ public class FachadaAplicacion {
 
     public Demo consultarDemo(int mes, int ano)
     {
-        return fbd.consultarDemo(mes, ano);
+        return gdem.consultarDemo(mes, ano);
     }
 
     // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.
     // Si pones un buscador se añade facil.
     // DEVUELVE LOS VIDEOJUEGOS DIERECTAMENTE
     public java.util.List<Videojuego> consultarJuegosUsuario(int id_usuario){
-        java.util.List<Videojuego> resultado = new ArrayList<Videojuego>();
-        Videojuego videojuegoActual;
-        java.util.List<Integer> id_juegos = fbd.consultarJuegosUsuario(id_usuario);
-        for (Integer i : id_juegos){
-            videojuegoActual = fbd.consultarVideojuego(i);
-            resultado.add(videojuegoActual);
-        }
-        return resultado;
+        return gu.consultarJuegosUsuario(id_usuario);
     }
 
     public java.util.List<String> consultarSeguidores(String idU2){
-        return fbd.consultarSeguidores(idU2);
+        return gu.consultarSeguidores(idU2);
     }
 
     // Funcion para crear una nueva comunidad
     public void insertarComunidad(Comunidad c){
-        fbd.insertarComunidad(c);
+        gc.insertarComunidad(c);
     }
 
     // Funcion para borrar una comunidad
     public void borrarComunidad(Comunidad c){
-        fbd.borrarComunidad(c);
+        gc.borrarComunidad(c);
     }
 
     // Funcion para mirar comunidades en el buscador, encontrar una comunidad especifica, a partir de algo o todas si la barra esta vacía
     public java.util.List<Comunidad> consultarComunidades(String nombre){
-        return fbd.consultarComunidades(nombre);
+        return gc.consultarComunidades(nombre);
     }
 
     // Funcion para insertar a un usuario en una comunidad.
     // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
     public void insertarJugadorEquipo(String id_usuario, Comunidad c){
-        fbd.insertarJugadorEquipo(id_usuario, c);
+        gc.insertarJugadorEquipo(id_usuario, c);
     }
 
     // Funcion para hacer salir de una comunidad a un usuario
     public void salirJugadorEquipo(String id_usuario){
-        fbd.salirJugadorEquipo(id_usuario);
+        gc.salirJugadorEquipo(id_usuario);
     }
 
     // Funcion para consultar el equipo en el que esta un usuario
     public Comunidad consultarEquipoJugador(String id_usuario){
-        return fbd.consultarEquipoJugador(id_usuario);
+        return gc.consultarEquipoJugador(id_usuario);
     }
 
     // Funcion para consultar los jugadores que pertenecen a un equipo en concreto
     public java.util.List<Integer> consultarJugadoresEquipo(Comunidad c){
-        return fbd.consultarJugadoresEquipo(c);
+        return gc.consultarJugadoresEquipo(c);
     }
 
     // Funcion para contar los miembros de un equipo
     public Integer contarMiembrosEquipo(Comunidad c) {
-        return fbd.contarMiembrosEquipo(c);
+        return gc.contarMiembrosEquipo(c);
     }
 
     // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
     public Integer contarJuegosUsuario(String id_usuario){
-        return fbd.contarJuegosUsuario(id_usuario);
+        return gu.contarJuegosUsuario(id_usuario);
     }
 
     // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.
     public void insertarTorneo(Torneo t){
-        fbd.insertarTorneo(t);
+        gt.insertarTorneo(t);
     }
     
     // Escribir una nueva reseña
     public void insertarReseña(Reseña r){
-        fbd.insertarReseña(r);
+        gr.insertarReseña(r);
     }
     
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
     public void insertarCompra(int id_videojuego) {
-        fbd.insertarCompra(id_videojuego, usuario.getId());
+        gcom.insertarCompra(id_videojuego, usuario.getId());
     }
     
     // Funciones relacionadas con la gestion de las categorias de los juegos
     public void insertarCategoria(Categoria c){
-        fbd.insertarCategoria(c);
+        gcat.insertarCategoria(c);
     }
     
     public void borrarCategoria(String nombre){
-        fbd.borrarCategoria(nombre);
+        gcat.borrarCategoria(nombre);
     }
     
     public java.util.List<Categoria> consultarCategorias(String nombre){
-        return fbd.consultarCategorias(nombre);
+        return gcat.consultarCategorias(nombre);
     }
     
     // Funciones para crear y borrar DLC de videojuegos
     public void insertarDLC(DLC d){
-        fbd.insertarDLC(d);
+        gd.insertarDLC(d);
     }
     
     public void borrarDLC(int d){
-        fbd.borrarDLC(d);
+        gd.borrarDLC(d);
     }
     
     // Funciones relacionadas con la gestion de las plataformas. No veo necesario crear una clase
     public void insertarPlataforma(String nombre, String path){
-        fbd.insertarPlataforma(nombre, path);
+        gpl.insertarPlataforma(nombre, path);
     }
     public void borrarPlataforma(String nombre){
-        fbd.borrarPlataforma(nombre);
+        gpl.borrarPlataforma(nombre);
     }
     public java.util.List<String> consultarPlataformas(String nombre){
-        return fbd.consultarPlataformas(nombre);
+        return gpl.consultarPlataformas(nombre);
     }
     
     // Funciones para gestionar las plataformas de un videojuego, se podrian mostrar por pantalla
     public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
-        fbd.insertarPlataformaVideojuego(nombre, id_videojuego);
+        gpl.insertarPlataformaVideojuego(nombre, id_videojuego);
     }
     public void borrarPlataformaVideojuego(String nombre, int videojuego){
-        fbd.borrarPlataformaVideojuego(nombre, videojuego);
+        gpl.borrarPlataformaVideojuego(nombre, videojuego);
     }
     
     public void bloquearSeguidor(String idU1, String idU2){
-        fbd.bloquearSeguidor(idU1, idU2);
+        gu.bloquearSeguidor(idU1, idU2);
     }
     //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
     public boolean checkCredentials(String username, String password)
@@ -383,12 +391,12 @@ public class FachadaAplicacion {
 //METHODS
 
     public int torneosGanados(Usuario u){
-        return fbd.torneosGanados(u.getId());
+        return gt.torneosGanados(u);
     }
 
     public List<Torneo> consultarTorneos()
     {
-        return fbd.consultarTorneos();
+        return gt.consultarTorneos();
     }
 
     /*
@@ -397,7 +405,7 @@ public class FachadaAplicacion {
     }
 */
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
-        return fbd.consultarVideojuegosUsuario(id);
+        return gu.consultarVideojuegosUsuario(id);
     }
     public List<DLC> consultarDLCsVideojuegoUsuario(Videojuego v, Usuario u){
         return gd.consultarDLCsVideojuegoUsuario(v, u);
@@ -419,6 +427,6 @@ public class FachadaAplicacion {
     }
 
     public boolean tieneComunidad(Usuario u){
-        return fbd.tieneComunidad(u.getId());
+        return gc.tieneComunidad(u);
     }
 }
