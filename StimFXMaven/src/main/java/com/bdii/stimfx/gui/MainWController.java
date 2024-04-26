@@ -24,6 +24,10 @@ public class MainWController implements Controller, Initializable {
     FachadaGUI fg;
 
     @FXML
+    VBox menuBar;
+
+
+    @FXML
     Demo demoGame;
     @FXML
     Videojuego top1Game;
