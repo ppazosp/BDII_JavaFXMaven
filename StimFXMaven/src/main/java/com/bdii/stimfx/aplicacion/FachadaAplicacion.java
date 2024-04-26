@@ -23,6 +23,7 @@ public class FachadaAplicacion {
     private FachadaBaseDatos fbd;
     private GestionUsuarios gu;
     private GestionVideojuegos gv;
+    private GestionTorneos gt;
 
     private GestionDLC gd;
 
@@ -107,9 +108,6 @@ public class FachadaAplicacion {
         //System.out.println(cats.get(0).getDescripcion());
         //List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         //System.out.println(usrs.get(0).getNombre());
-        List<Torneo> torneos = consultarTorneos();
-        System.out.println(torneos.size());
-
         //Comunidad c = new Comunidad("Racing de Ferrol", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/racing.png"));
         //fbd.insertarComunidad(c);
         //c = new Comunidad("Barcelona", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/barsa.png"));
@@ -135,6 +133,7 @@ public class FachadaAplicacion {
         gu = new GestionUsuarios(this.fg, fbd);
         gv = new GestionVideojuegos(this.fg, fbd);
         gd = new GestionDLC(this.fg, fbd);
+        gt= new GestionTorneos(this.fg, fbd);
     }
 
     public void setFachadaGUI(FachadaGUI fg) {
@@ -309,11 +308,6 @@ public class FachadaAplicacion {
     public Integer contarJuegosUsuario(String id_usuario){
         return fbd.contarJuegosUsuario(id_usuario);
     }
-
-    // Funcion para insertar un nuevo torneo. Por ahora, las fechas se calculan solas (se puede mirar para cambiarlo). El ganador se insertara mas tarde.
-    public void insertarTorneo(Torneo t){
-        fbd.insertarTorneo(t);
-    }
     
     // Escribir una nueva reseña
     public void insertarReseña(Reseña r){
@@ -382,20 +376,41 @@ public class FachadaAplicacion {
 
 //METHODS
 
+    // TORNEOS
+
     public int torneosGanados(Usuario u){
-        return fbd.torneosGanados(u.getId());
+        return gt.torneosGanados(u);
     }
-
-    public List<Torneo> consultarTorneos()
+    public List<Torneo> consultarTorneos(String nombre)
     {
-        return fbd.consultarTorneos();
+        return gt.consultarTorneos(nombre);
+    }
+    public void insertarTorneo(Torneo t){
+        gt.insertarTorneo(t);
+    }
+    public void participarTorneo(Usuario u, Torneo t)
+    {
+        gt.participarTorneo(u, t);
+    }
+    public boolean isParticipante(Usuario u, Torneo t) {
+        return gt.isParticipante(u, t);
+    }
+    public List<Usuario> consultarParticipantes(Torneo t)
+    {
+        return gt.consultarParticipantes(t);
     }
 
-    /*
-    public List<Plataforma> consultarPlataformasVideoJuego(Videojuego v){
-        return fbd.consultarPlataformasVideoJuego(v.getId());
+    public boolean puedeRetirarse(Torneo t)
+    {
+        return gt.puedeRetirarse(t);
     }
-*/
+
+    public void retirarseTorneo(Usuario u, Torneo t)
+    {
+        gt.retirarseTorneo(u, t);
+    }
+
+
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);
     }
