@@ -21,8 +21,8 @@ public class GestionTorneo {
         return fbd.torneosGanados(u.getId());
     }
 
-    public List<Torneo> consultarTorneos()
+    public List<Torneo> consultarTorneos(String nombre)
     {
-        return fbd.consultarTorneos();
+        return fbd.consultarTorneos(nombre);
     }
 }

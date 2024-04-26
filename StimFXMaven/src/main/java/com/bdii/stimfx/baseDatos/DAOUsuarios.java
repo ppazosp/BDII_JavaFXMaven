@@ -23,7 +23,8 @@ public class DAOUsuarios extends AbstractDAO{
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
-    
+
+
     public void insertarUsuario(Usuario u){
         Connection con;
         PreparedStatement stmUsuario=null;

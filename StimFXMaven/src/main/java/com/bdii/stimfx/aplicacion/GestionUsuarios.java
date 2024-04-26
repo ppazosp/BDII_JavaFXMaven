@@ -86,8 +86,8 @@ public class GestionUsuarios {
     public Usuario comprobarAutentificacion(String idUsuario, String clave){
         Usuario u;
         //hashear en el futuro
-        //String hashedPassword= hashPassword(clave);
-        u=fbd.validarUsuario(idUsuario, clave);
+        String hashedPassword= hashPassword(clave);
+        u=fbd.validarUsuario(idUsuario, hashedPassword);
         return u;
     }
 
@@ -98,7 +98,8 @@ public class GestionUsuarios {
             return null;
         }
         else{
-            usuario = new Usuario(id, clave, nombre, email);
+            String hashedPassword= hashPassword(clave);
+            usuario = new Usuario(id, hashedPassword, nombre, email);
             fbd.insertarUsuario(usuario);
         }
         return usuario;
@@ -110,8 +111,14 @@ public class GestionUsuarios {
     }
 
     //pasar id desde FA
-    public Usuario modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
-        Usuario usuario = new Usuario(id, nombre, clave, email, imagen);
+    public Usuario modificarUsuario(String id, String nombre, String claveAntigua, String clave, String email, Image imagen){
+        Usuario usuario;
+        if (claveAntigua.equals(hashPassword(clave))){
+            usuario = new Usuario(id, nombre, clave, email, imagen);}
+        //Si cambio contraseña rehshear
+        else{
+            usuario = new Usuario(id, nombre, hashPassword(clave), email, imagen);
+        }
         return fbd.modificarUsuario(usuario);
     }
 

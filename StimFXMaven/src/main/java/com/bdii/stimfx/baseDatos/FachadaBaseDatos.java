@@ -28,6 +28,7 @@ public class FachadaBaseDatos {
     private DAOPlataformas daoP;
     private DAOComunidades daoComunidades;
     private DAODemos daoDemos;
+    private DAOOpUnicas daoOpUnicas;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -60,6 +61,7 @@ public class FachadaBaseDatos {
         daoT = new DAOTorneos(conexion, fa);
         daoP = new DAOPlataformas(conexion, fa);
         daoDemos = new DAODemos(conexion, fa);
+        daoOpUnicas = new DAOOpUnicas(conexion, fa);
     }
 
     public void inicializarbd()
@@ -302,4 +304,6 @@ public class FachadaBaseDatos {
     public boolean tieneComunidad(String usr_id){
         return daoComunidades.tieneComunidad(usr_id);
     }
+
+
 }

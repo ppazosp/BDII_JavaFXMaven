@@ -110,12 +110,15 @@ public class FachadaAplicacion {
         }
     }
 
+
+
+
     private void pruebas_DAO(){
         //List<Categoria> cats = fbd.consultarCategorias("Aventura");
         //System.out.println(cats.get(0).getDescripcion());
         //List<Usuario> usrs = fbd.consultarUsuarios(null, "Sara");
         //System.out.println(usrs.get(0).getNombre());
-        List<Torneo> torneos = consultarTorneos();
+        List<Torneo> torneos = consultarTorneos("");
         System.out.println(torneos.size());
 
         //Comunidad c = new Comunidad("Racing de Ferrol", FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/racing.png"));
@@ -228,7 +231,7 @@ public class FachadaAplicacion {
         gu.borrarUsuario(u);
     }
     public void modificarUsuario(String nombre, String clave, String email, Image imagen){
-        Usuario u = gu.modificarUsuario(this.usuario.getId(), nombre, clave, email, imagen);
+        Usuario u = gu.modificarUsuario(this.usuario.getId(), nombre, this.usuario.getContrasena(), clave, email, imagen);
         if (u != null) {
             this.usuario = u;
         }
@@ -394,9 +397,10 @@ public class FachadaAplicacion {
         return gt.torneosGanados(u);
     }
 
-    public List<Torneo> consultarTorneos()
+
+    public List<Torneo> consultarTorneos(String nombre)
     {
-        return gt.consultarTorneos();
+        return gt.consultarTorneos(nombre);
     }
 
     /*
