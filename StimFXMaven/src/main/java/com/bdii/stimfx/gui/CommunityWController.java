@@ -131,9 +131,11 @@ public class CommunityWController implements Controller {
 
         try {
             for (Torneo t : tList) {
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/compSearchItem.fxml"));
 
                 if(t.getFecha_final().toLocalDate().isBefore(LocalDate.now())){
+                    if (t.getGanador() == null) fg.fa.setGanador(t);
                     oldTHbox.getChildren().add(loader.load());
                     opt = 1;
                 }

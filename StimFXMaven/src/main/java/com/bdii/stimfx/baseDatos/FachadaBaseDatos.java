@@ -247,6 +247,7 @@ public class FachadaBaseDatos {
         return daoU.validarUsuario(id, clave);
     }
 
+
     public List<Torneo> consultarTorneos(String nombre)
     {
         return daoT.consultarTorneos(nombre);
@@ -274,6 +275,11 @@ public class FachadaBaseDatos {
     {
         return daoT.consultarParticipantes(t_id);
     }
+
+    public void setGanador(String u_id, int t_id) {
+        daoT.setGanador(u_id, t_id);
+    }
+
 
     public List<Plataforma> consultarPlataformasVideoJuego(int id){
         return daoP.consultarPlataformasVideoJuego(id);

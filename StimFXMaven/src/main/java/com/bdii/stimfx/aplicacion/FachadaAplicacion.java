@@ -398,25 +398,24 @@ public class FachadaAplicacion {
     {
         return gt.consultarTorneos(nombre);
     }
-
     public void participarTorneo(Usuario u, Torneo t) {
         gt.participarTorneo(u, t);
     }
-
     public List<Usuario> consultarParticipantes(Torneo t) {
         return gt.consultarParticipantes(t);
     }
-
     public boolean isParticipante(Usuario u, Torneo t) {
         return gt.isParticipante(u, t);
     }
-
     public boolean puedeRetirarse(Torneo t) {
         return gt.puedeRetirarse(t);
     }
-
     public void retirarseTorneo(Usuario u, Torneo t) {
         gt.retirarseTorneo(u, t);
+    }
+
+    public void setGanador(Torneo t) {
+        gt.setGanador(t);
     }
 
 

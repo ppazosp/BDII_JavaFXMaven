@@ -3,17 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.Connection;
 
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
-import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.Usuario;
 import com.bdii.stimfx.aplicacion.Torneo;
+import com.bdii.stimfx.aplicacion.Usuario;
+import com.bdii.stimfx.aplicacion.Videojuego;
 
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -46,7 +47,7 @@ public class DAOTorneos extends AbstractDAO{
             stmTorneo.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -105,7 +106,8 @@ public class DAOTorneos extends AbstractDAO{
         try{
             stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, id_usradmin, imagen " +
                                                 "from torneo t join videojuego v on id_videojuego = v.id " +
-                                                " where t.nombre like ?");
+                    " where t.nombre like ?" +
+                    "order by t.nombre");
             stmTorneos.setString(1, "%"+nombre+"%");
             rsTorneos=stmTorneos.executeQuery();
             while (rsTorneos.next())
@@ -118,7 +120,7 @@ public class DAOTorneos extends AbstractDAO{
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
             try {stmTorneos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -144,7 +146,7 @@ public class DAOTorneos extends AbstractDAO{
 
         } catch (SQLException e){
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
             try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -169,7 +171,7 @@ public class DAOTorneos extends AbstractDAO{
 
         } catch (SQLException e){
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
             try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -200,12 +202,40 @@ public class DAOTorneos extends AbstractDAO{
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
             try {stmParticipantes.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
 
         return resultado;
     }
+
+    public void setGanador(String u_id, int t_id) {
+        Connection con;
+        PreparedStatement stmTorneo = null;
+
+        con = super.getConexion();
+
+        try {
+            stmTorneo = con.prepareStatement("update torneo " +
+                    "set ganador = ? " +
+                    "where id = ? ");
+
+            stmTorneo.setString(1, u_id);
+            stmTorneo.setInt(2, t_id);
+
+            stmTorneo.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmTorneo.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+
 
 }
