@@ -56,6 +56,11 @@ public class EditWController implements Controller {
         }
     }
 
+    @FXML
+    public void editGame(MouseEvent event) {
+        fg.showEditGameWindow(null);
+    }
+
 
     @FXML
     public void showProfileScene(MouseEvent event) {

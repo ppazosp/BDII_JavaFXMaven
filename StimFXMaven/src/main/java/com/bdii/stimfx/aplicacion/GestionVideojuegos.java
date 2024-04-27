@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.aplicacion;
-import com.bdii.stimfx.gui.FachadaGUI;
+
 import com.bdii.stimfx.baseDatos.FachadaBaseDatos;
+import com.bdii.stimfx.gui.FachadaGUI;
 
 import java.util.List;
 
@@ -27,6 +28,18 @@ public class GestionVideojuegos {
         fbd.insertarVideojuego(v);
     }
 
+    public void updateVideojuego(Videojuego v) {
+        fbd.updateVideojuego(v);
+    }
+
+    public void publicarVideojuego(Videojuego v) {
+        if (existVideojuego(v)) updateVideojuego(v);
+        else insertarVideojuego(v);
+    }
+
+    public boolean existVideojuego(Videojuego v) {
+        return fbd.consultarVideojuego(v.getId()) != null;
+    }
     public java.util.List<Videojuego> consultarVideojuegos(String n){
         return fbd.consultaVideojuegos(n);
     }

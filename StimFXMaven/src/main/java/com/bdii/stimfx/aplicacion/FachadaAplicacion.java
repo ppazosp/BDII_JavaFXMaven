@@ -439,6 +439,10 @@ public class FachadaAplicacion {
         return fbd.consultarVideosjuegosEditor(id_editor);
     }
 
+    public void publicarVideojuego(Videojuego v) {
+        gv.publicarVideojuego(v);
+    }
+
     public void comprarDLC(DLC d, Usuario u){
         gd.comprarDLC(d, u);
     }

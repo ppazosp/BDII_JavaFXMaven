@@ -9,7 +9,10 @@ import com.bdii.stimfx.aplicacion.Editor;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Videojuego;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,24 +33,65 @@ public class DAOVideojuegos extends AbstractDAO{
         con=super.getConexion();
         
         try {
-            stmVideojuego=con.prepareStatement("insert into videojuego(id, nombre, fechasubida, id_usreditor, descripcion) "+
-                                            "values (?,?,?,?,?)");
-            // Obtener la fecha actual como un objeto java.sql.Date
-            Date fechaActual = new Date(System.currentTimeMillis());
+            stmVideojuego = con.prepareStatement("insert into videojuego(nombre, fechasubida, id_usreditor, precio, descripcion, imagen, banner, trailer) " +
+                    "values (?,?,?,?,?,?,?,?)");
 
-            v.setFechaSubida(fechaActual);
-            
-            stmVideojuego.setInt(1, v.getId());
-            stmVideojuego.setString(2, v.getNombre());
-            stmVideojuego.setDate(3, fechaActual);
-            stmVideojuego.setString(4, v.getEditor().getId());
+            stmVideojuego.setString(1, v.getNombre());
+            stmVideojuego.setDate(2, v.getFechaSubida());
+            stmVideojuego.setString(3, v.getEditor().getId());
+            stmVideojuego.setDouble(4, v.getPrecio());
             stmVideojuego.setString(5, v.getDescripcion());
+            stmVideojuego.setBytes(6, FachadaAplicacion.imageToBytes(v.getImagen()));
+            stmVideojuego.setBytes(7, FachadaAplicacion.imageToBytes(v.getBanner()));
+            stmVideojuego.setString(8, v.getTrailer());
+
             stmVideojuego.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
           FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public void updateVideojuego(Videojuego v) {
+        Connection con;
+        PreparedStatement stmVideojuego = null;
+
+        con = super.getConexion();
+
+        try {
+            stmVideojuego = con.prepareStatement("update videojuego set" +
+                    " nombre = ?," +
+                    " fechasubida = ?," +
+                    " id_usreditor = ?," +
+                    " precio = ?," +
+                    " descripcion = ?," +
+                    " imagen = ?," +
+                    " banner = ?," +
+                    " trailer = ?" +
+                    "where id = ?;");
+
+            stmVideojuego.setInt(9, v.getId());
+            stmVideojuego.setString(1, v.getNombre());
+            stmVideojuego.setDate(2, v.getFechaSubida());
+            stmVideojuego.setString(3, v.getEditor().getId());
+            stmVideojuego.setDouble(4, v.getPrecio());
+            stmVideojuego.setString(5, v.getDescripcion());
+            stmVideojuego.setBytes(6, FachadaAplicacion.imageToBytes(v.getImagen()));
+            stmVideojuego.setBytes(7, FachadaAplicacion.imageToBytes(v.getBanner()));
+            stmVideojuego.setString(8, v.getTrailer());
+
+            stmVideojuego.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmVideojuego.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
         }
     }
     
@@ -386,7 +430,7 @@ public class DAOVideojuegos extends AbstractDAO{
         String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, v.trailer\n" +
                 "   from videojuego v  \n" +
                 "   where fechasubida  > current_date\n" +
-                "   order by fechasubida desc\n" +
+                "   order by fechasubida\n" +
                 "   limit 1;";
 
         try{
@@ -441,10 +485,13 @@ public class DAOVideojuegos extends AbstractDAO{
             stmVideojuego.setString(1, id_editor);
             rsVideojuegos = stmVideojuego.executeQuery();
             while (rsVideojuegos.next()) {
+                Editor e = new Editor(rsVideojuegos.getString("id_usreditor"));
                 Videojuego videojuego = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
-                        rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
-                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
-                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")), rsVideojuegos.getString("trailer"));
+                        rsVideojuegos.getDate("fechasubida"), e,
+                        rsVideojuegos.getString("descripcion"), rsVideojuegos.getDouble("precio"),
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")),
+                        rsVideojuegos.getString("trailer"));
 
                 resultado.add(videojuego);
             }

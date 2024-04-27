@@ -35,14 +35,14 @@ public class FachadaGUI extends Application {
         fa = new FachadaAplicacion(this);
 
         this.primaryStage = primaryStage;
-        this.primaryStage.setMinWidth(1000);
-        this.primaryStage.setMaxWidth(1000);
-        this.primaryStage.setMinHeight(630);
-        this.primaryStage.setMaxHeight(630);
+        //this.primaryStage.setMinWidth(1000);
+        //this.primaryStage.setMaxWidth(1000);
+        //this.primaryStage.setMinHeight(630);
+        //this.primaryStage.setMaxHeight(630);
         showLoginWindow();
     }
 
-    private <T extends Controller> T loadFXML(String fxmlFile, String windowTitle, Class<T> controllerClass) {
+    private <T extends Controller> T loadFXML(String fxmlFile, String windowTitle, Stage stage, Class<T> controllerClass) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             T controllerInstance = controllerClass.getDeclaredConstructor().newInstance();
@@ -51,10 +51,11 @@ public class FachadaGUI extends Application {
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
+            if (stage == null) stage = primaryStage;
+            stage.setScene(scene);
             if (windowTitle == null) windowTitle = "Stim";
-            primaryStage.setTitle(windowTitle);
-            primaryStage.show();
+            stage.setTitle(windowTitle);
+            stage.show();
 
             return controllerInstance;
         } catch (IOException | NoSuchMethodException | IllegalAccessException |
@@ -79,13 +80,13 @@ public class FachadaGUI extends Application {
 
 
     public void showLoginWindow() {
-        LogInWController logInWController = loadFXML("/com/bdii/stimfx/gui/loginW.fxml", "Iniciar sesión", LogInWController.class);
+        LogInWController logInWController = loadFXML("/com/bdii/stimfx/gui/loginW.fxml", "Iniciar sesión", null, LogInWController.class);
         assert logInWController != null;
         logInWController.setMainApp(this);
     }
 
     public void showSigninScene() {
-        SignInWController signInWController = loadFXML("/com/bdii/stimfx/gui/signinW.fxml", "Registrarse", SignInWController.class);
+        SignInWController signInWController = loadFXML("/com/bdii/stimfx/gui/signinW.fxml", "Registrarse", null, SignInWController.class);
         assert signInWController != null;
         signInWController.setMainApp(this);
     }
@@ -96,12 +97,12 @@ public class FachadaGUI extends Application {
         if(createWindow)
         {
             primaryStage = new Stage();
-            this.primaryStage.setMinWidth(1250);
-            this.primaryStage.setMaxWidth(1250);
-            this.primaryStage.setMinHeight(785);
-            this.primaryStage.setMaxHeight(785);
+            //this.primaryStage.setMinWidth(1250);
+            //this.primaryStage.setMaxWidth(1250);
+            //this.primaryStage.setMinHeight(785);
+            //this.primaryStage.setMaxHeight(785);
         }
-        MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", null, MainWController.class);
+        MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", null, null, MainWController.class);
         assert mainWController != null;
         mainWController.setMainApp(this);
 
@@ -109,27 +110,27 @@ public class FachadaGUI extends Application {
     }
 
     public void showProfileScene() {
-        ProfileWController profileWController = loadFXML("/com/bdii/stimfx/gui/profileW.fxml", null, ProfileWController.class);
+        ProfileWController profileWController = loadFXML("/com/bdii/stimfx/gui/profileW.fxml", null, null, ProfileWController.class);
         assert profileWController != null;
         profileWController.setMainApp(this);
     }
 
     public void showLibraryScene() {
-        LibraryWController libraryWController = loadFXML("/com/bdii/stimfx/gui/libraryW.fxml", null, LibraryWController.class);
+        LibraryWController libraryWController = loadFXML("/com/bdii/stimfx/gui/libraryW.fxml", null, null, LibraryWController.class);
         assert libraryWController != null;
         libraryWController.setMainApp(this);
         libraryWController.initializeWindow();
     }
 
     public void showSocialScene() {
-        SocialWController socialWController = loadFXML("/com/bdii/stimfx/gui/socialW.fxml", null, SocialWController.class);
+        SocialWController socialWController = loadFXML("/com/bdii/stimfx/gui/socialW.fxml", null, null, SocialWController.class);
         assert socialWController != null;
         socialWController.setMainApp(this);
         socialWController.load();
     }
 
     public void showSettingsScene() {
-        SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, SettingsWController.class);
+        SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, null, SettingsWController.class);
         assert settingsWController != null;
         settingsWController.setMainApp(this);
     }
@@ -142,7 +143,7 @@ public class FachadaGUI extends Application {
         this.primaryStage.setWidth(1920);
         this.primaryStage.setHeight(1105);
 
-        LoadGameWController loadGameWController = loadFXML("/com/bdii/stimfx/gui/loadGameW.fxml", null, LoadGameWController.class);
+        LoadGameWController loadGameWController = loadFXML("/com/bdii/stimfx/gui/loadGameW.fxml", null, null, LoadGameWController.class);
         assert loadGameWController != null;
         loadGameWController.setMainApp(this);
 
@@ -151,7 +152,7 @@ public class FachadaGUI extends Application {
 
     public void showSearchScene(String search)
     {
-        MainSearchWController mainSearchWController = loadFXML("/com/bdii/stimfx/gui/mainSearchW.fxml", null, MainSearchWController.class);
+        MainSearchWController mainSearchWController = loadFXML("/com/bdii/stimfx/gui/mainSearchW.fxml", null, null, MainSearchWController.class);
         assert mainSearchWController != null;
         mainSearchWController.setMainApp(this);
         mainSearchWController.setSearchBar(search);
@@ -160,7 +161,7 @@ public class FachadaGUI extends Application {
 
     public void showGameScene(Videojuego v)
     {
-        GameWController gameWController = loadFXML("/com/bdii/stimfx/gui/gameW.fxml", null, GameWController.class);
+        GameWController gameWController = loadFXML("/com/bdii/stimfx/gui/gameW.fxml", null, null, GameWController.class);
         assert gameWController != null;
         gameWController.setMainApp(this);
         gameWController.setVideojuego(v);
@@ -170,7 +171,7 @@ public class FachadaGUI extends Application {
 
     public void showGameLibraryScene(Videojuego v)
     {
-        LibraryGameWController libraryGameWController = loadFXML("/com/bdii/stimfx/gui/libraryGameW.fxml", null, LibraryGameWController.class);
+        LibraryGameWController libraryGameWController = loadFXML("/com/bdii/stimfx/gui/libraryGameW.fxml", null, null, LibraryGameWController.class);
         assert libraryGameWController != null;
         libraryGameWController.setMainApp(this);
         libraryGameWController.initializeWindow(v);
@@ -178,17 +179,27 @@ public class FachadaGUI extends Application {
 
     public void showCommunityScene()
     {
-        CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, CommunityWController.class);
+        CommunityWController communityWController = loadFXML("/com/bdii/stimfx/gui/communityW.fxml", null, null, CommunityWController.class);
         assert communityWController != null;
         communityWController.setMainApp(this);
         communityWController.load();
     }
 
     public void showEditScene() {
-        EditWController editWController = loadFXML("/com/bdii/stimfx/gui/editW.fxml", null, EditWController.class);
+        EditWController editWController = loadFXML("/com/bdii/stimfx/gui/editW.fxml", null, null, EditWController.class);
         assert editWController != null;
         editWController.setMainApp(this);
         editWController.initializeWindow();
+    }
+
+    public void showEditGameWindow(Videojuego v) {
+        Stage s = new Stage();
+        s.setResizable(false);
+
+        EditGameWController editGameWController = loadFXML("/com/bdii/stimfx/gui/editGameW.fxml", null, s, EditGameWController.class);
+        assert editGameWController != null;
+        editGameWController.setMainApp(this);
+        editGameWController.initializeWindow(v, s);
     }
 
 

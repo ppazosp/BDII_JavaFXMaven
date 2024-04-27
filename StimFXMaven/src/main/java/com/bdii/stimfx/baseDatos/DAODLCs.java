@@ -124,7 +124,7 @@ public class DAODLCs extends AbstractDAO {
         con = this.getConexion();
 
         String consulta = "select * " +
-                "from dlc  d join comprardlc cd on d.id_videojuego = cd.id_videojuego" +//tabla comprar dlc
+                "from dlc  d inner join comprardlc cd on d.id_dlc = cd.id_dlc" +//tabla comprar dlc
                 " where d.id_videojuego = ? and id_usr = ?";
 
 

@@ -185,8 +185,9 @@
                     <VBox fx:id="gamesVbox" prefHeight="598.0" prefWidth="934.0" spacing="5.0"
                           style="-fx-background-color: FFFFFF;">
                         <children>
-                            <VBox fx:id="addVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="151.0"
-                                  spacing="5.0" style="-fx-background-radius: 10;" stylesheets="@../css/styles.css">
+                            <VBox fx:id="addVbox" alignment="TOP_CENTER" onMouseClicked="#editGame" prefHeight="200.0"
+                                  prefWidth="151.0" spacing="5.0" style="-fx-background-radius: 10;"
+                                  stylesheets="@../css/styles.css">
                                 <children>
                                     <ImageView fx:id="iconImage1" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true"
                                                preserveRatio="true">

@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.List;
@@ -61,10 +62,11 @@ public class LibraryGameWController implements Controller{
         dateLabel.setText("Fecha de adquisicion: "+game.getFechaSubida().toString());
         descrpArea.setText(game.getDescripcion());
 
-        List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
+        List<DLC> dlcList = fg.fa.consultarDLCsVideojuegoUsuario(game, fg.fa.usuario);
         dlcVbox.getChildren().clear();
-        for (DLC d : dlcList) { // Add 10 instances as an example
+        for (DLC d : dlcList) {
             Label dlcName = new Label(d.getNombre());
+            dlcName.setTextFill(Color.WHITE);
             dlcVbox.getChildren().add(dlcName);
         }
         if (dlcList.isEmpty()) extraContentVbox.setVisible(false);

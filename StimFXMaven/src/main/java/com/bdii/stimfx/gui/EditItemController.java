@@ -22,6 +22,8 @@ public class EditItemController implements Controller {
     Label dateLabel;
 
     public void initializeWindow(Videojuego game) {
+        this.game = game;
+
         iconImage.setImage(game.getImagen());
         nameLabel.setText(game.getNombre());
         dateLabel.setText(game.getFechaSubida().toString());
@@ -30,7 +32,7 @@ public class EditItemController implements Controller {
 
     @FXML
     public void editGame(MouseEvent event) {
-
+        fg.showEditGameWindow(game);
     }
 
     public void setMainApp(FachadaGUI fg) {

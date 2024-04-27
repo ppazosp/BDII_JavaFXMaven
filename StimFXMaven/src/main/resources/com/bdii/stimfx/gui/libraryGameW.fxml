@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
@@ -180,9 +174,11 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Label>
-               <ScrollPane hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0" vbarPolicy="ALWAYS">
+                <ScrollPane hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0"
+                            style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                   <content>
-                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0" />
+                      <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0"
+                            style="-fx-background-color: FFFFFF;"/>
                   </content>
                </ScrollPane>
             </children>
@@ -241,12 +237,10 @@
                      <HBox prefHeight="2.0" prefWidth="660.0" />
                      <HBox prefHeight="224.0" prefWidth="660.0" spacing="50.0">
                         <children>
-                           <ScrollPane hbarPolicy="NEVER" prefHeight="205.0" prefWidth="469.0" vbarPolicy="ALWAYS">
-                              <content>
-                                 <TextArea fx:id="descrpArea" editable="false" focusTraversable="false" prefHeight="201.0" prefWidth="390.0" wrapText="true" />
-                              </content>
-                           </ScrollPane>
-                           <VBox fx:id="extraContentVbox" prefHeight="205.0" prefWidth="265.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: FFFFFF; -fx-border-width: 2;" visible="false">
+                            <TextArea fx:id="descrpArea" editable="false" focusTraversable="false" prefHeight="201.0"
+                                      prefWidth="490.0" wrapText="true"/>
+                            <VBox fx:id="extraContentVbox" prefHeight="205.0" prefWidth="265.0" spacing="10.0"
+                                  style="-fx-background-color: #1B2631; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: FFFFFF; -fx-border-width: 2;">
                               <children>
                                  <VBox prefHeight="278.0" prefWidth="185.0" spacing="10.0">
                                     <children>
