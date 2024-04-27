@@ -184,6 +184,14 @@ public class FachadaGUI extends Application {
         communityWController.load();
     }
 
+    public void showEditScene() {
+        EditWController editWController = loadFXML("/com/bdii/stimfx/gui/editW.fxml", null, EditWController.class);
+        assert editWController != null;
+        editWController.setMainApp(this);
+        editWController.initializeWindow();
+    }
+
+
 
 
     public static void main(String[] args) {

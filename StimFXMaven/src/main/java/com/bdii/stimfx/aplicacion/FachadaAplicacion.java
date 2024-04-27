@@ -435,6 +435,10 @@ public class FachadaAplicacion {
         return gv.tieneVideojuego(usuario, videojuego);
     }
 
+    public List<Videojuego> consultarVideosjuegosEditor(String id_editor) {
+        return fbd.consultarVideosjuegosEditor(id_editor);
+    }
+
     public void comprarDLC(DLC d, Usuario u){
         gd.comprarDLC(d, u);
     }

@@ -1,15 +1,16 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.*;
+import com.bdii.stimfx.aplicacion.Demo;
+import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -225,7 +226,7 @@ public class MainWController implements Controller, Initializable {
     @FXML
     public void showEditScene(MouseEvent event)
     {
-
+        fg.showEditScene();
     }
 
     @FXML

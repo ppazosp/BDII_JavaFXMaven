@@ -3,16 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.Connection;
-import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.Editor;
-import com.bdii.stimfx.aplicacion.DLC;
 
+import com.bdii.stimfx.aplicacion.DLC;
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
+import com.bdii.stimfx.aplicacion.Videojuego;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 /**
  *
@@ -46,7 +42,7 @@ public class DAODLCs extends AbstractDAO {
             stmDLC.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
                 stmDLC.close();
@@ -69,7 +65,7 @@ public class DAODLCs extends AbstractDAO {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
                 stmDLC.close();
@@ -105,7 +101,7 @@ public class DAODLCs extends AbstractDAO {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
                 stmDLC.close();
@@ -129,22 +125,22 @@ public class DAODLCs extends AbstractDAO {
 
         String consulta = "select * " +
                 "from dlc  d join comprardlc cd on d.id_videojuego = cd.id_videojuego" +//tabla comprar dlc
-                " where id_videojuego = ? and id_usr = ?";
+                " where d.id_videojuego = ? and id_usr = ?";
 
 
         try {
             stmDLC = con.prepareStatement(consulta);
             stmDLC.setInt(1, id_v);
-            stmDLC.setString(1, id_u);
+            stmDLC.setString(2, id_u);
             rsDLC = stmDLC.executeQuery();
             while (rsDLC.next()) {
-                dlcActual = new DLC(id_v, rsDLC.getInt("d.id_dlc"), rsDLC.getString("d.nombre"),
-                        rsDLC.getString("d.descripcion"), rsDLC.getInt("d.precio"), rsDLC.getDate("d.fecha_lanzamiento"));
+                dlcActual = new DLC(id_v, rsDLC.getInt("id_dlc"), rsDLC.getString("nombre"),
+                        rsDLC.getString("descripcion"), rsDLC.getInt("precio"), rsDLC.getDate("fecha_lanzamiento"));
                 resultado.add(dlcActual);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
                 stmDLC.close();
@@ -176,7 +172,7 @@ public class DAODLCs extends AbstractDAO {
             stmDLC.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
                 stmDLC.close();
@@ -201,7 +197,7 @@ public class DAODLCs extends AbstractDAO {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
                 stmDLC.close();

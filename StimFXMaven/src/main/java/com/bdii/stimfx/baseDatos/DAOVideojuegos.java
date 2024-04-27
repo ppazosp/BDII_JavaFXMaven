@@ -3,18 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.Connection;
 
+import com.bdii.stimfx.aplicacion.DLC;
+import com.bdii.stimfx.aplicacion.Editor;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.Editor;
-import com.bdii.stimfx.aplicacion.DLC;
-
 
 import java.sql.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -48,7 +45,7 @@ public class DAOVideojuegos extends AbstractDAO{
             stmVideojuego.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -67,7 +64,7 @@ public class DAOVideojuegos extends AbstractDAO{
         
         }catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -96,7 +93,7 @@ public class DAOVideojuegos extends AbstractDAO{
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -240,7 +237,7 @@ public class DAOVideojuegos extends AbstractDAO{
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmPlataformas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -270,7 +267,7 @@ public class DAOVideojuegos extends AbstractDAO{
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -427,5 +424,40 @@ public class DAOVideojuegos extends AbstractDAO{
         }
         return resultado;
     }
-    
+
+    public List<Videojuego> consultarVideojuegosEditor(String id_editor) {
+        List<Videojuego> resultado = new ArrayList<>();
+        Connection con;
+        PreparedStatement stmVideojuego = null;
+        ResultSet rsVideojuegos;
+
+        con = this.getConexion();
+
+        try {
+            stmVideojuego = con.prepareStatement("   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, v.trailer " +
+                    "   from videojuego v " +
+                    "   where v.id_usreditor = ? ");
+
+            stmVideojuego.setString(1, id_editor);
+            rsVideojuegos = stmVideojuego.executeQuery();
+            while (rsVideojuegos.next()) {
+                Videojuego videojuego = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
+                        rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
+                        rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")), rsVideojuegos.getString("trailer"));
+
+                resultado.add(videojuego);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmVideojuego.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
 }

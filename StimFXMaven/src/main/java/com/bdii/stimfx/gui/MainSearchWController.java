@@ -74,13 +74,13 @@ public class MainSearchWController implements Controller {
     @FXML
     public void showCommunityScene(MouseEvent event)
     {
-
+        fg.showCommunityScene();
     }
 
     @FXML
     public void showEditScene(MouseEvent event)
     {
-
+        fg.showEditScene();
     }
 
     @FXML

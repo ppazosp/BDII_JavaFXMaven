@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="itemVbox" alignment="CENTER" onMouseClicked="#editGame" prefHeight="200.0" prefWidth="151.0"
+      spacing="5.0" style="-fx-background-radius: 10;" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/21" fx:controller="com.bdii.stimfx.gui.EditItemController">
+    <children>
+        <ImageView fx:id="iconImage" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true"/>
+        <HBox alignment="CENTER" prefHeight="39.0" prefWidth="100.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0" spacing="3.0">
+                    <children>
+                        <Label fx:id="nameLabel" alignment="CENTER" prefHeight="3.0" prefWidth="100.0" text="XXXXX"
+                               textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0"
+                               prefWidth="100.0" text="xxxxxx" textFill="WHITE"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <styleClass>
+        <String fx:value="primary-color"/>
+        <String fx:value="selected"/>
+    </styleClass>
+</VBox>

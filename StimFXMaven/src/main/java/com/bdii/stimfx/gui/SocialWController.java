@@ -1,16 +1,12 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Comunidad;
 import com.bdii.stimfx.aplicacion.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -111,7 +107,7 @@ public class SocialWController implements Controller{
     @FXML
     public void showEditScene(MouseEvent event)
     {
-
+        fg.showEditScene();
     }
 
     @FXML

@@ -312,6 +312,10 @@ public class FachadaBaseDatos {
         return daoComunidades.tieneComunidad(usr_id);
     }
 
+    public List<Videojuego> consultarVideosjuegosEditor(String id_editor) {
+        return daoV.consultarVideojuegosEditor(id_editor);
+    }
+
 
     // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
     public void hashAllPasswords() {

@@ -182,15 +182,9 @@ public class CommunityWController implements Controller {
     }
 
     @FXML
-    public void showCommunityScene(MouseEvent event)
-    {
-
-    }
-
-    @FXML
     public void showEditScene(MouseEvent event)
     {
-
+        fg.showEditScene();
     }
 
     @FXML

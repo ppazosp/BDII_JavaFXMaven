@@ -103,7 +103,7 @@ public class LibraryGameWController implements Controller{
     @FXML
     public void showEditScene(MouseEvent event)
     {
-
+        fg.showEditScene();
     }
 
     @FXML

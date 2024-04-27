@@ -101,7 +101,7 @@ public class ProfileWController implements Controller, Initializable {
     @FXML
     public void showEditScene(MouseEvent event)
     {
-
+        fg.showEditScene();
     }
 
     @FXML

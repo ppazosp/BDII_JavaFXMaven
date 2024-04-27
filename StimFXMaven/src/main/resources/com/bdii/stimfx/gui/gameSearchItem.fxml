@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<HBox alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="59.0" prefWidth="950.0" spacing="10.0" style="-fx-border-width: 5; -fx-background-radius: 30; -fx-border-radius: 25; -fx-border-color: AEB6BF; -fx-background-color: FFFFFF;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.GameSearchItemController">
+<?import java.lang.String?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="59.0" prefWidth="950.0"
+      spacing="10.0"
+      style="-fx-border-width: 5; -fx-background-radius: 30; -fx-border-radius: 25; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21"
+      fx:controller="com.bdii.stimfx.gui.GameSearchItemController">
    <children>
       <ImageView fx:id="iconImage" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
@@ -16,12 +18,16 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="70.0" prefWidth="515.0">
          <children>
-            <Label fx:id="nameLabel" prefHeight="34.0" prefWidth="500.0" text="xxxxxxxxxxxxx">
+             <Label fx:id="nameLabel" prefHeight="21.0" prefWidth="488.0" text="xxxxxxxxxxxxx">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <HBox fx:id="iconsHbox" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="492.0" spacing="2.0" />
+             <HBox fx:id="iconsHbox" prefHeight="47.0" prefWidth="488.0" spacing="2.0">
+                 <VBox.margin>
+                     <Insets bottom="5.0"/>
+                 </VBox.margin>
+             </HBox>
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="44.0" prefWidth="400.0">
@@ -55,4 +61,8 @@
    <padding>
       <Insets right="5.0" />
    </padding>
+    <styleClass>
+        <String fx:value="secondary-color"/>
+        <String fx:value="selected2"/>
+    </styleClass>
 </HBox>

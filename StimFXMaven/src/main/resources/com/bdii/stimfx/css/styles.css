@@ -23,3 +23,7 @@
 .selected:hover{
     -fx-background-color: #AEB6BF;
 }
+
+.selected2:hover {
+    -fx-background-color: #CFD7E0;
+}
