@@ -179,9 +179,9 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Label>
-               <ScrollPane focusTraversable="false" hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0" vbarPolicy="ALWAYS">
+               <ScrollPane focusTraversable="false" hbarPolicy="ALWAYS" layoutX="21.0" layoutY="69.0" prefHeight="679.0" prefWidth="254.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                   <content>
-                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0" />
+                     <VBox fx:id="gamesVbox" prefHeight="662.0" prefWidth="237.0" spacing="3.0" style="-fx-background-color: FFFFFF;" />
                   </content>
                </ScrollPane>
             </children>
