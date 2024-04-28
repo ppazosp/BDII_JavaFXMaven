@@ -160,7 +160,7 @@ public class DAOUsuarios extends AbstractDAO{
 
         try  {
             stmUsuarios=con.prepareStatement("select * from usuario u " +
-                    " where (u.id like ? or u.nombre like ?) and u.id not in " +
+                    " where (LOWER(u.id) like LOWER(?) or LOWER(u.nombre) like LOWER(?)) and u.id not in " +
                     "(select id_usr2 from ser_amigo " +
                     "where id_usr1 like ?) and u.id not like ?");
 

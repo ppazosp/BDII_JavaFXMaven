@@ -75,7 +75,7 @@ public class DAOComunidades extends AbstractDAO{
 
         String consulta = "select * from comunidad ";
 
-        if (nombre != null) consulta += "where nombre like ? ";
+        if (nombre != null) consulta += "where LOWER(nombre) like LOWER(?) ";
 
 
         try  {

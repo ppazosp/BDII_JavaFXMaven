@@ -209,7 +209,7 @@ public class DAOVideojuegos extends AbstractDAO{
         //Cambiar consulta para q devulva tb nombre de usuario
         String consulta = "select * " +
                                          "from videojuego as v join editor e on e.id= v.id_usreditor join usuario u on u.id = e.id and "+
-                                         " v.nombre like ?";
+                                         " LOWER(v.nombre) like LOWER(?)";
 
         try  {
         stmCatalogo= con.prepareStatement(consulta);
