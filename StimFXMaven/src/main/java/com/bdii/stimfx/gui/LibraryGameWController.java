@@ -2,6 +2,7 @@ package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -38,38 +39,48 @@ public class LibraryGameWController implements Controller{
 
     public void initializeWindow(Videojuego game)
     {
-        List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
-        gamesVbox.getChildren().clear();
-        gamesVbox.setSpacing(2);
+        fg.loading();
 
-        try {
-            for (Videojuego v : userGames) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/librarySearchItem.fxml"));
-                gamesVbox.getChildren().add(loader.load());
+        new Thread(() -> {
 
-                LibrarySearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(v);
-                controller.setDisable(v.getId() == game.getId());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
+            List<DLC> dlcList = fg.fa.consultarDLCsVideojuegoUsuario(game, fg.fa.usuario);
 
-        bannerImage.setImage(game.getBanner());
-        nameLabel.setText(game.getNombre());
-        //CAMBIAR POR FECHA COMPRA
-        dateLabel.setText("Fecha de adquisicion: "+game.getFechaSubida().toString());
-        descrpArea.setText(game.getDescripcion());
+            Platform.runLater(() -> {
+                gamesVbox.getChildren().clear();
+                gamesVbox.setSpacing(2);
 
-        List<DLC> dlcList = fg.fa.consultarDLCsVideojuegoUsuario(game, fg.fa.usuario);
-        dlcVbox.getChildren().clear();
-        for (DLC d : dlcList) {
-            Label dlcName = new Label(d.getNombre());
-            dlcName.setTextFill(Color.WHITE);
-            dlcVbox.getChildren().add(dlcName);
-        }
-        if (dlcList.isEmpty()) extraContentVbox.setVisible(false);
+                try {
+                    for (Videojuego v : userGames) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/librarySearchItem.fxml"));
+                        gamesVbox.getChildren().add(loader.load());
+
+                        LibrarySearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(v);
+                        controller.setDisable(v.getId() == game.getId());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                bannerImage.setImage(game.getBanner());
+                nameLabel.setText(game.getNombre());
+                //CAMBIAR POR FECHA COMPRA
+                dateLabel.setText("Fecha de adquisicion: "+game.getFechaSubida().toString());
+                descrpArea.setText(game.getDescripcion());
+
+                dlcVbox.getChildren().clear();
+                for (DLC d : dlcList) {
+                    Label dlcName = new Label(d.getNombre());
+                    dlcName.setTextFill(Color.WHITE);
+                    dlcVbox.getChildren().add(dlcName);
+                }
+                if (dlcList.isEmpty()) extraContentVbox.setVisible(false);
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     @FXML

@@ -52,6 +52,7 @@ public class Videojuego {
         this.imagen = imagen;
         this.banner = banner;
         this.trailer = trailer;
+        this.DLCs = new ArrayList<>();
     }
 
     public Videojuego(int id, String nombre, Date fechaSubida, Editor editor, String descripcion, double precio, Image imagen, Image banner, String trailer) {
@@ -64,6 +65,7 @@ public class Videojuego {
         this.imagen = imagen;
         this.banner = banner;
         this.trailer = trailer;
+        this.DLCs = new ArrayList<>();
     }
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio,List<DLC> DLCs) {
@@ -107,7 +109,7 @@ public class Videojuego {
     }
     
     public void addDLC(DLC dlc){
-        DLCs.add(dlc);
+        this.DLCs.add(dlc);
     }
 
     public int getId() {

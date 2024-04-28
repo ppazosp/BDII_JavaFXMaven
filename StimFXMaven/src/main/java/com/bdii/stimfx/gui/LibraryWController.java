@@ -1,6 +1,7 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +21,11 @@ public class LibraryWController implements Controller{
 
         fg.loading();
 
-        Task<Void> loadGamesTask = new Task<Void>() {
-            @Override
-            protected Void call() {
-                List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
-                gamesVbox.getChildren().clear();
+        new Thread(() ->{
 
-                System.out.println("Thread is running: " + isRunning());
+            List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
+            Platform.runLater(() -> {
+                gamesVbox.getChildren().clear();
 
                 try {
                     for (Videojuego v : userGames) {
@@ -42,17 +41,8 @@ public class LibraryWController implements Controller{
                 }
 
                 fg.loaded();
-
-                return null;
-            }
-        };
-        Thread t = new Thread(loadGamesTask);
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+            });
+        }).start();
     }
 
     @FXML

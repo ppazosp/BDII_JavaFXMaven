@@ -1,7 +1,9 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Comunidad;
+import com.bdii.stimfx.aplicacion.Plataforma;
 import com.bdii.stimfx.aplicacion.Usuario;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -43,17 +45,33 @@ public class SocialSearchItemController implements Controller {
     @FXML
     public void followUser(MouseEvent event)
     {
-        fg.fa.seguir(fg.fa.usuario, user);
+        fg.loading();
 
-        superController.load();
+        new Thread(() -> {
+            fg.fa.seguir(fg.fa.usuario, user);
+
+            Platform.runLater(() -> {
+                superController.load();
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     @FXML
     public void unfollowUser(MouseEvent event)
     {
-        fg.fa.dejarSeguir(fg.fa.usuario, user);
+        fg.loading();
 
-        superController.load();
+        new Thread(() -> {
+            fg.fa.dejarSeguir(fg.fa.usuario, user);
+
+            Platform.runLater(() -> {
+                superController.load();
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     public void setMainApp(FachadaGUI fg)

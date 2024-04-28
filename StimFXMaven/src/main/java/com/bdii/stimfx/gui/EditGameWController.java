@@ -2,6 +2,7 @@ package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Editor;
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -57,7 +58,11 @@ public class EditGameWController implements Controller {
 
     @FXML
     public void publishEdit(MouseEvent event) {
-        Videojuego v = new Videojuego(
+        window.close();
+        fg.loading();
+
+            new Thread(() -> {
+                Videojuego v = new Videojuego(
                 (game != null) ? game.getId() : -1,
                 nameField.getText(),
                 Date.valueOf(datePicker.getValue()),
@@ -66,10 +71,10 @@ public class EditGameWController implements Controller {
                 iconImage.getImage(),
                 bannerImage.getImage(),
                 trailerField.getText());
+                fg.fa.publicarVideojuego(v);
 
-        fg.fa.publicarVideojuego(v);
-        fg.showEditScene();
-        window.close();
+                Platform.runLater(() -> fg.showEditScene());
+            }).start();
     }
 
     @FXML

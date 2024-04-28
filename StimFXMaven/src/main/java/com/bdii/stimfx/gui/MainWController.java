@@ -2,6 +2,7 @@ package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Demo;
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +21,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainWController implements Controller, Initializable {
+public class MainWController implements Controller {
 
     FachadaGUI fg;
 
@@ -119,81 +120,83 @@ public class MainWController implements Controller, Initializable {
     @FXML
     HBox adminMenu;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initializeWindow() {
         //if(!(fg.fa.usuario instanceof UsuarioJugadorCompetitivo)) menuBar.getChildren().remove(comMenu);
         //if(!(fg.fa.usuario instanceof UsuarioEditor)) menuBar.getChildren().remove(editMenu);
         //if(!(fg.fa.usuario instanceof UsuarioAdministrador)) menuBar.getChildren().remove(adminMenu);
 
         fg.loading();
 
-        demoGame = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
-        if(demoGame != null) {
-            demoIconImage.setImage(demoGame.getImagen());
-            demoNameLabel.setText(demoGame.getNombre());
-        }
+        new Thread(() ->{
 
-        nextLaunchGame = fg.fa.proximoVideojuego();
-        if (nextLaunchGame != null) {
-            launchIconImage.setImage(nextLaunchGame.getImagen());
-            launchNameLabel.setText(nextLaunchGame.getNombre());
-            fg.showPlatforms(nextLaunchGame, launchIconsHbox);
-            long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunchGame.getFechaSubida().toLocalDate());
-            launchDaysLabel.setText(Long.toString(daysToLaunch));
-        }else {
-            rightPane.getChildren().remove(nextLaunchVbox);
-            nextLaunchVbox= null;
-            topSellersVbox.setLayoutX(200);
-        }
+            demoGame = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+            nextLaunchGame = fg.fa.proximoVideojuego();
+            List<Videojuego> topSellers = fg.fa.consultaVideoJuegosInicio();
 
-        List<Videojuego> topSellers = fg.fa.consultaVideoJuegosInicio();
-        if(topSellers != null)
-        {
-            if(topSellers.get(0)!= null) {
-                top1Game = topSellers.get(0);
-                top1IconImage.setImage(top1Game.getImagen());
-                top1NameLabel.setText(top1Game.getNombre());
-                fg.showPlatforms(top1Game, top1IconsHbox);
-                top1DateLabel.setText(top1Game.getFechaSubida().toString());
-                top1PriceLabel.setText(top1Game.getPrecio() + "€");
-            }else
-            {
-                topSellersVbox.getChildren().remove(top1Hbox);
-                top1Hbox = null;
-            }
+            Platform.runLater(() -> {
 
-            if(topSellers.get(1)!= null) {
-                top2Game = topSellers.get(1);
-                top2IconImage.setImage(top2Game.getImagen());
-                top2NameLabel.setText(top2Game.getNombre());
-                fg.showPlatforms(top2Game, top2IconsHbox);
-                top2DateLabel.setText(top2Game.getFechaSubida().toString());
-                top2PriceLabel.setText(top2Game.getPrecio() + "€");
-            }else
-            {
-                topSellersVbox.getChildren().remove(top2Hbox);
-                top2Hbox = null;
-            }
+                if (demoGame != null) {
+                    demoIconImage.setImage(demoGame.getImagen());
+                    demoNameLabel.setText(demoGame.getNombre());
+                }
 
-            if(topSellers.get(2)!= null) {
-                top3Game = topSellers.get(2);
-                top3IconImage.setImage(top3Game.getImagen());
-                top3NameLabel.setText(top3Game.getNombre());
-                fg.showPlatforms(top3Game, top3IconsHbox);
-                top3DateLabel.setText(top3Game.getFechaSubida().toString());
-                top3PriceLabel.setText(top3Game.getPrecio()+"€");
-            }else
-            {
-                topSellersVbox.getChildren().remove(top3Hbox);
-                top3Hbox = null;
-            }
-        }else
-        {
-            rightPane.getChildren().remove(topSellersVbox);
-            if(nextLaunchVbox != null) nextLaunchVbox.setLayoutX(390);
-        }
+                if (nextLaunchGame != null) {
+                    launchIconImage.setImage(nextLaunchGame.getImagen());
+                    launchNameLabel.setText(nextLaunchGame.getNombre());
+                    fg.showPlatforms(nextLaunchGame, launchIconsHbox);
+                    long daysToLaunch = ChronoUnit.DAYS.between(LocalDate.now(ZoneId.systemDefault()), nextLaunchGame.getFechaSubida().toLocalDate());
+                    launchDaysLabel.setText(Long.toString(daysToLaunch));
+                } else {
+                    rightPane.getChildren().remove(nextLaunchVbox);
+                    nextLaunchVbox = null;
+                    topSellersVbox.setLayoutX(200);
+                }
 
-        fg.loaded();
+                if (topSellers != null) {
+                    if (topSellers.get(0) != null) {
+                        top1Game = topSellers.get(0);
+                        top1IconImage.setImage(top1Game.getImagen());
+                        top1NameLabel.setText(top1Game.getNombre());
+                        fg.showPlatforms(top1Game, top1IconsHbox);
+                        top1DateLabel.setText(top1Game.getFechaSubida().toString());
+                        top1PriceLabel.setText(top1Game.getPrecio() + "€");
+                    } else {
+                        topSellersVbox.getChildren().remove(top1Hbox);
+                        top1Hbox = null;
+                    }
+
+                    if (topSellers.get(1) != null) {
+                        top2Game = topSellers.get(1);
+                        top2IconImage.setImage(top2Game.getImagen());
+                        top2NameLabel.setText(top2Game.getNombre());
+                        fg.showPlatforms(top2Game, top2IconsHbox);
+                        top2DateLabel.setText(top2Game.getFechaSubida().toString());
+                        top2PriceLabel.setText(top2Game.getPrecio() + "€");
+                    } else {
+                        topSellersVbox.getChildren().remove(top2Hbox);
+                        top2Hbox = null;
+                    }
+
+                    if (topSellers.get(2) != null) {
+                        top3Game = topSellers.get(2);
+                        top3IconImage.setImage(top3Game.getImagen());
+                        top3NameLabel.setText(top3Game.getNombre());
+                        fg.showPlatforms(top3Game, top3IconsHbox);
+                        top3DateLabel.setText(top3Game.getFechaSubida().toString());
+                        top3PriceLabel.setText(top3Game.getPrecio() + "€");
+                    } else {
+                        topSellersVbox.getChildren().remove(top3Hbox);
+                        top3Hbox = null;
+                    }
+                } else {
+                    rightPane.getChildren().remove(topSellersVbox);
+                    if (nextLaunchVbox != null) nextLaunchVbox.setLayoutX(390);
+                }
+
+                fg.loaded();
+            });
+
+        }).start();
     }
 
 
