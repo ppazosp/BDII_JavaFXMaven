@@ -21,7 +21,6 @@ import java.util.List;
 
 public class FachadaGUI extends Application {
 
-    private static Scene scene;
     FachadaAplicacion fa;
 
     public FachadaGUI() {
@@ -29,6 +28,8 @@ public class FachadaGUI extends Application {
     }
 
     private Stage primaryStage;
+    private static Scene primaryScene;
+    private static Scene loadingScene;
 
     @Override
     public void start(Stage primaryStage) {
@@ -113,6 +114,7 @@ public class FachadaGUI extends Application {
         ProfileWController profileWController = loadFXML("/com/bdii/stimfx/gui/profileW.fxml", null, null, ProfileWController.class);
         assert profileWController != null;
         profileWController.setMainApp(this);
+        profileWController.initializeWindow();
     }
 
     public void showLibraryScene() {
