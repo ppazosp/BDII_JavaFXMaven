@@ -6,6 +6,13 @@ import javafx.scene.input.MouseEvent;
 public class AdminWController implements Controller {
     FachadaGUI fg;
 
+    public void initializeWindow()
+    {
+
+    }
+
+
+
     @FXML
     public void showProfileScene(MouseEvent event) {
         fg.showProfileScene();
