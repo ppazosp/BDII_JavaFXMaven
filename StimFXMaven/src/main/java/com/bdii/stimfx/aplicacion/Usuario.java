@@ -6,6 +6,8 @@ package com.bdii.stimfx.aplicacion;
 
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 /**
  *
  * @author alumnogreibd
@@ -69,5 +71,18 @@ public class Usuario {
 
     public Image getFotoPerfil() {
         return fotoPerfil;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

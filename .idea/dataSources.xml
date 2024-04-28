@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Stim" uuid="334df75a-9180-4119-ad96-342453dd03ed">
+    <data-source source="LOCAL" name="Stim" uuid="4d5ac17b-8ae3-484c-949f-5e76818f136c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-
+//PONER A TODOS LOS USUARIOS RESPONABILIDADES DE PASAR DE IMAGE A BYTES
 /**
  *
  * @author alumnogreibd
@@ -86,8 +86,8 @@ public class GestionUsuarios {
     public Usuario comprobarAutentificacion(String idUsuario, String clave){
         Usuario u;
         //hashear en el futuro
-        //String hashedPassword= hashPassword(clave);
-        u=fbd.validarUsuario(idUsuario, clave);
+        String hashedPassword= hashPassword(clave);
+        u=fbd.validarUsuario(idUsuario, hashedPassword);
         return u;
     }
 
@@ -98,7 +98,8 @@ public class GestionUsuarios {
             return null;
         }
         else{
-            usuario = new Usuario(id, clave, nombre, email);
+            String hashedPassword= hashPassword(clave);
+            usuario = new Usuario(id, hashedPassword, nombre, email);
             fbd.insertarUsuario(usuario);
         }
         return usuario;
@@ -110,15 +111,49 @@ public class GestionUsuarios {
     }
 
     //pasar id desde FA
-    public Usuario modificarUsuario(String id, String nombre, String clave, String email, Image imagen){
-        Usuario usuario = new Usuario(id, nombre, clave, email, imagen);
+    public Usuario modificarUsuario(String id, String nombre, String claveAntigua, String clave, String email, Image imagen){
+        Usuario usuario;
+        if (claveAntigua.equals(hashPassword(clave))){
+            usuario = new Usuario(id, nombre, clave, email, imagen);}
+        //Si cambio contraseña rehshear
+        else{
+            usuario = new Usuario(id, nombre, hashPassword(clave), email, imagen);
+        }
         return fbd.modificarUsuario(usuario);
     }
 
+    public java.util.List<Videojuego> consultarJuegosUsuario(int id_usuario){
+        java.util.List<Videojuego> resultado = new ArrayList<Videojuego>();
+        Videojuego videojuegoActual;
+        java.util.List<Integer> id_juegos = fbd.consultarJuegosUsuario(id_usuario);
+        for (Integer i : id_juegos){
+            videojuegoActual = fbd.consultarVideojuego(i);
+            resultado.add(videojuegoActual);
+        }
+        return resultado;
+    }
+    public java.util.List<String> consultarSeguidores(String idU2){
+        return fbd.consultarSeguidores(idU2);
+    }
 
     // Funcion para buscar usuarios en la base
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return fbd.consultarUsuarios(id, nombre);
+    }
+
+    public Integer contarJuegosUsuario(String id_usuario){
+        return fbd.contarJuegosUsuario(id_usuario);
+    }
+
+    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
+        return fbd.consultarVideojuegosUsuario(id);
+    }
+    public void bloquearSeguidor(String idU1, String idU2){
+        fbd.bloquearSeguidor(idU1, idU2);
+    }
+
+    public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){
+        return fbd.consultarUsuariosNoSeguidos(usuario.getId(), busq);
     }
 
     // Funciones para empezar a seguir a un usuario
@@ -133,13 +168,6 @@ public class GestionUsuarios {
 
     // Funcion para consultar a las personas que sigue un usuario // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRR
     public java.util.List<Usuario> consultarSeguidos(Usuario u1){
-        java.util.List<Usuario> resultado = new ArrayList<Usuario>();
-        Usuario usuarioActual;
-
-        List<Integer> idUsuarios = fbd.consultarSeguidos(u1.getId());
-        for (Integer i : idUsuarios) {
-            //usuarioActual = fbd.consultarUsuarios(i, null);
-        }
-        return resultado;
+        return fbd.consultarSeguidos(u1.getId());
     }
 }

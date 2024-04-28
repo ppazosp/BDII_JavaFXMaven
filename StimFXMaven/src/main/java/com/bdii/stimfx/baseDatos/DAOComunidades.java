@@ -32,9 +32,10 @@ public class DAOComunidades extends AbstractDAO{
         con=super.getConexion();
         
         try {
-            stmEquipo=con.prepareStatement("insert into comunidad(nombre) "+
-                                            "values (?)");
+            stmEquipo=con.prepareStatement("insert into comunidad(nombre, escudo) "+
+                                            "values (?,?)");
             stmEquipo.setString(1, c.getNombre());
+            stmEquipo.setBytes(2, FachadaAplicacion.imageToBytes(c.getEscudo()));
             stmEquipo.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -72,7 +73,7 @@ public class DAOComunidades extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select * from equipo_competitivo ";
+        String consulta = "select * from comunidad ";
 
         if (nombre != null) consulta += "where nombre like ? ";
 
@@ -83,7 +84,7 @@ public class DAOComunidades extends AbstractDAO{
             rsEquipos=stmEquipos.executeQuery();
             while (rsEquipos.next())
             {
-                comunidadActual = new Comunidad(rsEquipos.getString("nombre"));
+                comunidadActual = new Comunidad(rsEquipos.getString("nombre"),FachadaAplicacion.bytesToImage(rsEquipos.getBytes("escudo")));
 
                 resultado.add(comunidadActual);
             }
@@ -101,7 +102,7 @@ public class DAOComunidades extends AbstractDAO{
         return resultado;
     }
 
-    public void insertarJugadorEquipo(int id_usuario, Comunidad c){
+    public void insertarJugadorEquipo(String id_usuario, Comunidad c){
         Connection con;
         PreparedStatement stmEquipo=null;
 
@@ -109,14 +110,10 @@ public class DAOComunidades extends AbstractDAO{
 
         try {
             stmEquipo=con.prepareStatement("insert into forma_parte_equipo(id_jugador, nombre_equipo, fecha_inicio) "+
-                    "values (?,?,?)");
+                    "values (?,?, current_timestamp)");
 
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
-
-            stmEquipo.setInt(1, id_usuario);
+            stmEquipo.setString(1, id_usuario);
             stmEquipo.setString(2, c.getNombre());
-            stmEquipo.setDate(3, fechaActual);
             stmEquipo.executeUpdate();
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -126,7 +123,7 @@ public class DAOComunidades extends AbstractDAO{
         }
     }
 
-    public void salirJugadorEquipo(int id_usuario, Comunidad c){
+    public void salirJugadorEquipo(String id_usuario){
         Connection con;
         PreparedStatement stmEquipo=null;
 
@@ -134,15 +131,11 @@ public class DAOComunidades extends AbstractDAO{
 
         try {
             stmEquipo=con.prepareStatement("update forma_parte_equipo " +
-                                                "set fecha_fin = ? " +
-                                                "where id_jugador = ? and nombre_equipo = ? " +
+                                                "set fecha_fin = current_timestamp " +
+                                                "where id_jugador = ? " +
                                                 "and fecha_fin is null");
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
 
-            stmEquipo.setDate(1, fechaActual);
-            stmEquipo.setInt(2, id_usuario);
-            stmEquipo.setString(3, c.getNombre());
+            stmEquipo.setString(1, id_usuario);
             stmEquipo.executeUpdate();
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -152,7 +145,7 @@ public class DAOComunidades extends AbstractDAO{
         }
     }
 
-    public Comunidad consultarEquipoJugador(int id_usuario){
+    public Comunidad consultarEquipoJugador(String id_usuario){
         Comunidad resultado=null;
         Connection con;
         PreparedStatement stmEquipos=null;
@@ -161,13 +154,15 @@ public class DAOComunidades extends AbstractDAO{
         con=this.getConexion();
 
         try  {
-            stmEquipos=con.prepareStatement("select nombre_equipo from forma_parte_equipo " +
-                                                "where id_jugador like ? and fecha_fin is null");
-            stmEquipos.setInt(1, id_usuario);
+            stmEquipos=con.prepareStatement("select nombre, escudo from comunidad " +
+                                                "where nombre in " +
+                                                "(select nombre_equipo from forma_parte_equipo " +
+                                                "where id_jugador like ? and fecha_fin is null)");
+            stmEquipos.setString(1, id_usuario);
             rsEquipos=stmEquipos.executeQuery();
             while (rsEquipos.next())
             {
-                resultado = new Comunidad(rsEquipos.getString("nombre"));
+                resultado = new Comunidad(rsEquipos.getString("nombre"), FachadaAplicacion.bytesToImage(rsEquipos.getBytes("escudo")));
             }
 
         } catch (SQLException e){
@@ -238,6 +233,7 @@ public class DAOComunidades extends AbstractDAO{
             if (rsEquipos.next()) {
                 miembrosEquipo = rsEquipos.getInt(1);
             }
+
         }catch (SQLException e){
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
@@ -247,6 +243,34 @@ public class DAOComunidades extends AbstractDAO{
         return miembrosEquipo;
     }
 
+    public boolean tieneComunidad(String id_usr){
+        boolean tieneComunidad=false;
+        Connection con;
+        PreparedStatement stmEquipos=null;
+        ResultSet rsEquipos;
+
+        con=this.getConexion();
+
+        String consulta = "select * from forma_parte_equipo " +
+                "where  id_jugador = ? and fecha_fin is null";
+
+        try {
+            stmEquipos=con.prepareStatement(consulta);
+            stmEquipos.setString(1, id_usr);
+            rsEquipos=stmEquipos.executeQuery();
+
+            if (rsEquipos.next()) {
+               tieneComunidad= true;
+            }
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmEquipos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return tieneComunidad;
+    }
 
 }
 

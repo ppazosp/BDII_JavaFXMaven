@@ -14,13 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameWController implements Controller {
@@ -59,7 +56,11 @@ public class GameWController implements Controller {
     HBox reviewsHbox;
     @FXML
     HBox addHbox;
+    @FXML
+    Label buyLabel;
 
+    @FXML
+    List<DLCCheckItemController> itemsList;
 
     public void setVideojuego(Videojuego v) {this.game = v;}
 
@@ -68,7 +69,11 @@ public class GameWController implements Controller {
         bannerImage.setImage(game.getBanner());
         nameLabel.setText(game.getNombre());
         dateLabel.setText("Fecha de publicacion: "+game.getFechaSubida().toString());
-        if (game.getFechaSubida().toLocalDate().isAfter(LocalDate.now())) buyHbox.setDisable(true);
+        if (game.getFechaSubida().toLocalDate().isAfter(LocalDate.now())) buyHbox.setVisible(false);
+        else if (fg.fa.tieneVideojeugo(fg.fa.usuario, game)) {
+            buyLabel.setText("Comprado");
+            buyHbox.setDisable(true);
+        }
         priceLabel.setText(game.getPrecio()+"€");
         descrpArea.setText(game.getDescripcion());
         creatorLabel.setText("Creador: "+game.getEditor().getId());
@@ -80,6 +85,7 @@ public class GameWController implements Controller {
             catVbox.getChildren().add(l);
         }
 
+        itemsList = new ArrayList<>();
         checkVbox.getChildren().clear();
         List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
 
@@ -90,12 +96,12 @@ public class GameWController implements Controller {
 
                 DLCCheckItemController controller = loader.getController();
                 controller.setMainApp(fg);
+                controller.initializeWindow(d);
 
-                controller.getCheckBox().setText(d.getNombre());
-                controller.getPriceLabel().setText(d.getPrecio()+"€");
+                itemsList.add(controller);
             }
-            if (dlcList.isEmpty()) addHbox.setDisable(true);
-            
+            if (dlcList.isEmpty() || !fg.fa.tieneVideojeugo(fg.fa.usuario, game)) addHbox.setVisible(false);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,21 +110,27 @@ public class GameWController implements Controller {
 
     @FXML
     private void openTrailer(ActionEvent event) {
-        String trailerURL = "https://www.youtube.com/embed/K_03kFqWfqs";
-        app.getHostServices().showDocument(trailerURL);
+        app.getHostServices().showDocument(game.getTrailer());
     }
 
     @FXML
     public void buyGame(MouseEvent event)
     {
         fg.fa.insertarCompra(game.getId());
+        buyLabel.setText("Comprado");
         buyHbox.setDisable(true);
+        addHbox.setVisible(true);
     }
 
     @FXML
     public void addDLCs(MouseEvent event)
     {
-        //fg.fa.();
+        for (DLCCheckItemController c : itemsList) {
+            if (c.checkBox.isSelected() && !c.checkHbox.isDisable()) {
+                fg.fa.comprarDLC(c.dlc, fg.fa.usuario);
+                c.checkHbox.setDisable(true);
+            }
+        }
     }
 
     @FXML
@@ -145,9 +157,27 @@ public class GameWController implements Controller {
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
         fg.showCommunityScene();
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+        fg.showEditScene();
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

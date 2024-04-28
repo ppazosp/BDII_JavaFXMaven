@@ -19,9 +19,27 @@ public class SettingsWController implements Controller {
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
         fg.showCommunityScene();
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+        fg.showEditScene();
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

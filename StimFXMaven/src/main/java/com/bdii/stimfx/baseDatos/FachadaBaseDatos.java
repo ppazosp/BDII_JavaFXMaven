@@ -4,11 +4,10 @@
  */
 package com.bdii.stimfx.baseDatos;
 
-import java.sql.Date;
-import java.sql.DriverManager;
-
 import com.bdii.stimfx.aplicacion.*;
 
+import java.sql.Date;
+import java.sql.DriverManager;
 import java.util.List;
 
 /**
@@ -16,18 +15,19 @@ import java.util.List;
  * @author alumnogreibd
  */
 public class FachadaBaseDatos {
-    private FachadaAplicacion fa;
+    private final FachadaAplicacion fa;
     private java.sql.Connection conexion;
-    private DAOVideojuegos daoV;
-    private DAODLCs daoD;
-    private DAOCategorias daoCategorias;
-    private DAOReseñas daoR;
-    private DAOUsuarios daoU;
-    private DAOTorneos daoT;
-    private DAOCompras daoCompras;
-    private DAOPlataformas daoP;
-    private DAOComunidades daoComunidades;
-    private DAODemos daoDemos;
+    private final DAOVideojuegos daoV;
+    private final DAODLCs daoD;
+    private final DAOCategorias daoCategorias;
+    private final DAOReseñas daoR;
+    private final DAOUsuarios daoU;
+    private final DAOTorneos daoT;
+    private final DAOCompras daoCompras;
+    private final DAOPlataformas daoP;
+    private final DAOComunidades daoComunidades;
+    private final DAODemos daoDemos;
+    private final DAOOpUnicas daoOpUnicas;
 
     public FachadaBaseDatos (com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
 
@@ -60,6 +60,7 @@ public class FachadaBaseDatos {
         daoT = new DAOTorneos(conexion, fa);
         daoP = new DAOPlataformas(conexion, fa);
         daoDemos = new DAODemos(conexion, fa);
+        daoOpUnicas = new DAOOpUnicas(conexion, fa);
     }
 
     public void inicializarbd()
@@ -77,7 +78,9 @@ public class FachadaBaseDatos {
 
     public void insertarDemo(Demo d) {daoDemos.insertarDemo(d);}
 
-    public Demo consultarDemo(int mes, int ano){return daoDemos.consultarDemo(mes, ano);};
+    public Demo consultarDemo(int mes, int ano) {
+        return daoDemos.consultarDemo(mes, ano);
+    }
 
     //Hace falta el id
     public List<Videojuego> consultaVideojuegos(String nombre){  // Abajo hay una con id, aunq con nombre hace falta
@@ -88,6 +91,9 @@ public class FachadaBaseDatos {
         daoV.insertarVideojuego(v);
     }
 
+    public void updateVideojuego(Videojuego v) {
+        daoV.updateVideojuego(v);
+    }
     public void borrarVideojuego(int id) {
         daoV.borrarVideojuego(id);
     }
@@ -121,6 +127,10 @@ public class FachadaBaseDatos {
     
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return daoU.consultarUsuarios(id, nombre);
+    }
+
+    public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
+        return daoU.consultarUsuariosNoSeguidos(id, busq);
     }
     
     public void insertarCompra(int id_videojuego, String id_usuario){
@@ -182,8 +192,9 @@ public class FachadaBaseDatos {
     public void dejarSeguir(String idU1, String idU2){
         daoU.dejarSeguir(idU1, idU2);
     }
+
     
-    public java.util.List<Integer> consultarSeguidos(String idU1){
+    public java.util.List<Usuario> consultarSeguidos(String idU1){
         return daoU.consultarSeguidos(idU1);
     }
     
@@ -211,15 +222,15 @@ public class FachadaBaseDatos {
         return daoComunidades.consultarComunidades(nombre);
     }
 
-    public void insertarJugadorEquipo(int id_usuario, Comunidad c){
+    public void insertarJugadorEquipo(String id_usuario, Comunidad c){
         daoComunidades.insertarJugadorEquipo(id_usuario, c);
     }
 
-    public void salirJugadorEquipo(int id_usuario, Comunidad c){
-        daoComunidades.salirJugadorEquipo(id_usuario, c);
+    public void salirJugadorEquipo(String id_usuario){
+        daoComunidades.salirJugadorEquipo(id_usuario);
     }
 
-    public Comunidad consultarEquipoJugador(int id_usuario){
+    public Comunidad consultarEquipoJugador(String id_usuario){
         return daoComunidades.consultarEquipoJugador(id_usuario);
     }
 
@@ -239,6 +250,12 @@ public class FachadaBaseDatos {
         return daoU.validarUsuario(id, clave);
     }
 
+
+    public List<Torneo> consultarTorneos(String nombre)
+    {
+        return daoT.consultarTorneos(nombre);
+    }
+
     public Videojuego proximoVideojuego(){
         return  daoV.proximoVideojuego();
     }
@@ -246,6 +263,26 @@ public class FachadaBaseDatos {
     public int torneosGanados(String id){
         return daoT.torneosGanados(id);
     }
+
+    public void participarTorneo(String u_id, int t_id)
+    {
+        daoT.participarTorneo(u_id, t_id);
+    }
+
+    public void retirarseTorneo(String u_id, int t_id)
+    {
+        daoT.retirarseTorneo(u_id, t_id);
+    }
+
+    public List<Usuario> consultarParticipantes(int t_id)
+    {
+        return daoT.consultarParticipantes(t_id);
+    }
+
+    public void setGanador(String u_id, int t_id) {
+        daoT.setGanador(u_id, t_id);
+    }
+
 
     public List<Plataforma> consultarPlataformasVideoJuego(int id){
         return daoP.consultarPlataformasVideoJuego(id);
@@ -255,11 +292,36 @@ public class FachadaBaseDatos {
         return daoU.modificarUsuario(u);
     }
 
+    public List<DLC> consultarDLCsVideojuegoUsuario(int id_v, String id_u){
+        return daoD.consultarDLCsVideojuegoUsuario(id_v, id_u);
+    }
+
+    public void comprarDLC(DLC d, String id_u, Date date){
+        daoD.comprarDLC(d, id_u, date);
+    }
+
+    public void devolverDLC(DLC d, String id_u){
+        daoD.devolverDLC(d, id_u);
+    }
     public boolean existeUsuario(String id){
         return daoU.existeUsuario(id);
     }
 
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return daoU.consultarVideojuegos(id);
-    };
+    }
+
+    public boolean tieneComunidad(String usr_id){
+        return daoComunidades.tieneComunidad(usr_id);
+    }
+
+    public List<Videojuego> consultarVideosjuegosEditor(String id_editor) {
+        return daoV.consultarVideojuegosEditor(id_editor);
+    }
+
+
+    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
+    public void hashAllPasswords() {
+        daoOpUnicas.hashAllPasswords();
+    }
 }

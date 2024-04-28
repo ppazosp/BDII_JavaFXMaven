@@ -6,6 +6,10 @@
     -fx-background-color: #AEB6BF;
 }
 
+.white-color{
+    -fx-background-color: #FFFFFF;
+}
+
 .button{
  -fx-background-color:  #AEB6BF;
  -fx-background-radius: 30;
@@ -18,4 +22,12 @@
 
 .selected:hover{
     -fx-background-color: #AEB6BF;
+}
+
+.selected2:hover {
+    -fx-background-color: #CFD7E0;
+}
+
+.progress-bar {
+    -fx-progress-color: #1B2631;
 }

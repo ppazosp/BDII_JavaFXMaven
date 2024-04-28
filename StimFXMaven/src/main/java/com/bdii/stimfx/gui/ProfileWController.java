@@ -1,8 +1,8 @@
 package com.bdii.stimfx.gui;
-import com.bdii.stimfx.aplicacion.Usuario;
-import javafx.event.ActionEvent;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,14 +12,12 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.util.Duration;
 
-import javax.swing.*;
 import java.io.File;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class ProfileWController implements Controller, Initializable {
+public class ProfileWController implements Controller {
     FachadaGUI fg;
 
     @FXML
@@ -36,9 +34,15 @@ public class ProfileWController implements Controller, Initializable {
     PasswordField passField;
     @FXML
     TextField emailField;
+    @FXML
+    Label changesLabel;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    Timeline changesWait;
+
+    public void initializeWindow() {
+        changesWait = new Timeline(new KeyFrame(Duration.seconds(2), e -> hideChangesLabel()));
+
         if(fg.fa.usuario.getFotoPerfil() != null) profileImage.setImage(fg.fa.usuario.getFotoPerfil());
         userField.setText(fg.fa.usuario.getId());
         nGamesLabel.setText(fg.fa.contarJuegosUsuario(fg.fa.usuario.getId()).toString());
@@ -50,6 +54,12 @@ public class ProfileWController implements Controller, Initializable {
     @FXML
     public void modificarUsuario(MouseEvent event) {
         fg.fa.modificarUsuario(nameField.getText(), passField.getText(), emailField.getText(), profileImage.getImage());
+        changesLabel.setVisible(true);
+        changesWait.play();
+    }
+
+    private void hideChangesLabel() {
+        changesLabel.setVisible(false);
     }
 
     @FXML
@@ -90,9 +100,27 @@ public class ProfileWController implements Controller, Initializable {
     }
 
     @FXML
+    public void showSocialScene(MouseEvent event)
+    {
+        fg.showSocialScene();
+    }
+
+    @FXML
     public void showCommunityScene(MouseEvent event)
     {
         fg.showCommunityScene();
+    }
+
+    @FXML
+    public void showEditScene(MouseEvent event)
+    {
+        fg.showEditScene();
+    }
+
+    @FXML
+    public void showAdminScene(MouseEvent event)
+    {
+
     }
 
     @FXML

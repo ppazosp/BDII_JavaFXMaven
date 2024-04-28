@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.aplicacion;
+
 import javafx.scene.image.Image;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -15,7 +17,7 @@ import java.util.ArrayList;
  * @author alumnogreibd
  */
 public class Videojuego {
-    private int id;
+    private final int id;
     private String nombre;
     private Date fechaSubida;
     private Editor editor;
@@ -26,6 +28,7 @@ public class Videojuego {
     private List<Reseña> reseñas;
     private Image imagen;
     private Image banner;
+    private String trailer;
 
 
 
@@ -39,16 +42,28 @@ public class Videojuego {
         this.numDescargas=0;
     }
 
-    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen, Image banner) {
+    public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio, Image imagen, Image banner, String trailer) {
         this.id = id;
         this.nombre = nombre;
         this.fechaSubida = fechaSubida;
         this.descripcion = descripcion;
-        this.DLCs = new ArrayList<>();
         this.precio= precio;
         this.numDescargas=0;
         this.imagen = imagen;
         this.banner = banner;
+        this.trailer = trailer;
+    }
+
+    public Videojuego(int id, String nombre, Date fechaSubida, Editor editor, String descripcion, double precio, Image imagen, Image banner, String trailer) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechaSubida = fechaSubida;
+        this.editor = editor;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.banner = banner;
+        this.trailer = trailer;
     }
 
     public Videojuego(int id, String nombre, Date fechaSubida, String descripcion, double precio,List<DLC> DLCs) {
@@ -68,6 +83,13 @@ public class Videojuego {
         this.DLCs = new ArrayList<>();
         this.precio= precio;
         this.numDescargas=0;
+    }
+
+    //para torneos
+    public Videojuego(int id, Image imagen)
+    {
+        this.id = id;
+        this.imagen = imagen;
     }
 
 
@@ -133,5 +155,22 @@ public class Videojuego {
 
     public int getNumDescargas() {
         return numDescargas;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Videojuego that = (Videojuego) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

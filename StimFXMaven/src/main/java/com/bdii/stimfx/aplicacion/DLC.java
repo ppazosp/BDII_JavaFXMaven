@@ -4,6 +4,7 @@
  */
 package com.bdii.stimfx.aplicacion;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -50,7 +51,16 @@ public class DLC {
         return fechaLanzamiento;
     }
 
-    
-    
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DLC dlc = (DLC) o;
+        return idVideojuego == dlc.idVideojuego && idDLC == dlc.idDLC;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idVideojuego, idDLC);
+    }
 }

@@ -17,7 +17,7 @@
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../../images/steam.png" />
       </ImageView>
-      <VBox layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
+      <VBox fx:id="menuBar" layoutY="110.0" prefHeight="542.0" prefWidth="200.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                <children>
@@ -57,14 +57,65 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+            <HBox alignment="CENTER" onMouseClicked="#showSocialScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/community.png" />
                      </image>
                   </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Social" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="comMenu" alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/earth.png" />
+                     </image>
+                  </ImageView>
                   <Label prefHeight="32.0" prefWidth="117.0" text="Comunidad" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="editMenu" alignment="CENTER" onMouseClicked="#showEditScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/edit.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Edicion" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="adminMenu" alignment="CENTER" onMouseClicked="#showAdminScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/admin.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Administrar" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

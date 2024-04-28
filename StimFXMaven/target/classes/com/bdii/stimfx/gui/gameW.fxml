@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../../images/steam.png" />
       </ImageView>
-      <VBox layoutY="110.0" prefHeight="214.0" prefWidth="200.0" spacing="10.0">
+      <VBox layoutY="110.0" prefHeight="530.0" prefWidth="200.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                <children>
@@ -59,14 +51,65 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+            <HBox alignment="CENTER" onMouseClicked="#showSocialScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/community.png" />
                      </image>
                   </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Social" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/earth.png" />
+                     </image>
+                  </ImageView>
                   <Label prefHeight="32.0" prefWidth="117.0" text="Comunidad" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showEditScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/edit.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Edicion" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#showAdminScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/admin.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="32.0" prefWidth="117.0" text="Administrar" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -145,14 +188,18 @@
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="64.0" prefWidth="125.0">
                         <children>
-                           <HBox fx:id="buyHbox" alignment="CENTER" onMouseClicked="#loadGameWindow" prefHeight="11.0" prefWidth="118.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                            <HBox fx:id="buyHbox" alignment="CENTER" onMouseClicked="#buyGame" prefHeight="11.0"
+                                  prefWidth="118.0"
+                                  style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;"
+                                  stylesheets="@../css/styles.css">
                               <children>
                                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/addW.png" />
                                     </image>
                                  </ImageView>
-                                 <Label prefHeight="18.0" prefWidth="61.0" text="Comprar" textFill="WHITE">
+                                  <Label fx:id="buyLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0"
+                                         prefWidth="87.0" text="Comprar" textFill="WHITE">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -181,7 +228,7 @@
                <HBox prefHeight="0.0" prefWidth="890.0" />
                <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                   <content>
-                     <TextArea fx:id="descrpArea" prefHeight="184.0" prefWidth="633.0" text="vbygoygg6gggy" />
+                     <TextArea fx:id="descrpArea" editable="false" prefHeight="184.0" prefWidth="633.0" text="vbygoygg6gggy" wrapText="true" />
                   </content>
                </ScrollPane>
             </children>
@@ -229,26 +276,36 @@
                      </VBox>
                   </children>
                </VBox>
-               <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="32.0" prefWidth="189.0" spacing="10.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
-                  <children>
-                     <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/eye.png" />
-                        </image>
-                     </ImageView>
-                     <Label alignment="CENTER" prefHeight="0.0" prefWidth="86.0" text="Ver reseñas" textFill="WHITE">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                        <opaqueInsets>
-                           <Insets />
-                        </opaqueInsets>
-                     </Label>
-                  </children>
-                  <VBox.margin>
-                     <Insets left="15.0" right="15.0" />
-                  </VBox.margin>
-               </HBox>
+                <VBox prefHeight="32.0" prefWidth="128.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#showLibraryScene"
+                                      prefHeight="32.0" prefWidth="133.0" spacing="5.0"
+                                      style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;"
+                                      styleClass="selected" stylesheets="@../css/styles.css">
+                                    <children>
+                                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../images/eye.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="75.0" text="Ver reseñas"
+                                               textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
             </children>
             <padding>
                <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
@@ -278,14 +335,16 @@
                      </VBox>
                   </children>
                </VBox>
-               <HBox fx:id="addHbox" alignment="CENTER" onMouseClicked="#loadGameWindow" prefHeight="0.0" prefWidth="115.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
+                <HBox fx:id="addHbox" alignment="CENTER" onMouseClicked="#addDLCs" prefHeight="32.0" prefWidth="87.0"
+                      style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;"
+                      stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../images/addW.png" />
                         </image>
                      </ImageView>
-                     <Label prefHeight="18.0" prefWidth="61.0" text="Adquirir" textFill="WHITE">
+                      <Label alignment="CENTER" prefHeight="20.0" prefWidth="53.0" text="Adquirir" textFill="WHITE">
                         <font>
                            <Font size="14.0" />
                         </font>

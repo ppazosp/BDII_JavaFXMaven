@@ -1,10 +1,10 @@
 package com.bdii.stimfx.gui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class LogInWController implements Controller{
 
@@ -19,12 +19,12 @@ public class LogInWController implements Controller{
 
     //Añadir xml para enlace que te lleve a Steam
     @FXML
-    public void showSiginScene(ActionEvent event)
+    public void showSiginScene(MouseEvent event)
     {
         fg.showSigninScene();
     }
 
-    public void loginCheck (ActionEvent event)
+    public void loginCheck(MouseEvent event)
     {
 
         if(fg.checkCredentials(usernameField.getText(), passwordField.getText()))

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.aplicacion;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -18,11 +18,11 @@ public class Torneo {
     private Date fecha_inicio;
     private Date fecha_final;
     private int premio;
-    private int ganador;
+    private String ganador;
     private Videojuego videojuego;
     private Usuario administrador;
 
-    public Torneo(int id, String nombre, Date fecha_inicio, Date fecha_final, int premio, Videojuego videojuego, Usuario administrador) {
+    public Torneo(int id, String nombre, Date fecha_inicio, Date fecha_final, int premio, String ganador, Videojuego videojuego, Usuario administrador) {
         this.id = id;
         this.nombre = nombre;
         this.fecha_inicio = fecha_inicio;
@@ -61,7 +61,7 @@ public class Torneo {
         return premio;
     }
 
-    public int getGanador() {
+    public String getGanador() {
         return ganador;
     }
 
@@ -81,7 +81,7 @@ public class Torneo {
         this.fecha_final = fecha_final;
     }
 
-    public void setGanador(int ganador) {
+    public void setGanador(String ganador) {
         this.ganador = ganador;
     }
     

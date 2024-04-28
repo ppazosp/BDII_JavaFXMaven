@@ -3,18 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.baseDatos;
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.Connection;
 
+import com.bdii.stimfx.aplicacion.DLC;
+import com.bdii.stimfx.aplicacion.Editor;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Videojuego;
-import com.bdii.stimfx.aplicacion.Editor;
-import com.bdii.stimfx.aplicacion.DLC;
 
-
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,24 +33,65 @@ public class DAOVideojuegos extends AbstractDAO{
         con=super.getConexion();
         
         try {
-            stmVideojuego=con.prepareStatement("insert into videojuego(id, nombre, fechasubida, id_usreditor, descripcion) "+
-                                            "values (?,?,?,?,?)");
-            // Obtener la fecha actual como un objeto java.sql.Date
-            Date fechaActual = new Date(System.currentTimeMillis());
+            stmVideojuego = con.prepareStatement("insert into videojuego(nombre, fechasubida, id_usreditor, precio, descripcion, imagen, banner, trailer) " +
+                    "values (?,?,?,?,?,?,?,?)");
 
-            v.setFechaSubida(fechaActual);
-            
-            stmVideojuego.setInt(1, v.getId());
-            stmVideojuego.setString(2, v.getNombre());
-            stmVideojuego.setDate(3, fechaActual);
-            stmVideojuego.setString(4, v.getEditor().getId());
+            stmVideojuego.setString(1, v.getNombre());
+            stmVideojuego.setDate(2, v.getFechaSubida());
+            stmVideojuego.setString(3, v.getEditor().getId());
+            stmVideojuego.setDouble(4, v.getPrecio());
             stmVideojuego.setString(5, v.getDescripcion());
+            stmVideojuego.setBytes(6, FachadaAplicacion.imageToBytes(v.getImagen()));
+            stmVideojuego.setBytes(7, FachadaAplicacion.imageToBytes(v.getBanner()));
+            stmVideojuego.setString(8, v.getTrailer());
+
             stmVideojuego.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public void updateVideojuego(Videojuego v) {
+        Connection con;
+        PreparedStatement stmVideojuego = null;
+
+        con = super.getConexion();
+
+        try {
+            stmVideojuego = con.prepareStatement("update videojuego set" +
+                    " nombre = ?," +
+                    " fechasubida = ?," +
+                    " id_usreditor = ?," +
+                    " precio = ?," +
+                    " descripcion = ?," +
+                    " imagen = ?," +
+                    " banner = ?," +
+                    " trailer = ?" +
+                    "where id = ?;");
+
+            stmVideojuego.setInt(9, v.getId());
+            stmVideojuego.setString(1, v.getNombre());
+            stmVideojuego.setDate(2, v.getFechaSubida());
+            stmVideojuego.setString(3, v.getEditor().getId());
+            stmVideojuego.setDouble(4, v.getPrecio());
+            stmVideojuego.setString(5, v.getDescripcion());
+            stmVideojuego.setBytes(6, FachadaAplicacion.imageToBytes(v.getImagen()));
+            stmVideojuego.setBytes(7, FachadaAplicacion.imageToBytes(v.getBanner()));
+            stmVideojuego.setString(8, v.getTrailer());
+
+            stmVideojuego.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmVideojuego.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
         }
     }
     
@@ -67,7 +108,7 @@ public class DAOVideojuegos extends AbstractDAO{
         
         }catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -96,7 +137,7 @@ public class DAOVideojuegos extends AbstractDAO{
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -113,11 +154,11 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "SELECT v.id, v.nombre, v.descripcion, v.id_usreditor, v.fechasubida, v.precio, v.imagen, v.banner, COUNT(c.id_videojuego) AS totalCompras\n" +
+        String consulta = "SELECT v.id, v.nombre, v.descripcion, v.id_usreditor, v.fechasubida, v.precio, v.imagen, v.banner, v.trailer, COUNT(c.id_videojuego) AS totalCompras\n" +
                 "FROM videojuego AS v\n" +
                 "LEFT JOIN comprar AS c ON v.id = c.id_videojuego\n" +
                 "WHERE v.nombre = ?\n" +
-                "GROUP BY v.id, v.nombre, v.descripcion, v.id_usreditor, v.fechasubida, v.precio, v.imagen, v.banner;";
+                "GROUP BY v.id, v.nombre, v.descripcion, v.id_usreditor, v.fechasubida, v.precio, v.imagen, v.banner, v.trailer;";
 
         try{
             stmVideojuego=con.prepareStatement(consulta);
@@ -128,7 +169,7 @@ public class DAOVideojuegos extends AbstractDAO{
                 videojuego = new Videojuego(rsVideojuego.getInt("id"), rsVideojuego.getString("nombre"),
                         rsVideojuego.getDate("fechasubida"), rsVideojuego.getString("descripcion"),
                         rsVideojuego.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuego.getBytes("imagen")),
-                        FachadaAplicacion.bytesToImage(rsVideojuego.getBytes("banner")));
+                        FachadaAplicacion.bytesToImage(rsVideojuego.getBytes("banner")), rsVideojuego.getString("trailer"));
 
                 String consulta1= "  select * from usuario u " +
                         "  where id= ?;";
@@ -180,7 +221,8 @@ public class DAOVideojuegos extends AbstractDAO{
             Videojuego videojuego = new Videojuego(id, rsCatalogo.getString("nombre"),
                         rsCatalogo.getDate("fechaSubida"),
                     rsCatalogo.getString("descripcion"), rsCatalogo.getDouble("precio"),
-                    FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("imagen")), FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("banner")));
+                    FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("imagen")), FachadaAplicacion.bytesToImage(rsCatalogo.getBytes("banner")),
+                    rsCatalogo.getString("trailer"));
             Editor editor = new Editor(rsCatalogo.getString("id_usreditor"), rsCatalogo.getString("nombre"),
                     rsCatalogo.getString("contraseña"), null, rsCatalogo.getString("email"));
             videojuego.setEditor(editor);
@@ -239,7 +281,7 @@ public class DAOVideojuegos extends AbstractDAO{
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmPlataformas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -269,7 +311,7 @@ public class DAOVideojuegos extends AbstractDAO{
             }
         } catch (SQLException e){
           System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+          FachadaAplicacion.muestraExcepcion(e.getMessage());
         }finally{
           try {stmCategorias.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
@@ -284,7 +326,7 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, count(*) as totalCompras\n" +
+        String consulta = "   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, v.trailer, count(*) as totalCompras\n" +
                 "   from videojuego v \n" +
                 "   join comprar c on v.id=c.id_videojuego \n" +
                 "   group by v.id\n" +
@@ -299,7 +341,7 @@ public class DAOVideojuegos extends AbstractDAO{
                 Videojuego videojuego = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
                                         rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
                                         rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
-                                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")));
+                                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")), rsVideojuegos.getString("trailer"));
                 videojuego.setNumDescargas(rsVideojuegos.getInt("totalCompras"));
 
                 //Consulta para editor
@@ -385,10 +427,10 @@ public class DAOVideojuegos extends AbstractDAO{
 
         con=this.getConexion();
 
-        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner\n" +
+        String consulta = "select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, v.trailer\n" +
                 "   from videojuego v  \n" +
                 "   where fechasubida  > current_date\n" +
-                "   order by fechasubida desc\n" +
+                "   order by fechasubida\n" +
                 "   limit 1;";
 
         try{
@@ -399,7 +441,7 @@ public class DAOVideojuegos extends AbstractDAO{
                 resultado = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
                         rsVideojuegos.getDate("fechasubida"), rsVideojuegos.getString("descripcion"),
                         rsVideojuegos.getDouble("precio"), FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
-                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")));
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")), rsVideojuegos.getString("trailer"));
 
                 String consulta1= "  select * from usuario u " +
                         "  where id= ?;";
@@ -426,5 +468,43 @@ public class DAOVideojuegos extends AbstractDAO{
         }
         return resultado;
     }
-    
+
+    public List<Videojuego> consultarVideojuegosEditor(String id_editor) {
+        List<Videojuego> resultado = new ArrayList<>();
+        Connection con;
+        PreparedStatement stmVideojuego = null;
+        ResultSet rsVideojuegos;
+
+        con = this.getConexion();
+
+        try {
+            stmVideojuego = con.prepareStatement("   select v.id, v.nombre, v.fechasubida, v.id_usreditor, v.precio, v.descripcion, v.imagen, v.banner, v.trailer " +
+                    "   from videojuego v " +
+                    "   where v.id_usreditor = ? ");
+
+            stmVideojuego.setString(1, id_editor);
+            rsVideojuegos = stmVideojuego.executeQuery();
+            while (rsVideojuegos.next()) {
+                Editor e = new Editor(rsVideojuegos.getString("id_usreditor"));
+                Videojuego videojuego = new Videojuego(rsVideojuegos.getInt("id"), rsVideojuegos.getString("nombre"),
+                        rsVideojuegos.getDate("fechasubida"), e,
+                        rsVideojuegos.getString("descripcion"), rsVideojuegos.getDouble("precio"),
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("imagen")),
+                        FachadaAplicacion.bytesToImage(rsVideojuegos.getBytes("banner")),
+                        rsVideojuegos.getString("trailer"));
+
+                resultado.add(videojuego);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmVideojuego.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
 }
