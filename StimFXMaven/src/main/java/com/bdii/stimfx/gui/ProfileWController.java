@@ -2,6 +2,7 @@ package com.bdii.stimfx.gui;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -53,9 +54,21 @@ public class ProfileWController implements Controller {
     }
     @FXML
     public void modificarUsuario(MouseEvent event) {
-        fg.fa.modificarUsuario(nameField.getText(), passField.getText(), emailField.getText(), profileImage.getImage());
-        changesLabel.setVisible(true);
-        changesWait.play();
+
+        fg.loading();
+
+        new Thread(() -> {
+
+            fg.fa.modificarUsuario(nameField.getText(), passField.getText(), emailField.getText(), profileImage.getImage());
+
+            Platform.runLater(() -> {
+                changesLabel.setVisible(true);
+                changesWait.play();
+
+                fg.loaded();
+            });
+        }).start();
+
     }
 
     private void hideChangesLabel() {

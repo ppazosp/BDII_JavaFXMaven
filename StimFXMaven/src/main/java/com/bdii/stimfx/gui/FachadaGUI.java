@@ -128,6 +128,7 @@ public class FachadaGUI extends Application {
         MainWController mainWController = loadFXML("/com/bdii/stimfx/gui/mainW.fxml", null, null, MainWController.class);
         assert mainWController != null;
         mainWController.setMainApp(this);
+        mainWController.initializeWindow();
 
         if(createWindow) old.close();
     }

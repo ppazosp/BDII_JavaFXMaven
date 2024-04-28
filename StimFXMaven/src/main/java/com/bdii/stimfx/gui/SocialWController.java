@@ -1,6 +1,7 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Usuario;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,42 +37,60 @@ public class SocialWController implements Controller{
 
     public void loadFollows()
     {
-        List<Usuario> followers = fg.fa.consultarSeguidos(fg.fa.usuario);
-        followersVbox.getChildren().clear();
+        fg.loading();
 
-        try {
-            for (Usuario u : followers) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/SocialSearchItem.fxml"));
-                followersVbox.getChildren().add(loader.load());
+        new Thread(() -> {
 
-                SocialSearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(u, 1, this);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            List<Usuario> followers = fg.fa.consultarSeguidos(fg.fa.usuario);
+
+            Platform.runLater(() -> {
+                followersVbox.getChildren().clear();
+
+                try {
+                    for (Usuario u : followers) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/SocialSearchItem.fxml"));
+                        followersVbox.getChildren().add(loader.load());
+
+                        SocialSearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(u, 1, this);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     public void loadSearch()
     {
-        resultsLabel.setText("Resultados para \""+searchBar.getText()+"\"");
+        fg.loading();
 
-        List<Usuario> followers = fg.fa.consultarUsuariosNoSeguidos(fg.fa.usuario, searchBar.getText() );
-        resultsVbox.getChildren().clear();
+        new Thread(() -> {
+            List<Usuario> followers = fg.fa.consultarUsuariosNoSeguidos(fg.fa.usuario, searchBar.getText() );
 
-        try {
-            for (Usuario u : followers) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/SocialSearchItem.fxml"));
-                resultsVbox.getChildren().add(loader.load());
+            Platform.runLater(() -> {
+                resultsLabel.setText("Resultados para \""+searchBar.getText()+"\"");
+                resultsVbox.getChildren().clear();
 
-                SocialSearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(u, 0, this);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                try {
+                    for (Usuario u : followers) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/SocialSearchItem.fxml"));
+                        resultsVbox.getChildren().add(loader.load());
+
+                        SocialSearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(u, 0, this);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     @FXML

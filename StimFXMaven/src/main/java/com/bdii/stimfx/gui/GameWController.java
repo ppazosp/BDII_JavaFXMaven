@@ -3,6 +3,7 @@ package com.bdii.stimfx.gui;
 import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,45 +67,57 @@ public class GameWController implements Controller {
 
     public void initializeWindow()
     {
-        bannerImage.setImage(game.getBanner());
-        nameLabel.setText(game.getNombre());
-        dateLabel.setText("Fecha de publicacion: "+game.getFechaSubida().toString());
-        if (game.getFechaSubida().toLocalDate().isAfter(LocalDate.now())) buyHbox.setVisible(false);
-        else if (fg.fa.tieneVideojeugo(fg.fa.usuario, game)) {
-            buyLabel.setText("Comprado");
-            buyHbox.setDisable(true);
-        }
-        priceLabel.setText(game.getPrecio()+"€");
-        descrpArea.setText(game.getDescripcion());
-        creatorLabel.setText("Creador: "+game.getEditor().getId());
-        downloadsLabel.setText("Descargas: " + game.getNumDescargas());
-        catVbox.getChildren().clear();
-        List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
-        for(String s : cats){
-            Label l = new Label(s);
-            catVbox.getChildren().add(l);
-        }
+        fg.loading();
 
-        itemsList = new ArrayList<>();
-        checkVbox.getChildren().clear();
-        List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
+        new Thread(() -> {
+            boolean tieneVideojuego = fg.fa.tieneVideojeugo(fg.fa.usuario, game);
+            List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
+            List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
 
-        try {
-            for (DLC d : dlcList) { // Add 10 instances as an example
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/dlcCheckItem.fxml"));
-                checkVbox.getChildren().add(loader.load());
+            Platform.runLater(() -> {
+                bannerImage.setImage(game.getBanner());
+                nameLabel.setText(game.getNombre());
+                dateLabel.setText("Fecha de publicacion: "+game.getFechaSubida().toString());
+                if (game.getFechaSubida().toLocalDate().isAfter(LocalDate.now())) buyHbox.setVisible(false);
+                else if (tieneVideojuego) {
+                    buyLabel.setText("Comprado");
+                    buyHbox.setDisable(true);
+                }
+                priceLabel.setText(game.getPrecio()+"€");
+                descrpArea.setText(game.getDescripcion());
+                creatorLabel.setText("Creador: "+game.getEditor().getId());
+                downloadsLabel.setText("Descargas: " + game.getNumDescargas());
+                catVbox.getChildren().clear();
 
-                DLCCheckItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(d);
+                for(String s : cats){
+                    Label l = new Label(s);
+                    catVbox.getChildren().add(l);
+                }
 
-                itemsList.add(controller);
-            }
-            if (dlcList.isEmpty() || !fg.fa.tieneVideojeugo(fg.fa.usuario, game)) addHbox.setVisible(false);
+                itemsList = new ArrayList<>();
+                checkVbox.getChildren().clear();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                try {
+                    for (DLC d : dlcList) { // Add 10 instances as an example
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/dlcCheckItem.fxml"));
+                        checkVbox.getChildren().add(loader.load());
+
+                        DLCCheckItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(d);
+
+                        itemsList.add(controller);
+                    }
+                    if (dlcList.isEmpty() || !tieneVideojuego) addHbox.setVisible(false);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fg.loaded();
+            });
+
+        }).start();
 
     }
 
@@ -116,21 +129,42 @@ public class GameWController implements Controller {
     @FXML
     public void buyGame(MouseEvent event)
     {
-        fg.fa.insertarCompra(game.getId());
-        buyLabel.setText("Comprado");
-        buyHbox.setDisable(true);
-        addHbox.setVisible(true);
+        fg.loading();
+
+        new Thread(() -> {
+            fg.fa.insertarCompra(game.getId());
+
+            Platform.runLater(() ->{
+                buyLabel.setText("Comprado");
+                buyHbox.setDisable(true);
+                addHbox.setVisible(true);
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     @FXML
     public void addDLCs(MouseEvent event)
     {
-        for (DLCCheckItemController c : itemsList) {
-            if (c.checkBox.isSelected() && !c.checkHbox.isDisable()) {
-                fg.fa.comprarDLC(c.dlc, fg.fa.usuario);
-                c.checkHbox.setDisable(true);
+        fg.loading();
+
+        new Thread(() ->{
+            ArrayList<DLCCheckItemController> cb = new ArrayList<>();
+            for (DLCCheckItemController c : itemsList) {
+                if (c.checkBox.isSelected() && !c.checkHbox.isDisable()) {
+                    fg.fa.comprarDLC(c.dlc, fg.fa.usuario);
+                    cb.add(c);
+                }
             }
-        }
+            Platform.runLater(() -> {
+                for (DLCCheckItemController c : cb) {
+                    c.checkHbox.setDisable(true);
+                }
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     @FXML

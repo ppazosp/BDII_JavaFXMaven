@@ -1,6 +1,7 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -29,23 +30,32 @@ public class MainSearchWController implements Controller {
     @FXML
     public void showSearchResults()
     {
-        searchVbox.getChildren().clear();
-        resultsLabel.setText("Resultados para \"" + searchBar.getText() + "\"");
-        List<Videojuego> gamesList = fg.fa.consultarVideojuegos(searchBar.getText());
-        searchBar.clear();
+        fg.loading();
 
-        try {
-            for (Videojuego v : gamesList) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/gameSearchItem.fxml"));
-                searchVbox.getChildren().add(loader.load());
+        new Thread(() -> {
+            List<Videojuego> gamesList = fg.fa.consultarVideojuegos(searchBar.getText());
 
-                GameSearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(v);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            Platform.runLater(() -> {
+                searchVbox.getChildren().clear();
+                resultsLabel.setText("Resultados para \"" + searchBar.getText() + "\"");
+                searchBar.clear();
+
+                try {
+                    for (Videojuego v : gamesList) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/gameSearchItem.fxml"));
+                        searchVbox.getChildren().add(loader.load());
+
+                        GameSearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(v);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fg.loaded();
+            });
+        }).start();
     }
     @FXML
     public void showMainScene(MouseEvent event)

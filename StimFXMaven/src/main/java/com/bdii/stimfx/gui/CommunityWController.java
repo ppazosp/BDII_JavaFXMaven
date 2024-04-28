@@ -2,6 +2,7 @@ package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Comunidad;
 import com.bdii.stimfx.aplicacion.Torneo;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,13 +63,20 @@ public class CommunityWController implements Controller {
 
     public void loadMyCom()
     {
-        userCom = fg.fa.consultarEquipoJugador(fg.fa.usuario.getId());
-        if (userCom != null){
-            myComIcon.setImage(userCom.getEscudo());
-            myComName.setText(userCom.getNombre());
-            myComMembers.setText("Miembros: " + fg.fa.contarMiembrosEquipo(userCom));
-            myComHbox.setVisible(true);
-        }else  myComHbox.setVisible(false);
+        fg.loading();
+
+        new Thread(() -> {
+
+            userCom = fg.fa.consultarEquipoJugador(fg.fa.usuario.getId());
+            Platform.runLater(() -> {
+                if (userCom != null) {
+                    myComIcon.setImage(userCom.getEscudo());
+                    myComName.setText(userCom.getNombre());
+                    myComMembers.setText("Miembros: " + fg.fa.contarMiembrosEquipo(userCom));
+                    myComHbox.setVisible(true);
+                } else myComHbox.setVisible(false);
+            });
+        }).start();
     }
 
     @FXML
@@ -103,76 +111,90 @@ public class CommunityWController implements Controller {
 
     private void showCommunitySearch()
     {
-        List<Comunidad> comList = fg.fa.consultarComunidades(searchBar.getText());
-        comSearchVbox.getChildren().clear();
+        fg.loading();
 
-        try {
-            for (Comunidad c : comList) {
-                if(userCom != null && userCom.getNombre().equals(c.getNombre())) continue;
+        new Thread(() -> {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/communitySearchItem.fxml"));
-                comSearchVbox.getChildren().add(loader.load());
+            List<Comunidad> comList = fg.fa.consultarComunidades(searchBar.getText());
 
-                CommunitySearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(c, this);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            Platform.runLater(() -> {
+                comSearchVbox.getChildren().clear();
+                try {
+                    for (Comunidad c : comList) {
+                        if (userCom != null && userCom.getNombre().equals(c.getNombre())) continue;
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/communitySearchItem.fxml"));
+                        comSearchVbox.getChildren().add(loader.load());
+
+                        CommunitySearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(c, this);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     private void showTournamentSearch()
     {
-        List<Torneo> tList = fg.fa.consultarTorneos(searchBar.getText());
-        currTHbox.getChildren().clear();
-        oldTHbox.getChildren().clear();
-        int opt;
+        fg.loading();
 
-        try {
-            for (Torneo t : tList) {
+        new Thread(() -> {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/compSearchItem.fxml"));
+            List<Torneo> tList = fg.fa.consultarTorneos(searchBar.getText());
 
-                if(t.getFecha_final().toLocalDate().isBefore(LocalDate.now())){
-                    if (t.getGanador() == null) fg.fa.setGanador(t);
-                    oldTHbox.getChildren().add(loader.load());
-                    opt = 1;
-                }
-                else {
-                    currTHbox.getChildren().add(loader.load());
-                    opt = 0;
-                }
+            Platform.runLater(() -> {
+                currTHbox.getChildren().clear();
+                oldTHbox.getChildren().clear();
+                int opt;
 
-                CompSearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(t, opt, this);
+                try {
+                    for (Torneo t : tList) {
 
-                if(opt==1)
-                {
-                    controller.partHbox.setDisable(true);
-                    if(fg.fa.isParticipante(fg.fa.usuario, t))
-                    {
-                        controller.hboxLabel.setText("Jugado");
-                        if (t.getGanador().equals(fg.fa.usuario.getId())) controller.hboxLabel.setText("Ganado");
-                    }else controller.hboxLabel.setText("Finalizado");
-                }else
-                {
-                    if (fg.fa.isParticipante(fg.fa.usuario, t)) {
-                        if(fg.fa.puedeRetirarse(t))
-                        {
-                            controller.hboxLabel.setText("Retirarse");
-                        }else
-                        {
-                            controller.hboxLabel.setText("Jugando");
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/compSearchItem.fxml"));
+
+                        if (t.getFecha_final().toLocalDate().isBefore(LocalDate.now())) {
+                            if (t.getGanador() == null) fg.fa.setGanador(t);
+                            oldTHbox.getChildren().add(loader.load());
+                            opt = 1;
+                        } else {
+                            currTHbox.getChildren().add(loader.load());
+                            opt = 0;
+                        }
+
+                        CompSearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(t, opt, this);
+
+                        if (opt == 1) {
                             controller.partHbox.setDisable(true);
+                            if (fg.fa.isParticipante(fg.fa.usuario, t)) {
+                                controller.hboxLabel.setText("Jugado");
+                                if (t.getGanador().equals(fg.fa.usuario.getId()))
+                                    controller.hboxLabel.setText("Ganado");
+                            } else controller.hboxLabel.setText("Finalizado");
+                        } else {
+                            if (fg.fa.isParticipante(fg.fa.usuario, t)) {
+                                if (fg.fa.puedeRetirarse(t)) {
+                                    controller.hboxLabel.setText("Retirarse");
+                                } else {
+                                    controller.hboxLabel.setText("Jugando");
+                                    controller.partHbox.setDisable(true);
+                                }
+                            }
                         }
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+                fg.loaded();
+            });
+        }).start();
     }
 
     @FXML
