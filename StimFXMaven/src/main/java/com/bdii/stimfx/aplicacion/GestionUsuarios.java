@@ -141,10 +141,6 @@ public class GestionUsuarios {
         return fbd.consultarUsuarios(id, nombre);
     }
 
-    public Integer contarJuegosUsuario(String id_usuario){
-        return fbd.contarJuegosUsuario(id_usuario);
-    }
-
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);
     }

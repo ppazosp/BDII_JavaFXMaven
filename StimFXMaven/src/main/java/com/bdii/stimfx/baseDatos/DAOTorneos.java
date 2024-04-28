@@ -106,7 +106,7 @@ public class DAOTorneos extends AbstractDAO{
         try{
             stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, id_usradmin, imagen " +
                                                 "from torneo t join videojuego v on id_videojuego = v.id " +
-                    " where t.nombre like ?" +
+                    " where LOWER(t.nombre) like LOWER(?)" +
                     "order by t.nombre");
             stmTorneos.setString(1, "%"+nombre+"%");
             rsTorneos=stmTorneos.executeQuery();

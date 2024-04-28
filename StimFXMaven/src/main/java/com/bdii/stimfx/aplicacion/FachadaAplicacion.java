@@ -203,17 +203,20 @@ public class FachadaAplicacion {
     public List<Videojuego> consultaVideoJuegosInicio(){
         return gv.consultaVideoJuegosInicio();
     }
-    // Funcion para actualizar el numero de descargas de un videojuego actualmente.
-    // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
-    public void consultarNumeroDescargas(Videojuego v){
-        gv.consultarNumeroDescargas(v);
-    }
     // Funcion para obtener las categorias asociadas a un juego, se podrian mostrar por pantalla
     public java.util.List<String> consultarCategoriasVideojuego(Videojuego v){
         return gv.consultarCategoriasVideojuego(v);
     }
+    // Funcion para publicar un videojuego
+    public void publicarVideojuego(Videojuego v) {
+        gv.publicarVideojuego(v);
+    }
+
 
     // -----------------------------------------------------------------------
+
+
+
 
 
 
@@ -239,11 +242,10 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return gu.consultarUsuarios(id, nombre);
     }
-
+    // Funcion para buscar a los usuarios que no seguimos
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){
         return gu.consultarUsuariosNoSeguidos(usuario, busq);
     }
-
     // Funcion para empezar a seguir a un usuario
     public void seguir(Usuario u1, Usuario u2){
         gu.seguir(u1, u2);
@@ -252,125 +254,15 @@ public class FachadaAplicacion {
     public void dejarSeguir(Usuario u1, Usuario u2){
         gu.dejarSeguir(u1, u2);
     }
-
     // Funcion para consultar a las personas que sigue un usuario
     public java.util.List<Usuario> consultarSeguidos(Usuario u1){
         return gu.consultarSeguidos(u1);
     }
-
-    public Demo consultarDemo(int mes, int ano)
-    {
-        return gdem.consultarDemo(mes, ano);
-    }
-
-    // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.
-    // Si pones un buscador se añade facil.
-    // DEVUELVE LOS VIDEOJUEGOS DIERECTAMENTE
-    public java.util.List<Videojuego> consultarJuegosUsuario(int id_usuario){
-        return gu.consultarJuegosUsuario(id_usuario);
-    }
-
+    // Funciones para consultar las personas que me siguen
     public java.util.List<String> consultarSeguidores(String idU2){
         return gu.consultarSeguidores(idU2);
     }
-
-    // Funcion para crear una nueva comunidad
-    public void insertarComunidad(Comunidad c){
-        gc.insertarComunidad(c);
-    }
-
-    // Funcion para borrar una comunidad
-    public void borrarComunidad(Comunidad c){
-        gc.borrarComunidad(c);
-    }
-
-    // Funcion para mirar comunidades en el buscador, encontrar una comunidad especifica, a partir de algo o todas si la barra esta vacía
-    public java.util.List<Comunidad> consultarComunidades(String nombre){
-        return gc.consultarComunidades(nombre);
-    }
-
-    // Funcion para insertar a un usuario en una comunidad.
-    // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
-    public void insertarJugadorEquipo(String id_usuario, Comunidad c){
-        gc.insertarJugadorEquipo(id_usuario, c);
-    }
-
-    // Funcion para hacer salir de una comunidad a un usuario
-    public void salirJugadorEquipo(String id_usuario){
-        gc.salirJugadorEquipo(id_usuario);
-    }
-
-    // Funcion para consultar el equipo en el que esta un usuario
-    public Comunidad consultarEquipoJugador(String id_usuario){
-        return gc.consultarEquipoJugador(id_usuario);
-    }
-
-    // Funcion para consultar los jugadores que pertenecen a un equipo en concreto
-    public java.util.List<Integer> consultarJugadoresEquipo(Comunidad c){
-        return gc.consultarJugadoresEquipo(c);
-    }
-
-    // Funcion para contar los miembros de un equipo
-    public Integer contarMiembrosEquipo(Comunidad c) {
-        return gc.contarMiembrosEquipo(c);
-    }
-
-    // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
-    public Integer contarJuegosUsuario(String id_usuario){
-        return gu.contarJuegosUsuario(id_usuario);
-    }
-    
-    // Escribir una nueva reseña
-    public void insertarReseña(Reseña r){
-        gr.insertarReseña(r);
-    }
-    
-    // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
-    public void insertarCompra(int id_videojuego) {
-        gcom.insertarCompra(id_videojuego, usuario.getId());
-    }
-    
-    // Funciones relacionadas con la gestion de las categorias de los juegos
-    public void insertarCategoria(Categoria c){
-        gcat.insertarCategoria(c);
-    }
-    
-    public void borrarCategoria(String nombre){
-        gcat.borrarCategoria(nombre);
-    }
-    
-    public java.util.List<Categoria> consultarCategorias(String nombre){
-        return gcat.consultarCategorias(nombre);
-    }
-    
-    // Funciones para crear y borrar DLC de videojuegos
-    public void insertarDLC(DLC d){
-        gd.insertarDLC(d);
-    }
-    
-    public void borrarDLC(int d){
-        gd.borrarDLC(d);
-    }
-    
-    // Funciones relacionadas con la gestion de las plataformas. No veo necesario crear una clase
-    public void insertarPlataforma(String nombre, String path){
-        gpl.insertarPlataforma(nombre, path);
-    }
-    public void borrarPlataforma(String nombre){
-        gpl.borrarPlataforma(nombre);
-    }
-    public java.util.List<String> consultarPlataformas(String nombre){
-        return gpl.consultarPlataformas(nombre);
-    }
-    
-    // Funciones para gestionar las plataformas de un videojuego, se podrian mostrar por pantalla
-    public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
-        gpl.insertarPlataformaVideojuego(nombre, id_videojuego);
-    }
-    public void borrarPlataformaVideojuego(String nombre, int videojuego){
-        gpl.borrarPlataformaVideojuego(nombre, videojuego);
-    }
-    
+    // Funcion para bloquear a un usuario
     public void bloquearSeguidor(String idU1, String idU2){
         gu.bloquearSeguidor(idU1, idU2);
     }
@@ -380,78 +272,293 @@ public class FachadaAplicacion {
         this.usuario = gu.comprobarAutentificacion(username, password);
         return usuario != null;
     }
-
-    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
-        return gv.consultarDLCsVideojuego(v);
+    // Funcion para consultar los videojuegos de un usuario
+    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
+        return gu.consultarVideojuegosUsuario(id);
     }
 
-//METHODS
+    // -----------------------------------------------------------------------
 
-    // TORNEOS
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONCOMUNIDAD
+    // -----------------------------------------------------------------------
+
+    // Funcion para crear una nueva comunidad
+    public void insertarComunidad(Comunidad c){
+        gc.insertarComunidad(c);
+    }
+    // Funcion para borrar una comunidad
+    public void borrarComunidad(Comunidad c){
+        gc.borrarComunidad(c);
+    }
+    // Funcion para mirar comunidades en el buscador, encontrar una comunidad especifica, a partir de algo o todas si la barra esta vacía
+    public java.util.List<Comunidad> consultarComunidades(String nombre){
+        return gc.consultarComunidades(nombre);
+    }
+    // Funcion para insertar a un usuario en una comunidad.
+    // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
+    public void insertarJugadorEquipo(String id_usuario, Comunidad c){
+        gc.insertarJugadorEquipo(id_usuario, c);
+    }
+    // Funcion para hacer salir de una comunidad a un usuario
+    public void salirJugadorEquipo(String id_usuario){
+        gc.salirJugadorEquipo(id_usuario);
+    }
+    // Funcion para consultar el equipo en el que esta un usuario
+    public Comunidad consultarEquipoJugador(String id_usuario){
+        return gc.consultarEquipoJugador(id_usuario);
+    }
+    // Funcion para consultar los jugadores que pertenecen a un equipo en concreto
+    public java.util.List<Integer> consultarJugadoresEquipo(Comunidad c){
+        return gc.consultarJugadoresEquipo(c);
+    }
+    // Funcion para contar los miembros de un equipo
+    public Integer contarMiembrosEquipo(Comunidad c) {
+        return gc.contarMiembrosEquipo(c);
+    }
+    // Comprueba que un usuario pertenece a alguna comunidad y devuelve un boolean
+    public boolean tieneComunidad(Usuario u){
+        return gc.tieneComunidad(u);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONDEMO
+    // -----------------------------------------------------------------------
+
+    // Funcion que permite consultar una demo a partir de un mes y/o ano
+    public Demo consultarDemo(int mes, int ano)
+    {
+        return gdem.consultarDemo(mes, ano);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONRESEÑA
+    // -----------------------------------------------------------------------
+
+    // Escribir una nueva reseña
+    public void insertarReseña(Reseña r){
+        gr.insertarReseña(r);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONCOMPRA
+    // -----------------------------------------------------------------------
+
+    // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
+    public void insertarCompra(int id_videojuego) {
+        gcom.insertarCompra(id_videojuego, usuario.getId());
+    }
+    // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
+    public Integer contarJuegosUsuario(String id_usuario){
+        return gcom.contarJuegosUsuario(id_usuario);
+    }
+    // Funcion para actualizar el numero de descargas de un videojuego actualmente.
+    // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
+    public void consultarNumeroDescargas(Videojuego v){
+        gcom.consultarNumeroDescargas(v);
+    }
+    // Comprueba si un usuario tiene un juego en especifico
+    public boolean tieneVideojeugo(Usuario usuario, Videojuego videojuego){
+        return gcom.tieneVideojuego(usuario, videojuego);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONCATEGORIA
+    // -----------------------------------------------------------------------
+
+    // Funcion para insertar una nueva categoria
+    public void insertarCategoria(Categoria c){
+        gcat.insertarCategoria(c);
+    }
+    // Funcion para borrar una categoria
+    public void borrarCategoria(String nombre){
+        gcat.borrarCategoria(nombre);
+    }
+    // Funcion para consultar todas las categorias disponibles, pudiendo especificar con nombre o parte de este
+    public java.util.List<Categoria> consultarCategorias(String nombre){
+        return gcat.consultarCategorias(nombre);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONDLC
+    // -----------------------------------------------------------------------
+
+    // Funcion para crear DLC de videojuegos
+    public void insertarDLC(DLC d){
+        gd.insertarDLC(d);
+    }
+    // Funcion para borrar DLC de videojuegos
+    public void borrarDLC(int d){
+        gd.borrarDLC(d);
+    }
+    // Funcion para consultar los DLCs en propiedad de un usuario relacionados con un videojuego especifico
+    public List<DLC> consultarDLCsVideojuegoUsuario(Videojuego v, Usuario u){
+        return gd.consultarDLCsVideojuegoUsuario(v, u);
+    }
+    // Funcion para comprobar si un usuario tiene un DLC en especifico
+    public boolean tieneDLC(Usuario usuario, DLC dlc){
+        return gd.tieneDLC(usuario, dlc);
+    }
+    // Funcion para comprar un DLC especifico
+    public void comprarDLC(DLC d, Usuario u){
+        gd.comprarDLC(d, u);
+    }
+    // Funcion para devolver un DLC especifico
+    public void devolverDLC(DLC d, Usuario u){
+        gd.devolverDLC(d, u);
+    }
+    // Funcion para consultar los DLCs de un videojuego
+    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
+        return gd.consultarDLCsVideojuego(v);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIOPLATADFORMA
+
+    // -----------------------------------------------------------------------
+
+    // Funcion para insertar una plataforma nueva
+    public void insertarPlataforma(String nombre, String path){
+        gpl.insertarPlataforma(nombre, path);
+    }
+    // Funcion para borrar una determinada plataforma
+    public void borrarPlataforma(String nombre){
+        gpl.borrarPlataforma(nombre);
+    }
+    // Funcion para consultar plataformas a partir de un nombre, que puede estar vacio
+    public java.util.List<String> consultarPlataformas(String nombre){
+        return gpl.consultarPlataformas(nombre);
+    }
+    // Funcion para añadir una plataforma a un videojuego
+    public void insertarPlataformaVideojuego(String nombre, int id_videojuego){
+        gpl.insertarPlataformaVideojuego(nombre, id_videojuego);
+    }
+    // Funcion para borrar a un videojuego una plataforma
+    public void borrarPlataformaVideojuego(String nombre, int videojuego){
+        gpl.borrarPlataformaVideojuego(nombre, videojuego);
+    }
+
+    // -----------------------------------------------------------------------
+
+
+
+
+
+
+    // FUNCIONES RELACIONADAS CON GESTIONTORNEOS
+    // -----------------------------------------------------------------------
+
+    // Funcion para insertar un nuevo torneo
     public void insertarTorneo(Torneo t) {
         gt.insertarTorneo(t);
     }
+    // Funcion para consultar la cantidad de torneos ganados por un usuario
     public int torneosGanados(Usuario u){
         return gt.torneosGanados(u);
     }
+    // Funcion para consultar los torneos existentes ¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ACTUALES O HISTORICOS????????????????????
     public List<Torneo> consultarTorneos(String nombre)
     {
         return gt.consultarTorneos(nombre);
     }
+    //Funcion para agregar a un usuario a un torneo
     public void participarTorneo(Usuario u, Torneo t) {
         gt.participarTorneo(u, t);
     }
+    // Funcion para consultar los usuarios participantes de un torneo
     public List<Usuario> consultarParticipantes(Torneo t) {
         return gt.consultarParticipantes(t);
     }
+    // Funcion para comprobar si un usuario forma parte de un torneo determinado
     public boolean isParticipante(Usuario u, Torneo t) {
         return gt.isParticipante(u, t);
     }
+    // Funcion para comprobar si un usuario puede retirarse de un torneo
     public boolean puedeRetirarse(Torneo t) {
         return gt.puedeRetirarse(t);
     }
+    // Funion para hacer que un usuario se retire de un torneo
     public void retirarseTorneo(Usuario u, Torneo t) {
         gt.retirarseTorneo(u, t);
     }
-
+    // Funcion para actualizar el ganador de un torneo
     public void setGanador(Torneo t) {
         gt.setGanador(t);
     }
 
+    // -----------------------------------------------------------------------
 
 
 
-    public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
-        return gu.consultarVideojuegosUsuario(id);
-    }
-    public List<DLC> consultarDLCsVideojuegoUsuario(Videojuego v, Usuario u){
-        return gd.consultarDLCsVideojuegoUsuario(v, u);
-    }
-    public boolean tieneDLC(Usuario usuario, DLC dlc){
-        return gd.tieneDLC(usuario, dlc);
-    }
 
-    public boolean tieneVideojeugo(Usuario usuario, Videojuego videojuego){
-        return gv.tieneVideojuego(usuario, videojuego);
-    }
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
+
+
+
+    // OTROS
+
+    // -----------------------------------------------------------------------
+
 
     public List<Videojuego> consultarVideosjuegosEditor(String id_editor) {
         return fbd.consultarVideosjuegosEditor(id_editor);
     }
-
-    public void publicarVideojuego(Videojuego v) {
-        gv.publicarVideojuego(v);
+    // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.
+    // Si pones un buscador se añade facil.
+    // DEVUELVE LOS VIDEOJUEGOS DIERECTAMENTE
+    /*
+    public java.util.List<Videojuego> consultarJuegosUsuario(int id_usuario){
+        return gu.consultarJuegosUsuario(id_usuario);
     }
-
-    public void comprarDLC(DLC d, Usuario u){
-        gd.comprarDLC(d, u);
-    }
-
-    public void devolverDLC(DLC d, Usuario u){
-        gd.devolverDLC(d, u);
-    }
-
-    public boolean tieneComunidad(Usuario u){
-        return gc.tieneComunidad(u);
-    }
+     */
 }

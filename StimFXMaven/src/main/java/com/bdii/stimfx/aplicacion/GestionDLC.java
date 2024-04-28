@@ -39,4 +39,8 @@ public class GestionDLC {
     public void borrarDLC(int d){
         fbd.borrarDLC(d);
     }
+
+    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
+        return fbd.consultarDLCsVideojuego(v);
+    }
 }
