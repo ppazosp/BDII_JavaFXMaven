@@ -48,10 +48,6 @@ public class GestionVideojuegos {
         return fbd.consultarVideojuego(n);
     }
 
-    public void consultarNumeroDescargas(Videojuego v){
-        fbd.consultarNumeroDescargas(v);
-    }
-
     public List<Videojuego> consultaVideoJuegosInicio(){
         return fbd.consultaVideoJuegosInicio();
     }
@@ -64,21 +60,12 @@ public class GestionVideojuegos {
         return fbd.consultarPlataformasVideoJuego(v.getId());
     }
 
-    public java.util.List<DLC> consultarDLCsVideojuego(Videojuego v){
-        return fbd.consultarDLCsVideojuego(v);
-    }
-
     public java.util.List<String> consultarCategoriasVideojuego(Videojuego v){
         return fbd.consultarCategoriasVideojuego(v.getId());
     }
 
     public void borrarVideojuego(Videojuego v) {
         fbd.borrarVideojuego(v.getId());
-    }
-
-    public boolean tieneVideojuego(Usuario usuario, Videojuego videojuego){
-        List<Videojuego> videojuegoUsuario = fbd.consultarVideojuegosUsuario(usuario.getId());
-        return  videojuegoUsuario.contains(videojuego);
     }
     /*
     public java.util.List<String> consultarPlataformasVideojuego(Videojuego v){
