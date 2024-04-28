@@ -27,3 +27,7 @@
 .selected2:hover {
     -fx-background-color: #CFD7E0;
 }
+
+.progress-bar {
+    -fx-progress-color: #1B2631;
+}

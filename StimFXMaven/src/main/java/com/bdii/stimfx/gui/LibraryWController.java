@@ -1,6 +1,7 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.Videojuego;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
@@ -16,20 +17,41 @@ public class LibraryWController implements Controller{
     VBox gamesVbox;
 
     public void initializeWindow()  {
-        List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
-        gamesVbox.getChildren().clear();
 
-        try {
-            for (Videojuego v : userGames) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/librarySearchItem.fxml"));
-                gamesVbox.getChildren().add(loader.load());
+        fg.loading();
 
-                LibrarySearchItemController controller = loader.getController();
-                controller.setMainApp(fg);
-                controller.initializeWindow(v);
+        Task<Void> loadGamesTask = new Task<Void>() {
+            @Override
+            protected Void call() {
+                List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
+                gamesVbox.getChildren().clear();
+
+                System.out.println("Thread is running: " + isRunning());
+
+                try {
+                    for (Videojuego v : userGames) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/librarySearchItem.fxml"));
+                        gamesVbox.getChildren().add(loader.load());
+
+                        LibrarySearchItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(v);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fg.loaded();
+
+                return null;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        };
+        Thread t = new Thread(loadGamesTask);
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

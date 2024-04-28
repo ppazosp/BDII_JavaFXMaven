@@ -5,10 +5,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="750.0" prefWidth="1250.0" style="-fx-background-color: FFFFFF;"
-            styleClass="primary-color" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21">
+            prefHeight="750.0" prefWidth="1250.0" styleClass="primary-color"
+            stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21">
     <children>
         <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0"
                     style="-fx-background-color: #1B2631;">
@@ -21,8 +20,8 @@
                 </ImageView>
                 <VBox alignment="TOP_CENTER" layoutY="110.0" prefHeight="537.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0"
-                              spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -39,8 +38,8 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="33.0" prefWidth="190.0"
-                              spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -57,8 +56,8 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#showSocialScene" prefHeight="33.0" prefWidth="190.0"
-                              spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -75,8 +74,8 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0"
-                              prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -93,8 +92,8 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#showEditScene" prefHeight="33.0" prefWidth="190.0"
-                              spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -111,8 +110,8 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#showAdminScene" prefHeight="33.0" prefWidth="190.0"
-                              spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -155,13 +154,9 @@
                                     </opaqueInsets>
                                 </Label>
                             </children>
-                            <styleClass>
-                                <String fx:value="selected-border"/>
-                                <String fx:value="selected"/>
-                            </styleClass>
                         </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#showSettingsScene" prefHeight="33.0" prefWidth="190.0"
-                              spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0"
+                              stylesheets="@../css/styles.css">
                             <children>
                                 <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -187,7 +182,7 @@
             <children>
                 <ProgressIndicator layoutX="488.0" layoutY="338.0" maxHeight="-Infinity" maxWidth="-Infinity"
                                    minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="75.0"
-                                   style="-fx-progress-color: #1B2631;" stylesheets="@../css/styles.css"/>
+                                   styleClass="progress-bar" stylesheets="@../css/styles.css"/>
             </children>
         </AnchorPane>
     </children>

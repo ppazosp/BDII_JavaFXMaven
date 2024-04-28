@@ -28,8 +28,8 @@ public class FachadaGUI extends Application {
     }
 
     private Stage primaryStage;
-    private static Scene primaryScene;
-    private static Scene loadingScene;
+    private Scene primaryScene;
+    private Scene loadingScene;
 
     @Override
     public void start(Stage primaryStage) {
@@ -40,6 +40,7 @@ public class FachadaGUI extends Application {
         //this.primaryStage.setMaxWidth(1000);
         //this.primaryStage.setMinHeight(630);
         //this.primaryStage.setMaxHeight(630);
+        createLoadingScene();
         showLoginWindow();
     }
 
@@ -51,9 +52,9 @@ public class FachadaGUI extends Application {
             loader.setController(controllerInstance);
             Parent root = loader.load();
 
-            Scene scene = new Scene(root);
+            primaryScene = new Scene(root);
             if (stage == null) stage = primaryStage;
-            stage.setScene(scene);
+            stage.setScene(primaryScene);
             if (windowTitle == null) windowTitle = "Stim";
             stage.setTitle(windowTitle);
             stage.show();
@@ -65,6 +66,27 @@ public class FachadaGUI extends Application {
             return null;
         }
     }
+
+    public void createLoadingScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/loadingW.fxml"));
+            LoadingWController loadingWController = new LoadingWController();
+            loader.setController(loadingWController);
+            Parent root = loader.load();
+            loadingScene = new Scene(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loading() {
+        primaryStage.setScene(loadingScene);
+    }
+
+    public void loaded() {
+        primaryStage.setScene(primaryScene);
+    }
+
 
     public void showPlatforms(Videojuego v, HBox hbox)
     {

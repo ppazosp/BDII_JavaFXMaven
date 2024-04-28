@@ -125,6 +125,7 @@ public class MainWController implements Controller, Initializable {
         //if(!(fg.fa.usuario instanceof UsuarioEditor)) menuBar.getChildren().remove(editMenu);
         //if(!(fg.fa.usuario instanceof UsuarioAdministrador)) menuBar.getChildren().remove(adminMenu);
 
+        fg.loading();
 
         demoGame = fg.fa.consultarDemo(LocalDate.now().getMonthValue(), LocalDate.now().getYear());
         if(demoGame != null) {
@@ -191,6 +192,8 @@ public class MainWController implements Controller, Initializable {
             rightPane.getChildren().remove(topSellersVbox);
             if(nextLaunchVbox != null) nextLaunchVbox.setLayoutX(390);
         }
+
+        fg.loaded();
     }
 
 
