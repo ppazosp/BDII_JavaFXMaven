@@ -17,7 +17,7 @@ import java.sql.SQLException;
 /**
  *
  * @author alumnogreibd
- */
+ * */
 public class DAOUsuarios extends AbstractDAO{
     public DAOUsuarios (Connection conexion, com.bdii.stimfx.aplicacion.FachadaAplicacion fa){
         super.setConexion(conexion);
@@ -387,8 +387,8 @@ public class DAOUsuarios extends AbstractDAO{
         Usuario resultado = null;
         Usuario usuarioActual;
         Connection con;
-        PreparedStatement stmUsuarios=null, stmnTipoUsuarios=null;
-        ResultSet rsUsuarios, rsTipoUsuarios;
+        PreparedStatement stmUsuarios=null, stmnTipoUsuarios=null, stmDinero = null;
+        ResultSet rsUsuarios, rsTipoUsuarios, rsDinero;
 
         con=this.getConexion();
 
@@ -407,7 +407,7 @@ public class DAOUsuarios extends AbstractDAO{
                 resultado = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
                         rsUsuarios.getString("contraseña"),
                         rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));
-
+                // Consultamos tipos de usuarios
                 consulta = "select user_id, tipo from tipo_usuario where user_id like ?";
                     try  {
                         stmnTipoUsuarios=con.prepareStatement(consulta);
@@ -436,10 +436,29 @@ public class DAOUsuarios extends AbstractDAO{
                         }
                     } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
                 }
-                resultado = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
-                        rsUsuarios.getString("contraseña"),
-                        rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));  //TELEFONO ESTA EN LA BASE?
+                // Consultamos monedero de usuario
+                consulta = "select * from monedero where monedero.id_comun like ?";
+                try  {
+                    stmDinero=con.prepareStatement(consulta);
+                    stmDinero.setString(1, id);
+                    rsDinero=stmDinero.executeQuery();
+                    if (rsDinero.next())
+                    {
+                       resultado.setDinero(rsDinero.getFloat("dinero"));
 
+
+                    }
+
+                } catch (SQLException e){
+                    System.out.println(e.getMessage());
+                    FachadaAplicacion.muestraExcepcion(e.getMessage());
+                }finally{
+                    try {
+                        if (stmUsuarios != null) {
+                            stmUsuarios.close();
+                        }
+                    } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+                }
             }
 
         } catch (SQLException e){

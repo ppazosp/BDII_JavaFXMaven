@@ -104,6 +104,11 @@ public class Usuario {
         isCompetitivePlayer = competitivePlayer;
     }
 
+    public boolean tieneDineroSuficiente(double dinero){
+        return this.dinero> dinero;
+    }
+    public void setDinero(float dinero) {this.dinero = dinero;}
+
     public float getDinero(){
         return this.dinero;
     }

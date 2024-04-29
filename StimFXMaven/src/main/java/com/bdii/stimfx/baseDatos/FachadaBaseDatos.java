@@ -104,6 +104,8 @@ public class FachadaBaseDatos {
     public void updateVideojuego(Videojuego v) {
         daoV.updateVideojuego(v);
     }
+
+
     public void borrarVideojuego(int id) {
         daoV.borrarVideojuego(id);
     }

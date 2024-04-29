@@ -515,6 +515,7 @@ public class FachadaAplicacion {
         return gd.consultarDLCsVideojuego(v);
     }
 
+
     // -----------------------------------------------------------------------
 
 

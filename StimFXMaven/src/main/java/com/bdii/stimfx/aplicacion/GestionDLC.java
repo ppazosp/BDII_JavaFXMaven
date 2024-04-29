@@ -21,7 +21,9 @@ public class GestionDLC {
     }
 
     public void comprarDLC(DLC d, Usuario u){
-        fbd.comprarDLC(d, u.getId(), Date.valueOf(LocalDate.now()));
+        if (u.tieneDineroSuficiente(d.getPrecio())) {
+            fbd.comprarDLC(d, u.getId(), Date.valueOf(LocalDate.now()));
+        }
     }
 
     public void devolverDLC(DLC d, Usuario u){
