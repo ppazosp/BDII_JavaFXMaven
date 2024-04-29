@@ -35,7 +35,7 @@ public class CompSearchItemController implements Controller {
     {
         this.superController = superController;
         this.torn = torn;
-        iconImage.setImage(torn.getVideojuego().getImagen());
+
         nameLabel.setText(torn.getNombre());
         if(opt == 0)
         {
@@ -48,6 +48,7 @@ public class CompSearchItemController implements Controller {
             endLabel.setStyle("-fx-font-weight: bold;");
         }
         prizeLabel.setText(torn.getPremio() + "€");
+        iconImage.setImage(torn.getVideojuego().getImagen());
     }
 
 

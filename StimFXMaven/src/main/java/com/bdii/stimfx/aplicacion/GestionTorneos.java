@@ -71,4 +71,9 @@ public class GestionTorneos {
         t.setGanador(idGanador);
     }
 
+    public List<Torneo> consultarTorneosAdmin(Usuario u)
+    {
+        return fbd.consultarTorneosAdmin(u.getId());
+    }
+
 }

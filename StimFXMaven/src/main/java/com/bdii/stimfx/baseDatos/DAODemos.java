@@ -1,4 +1,5 @@
 package com.bdii.stimfx.baseDatos;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Connection;
 
@@ -6,6 +7,7 @@ import com.bdii.stimfx.aplicacion.*;
 
 
 import java.sql.*;
+import java.util.List;
 
 /**
  *
@@ -47,6 +49,39 @@ public class DAODemos extends AbstractDAO {
         }
     }
 
+    public void updateDemo(Demo d) {
+        Connection con;
+        PreparedStatement stmDemo = null;
+
+        con = this.getConexion();
+
+        try {
+            stmDemo = con.prepareStatement("update demo set" +
+                    " nombre = ?," +
+                    " imagen = ? " +
+                    " where mes = ? and ano = ? ;");
+
+            stmDemo.setString(1, d.getNombre());
+            stmDemo.setInt(3, d.getMes());
+            stmDemo.setInt(4, d.getAno());
+            stmDemo.setBytes(2, FachadaAplicacion.imageToBytes(d.getImagen()));
+            stmDemo.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                assert stmDemo != null;
+                stmDemo.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+
+
+
     public Demo consultarDemo(int mes, int ano)
     {
         Connection con;
@@ -78,6 +113,38 @@ public class DAODemos extends AbstractDAO {
         }finally{
             try {stmDemo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
+        return resultado;
+    }
+
+    public List<Demo> consultarDemoAdmin(String a_id)
+    {
+        List<Demo> resultado = new ArrayList<>();
+        Demo demoActual;
+        Connection con;
+        PreparedStatement stmDemos=null;
+        ResultSet rsDemos;
+
+        con=this.getConexion();
+
+        try{
+            stmDemos=con.prepareStatement(" select nombre, mes, ano, imagen from demo where id_usradmin = ? order by ano, mes desc ");
+
+            stmDemos.setString(1, a_id);
+            rsDemos=stmDemos.executeQuery();
+            while (rsDemos.next())
+            {
+                demoActual = new Demo(rsDemos.getString("nombre"), rsDemos.getInt("mes"),
+                        rsDemos.getInt("ano"), FachadaAplicacion.bytesToImage(rsDemos.getBytes("imagen")), a_id);
+
+                resultado.add(demoActual);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmDemos.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
         return resultado;
     }
 

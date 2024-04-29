@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="thisHbox" alignment="CENTER_LEFT" onMouseClicked="#showGameLibraryScene" prefHeight="33.0" prefWidth="237.0" spacing="10.0" style="-fx-background-radius: 10;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.LibrarySearchItemController" >
+<HBox fx:id="thisHbox" alignment="CENTER_LEFT" onMouseClicked="#showGameLibraryScene" prefHeight="33.0" prefWidth="237.0" spacing="10.0" style="-fx-border-radius: 10; -fx-border-color: #1B2631; -fx-border-width: 3; -fx-background-radius: 10;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.LibrarySearchItemController">
    <children>
       <ImageView fx:id="iconImage" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>

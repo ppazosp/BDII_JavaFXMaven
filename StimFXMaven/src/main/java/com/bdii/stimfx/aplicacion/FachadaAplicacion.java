@@ -125,7 +125,7 @@ public class FachadaAplicacion {
 
     private void pruebas_DAO(){
 
-        ///////////////////NO LA DESCOMENTEIS GRACIAS GRACIAS GRACIAS///////////////////////fbd.hashAllPasswords();
+        //////////////NO DESCOMENTAS GRACIAS/////////////fbd.hashAllPasswords();
 
 
         //List<Categoria> cats = fbd.consultarCategorias("Aventura");
@@ -242,6 +242,9 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return gu.consultarUsuarios(id, nombre);
     }
+    public java.util.List<Usuario> consultarUsuarios(){
+        return gu.consultarUsuarios();
+    }
     // Funcion para buscar a los usuarios que no seguimos
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){
         return gu.consultarUsuariosNoSeguidos(usuario, busq);
@@ -339,6 +342,14 @@ public class FachadaAplicacion {
     public Demo consultarDemo(int mes, int ano)
     {
         return gdem.consultarDemo(mes, ano);
+    }
+    public List<Demo> consultarDemoAdmin(Usuario u)
+    {
+        return gdem.consultarDemoAdmin(u);
+    }
+    public void publicarDemo(Demo d)
+    {
+        gdem.publicarDemo(d);
     }
 
     // -----------------------------------------------------------------------
@@ -524,6 +535,11 @@ public class FachadaAplicacion {
     // Funcion para actualizar el ganador de un torneo
     public void setGanador(Torneo t) {
         gt.setGanador(t);
+    }
+
+    public List<Torneo> consultarTorneosAdmin(Usuario u)
+    {
+        return gt.consultarTorneosAdmin(u);
     }
 
     // -----------------------------------------------------------------------

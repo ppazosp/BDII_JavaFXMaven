@@ -33,11 +33,11 @@ public class GestionVideojuegos {
     }
 
     public void publicarVideojuego(Videojuego v) {
-        if (existVideojuego(v)) updateVideojuego(v);
+        if (existsVideojuego(v)) updateVideojuego(v);
         else insertarVideojuego(v);
     }
 
-    public boolean existVideojuego(Videojuego v) {
+    public boolean existsVideojuego(Videojuego v) {
         return fbd.consultarVideojuego(v.getId()) != null;
     }
     public java.util.List<Videojuego> consultarVideojuegos(String n){

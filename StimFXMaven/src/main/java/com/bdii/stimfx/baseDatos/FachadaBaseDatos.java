@@ -77,9 +77,15 @@ public class FachadaBaseDatos {
     }
 
     public void insertarDemo(Demo d) {daoDemos.insertarDemo(d);}
+    public void updateDemo(Demo d) {daoDemos.updateDemo(d);}
 
     public Demo consultarDemo(int mes, int ano) {
         return daoDemos.consultarDemo(mes, ano);
+    }
+
+    public List<Demo> consultarDemoAdmin(String a_id)
+    {
+        return daoDemos.consultarDemoAdmin(a_id);
     }
 
     //Hace falta el id
@@ -127,6 +133,10 @@ public class FachadaBaseDatos {
     
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return daoU.consultarUsuarios(id, nombre);
+    }
+
+    public java.util.List<Usuario> consultarUsuarios(){
+        return daoU.consultarUsuarios();
     }
 
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
@@ -272,6 +282,11 @@ public class FachadaBaseDatos {
     public void retirarseTorneo(String u_id, int t_id)
     {
         daoT.retirarseTorneo(u_id, t_id);
+    }
+
+    public List<Torneo> consultarTorneosAdmin(String a_id)
+    {
+        return daoT.consultarTorneosAdmin(a_id);
     }
 
     public List<Usuario> consultarParticipantes(int t_id)

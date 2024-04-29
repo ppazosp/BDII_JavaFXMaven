@@ -4,6 +4,7 @@
  */
 package com.bdii.stimfx.gui;
 
+import com.bdii.stimfx.aplicacion.Demo;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Plataforma;
 import com.bdii.stimfx.aplicacion.Videojuego;
@@ -36,6 +37,7 @@ public class FachadaGUI extends Application {
         fa = new FachadaAplicacion(this);
 
         this.primaryStage = primaryStage;
+        this.primaryStage.setResizable(false);
         //this.primaryStage.setMinWidth(1000);
         //this.primaryStage.setMaxWidth(1000);
         //this.primaryStage.setMinHeight(630);
@@ -120,6 +122,7 @@ public class FachadaGUI extends Application {
         if(createWindow)
         {
             primaryStage = new Stage();
+            this.primaryStage.setResizable(false);
             //this.primaryStage.setMinWidth(1250);
             //this.primaryStage.setMaxWidth(1250);
             //this.primaryStage.setMinHeight(785);
@@ -226,6 +229,25 @@ public class FachadaGUI extends Application {
         editGameWController.setMainApp(this);
         editGameWController.initializeWindow(v, s);
     }
+
+    public void showAdminScene()
+    {
+        AdminWController adminWController = loadFXML("/com/bdii/stimfx/gui/adminW.fxml", null, null, AdminWController.class);
+        assert adminWController != null;
+        adminWController.setMainApp(this);
+        adminWController.initializeWindow();
+    }
+
+    public void showEditDemoW(Demo d) {
+        Stage s = new Stage();
+        s.setResizable(false);
+
+        AdminEditDemoWController adminDemoWController = loadFXML("/com/bdii/stimfx/gui/adminEditDemoW.fxml", null, s, AdminEditDemoWController.class);
+        assert adminDemoWController != null;
+        adminDemoWController.setMainApp(this);
+        adminDemoWController.initializeWindow(d, s);
+    }
+
 
 
 

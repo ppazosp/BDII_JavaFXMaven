@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.String?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="700.0" styleClass="primary-color"
-            stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="primary-color" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" layoutX="50.0" layoutY="50.0" prefHeight="510.0" prefWidth="600.0" spacing="30.0">
         <children>
             <HBox alignment="CENTER" prefHeight="36.0" prefWidth="600.0" spacing="50.0">
                 <children>
                     <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                            <ImageView fx:id="iconImage" fitHeight="100.0" fitWidth="100.0"
-                                       onDragDropped="#onDragDroppedIcon" onDragOver="#onDragOver" pickOnBounds="true"
-                                       preserveRatio="true"/>
-                            <Label alignment="BOTTOM_CENTER" prefHeight="90.0" prefWidth="100.0" text="Icon"
-                                   textFill="WHITE">
+                            <ImageView fx:id="iconImage" fitHeight="100.0" fitWidth="100.0" onDragDropped="#onDragDroppedIcon" onDragOver="#onDragOver" pickOnBounds="true" preserveRatio="true" />
+                            <Label alignment="BOTTOM_CENTER" prefHeight="90.0" prefWidth="100.0" text="Icono" textFill="WHITE">
                                 <font>
-                                    <Font name="System Bold" size="16.0"/>
+                                    <Font name="System Bold" size="16.0" />
                                 </font>
                             </Label>
                         </children>
                     </VBox>
                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                            <ImageView fx:id="bannerImage" fitHeight="211.0" fitWidth="450.0"
-                                       onDragDropped="#onDragDroppedBanner" onDragOver="#onDragOver" pickOnBounds="true"
-                                       preserveRatio="true"/>
-                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="517.0" text="Banner"
-                                   textFill="WHITE">
+                            <ImageView fx:id="bannerImage" fitHeight="211.0" fitWidth="450.0" onDragDropped="#onDragDroppedBanner" onDragOver="#onDragOver" pickOnBounds="true" preserveRatio="true" />
+                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="517.0" text="Banner" textFill="WHITE">
                                 <font>
-                                    <Font name="System Bold" size="16.0"/>
+                                    <Font name="System Bold" size="16.0" />
                                 </font>
                             </Label>
                         </children>
@@ -50,13 +48,12 @@
                                 <children>
                                     <Label prefHeight="25.0" prefWidth="110.0" text="Nombre" textFill="WHITE">
                                         <font>
-                                            <Font name="System Bold" size="16.0"/>
+                                            <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="nameField" focusTraversable="false" prefHeight="30.0"
-                                               prefWidth="250.0">
+                                    <TextField fx:id="nameField" focusTraversable="false" prefHeight="30.0" prefWidth="250.0">
                                         <font>
-                                            <Font size="14.0"/>
+                                            <Font size="14.0" />
                                         </font>
                                     </TextField>
                                 </children>
@@ -65,19 +62,17 @@
                                 <children>
                                     <Label prefHeight="17.0" prefWidth="128.0" text="Precio" textFill="WHITE">
                                         <font>
-                                            <Font name="System Bold" size="16.0"/>
+                                            <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="prizeField" alignment="CENTER" focusTraversable="false"
-                                               prefHeight="30.0" prefWidth="78.0">
+                                    <TextField fx:id="prizeField" alignment="CENTER" focusTraversable="false" prefHeight="30.0" prefWidth="78.0">
                                         <font>
-                                            <Font size="14.0"/>
+                                            <Font size="14.0" />
                                         </font>
                                     </TextField>
-                                    <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="20.0" text=" €"
-                                           textFill="WHITE">
+                                    <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="20.0" text=" €" textFill="WHITE">
                                         <font>
-                                            <Font name="System Bold" size="16.0"/>
+                                            <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
                                 </children>
@@ -90,22 +85,20 @@
                                 <children>
                                     <Label prefHeight="27.0" prefWidth="150.0" text="Descripcion" textFill="WHITE">
                                         <font>
-                                            <Font name="System Bold" size="16.0"/>
+                                            <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
-                                    <TextArea fx:id="descrpArea" focusTraversable="false" prefHeight="80.0"
-                                              prefWidth="290.0" wrapText="true"/>
+                                    <TextArea fx:id="descrpArea" focusTraversable="false" prefHeight="80.0" prefWidth="290.0" wrapText="true" />
                                 </children>
                             </HBox>
                             <HBox prefHeight="90.0" prefWidth="464.0">
                                 <children>
                                     <Label prefHeight="16.0" prefWidth="132.0" text="Fecha de salida" textFill="WHITE">
                                         <font>
-                                            <Font name="System Bold" size="16.0"/>
+                                            <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
-                                    <DatePicker fx:id="datePicker" focusTraversable="false" prefHeight="34.0"
-                                                prefWidth="105.0"/>
+                                    <DatePicker fx:id="datePicker" focusTraversable="false" prefHeight="34.0" prefWidth="105.0" />
                                 </children>
                             </HBox>
                         </children>
@@ -114,13 +107,12 @@
                         <children>
                             <Label prefHeight="25.0" prefWidth="110.0" text="Trailer" textFill="WHITE">
                                 <font>
-                                    <Font name="System Bold" size="16.0"/>
+                                    <Font name="System Bold" size="16.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="trailerField" focusTraversable="false" prefHeight="30.0"
-                                       prefWidth="505.0">
+                            <TextField fx:id="trailerField" focusTraversable="false" prefHeight="30.0" prefWidth="505.0">
                                 <font>
-                                    <Font size="14.0"/>
+                                    <Font size="14.0" />
                                 </font>
                             </TextField>
                         </children>
@@ -129,40 +121,35 @@
                         <children>
                             <VBox prefHeight="41.0" prefWidth="109.0">
                                 <children>
-                                    <HBox fx:id="actionHbox" alignment="CENTER" onMouseClicked="#publishEdit"
-                                          prefHeight="32.0" prefWidth="441.0"
-                                          style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;"
-                                          stylesheets="@../css/styles.css">
+                                    <HBox fx:id="actionHbox" alignment="CENTER" onMouseClicked="#publishEdit" prefHeight="30.0" prefWidth="117.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
                                         <children>
-                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
-                                                       preserveRatio="true">
+                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
-                                                    <Image url="@../../../../images/addW.png"/>
+                                                    <Image url="@../../../../images/addW.png" />
                                                 </image>
                                             </ImageView>
-                                            <Label fx:id="publishLabel" alignment="CENTER" contentDisplay="CENTER"
-                                                   prefHeight="20.0" prefWidth="55.0" text="Publicar" textFill="WHITE">
+                                            <Label fx:id="publishLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="64.0" text="Publicar" textFill="WHITE">
                                                 <font>
-                                                    <Font size="14.0"/>
+                                                    <Font size="14.0" />
                                                 </font>
                                                 <opaqueInsets>
-                                                    <Insets/>
+                                                    <Insets />
                                                 </opaqueInsets>
                                             </Label>
                                         </children>
                                         <styleClass>
-                                            <String fx:value="selected"/>
-                                            <String fx:value="primary-color"/>
+                                            <String fx:value="selected" />
+                                            <String fx:value="primary-color" />
                                         </styleClass>
                                         <padding>
-                                            <Insets left="5.0" right="5.0"/>
+                                            <Insets left="5.0" right="5.0" />
                                         </padding>
                                     </HBox>
                                 </children>
                             </VBox>
                         </children>
                         <VBox.margin>
-                            <Insets top="15.0"/>
+                            <Insets top="15.0" />
                         </VBox.margin>
                     </HBox>
                 </children>

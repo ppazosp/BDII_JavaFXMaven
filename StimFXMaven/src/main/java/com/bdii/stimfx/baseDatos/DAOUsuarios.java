@@ -149,6 +149,43 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
 
+    public java.util.List<Usuario> consultarUsuarios(){
+        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        Usuario usuarioActual;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuarios;
+
+        con=this.getConexion();
+
+        String consulta = "select * from usuario ";
+
+        try  {
+            stmUsuarios=con.prepareStatement(consulta);
+            rsUsuarios=stmUsuarios.executeQuery();
+
+            while (rsUsuarios.next())
+            {
+                usuarioActual = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
+                        rsUsuarios.getString("contraseña"),
+                        rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));
+
+                resultado.add(usuarioActual);
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {
+                if (stmUsuarios != null) {
+                    stmUsuarios.close();
+                }
+            } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
+
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
         java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
         Usuario usuarioActual;

@@ -13,63 +13,23 @@ public class AdminUserItemController implements Controller {
 
     FachadaGUI fg;
     Usuario user;
-    SocialWController superController;
+    AdminWController superController;
 
-    @FXML
-    HBox userHbox;
     @FXML
     ImageView iconImage;
     @FXML
     Label nameLabel;
+    @FXML
+    HBox adminHbox;
 
-    @FXML
-    HBox buttonsHbox;
-    @FXML
-    VBox deleteVbox;
-    @FXML
-    VBox addVbox;
 
-    public void initializeWindow(Usuario user, int opt, SocialWController superController)
+    public void initializeWindow(Usuario user, AdminWController superController)
     {
         this.user = user;
         this.superController = superController;
+
         iconImage.setImage(user.getFotoPerfil());
         nameLabel.setText(user.getId());
-        if(opt == 0) buttonsHbox.getChildren().remove(deleteVbox);
-        else buttonsHbox.getChildren().remove(addVbox);
-    }
-
-
-    @FXML
-    public void followUser(MouseEvent event)
-    {
-        fg.loading();
-
-        new Thread(() -> {
-            fg.fa.seguir(fg.fa.usuario, user);
-
-            Platform.runLater(() -> {
-                superController.load();
-
-                fg.loaded();
-            });
-        }).start();
-    }
-
-    @FXML
-    public void unfollowUser(MouseEvent event)
-    {
-        fg.loading();
-
-        new Thread(() -> {
-            fg.fa.dejarSeguir(fg.fa.usuario, user);
-
-            Platform.runLater(() -> {
-                superController.load();
-
-                fg.loaded();
-            });
-        }).start();
     }
 
     public void setMainApp(FachadaGUI fg)

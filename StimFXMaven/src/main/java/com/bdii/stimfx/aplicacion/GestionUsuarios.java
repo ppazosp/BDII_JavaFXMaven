@@ -141,6 +141,10 @@ public class GestionUsuarios {
         return fbd.consultarUsuarios(id, nombre);
     }
 
+    public java.util.List<Usuario> consultarUsuarios(){
+        return fbd.consultarUsuarios();
+    }
+
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return fbd.consultarVideojuegosUsuario(id);
     }

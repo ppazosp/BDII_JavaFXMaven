@@ -174,9 +174,9 @@
       <children>
          <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="30.0" prefHeight="480.0" prefWidth="480.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
             <content>
-               <VBox prefHeight="480.0" prefWidth="464.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
+               <VBox fx:id="compVbox" prefHeight="480.0" prefWidth="464.0" spacing="5.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
                   <children>
-                     <VBox fx:id="itemVbox" alignment="CENTER" prefHeight="152.0" prefWidth="110.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 10; -fx-border-color: FFFFF;" stylesheets="@../css/styles.css">
+                     <VBox fx:id="addCompVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="110.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                         <children>
                            <ImageView fx:id="iconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -201,19 +201,22 @@
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </padding>
                         <styleClass>
-                           <String fx:value="selected" />
+                           <String fx:value="selected2" />
                            <String fx:value="primary-color" />
                         </styleClass>
                      </VBox>
                   </children>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
                </VBox>
             </content>
          </ScrollPane>
          <ScrollPane hbarPolicy="NEVER" layoutX="540.0" layoutY="30.0" prefHeight="480.0" prefWidth="480.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
             <content>
-               <VBox prefHeight="480.0" prefWidth="464.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
+               <VBox fx:id="demoVbox" prefHeight="480.0" prefWidth="464.0" spacing="5.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
                   <children>
-                     <VBox fx:id="itemVbox1" alignment="CENTER" prefHeight="152.0" prefWidth="110.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 10; -fx-border-color: FFFFF;" stylesheets="@../css/styles.css">
+                     <VBox fx:id="addDemoVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#editDemo" prefHeight="152.0" prefWidth="110.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                         <children>
                            <ImageView fx:id="iconImage1" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -238,161 +241,23 @@
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </padding>
                         <styleClass>
-                           <String fx:value="selected" />
+                           <String fx:value="selected2" />
                            <String fx:value="primary-color" />
                         </styleClass>
                      </VBox>
-                     <HBox alignment="TOP_CENTER" prefHeight="160.0" prefWidth="505.0" spacing="5.0">
-                        <padding>
-                           <Insets bottom="2.5" left="5.0" right="5.0" top="5.0" />
-                        </padding>
-                     </HBox>
                   </children>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
                </VBox>
             </content>
          </ScrollPane>
          <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="540.0" prefHeight="180.0" prefWidth="990.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
             <content>
-               <VBox prefHeight="179.0" prefWidth="974.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="58.0" prefWidth="974.0" spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER" prefHeight="32.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
-                              <children>
-                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/cs2.png" />
-                                    </image>
-                                    <HBox.margin>
-                                       <Insets left="5.0" />
-                                    </HBox.margin>
-                                 </ImageView>
-                                 <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0">
-                                    <children>
-                                       <Label prefHeight="30.0" prefWidth="203.0" text="JaimeRodriguez" textFill="WHITE">
-                                          <font>
-                                             <Font name="System Bold" size="16.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </VBox>
-                                 <VBox alignment="CENTER" prefHeight="40.0" prefWidth="135.0">
-                                    <children>
-                                       <HBox alignment="CENTER" onMouseClicked="#unfollowUser" prefHeight="30.0" prefWidth="90.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
-                                          <children>
-                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                <image>
-                                                   <Image url="@../../../../images/makeAdmin.png" />
-                                                </image>
-                                             </ImageView>
-                                             <Label text="Admin" textFill="WHITE">
-                                                <font>
-                                                   <Font name="System Bold" size="14.0" />
-                                                </font>
-                                             </Label>
-                                          </children>
-                                          <styleClass>
-                                             <String fx:value="selected" />
-                                             <String fx:value="primary-color" />
-                                          </styleClass>
-                                       </HBox>
-                                    </children>
-                                 </VBox>
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="32.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
-                              <children>
-                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/cs2.png" />
-                                    </image>
-                                    <HBox.margin>
-                                       <Insets left="5.0" />
-                                    </HBox.margin>
-                                 </ImageView>
-                                 <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0">
-                                    <children>
-                                       <Label prefHeight="30.0" prefWidth="203.0" text="JaimeRodriguez" textFill="WHITE">
-                                          <font>
-                                             <Font name="System Bold" size="16.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </VBox>
-                                 <VBox alignment="CENTER" prefHeight="40.0" prefWidth="135.0">
-                                    <children>
-                                       <HBox alignment="CENTER" onMouseClicked="#unfollowUser" prefHeight="30.0" prefWidth="90.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
-                                          <children>
-                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                <image>
-                                                   <Image url="@../../../../images/makeAdmin.png" />
-                                                </image>
-                                             </ImageView>
-                                             <Label text="Admin" textFill="WHITE">
-                                                <font>
-                                                   <Font name="System Bold" size="14.0" />
-                                                </font>
-                                             </Label>
-                                          </children>
-                                          <styleClass>
-                                             <String fx:value="selected" />
-                                             <String fx:value="primary-color" />
-                                          </styleClass>
-                                       </HBox>
-                                    </children>
-                                 </VBox>
-                              </children>
-                           </HBox>
-                           <HBox alignment="CENTER" prefHeight="32.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 20;" styleClass="button" stylesheets="@../css/styles.css">
-                              <children>
-                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                       <Image url="@../../../../images/cs2.png" />
-                                    </image>
-                                    <HBox.margin>
-                                       <Insets left="5.0" />
-                                    </HBox.margin>
-                                 </ImageView>
-                                 <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0">
-                                    <children>
-                                       <Label prefHeight="30.0" prefWidth="203.0" text="JaimeRodriguez" textFill="WHITE">
-                                          <font>
-                                             <Font name="System Bold" size="16.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </VBox>
-                                 <VBox alignment="CENTER" prefHeight="40.0" prefWidth="135.0">
-                                    <children>
-                                       <HBox alignment="CENTER" onMouseClicked="#unfollowUser" prefHeight="30.0" prefWidth="90.0" spacing="5.0" style="-fx-background-radius: 30; -fx-border-color: FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@../css/styles.css">
-                                          <children>
-                                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                <image>
-                                                   <Image url="@../../../../images/makeAdmin.png" />
-                                                </image>
-                                             </ImageView>
-                                             <Label text="Admin" textFill="WHITE">
-                                                <font>
-                                                   <Font name="System Bold" size="14.0" />
-                                                </font>
-                                             </Label>
-                                          </children>
-                                          <styleClass>
-                                             <String fx:value="selected" />
-                                             <String fx:value="primary-color" />
-                                          </styleClass>
-                                       </HBox>
-                                    </children>
-                                 </VBox>
-                              </children>
-                           </HBox>
-                        </children>
-                        <padding>
-                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                        </padding>
-                     </HBox>
-                  </children>
-               </VBox>
+               <VBox fx:id="userVbox" prefHeight="179.0" prefWidth="974.0" spacing="5.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding></VBox>
             </content>
          </ScrollPane>
       </children>
