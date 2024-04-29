@@ -6,6 +6,8 @@ package com.bdii.stimfx.baseDatos;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
+
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Videojuego;
 
 
@@ -23,9 +25,9 @@ public class DAOCompras extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
     
-    public void insertarCompra(int id_videojuego, String id_usuario){
+    public void insertarCompra(int id_videojuego, double precio, String id_usuario){
         Connection con;
-        PreparedStatement stmCompra=null;
+        PreparedStatement stmCompra=null, stmMonedero = null;
         
         con=super.getConexion();
         
@@ -44,6 +46,28 @@ public class DAOCompras extends AbstractDAO{
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
           try {stmCompra.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        try {
+            stmMonedero = con.prepareStatement("UPDATE monedero\n" +
+                    "SET dinero = dinero - ?\n" +
+                    "WHERE id_comun = ?;");//Cambiar insert
+
+            // Obtener la fecha actual como un objeto java.sql.Date
+            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
+
+            stmMonedero.setDouble(1, precio);
+            stmMonedero.setString(2, id_usuario);
+            stmMonedero.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                assert stmMonedero != null;
+                stmMonedero.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
         }
     }
 

@@ -148,7 +148,8 @@ public class GameWController implements Controller {
         fg.loading();
 
         new Thread(() -> {
-            fg.fa.insertarCompra(game.getId());
+            //METER AQUI IF/ELSE
+            fg.fa.compraVideojuego(game);
 
             Platform.runLater(() ->{
                 buyLabel.setText("Comprado");

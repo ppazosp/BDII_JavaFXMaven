@@ -170,8 +170,8 @@ public class FachadaBaseDatos {
         return daoU.consultarUsuariosNoSeguidos(id, busq);
     }
     
-    public void insertarCompra(int id_videojuego, String id_usuario){
-        daoCompras.insertarCompra(id_videojuego, id_usuario);
+    public void insertarCompra(int id_videojuego, double precio,  String id_usuario){
+        daoCompras.insertarCompra(id_videojuego, precio,  id_usuario);
     }
     
     public void insertarCategoria(Categoria c){

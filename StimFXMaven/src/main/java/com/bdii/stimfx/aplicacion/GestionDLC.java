@@ -20,9 +20,14 @@ public class GestionDLC {
         return fbd.consultarDLCsVideojuegoUsuario(v.getId(), u.getId());
     }
 
-    public void comprarDLC(DLC d, Usuario u){
+    public boolean comprarDLC(DLC d, Usuario u){
         if (u.tieneDineroSuficiente(d.getPrecio())) {
             fbd.comprarDLC(d, u.getId(), Date.valueOf(LocalDate.now()));
+            u.modificarDinero(-d.getPrecio());
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

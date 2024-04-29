@@ -457,8 +457,12 @@ public class FachadaAplicacion {
     // -----------------------------------------------------------------------
 
     // Funcion para insertar la compra de un juego. Consultar tema de dinero. No veo necesario crear una clase compras. Pasar parametros con getters
-    public void insertarCompra(int id_videojuego) {
-        gcom.insertarCompra(id_videojuego, usuario.getId());
+    public void insertarCompra(Videojuego v) {
+        gcom.insertarCompra(v, usuario.getId());
+    }
+
+    public boolean compraVideojuego(Videojuego v){
+        return  gcom.compraVideojuego(v,usuario);
     }
 
     // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
