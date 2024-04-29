@@ -172,79 +172,7 @@
    </AnchorPane>
    <AnchorPane layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
-         <HBox alignment="CENTER" layoutY="265.0" prefHeight="220.0" prefWidth="770.0" spacing="20.0">
-            <children>
-               <VBox fx:id="beEditorVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#beEditor" prefHeight="220.0" prefWidth="200.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="75.0" prefWidth="244.0">
-                        <children>
-                           <VBox prefHeight="75.0" prefWidth="277.0" spacing="3.0">
-                              <children>
-                                 <Label fx:id="editorPreLabel" alignment="CENTER" prefHeight="36.0" prefWidth="333.0" text="Convertirme en" textFill="WHITE">
-                                    <font>
-                                       <Font name="System Bold" size="18.0" />
-                                    </font>
-                                 </Label>
-                                 <Label fx:id="nameLabel23" alignment="CENTER" prefHeight="18.0" prefWidth="180.0" text="EDITOR" textFill="WHITE">
-                                    <font>
-                                       <Font name="System Bold" size="20.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </VBox>
-                        </children>
-                     </HBox>
-                     <ImageView fx:id="iconImage2" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/editor.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-                  <padding>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </padding>
-                  <styleClass>
-                     <String fx:value="primary-color" />
-                     <String fx:value="selected" />
-                  </styleClass>
-               </VBox>
-               <VBox fx:id="bePlayerVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#bePlayer" prefHeight="220.0" prefWidth="200.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="75.0" prefWidth="244.0">
-                        <children>
-                           <VBox prefHeight="75.0" prefWidth="277.0" spacing="3.0">
-                              <children>
-                                 <Label fx:id="playerPreLabel" alignment="CENTER" prefHeight="36.0" prefWidth="337.0" text="Convertirme en" textFill="WHITE">
-                                    <font>
-                                       <Font name="System Bold" size="18.0" />
-                                    </font>
-                                 </Label>
-                                 <Label fx:id="nameLabel231" alignment="CENTER" prefHeight="0.0" prefWidth="180.0" text="JUGADOR" textFill="WHITE">
-                                    <font>
-                                       <Font name="System Bold" size="20.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </VBox>
-                        </children>
-                     </HBox>
-                     <ImageView fx:id="iconImage21" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../images/trophy.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-                  <padding>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </padding>
-                  <styleClass>
-                     <String fx:value="primary-color" />
-                     <String fx:value="selected" />
-                  </styleClass>
-               </VBox>
-            </children>
-         </HBox>
-         <VBox alignment="TOP_CENTER" layoutX="770.0" layoutY="240.0" prefHeight="270.0" prefWidth="220.0" spacing="10.0">
+         <VBox alignment="CENTER" layoutX="779.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="271.0" spacing="10.0">
             <children>
                <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="220.0">
                   <children>
@@ -327,6 +255,84 @@
                   </children>
                </VBox>
             </children>
+            <padding>
+               <Insets right="50.0" top="50.0" />
+            </padding>
+         </VBox>
+         <VBox alignment="CENTER" prefHeight="750.0" prefWidth="473.0" spacing="20.0">
+            <children>
+               <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="410.0" spacing="10.0">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100;" styleClass="primary-color" stylesheets="@../css/styles.css">
+                        <children>
+                           <ImageView fitHeight="46.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../images/editor.png" />
+                              </image>
+                           </ImageView>
+                        </children>
+                     </HBox>
+                     <VBox fx:id="beEditorVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#beEditor" prefHeight="50.0" prefWidth="350.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
+                        <children>
+                           <HBox alignment="CENTER" prefHeight="51.0" prefWidth="450.0">
+                              <children>
+                                 <VBox prefHeight="75.0" prefWidth="277.0" spacing="3.0">
+                                    <children>
+                                       <Label fx:id="editorPreLabel" alignment="CENTER" prefHeight="61.0" prefWidth="277.0" text="Convertirme en EDITOR" textFill="WHITE">
+                                          <font>
+                                             <Font name="System Bold" size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                        </children>
+                        <styleClass>
+                           <String fx:value="primary-color" />
+                           <String fx:value="selected" />
+                        </styleClass>
+                     </VBox>
+                  </children>
+               </HBox>
+               <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="410.0" spacing="10.0">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100;" styleClass="primary-color" stylesheets="@../css/styles.css">
+                        <children>
+                           <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../images/trophy.png" />
+                              </image>
+                           </ImageView>
+                        </children>
+                     </HBox>
+                     <VBox fx:id="beEditorVbox1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#beEditor" prefHeight="50.0" prefWidth="350.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
+                        <children>
+                           <HBox alignment="CENTER" prefHeight="51.0" prefWidth="450.0">
+                              <children>
+                                 <VBox prefHeight="75.0" prefWidth="277.0" spacing="3.0">
+                                    <children>
+                                       <Label fx:id="playerPreLabel" alignment="CENTER" prefHeight="61.0" prefWidth="277.0" text="Convertirme en JUGADOR" textFill="WHITE">
+                                          <font>
+                                             <Font name="System Bold" size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                        </children>
+                        <styleClass>
+                           <String fx:value="primary-color" />
+                           <String fx:value="selected" />
+                        </styleClass>
+                     </VBox>
+                  </children>
+               </HBox>
+            </children>
+            <padding>
+               <Insets left="50.0" top="50.0" />
+            </padding>
          </VBox>
       </children></AnchorPane>
 </AnchorPane>
