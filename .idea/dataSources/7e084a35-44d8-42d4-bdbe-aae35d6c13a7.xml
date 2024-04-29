@@ -15702,7 +15702,7 @@
 10021258||10021257|c|G
 10021258||10021257|C|G
 10021258||10021257|T|G</Grants>
-      <IntrospectionStateNumber>93867100</IntrospectionStateNumber>
+      <IntrospectionStateNumber>93867112</IntrospectionStateNumber>
       <ServerVersion>11.18</ServerVersion>
       <StartupTime>1687338877</StartupTime>
       <TimeZones>true ACDT
@@ -35735,7 +35735,7 @@ true posixrules
 12825||10|C|G
 12825||-9223372036854775808|U|G
 12825||10|U|G</Grants>
-      <IntrospectionStateNumber>93867100</IntrospectionStateNumber>
+      <IntrospectionStateNumber>93867112</IntrospectionStateNumber>
       <ObjectId>9866237</ObjectId>
       <OwnerName>vzgfiqrg</OwnerName>
     </database>
@@ -71244,8 +71244,8 @@ true posixrules
 18318||10|t|G
 18318||10|D|G
 18318||10|w|G</Grants>
-      <IntrospectionStateNumber>93867100</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-04-29.10:06:39</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>93867112</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-04-29.10:07:19</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>359</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -81703,7 +81703,7 @@ true posixrules
       <ResultsDefinition>trigger</ResultsDefinition>
       <Rows>0.0</Rows>
       <SourceTextLength>100</SourceTextLength>
-      <StateNumber>93867098</StateNumber>
+      <StateNumber>93867110</StateNumber>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>vzgfiqrg</OwnerName>
     </routine>
@@ -95231,13 +95231,19 @@ pg_catalog</CollationParentNames>
       <StateNumber>93641892</StateNumber>
       <UnderlyingIndexId>9907087</UnderlyingIndexId>
     </key>
-    <trigger id="14982" parent="12307" name="usuario_insert_trigger">
+    <trigger id="14982" parent="12307" name="usuario_insert_money_trigger">
+      <Events>I</Events>
+      <ObjectId>10034074</ObjectId>
+      <StateNumber>93867111</StateNumber>
+      <CallRoutineId>10034067</CallRoutineId>
+    </trigger>
+    <trigger id="14983" parent="12307" name="usuario_insert_trigger">
       <Events>I</Events>
       <ObjectId>9907371</ObjectId>
       <StateNumber>93641912</StateNumber>
       <CallRoutineId>9907370</CallRoutineId>
     </trigger>
-    <column id="14983" parent="12308" name="id">
+    <column id="14984" parent="12308" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -95245,55 +95251,55 @@ pg_catalog</CollationParentNames>
       <StateNumber>93829262</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="14984" parent="12308" name="nombre">
+    <column id="14985" parent="12308" name="nombre">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
       <StateNumber>93641900</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="14985" parent="12308" name="fechasubida">
+    <column id="14986" parent="12308" name="fechasubida">
       <DasType>date|0s</DasType>
       <Position>3</Position>
       <StateNumber>93641900</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <column id="14986" parent="12308" name="id_usreditor">
+    <column id="14987" parent="12308" name="id_usreditor">
       <DasType>varchar|0s</DasType>
       <Position>4</Position>
       <StateNumber>93641900</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="14987" parent="12308" name="precio">
+    <column id="14988" parent="12308" name="precio">
       <DasType>integer|0s</DasType>
       <Position>5</Position>
       <StateNumber>93641900</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="14988" parent="12308" name="descripcion">
+    <column id="14989" parent="12308" name="descripcion">
       <DasType>varchar|0s</DasType>
       <Position>6</Position>
       <StateNumber>93641900</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="14989" parent="12308" name="imagen">
+    <column id="14990" parent="12308" name="imagen">
       <DasType>bytea|0s</DasType>
       <Position>7</Position>
       <StateNumber>93829121</StateNumber>
       <TypeId>17</TypeId>
     </column>
-    <column id="14990" parent="12308" name="banner">
+    <column id="14991" parent="12308" name="banner">
       <DasType>bytea|0s</DasType>
       <Position>8</Position>
       <StateNumber>93677444</StateNumber>
       <TypeId>17</TypeId>
     </column>
-    <column id="14991" parent="12308" name="trailer">
+    <column id="14992" parent="12308" name="trailer">
       <DasType>varchar|0s</DasType>
       <Position>9</Position>
       <StateNumber>93697026</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="14992" parent="12308" name="videojuegos_fk">
+    <foreign-key id="14993" parent="12308" name="videojuegos_fk">
       <ColNames>id_usreditor</ColNames>
       <ObjectId>9907189</ObjectId>
       <OnDelete>restrict</OnDelete>
@@ -95302,7 +95308,7 @@ pg_catalog</CollationParentNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>9907124</RefTableId>
     </foreign-key>
-    <index id="14993" parent="12308" name="videojuegos_pk">
+    <index id="14994" parent="12308" name="videojuegos_pk">
       <ColNames>id</ColNames>
       <ObjectId>9907187</ObjectId>
       <Primary>1</Primary>
@@ -95310,123 +95316,123 @@ pg_catalog</CollationParentNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="14994" parent="12308" name="videojuegos_pk">
+    <key id="14995" parent="12308" name="videojuegos_pk">
       <ObjectId>9907188</ObjectId>
       <Primary>1</Primary>
       <StateNumber>93641900</StateNumber>
       <UnderlyingIndexId>9907187</UnderlyingIndexId>
     </key>
-    <column id="14995" parent="12309" name="userid">
+    <column id="14996" parent="12309" name="userid">
       <DasType>oid|0s</DasType>
       <Position>1</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="14996" parent="12309" name="dbid">
+    <column id="14997" parent="12309" name="dbid">
       <DasType>oid|0s</DasType>
       <Position>2</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="14997" parent="12309" name="queryid">
+    <column id="14998" parent="12309" name="queryid">
       <DasType>bigint|0s</DasType>
       <Position>3</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="14998" parent="12309" name="query">
+    <column id="14999" parent="12309" name="query">
       <DasType>text|0s</DasType>
       <Position>4</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="14999" parent="12309" name="calls">
+    <column id="15000" parent="12309" name="calls">
       <DasType>bigint|0s</DasType>
       <Position>5</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15000" parent="12309" name="total_time">
+    <column id="15001" parent="12309" name="total_time">
       <DasType>double precision|0s</DasType>
       <Position>6</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15001" parent="12309" name="min_time">
+    <column id="15002" parent="12309" name="min_time">
       <DasType>double precision|0s</DasType>
       <Position>7</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15002" parent="12309" name="max_time">
+    <column id="15003" parent="12309" name="max_time">
       <DasType>double precision|0s</DasType>
       <Position>8</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15003" parent="12309" name="mean_time">
+    <column id="15004" parent="12309" name="mean_time">
       <DasType>double precision|0s</DasType>
       <Position>9</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15004" parent="12309" name="stddev_time">
+    <column id="15005" parent="12309" name="stddev_time">
       <DasType>double precision|0s</DasType>
       <Position>10</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15005" parent="12309" name="rows">
+    <column id="15006" parent="12309" name="rows">
       <DasType>bigint|0s</DasType>
       <Position>11</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15006" parent="12309" name="shared_blks_hit">
+    <column id="15007" parent="12309" name="shared_blks_hit">
       <DasType>bigint|0s</DasType>
       <Position>12</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15007" parent="12309" name="shared_blks_read">
+    <column id="15008" parent="12309" name="shared_blks_read">
       <DasType>bigint|0s</DasType>
       <Position>13</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15008" parent="12309" name="shared_blks_dirtied">
+    <column id="15009" parent="12309" name="shared_blks_dirtied">
       <DasType>bigint|0s</DasType>
       <Position>14</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15009" parent="12309" name="shared_blks_written">
+    <column id="15010" parent="12309" name="shared_blks_written">
       <DasType>bigint|0s</DasType>
       <Position>15</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15010" parent="12309" name="local_blks_hit">
+    <column id="15011" parent="12309" name="local_blks_hit">
       <DasType>bigint|0s</DasType>
       <Position>16</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15011" parent="12309" name="local_blks_read">
+    <column id="15012" parent="12309" name="local_blks_read">
       <DasType>bigint|0s</DasType>
       <Position>17</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15012" parent="12309" name="local_blks_dirtied">
+    <column id="15013" parent="12309" name="local_blks_dirtied">
       <DasType>bigint|0s</DasType>
       <Position>18</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15013" parent="12309" name="local_blks_written">
+    <column id="15014" parent="12309" name="local_blks_written">
       <DasType>bigint|0s</DasType>
       <Position>19</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15014" parent="12309" name="temp_blks_read">
+    <column id="15015" parent="12309" name="temp_blks_read">
       <DasType>bigint|0s</DasType>
       <Position>20</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15015" parent="12309" name="temp_blks_written">
+    <column id="15016" parent="12309" name="temp_blks_written">
       <DasType>bigint|0s</DasType>
       <Position>21</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15016" parent="12309" name="blk_read_time">
+    <column id="15017" parent="12309" name="blk_read_time">
       <DasType>double precision|0s</DasType>
       <Position>22</Position>
       <StateNumber>591</StateNumber>
     </column>
-    <column id="15017" parent="12309" name="blk_write_time">
+    <column id="15018" parent="12309" name="blk_write_time">
       <DasType>double precision|0s</DasType>
       <Position>23</Position>
       <StateNumber>591</StateNumber>
