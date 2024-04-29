@@ -140,4 +140,6 @@ public class DAOCompras extends AbstractDAO{
             try {stmCompras.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
+
+
 }

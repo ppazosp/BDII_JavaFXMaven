@@ -42,8 +42,7 @@ public class GestionTorneos {
     {
         return fbd.consultarParticipantes(t.getId());
     }
-    public boolean isParticipante(Usuario u, Torneo t)
-    {
+    public boolean isParticipante(Usuario u, Torneo t) {
         List<Usuario> userList = fbd.consultarParticipantes(t.getId());
         for(Usuario user : userList) if (user.getId().equals(u.getId())) return true;
         return false;
@@ -52,12 +51,10 @@ public class GestionTorneos {
     {
         return t.getFecha_inicio().toLocalDate().isAfter(LocalDate.now());
     }
-
     public void retirarseTorneo(Usuario u, Torneo t)
     {
         fbd.retirarseTorneo(u.getId(), t.getId());
     }
-
     public void setGanador(Torneo t) {
         String idGanador;
         List<Usuario> participantes = fbd.consultarParticipantes(t.getId());
@@ -70,10 +67,21 @@ public class GestionTorneos {
         fbd.setGanador(idGanador, t.getId());
         t.setGanador(idGanador);
     }
-
     public List<Torneo> consultarTorneosAdmin(Usuario u)
     {
         return fbd.consultarTorneosAdmin(u.getId());
     }
 
+    public void updateTorneo(Torneo t) {
+        fbd.updateTorneo(t);
+    }
+
+    public void publicarTorneo(Torneo t) {
+        if (existsTorneo(t)) updateTorneo(t);
+        else insertarTorneo(t);
+    }
+
+    public boolean existsTorneo(Torneo t) {
+        return fbd.consultarTorneo(t.getId()) != null;
+    }
 }

@@ -17,7 +17,7 @@ import java.util.Objects;
  * @author alumnogreibd
  */
 public class Videojuego {
-    private final int id;
+    private int id;
     private String nombre;
     private Date fechaSubida;
     private Editor editor;
@@ -92,6 +92,17 @@ public class Videojuego {
     {
         this.id = id;
         this.imagen = imagen;
+    }
+
+    public Videojuego(int id, String nombre)
+    {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Videojuego(int id)
+    {
+        this.id = id;
     }
 
 

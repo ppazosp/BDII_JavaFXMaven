@@ -30,4 +30,11 @@ public class GestionCompra {
         List<Videojuego> videojuegoUsuario = fbd.consultarVideojuegosUsuario(usuario.getId());
         return  videojuegoUsuario.contains(videojuego);
     }
+
+    public boolean tieneDineroSuficiente(Usuario usuario, float dinero){
+        if (usuario.getDinero()> dinero){
+            return true;
+        }
+        return false;
+    }
 }

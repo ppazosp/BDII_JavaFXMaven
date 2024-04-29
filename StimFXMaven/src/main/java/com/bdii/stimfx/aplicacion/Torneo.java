@@ -33,6 +33,17 @@ public class Torneo {
         this.administrador = administrador;
     }
 
+    public Torneo(int id, String nombre, Date fecha_inicio, Date fecha_final, int premio, Videojuego videojuego, Usuario administrador) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_final = fecha_final;
+        this.premio = premio;
+        this.ganador = ganador;
+        this.videojuego = videojuego;
+        this.administrador = administrador;
+    }
+
     public Torneo(int id, String nombre, int premio, Videojuego videojuego, Usuario administrador) {
         this.id = id;
         this.nombre = nombre;

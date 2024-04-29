@@ -89,8 +89,12 @@ public class FachadaBaseDatos {
     }
 
     //Hace falta el id
-    public List<Videojuego> consultaVideojuegos(String nombre){  // Abajo hay una con id, aunq con nombre hace falta
-        return daoV.consultaVideojuegos(nombre);
+    public List<Videojuego> consultarVideojuegos(String nombre){  // Abajo hay una con id, aunq con nombre hace falta
+        return daoV.consultarVideojuegos(nombre);
+    }
+
+    public List<String> consultarVideojuegos(){  // Abajo hay una con id, aunq con nombre hace falta
+        return daoV.consultarVideojuegos();
     }
     
     public void insertarVideojuego(Videojuego v){
@@ -289,6 +293,17 @@ public class FachadaBaseDatos {
         return daoT.consultarTorneosAdmin(a_id);
     }
 
+    public void updateTorneo(Torneo t)
+    {
+        daoT.updateTorneo(t);
+    }
+
+    public Torneo consultarTorneo(int t_id)
+    {
+        return daoT.consultarTorneo(t_id);
+    }
+
+
     public List<Usuario> consultarParticipantes(int t_id)
     {
         return daoT.consultarParticipantes(t_id);
@@ -334,8 +349,10 @@ public class FachadaBaseDatos {
         return daoV.consultarVideojuegosEditor(id_editor);
     }
 
-
-    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
+    public void consultarReseña(Videojuego v)
+    {
+        daoR.consultarReseña(v);
+    }    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
     public void hashAllPasswords() {
         daoOpUnicas.hashAllPasswords();
     }

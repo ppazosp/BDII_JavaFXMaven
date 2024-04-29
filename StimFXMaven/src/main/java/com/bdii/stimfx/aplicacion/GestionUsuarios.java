@@ -99,7 +99,7 @@ public class GestionUsuarios {
         }
         else{
             String hashedPassword= hashPassword(clave);
-            usuario = new Usuario(id, hashedPassword, nombre, email);
+            usuario = new Usuario(id, nombre, hashedPassword, email);
             fbd.insertarUsuario(usuario);
         }
         return usuario;

@@ -5,6 +5,8 @@
 package com.bdii.stimfx.baseDatos;
 import java.sql.Connection;
 import com.bdii.stimfx.aplicacion.Reseña;
+import com.bdii.stimfx.aplicacion.Videojuego;
+
 import java.time.LocalDate;
 
 import java.sql.*;
@@ -27,20 +29,18 @@ public class DAOReseñas extends AbstractDAO {
         con=super.getConexion();
         
         try {
-            stmReseñas=con.prepareStatement("insert into reseña(id_videojuego, id_reseña, id_usr, comentario, fecha) "+
-                                            "values (?,?,?,?,?)");
+            stmReseñas=con.prepareStatement("insert into reseña(id_videojuego, id_usr, comentario, fecha) "+
+                                            "values (?,?,?,?)");
             // Obtener la fecha actual como un objeto java.sql.Date
             java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
             // Convertir la fecha actual a LocalDate
             LocalDate localDate = fechaActual.toLocalDate();
 
             r.setFecha(fechaActual);
-            
             stmReseñas.setInt(1, r.getId_videojuego());
-            stmReseñas.setInt(2, r.getIdReseña());
-            stmReseñas.setInt(3, r.getId_usuario());
-            stmReseñas.setString(4, r.getComentario());
-            stmReseñas.setDate(5, fechaActual);
+            stmReseñas.setString(2, r.getId_usuario());
+            stmReseñas.setString(3, r.getComentario());
+            stmReseñas.setDate(4, fechaActual);
             stmReseñas.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -49,8 +49,8 @@ public class DAOReseñas extends AbstractDAO {
           try {stmReseñas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
-  /*
-    public void consultarReseña(int id_videojuego){
+
+    public void consultarReseña(Videojuego v){
         Connection con;
         PreparedStatement stmReseñas=null;
         ResultSet rsReseña = null;
@@ -58,16 +58,16 @@ public class DAOReseñas extends AbstractDAO {
         con=super.getConexion();
 
         
-        String consulta= "select * from reseña where id_juego = ?;";
+        String consulta= "select * from reseña where id_videojuego = ?;";
                 try {
             stmReseñas=con.prepareStatement(consulta);
             stmReseñas.setInt(1, v.getId());
             rsReseña=stmReseñas.executeQuery();
             
             while(rsReseña.next()){
-                Reseña reseña = new Reseña(vj, rsReseña.getInt("id"), rsReseña.getString("comentario"),
-                    rsReseña.getDate("fecha"),  rsReseña.getFloat("valoracion"));
-                vj.addReseña(reseña);
+                Reseña reseña = new Reseña(v.getId(), rsReseña.getInt("id_reseña"), rsReseña.getString("id_usuario"), rsReseña.getString("comentario"),
+                      rsReseña.getFloat("valoracion"), rsReseña.getDate("fecha"));
+                v.addReseña(reseña);
             }
             
         } catch (SQLException e){
@@ -77,5 +77,5 @@ public class DAOReseñas extends AbstractDAO {
           try {stmReseñas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
-    */
+
 }

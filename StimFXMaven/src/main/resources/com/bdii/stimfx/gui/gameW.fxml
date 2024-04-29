@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #1B2631;">
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
@@ -188,18 +196,14 @@
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="64.0" prefWidth="125.0">
                         <children>
-                            <HBox fx:id="buyHbox" alignment="CENTER" onMouseClicked="#buyGame" prefHeight="11.0"
-                                  prefWidth="118.0"
-                                  style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;"
-                                  stylesheets="@../css/styles.css">
+                            <HBox fx:id="buyHbox" alignment="CENTER" onMouseClicked="#buyGame" prefHeight="11.0" prefWidth="118.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
                               <children>
                                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                        <Image url="@../../../../images/addW.png" />
                                     </image>
                                  </ImageView>
-                                  <Label fx:id="buyLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0"
-                                         prefWidth="87.0" text="Comprar" textFill="WHITE">
+                                  <Label fx:id="buyLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="87.0" text="Comprar" textFill="WHITE">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -280,24 +284,19 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#showLibraryScene"
-                                      prefHeight="32.0" prefWidth="133.0" spacing="5.0"
-                                      style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;"
-                                      styleClass="selected" stylesheets="@../css/styles.css">
+                                <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="32.0" prefWidth="148.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
                                     <children>
-                                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../../../images/eye.png"/>
+                                                <Image url="@../../../../images/eye.png" />
                                             </image>
                                         </ImageView>
-                                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="75.0" text="Ver reseñas"
-                                               textFill="WHITE">
+                                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="87.0" text="Ver reseñas" textFill="WHITE">
                                             <font>
-                                                <Font size="14.0"/>
+                                                <Font size="14.0" />
                                             </font>
                                             <opaqueInsets>
-                                                <Insets/>
+                                                <Insets />
                                             </opaqueInsets>
                                         </Label>
                                     </children>
@@ -335,16 +334,14 @@
                      </VBox>
                   </children>
                </VBox>
-                <HBox fx:id="addHbox" alignment="CENTER" onMouseClicked="#addDLCs" prefHeight="32.0" prefWidth="87.0"
-                      style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;"
-                      stylesheets="@../css/styles.css">
+                <HBox fx:id="addHbox" alignment="CENTER" onMouseClicked="#addDLCs" prefHeight="32.0" prefWidth="133.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: FFFFFF; -fx-border-width: 2;" stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../images/addW.png" />
                         </image>
                      </ImageView>
-                      <Label alignment="CENTER" prefHeight="20.0" prefWidth="53.0" text="Adquirir" textFill="WHITE">
+                      <Label alignment="CENTER" prefHeight="20.0" prefWidth="67.0" text="Adquirir" textFill="WHITE">
                         <font>
                            <Font size="14.0" />
                         </font>

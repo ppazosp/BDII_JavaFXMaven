@@ -145,6 +145,8 @@ public class DAOVideojuegos extends AbstractDAO{
         return videojuego;
     }
 
+
+
     public Videojuego consultarVideojuego(String nombreVideojuego) {
         Videojuego videojuego=null;
         Connection con;
@@ -197,7 +199,7 @@ public class DAOVideojuegos extends AbstractDAO{
         return videojuego;
     }
         
-    public List<Videojuego> consultaVideojuegos(String nombre){
+    public List<Videojuego> consultarVideojuegos(String nombre){
         Videojuego libroActual;
         Connection con;
         PreparedStatement stmCatalogo=null;
@@ -257,7 +259,39 @@ public class DAOVideojuegos extends AbstractDAO{
             //VA cargate todo
         return resultado;
     }
-    
+
+    public List<String> consultarVideojuegos(){
+        String videojuegoActual;
+        Connection con;
+        PreparedStatement stmVideojuego=null;
+        ResultSet rsVideojuego;
+        List<String> resultado = new ArrayList<>();
+        con=this.getConexion();
+
+        //Cambiar consulta para q devulva tb nombre de usuario
+        String consulta = "select v.nombre " +
+                "from videojuego as v ";
+
+        try  {
+            stmVideojuego= con.prepareStatement(consulta);
+            rsVideojuego=stmVideojuego.executeQuery();
+            while (rsVideojuego.next()) {
+
+                resultado.add(rsVideojuego.getString("nombre"));
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            //Mostar excepcion
+            //this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{// este esta bien pq es al final
+            try {stmVideojuego.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }//cierra cursosr haya o no excepcion de sql
+        //VA cargate todo
+
+        return resultado;
+    }
+
+
     public List<String> consultarPlataformasVideojuego(int id_videojuego){
         List<String> resultado = new ArrayList<String>();
         String plataformaActual;

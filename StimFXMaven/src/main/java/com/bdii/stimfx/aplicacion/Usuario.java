@@ -19,6 +19,10 @@ public class Usuario {
     private String TipoUsuario;
     private String email;
     private Image fotoPerfil;
+    private boolean isAdmin;
+    private boolean isEditor;
+    private boolean isCompetitivePlayer;
+    float dinero;
 
     public Usuario(String id, String nombre, String contrasena, String email) {
         this.id = id;
@@ -26,6 +30,7 @@ public class Usuario {
         this.contrasena = contrasena;
         this.email = email;
         this.fotoPerfil=null;
+        this.dinero = 0;
     }
 
     public Usuario(String id, String nombre, String contrasena, String email, Image fotoPerfil) {
@@ -34,6 +39,7 @@ public class Usuario {
         this.contrasena = contrasena;
         this.email = email;
         this.fotoPerfil=fotoPerfil;
+        this.dinero = 0;
     }
 
     public Usuario(String id, String nombre, String contrasena, String TipoUsuario, String email) {
@@ -42,6 +48,7 @@ public class Usuario {
         this.contrasena = contrasena;
         this.TipoUsuario = TipoUsuario;
         this.email = email;
+        this.dinero = 0;
         this.fotoPerfil=null;
     }
 
@@ -71,6 +78,34 @@ public class Usuario {
 
     public Image getFotoPerfil() {
         return fotoPerfil;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isEditor() {
+        return isEditor;
+    }
+
+    public void setEditor(boolean editor) {
+        isEditor = editor;
+    }
+
+    public boolean isCompetitivePlayer() {
+        return isCompetitivePlayer;
+    }
+
+    public void setCompetitivePlayer(boolean competitivePlayer) {
+        isCompetitivePlayer = competitivePlayer;
+    }
+
+    public float getDinero(){
+        return this.dinero;
     }
 
     @Override

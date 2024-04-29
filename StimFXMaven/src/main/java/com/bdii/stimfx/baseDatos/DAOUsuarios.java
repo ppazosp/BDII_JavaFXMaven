@@ -387,8 +387,8 @@ public class DAOUsuarios extends AbstractDAO{
         Usuario resultado = null;
         Usuario usuarioActual;
         Connection con;
-        PreparedStatement stmUsuarios=null;
-        ResultSet rsUsuarios;
+        PreparedStatement stmUsuarios=null, stmnTipoUsuarios=null;
+        ResultSet rsUsuarios, rsTipoUsuarios;
 
         con=this.getConexion();
 
@@ -404,6 +404,38 @@ public class DAOUsuarios extends AbstractDAO{
 
             if (rsUsuarios.next())
             {
+                resultado = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
+                        rsUsuarios.getString("contraseña"),
+                        rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));
+
+                consulta = "select user_id, tipo from tipo_usuario where user_id like ?";
+                    try  {
+                        stmnTipoUsuarios=con.prepareStatement(consulta);
+                        stmnTipoUsuarios.setString(1, id);
+                        rsTipoUsuarios=stmnTipoUsuarios.executeQuery();
+                    while (rsTipoUsuarios.next())
+                    {
+                        if (rsTipoUsuarios.getString("tipo").equals("administrador")){
+                            resultado.setAdmin(true);
+                        }
+                        if (rsTipoUsuarios.getString("tipo").equals("editor")){
+                            resultado.setEditor(true);
+                        }
+                        if (rsTipoUsuarios.getString("tipo").equals("jugador_competitivo")){
+                            resultado.setCompetitivePlayer(true);
+                        }
+                    }
+
+                } catch (SQLException e){
+                    System.out.println(e.getMessage());
+                    FachadaAplicacion.muestraExcepcion(e.getMessage());
+                }finally{
+                    try {
+                        if (stmUsuarios != null) {
+                            stmUsuarios.close();
+                        }
+                    } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+                }
                 resultado = new Usuario(rsUsuarios.getString("id"), rsUsuarios.getString("nombre"),
                         rsUsuarios.getString("contraseña"),
                         rsUsuarios.getString("email"), FachadaAplicacion.bytesToImage(rsUsuarios.getBytes("foto")));  //TELEFONO ESTA EN LA BASE?

@@ -41,7 +41,11 @@ public class GestionVideojuegos {
         return fbd.consultarVideojuego(v.getId()) != null;
     }
     public java.util.List<Videojuego> consultarVideojuegos(String n){
-        return fbd.consultaVideojuegos(n);
+        return fbd.consultarVideojuegos(n);
+    }
+
+    public List<String> consultaVideojuegos(){  // Abajo hay una con id, aunq con nombre hace falta
+        return fbd.consultarVideojuegos();
     }
 
     public Videojuego consultarVideojuego(String n){

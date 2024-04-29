@@ -30,7 +30,7 @@ public class DAOTorneos extends AbstractDAO{
         public void insertarTorneo(Torneo t){
         Connection con;
         PreparedStatement stmTorneo=null;
-        
+
         con=super.getConexion();
 
         try {
@@ -51,9 +51,80 @@ public class DAOTorneos extends AbstractDAO{
         }finally{
           try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
-
-
     }
+
+    public void updateTorneo(Torneo t) {
+        Connection con;
+        PreparedStatement stmVideojuego = null;
+
+        con = super.getConexion();
+
+        try {
+            stmVideojuego = con.prepareStatement("update torneo set" +
+                    " nombre = ?," +
+                    " fecha_inicio = ?," +
+                    " fecha_fin = ?," +
+                    " premio = ?," +
+                    " id_videojuego = ? " +
+                    " where id = ? ");
+
+            stmVideojuego.setInt(6, t.getId());
+            stmVideojuego.setString(1, t.getNombre());
+            stmVideojuego.setDate(2, t.getFecha_inicio());
+            stmVideojuego.setDate(3, t.getFecha_final());
+            stmVideojuego.setInt(4, t.getPremio());
+            stmVideojuego.setInt(5, t.getVideojuego().getId());
+
+            stmVideojuego.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmVideojuego.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+
+
+    public Torneo consultarTorneo(Integer t_id){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
+        Torneo torneo=null;
+        Connection con;
+        PreparedStatement stmTorneo=null;
+        ResultSet rsTorneo;
+
+        con=this.getConexion();
+
+        String consulta = "select * "+
+                "from torneo "+
+                "where id = ?";
+
+
+        try{
+            stmTorneo=con.prepareStatement(consulta);
+            stmTorneo.setInt(1, t_id);
+            rsTorneo=stmTorneo.executeQuery();
+
+            if (rsTorneo.next()){
+                Videojuego v = new Videojuego(rsTorneo.getInt("id_videojuego"));
+                Usuario u = new Usuario(rsTorneo.getString("id_usradmin"));
+
+                torneo = new Torneo(rsTorneo.getInt("id"), rsTorneo.getString("nombre"), rsTorneo.getDate("fecha_inicio"),
+                        rsTorneo.getDate("fecha_fin"), rsTorneo.getInt("premio"), rsTorneo.getString("ganador"),
+                        v, u);
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmTorneo.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return torneo;
+    }
+
 
     public int torneosGanados(String id){
         int resultado = 0;

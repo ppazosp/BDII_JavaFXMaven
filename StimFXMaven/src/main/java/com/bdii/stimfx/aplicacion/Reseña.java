@@ -12,7 +12,7 @@ import java.sql.*;
  */
 public class Reseña {
     private int id_videojuego;
-    private int id_usuario;
+    private String id_usuario;
     private int idReseña;
     private String comentario;
     private Date fecha;
@@ -24,19 +24,22 @@ public class Reseña {
         this.comentario = comentario;
     }
 
-    public Reseña(int id_videojuego, int id_usuario, int idReseña, String comentario) {
+    public Reseña(int id_videojuego, int idReseña, String id_usuario,  String comentario, float valoracion,Date fecha) {
         this.id_videojuego = id_videojuego;
         this.id_usuario = id_usuario;
         this.idReseña = idReseña;
         this.comentario = comentario;
+        this.valoracion = valoracion;
+        this.fecha= fecha;
     }
 
-    public Reseña(int id_videojuego, int idReseña, String comentario, Date fecha, float valoracion) {
-        this.id_videojuego = id_usuario;
-        this.idReseña = idReseña;
-        this.comentario = comentario;
-        this.fecha = fecha;
+
+    public Reseña(String texto, float valoracion, String id_usr,int id_juego) {
+        this.id_videojuego = id_juego;
+        this.idReseña = -1;
+        this.comentario = texto;
         this.valoracion = valoracion;
+        this.id_usuario = id_usr;
     }
 
     public int getIdReseña() {
@@ -55,7 +58,7 @@ public class Reseña {
         return valoracion;
     }
 
-    public int getId_usuario() {
+    public String getId_usuario() {
         return id_usuario;
     }
 

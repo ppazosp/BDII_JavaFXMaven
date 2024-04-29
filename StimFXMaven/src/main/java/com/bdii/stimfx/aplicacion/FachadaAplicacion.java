@@ -179,18 +179,42 @@ public class FachadaAplicacion {
     public void insertarVideojuego(Videojuego v){
         gv.insertarVideojuego(v);
     }
+
     // Funcion para borrar un videojuego en la base
     public void borrarVideojuego(Videojuego v) {
         gv.borrarVideojuego(v);
     }
+
+
+
+
+
+
+
     // Funcion para consultar videojuegos a partir de un nombre
     public java.util.List<Videojuego> consultarVideojuegos(String n){
         return gv.consultarVideojuegos(n);
     }
+
     // Funcion para buscar un unico videojuego a partir de un nombre
     public Videojuego consultarVideojuego(String n){
         return gv.consultarVideojuego(n);
     }
+
+    public List<String> consultarVideojuegos(){  // Abajo hay una con id, aunq con nombre hace falta
+        return fbd.consultarVideojuegos();
+    }
+
+
+
+
+
+
+
+
+
+
+
     // Funcion para obtener las plataformas asociadas a un videojuego.
     public List<Plataforma> consultarPlataformasVideojuego(Videojuego v){
         return gv.consultarPlataformasVideoJuego(v);
@@ -199,14 +223,17 @@ public class FachadaAplicacion {
     public Videojuego proximoVideojuego(){
         return gv.proximoVideojuego();
     }
+
     // Funcion para obtener los 3 videojuegos mas vendidos del momento
     public List<Videojuego> consultaVideoJuegosInicio(){
         return gv.consultaVideoJuegosInicio();
     }
+
     // Funcion para obtener las categorias asociadas a un juego, se podrian mostrar por pantalla
     public java.util.List<String> consultarCategoriasVideojuego(Videojuego v){
         return gv.consultarCategoriasVideojuego(v);
     }
+
     // Funcion para publicar un videojuego
     public void publicarVideojuego(Videojuego v) {
         gv.publicarVideojuego(v);
@@ -242,39 +269,51 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return gu.consultarUsuarios(id, nombre);
     }
+
+
     public java.util.List<Usuario> consultarUsuarios(){
         return gu.consultarUsuarios();
     }
+
     // Funcion para buscar a los usuarios que no seguimos
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(Usuario usuario, String busq){
         return gu.consultarUsuariosNoSeguidos(usuario, busq);
     }
+
+
     // Funcion para empezar a seguir a un usuario
     public void seguir(Usuario u1, Usuario u2){
         gu.seguir(u1, u2);
     }
+
     // Funcion para dejar de seguir a un usuario
     public void dejarSeguir(Usuario u1, Usuario u2){
         gu.dejarSeguir(u1, u2);
     }
+
     // Funcion para consultar a las personas que sigue un usuario
     public java.util.List<Usuario> consultarSeguidos(Usuario u1){
         return gu.consultarSeguidos(u1);
     }
-    // Funciones para consultar las personas que me siguen
+
+    // Funciones para consultar las personas que me siguen NO
     public java.util.List<String> consultarSeguidores(String idU2){
         return gu.consultarSeguidores(idU2);
     }
-    // Funcion para bloquear a un usuario
+
+    // Funcion para bloquear a un usuario     esto no se hace NO
     public void bloquearSeguidor(String idU1, String idU2){
         gu.bloquearSeguidor(idU1, idU2);
     }
+
     //Lo hice para q si null->false, si true te pasa el usuario, asi puedes ir a tu perfil y eso
     public boolean checkCredentials(String username, String password)
     {
         this.usuario = gu.comprobarAutentificacion(username, password);
         return usuario != null;
     }
+
+
     // Funcion para consultar los videojuegos de un usuario
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
         return gu.consultarVideojuegosUsuario(id);
@@ -294,35 +333,51 @@ public class FachadaAplicacion {
     public void insertarComunidad(Comunidad c){
         gc.insertarComunidad(c);
     }
+
+
     // Funcion para borrar una comunidad
     public void borrarComunidad(Comunidad c){
         gc.borrarComunidad(c);
     }
+
+
     // Funcion para mirar comunidades en el buscador, encontrar una comunidad especifica, a partir de algo o todas si la barra esta vacía
     public java.util.List<Comunidad> consultarComunidades(String nombre){
         return gc.consultarComunidades(nombre);
     }
+
+
     // Funcion para insertar a un usuario en una comunidad.
     // QUE SEA COMPETITIVO EL USUARIO NO ESTA IMPLEMENTADO A NIVEL BAJO (por lo menos por ahora) !!!!!!!!!!!!!!!!
     public void insertarJugadorEquipo(String id_usuario, Comunidad c){
         gc.insertarJugadorEquipo(id_usuario, c);
     }
+
+
     // Funcion para hacer salir de una comunidad a un usuario
     public void salirJugadorEquipo(String id_usuario){
         gc.salirJugadorEquipo(id_usuario);
     }
+
+
     // Funcion para consultar el equipo en el que esta un usuario
     public Comunidad consultarEquipoJugador(String id_usuario){
         return gc.consultarEquipoJugador(id_usuario);
     }
+
+
     // Funcion para consultar los jugadores que pertenecen a un equipo en concreto
     public java.util.List<Integer> consultarJugadoresEquipo(Comunidad c){
         return gc.consultarJugadoresEquipo(c);
     }
+
+
     // Funcion para contar los miembros de un equipo
     public Integer contarMiembrosEquipo(Comunidad c) {
         return gc.contarMiembrosEquipo(c);
     }
+
+
     // Comprueba que un usuario pertenece a alguna comunidad y devuelve un boolean
     public boolean tieneComunidad(Usuario u){
         return gc.tieneComunidad(u);
@@ -363,8 +418,8 @@ public class FachadaAplicacion {
     // -----------------------------------------------------------------------
 
     // Escribir una nueva reseña
-    public void insertarReseña(Reseña r){
-        gr.insertarReseña(r);
+    public void insertarReseña(String texto, float valoracion, int id_juego){
+        gr.insertarReseña(texto, valoracion, this.usuario.getId(), id_juego);
     }
 
     // -----------------------------------------------------------------------
@@ -381,15 +436,18 @@ public class FachadaAplicacion {
     public void insertarCompra(int id_videojuego) {
         gcom.insertarCompra(id_videojuego, usuario.getId());
     }
+
     // Funcion para contar la cantidad de juegos que un usario tiene en propiedad
     public Integer contarJuegosUsuario(String id_usuario){
         return gcom.contarJuegosUsuario(id_usuario);
     }
+
     // Funcion para actualizar el numero de descargas de un videojuego actualmente.
     // Hace un set en videojuego, USAR ANTES DE ENSEÑAR
     public void consultarNumeroDescargas(Videojuego v){
         gcom.consultarNumeroDescargas(v);
     }
+
     // Comprueba si un usuario tiene un juego en especifico
     public boolean tieneVideojeugo(Usuario usuario, Videojuego videojuego){
         return gcom.tieneVideojuego(usuario, videojuego);
@@ -402,7 +460,7 @@ public class FachadaAplicacion {
 
 
 
-    // FUNCIONES RELACIONADAS CON GESTIONCATEGORIA
+    // FUNCIONES RELACIONADAS CON GESTIONCATEGORIA        EESTO FUERA
     // -----------------------------------------------------------------------
 
     // Funcion para insertar una nueva categoria
@@ -448,7 +506,7 @@ public class FachadaAplicacion {
     public void comprarDLC(DLC d, Usuario u){
         gd.comprarDLC(d, u);
     }
-    // Funcion para devolver un DLC especifico
+    // Funcion para devolver un DLC especifico    NO SE DEVUELVEN DLCS
     public void devolverDLC(DLC d, Usuario u){
         gd.devolverDLC(d, u);
     }
@@ -542,6 +600,10 @@ public class FachadaAplicacion {
         return gt.consultarTorneosAdmin(u);
     }
 
+    public void publicarTorneo(Torneo t)
+    {
+        gt.publicarTorneo(t);
+    }
     // -----------------------------------------------------------------------
 
 
