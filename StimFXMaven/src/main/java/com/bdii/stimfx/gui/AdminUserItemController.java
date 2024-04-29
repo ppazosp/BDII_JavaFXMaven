@@ -21,7 +21,8 @@ public class AdminUserItemController implements Controller {
     Label nameLabel;
     @FXML
     HBox adminHbox;
-
+    @FXML
+    Label adminLabel;
 
     public void initializeWindow(Usuario user, AdminWController superController)
     {
@@ -30,6 +31,28 @@ public class AdminUserItemController implements Controller {
 
         iconImage.setImage(user.getFotoPerfil());
         nameLabel.setText(user.getId());
+
+        if(user.isAdmin()) adminLabel.setText("Quitar");
+    }
+
+    @FXML
+    public void adminManagement(MouseEvent event)
+    {
+        fg.loading();
+
+        new Thread(() -> {
+
+            if(user.isAdmin()) fg.fa.quitarAdmin(user);
+            else fg.fa.hacerAdmin(user);
+
+            Platform.runLater(() -> {
+                fg.showAdminScene();
+
+                fg.loaded();
+            });
+        }).start();
+
+        fg.showAdminScene();
     }
 
     public void setMainApp(FachadaGUI fg)

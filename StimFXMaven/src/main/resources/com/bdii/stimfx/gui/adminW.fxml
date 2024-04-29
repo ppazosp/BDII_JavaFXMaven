@@ -69,7 +69,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                <HBox fx:id="comMenu" alignment="CENTER" onMouseClicked="#showCommunityScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
                     <children>
                         <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -86,7 +86,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" onMouseClicked="#showEditScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
+                <HBox fx:id="editMenu" alignment="CENTER" onMouseClicked="#showEditScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" styleClass="selected" stylesheets="@../css/styles.css">
                     <children>
                         <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -103,7 +103,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
+                <HBox fx:id="adminMenu" alignment="CENTER" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                     <children>
                         <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>

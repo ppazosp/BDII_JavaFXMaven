@@ -265,6 +265,27 @@ public class FachadaAplicacion {
             this.usuario = u;
         }
     }
+
+    public void hacerAdmin(Usuario u)
+    {
+        gu.hacerAdmin(u);
+    }
+
+    public void quitarAdmin(Usuario u)
+    {
+        gu.quitarAdmin(u);
+    }
+
+    public void hacerJugadorCompetitivo(Usuario u)
+    {
+        gu.hacerJugadorCompetitivo(u);
+    }
+
+    public void hacerEditor(Usuario u)
+    {
+        gu.hacerEditor(u);
+    }
+
     // Funcion para buscar usuarios en la base
     public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
         return gu.consultarUsuarios(id, nombre);

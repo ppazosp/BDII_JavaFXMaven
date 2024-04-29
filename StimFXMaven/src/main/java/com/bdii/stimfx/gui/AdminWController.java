@@ -17,6 +17,16 @@ import java.util.List;
 public class AdminWController implements Controller {
     FachadaGUI fg;
 
+    //MENU BAR
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
+
     @FXML
     VBox compVbox;
     @FXML
@@ -41,6 +51,11 @@ public class AdminWController implements Controller {
             List<Usuario> myUsers = fg.fa.consultarUsuarios();
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 compVbox.getChildren().clear();
                 try {
                     int count = 0;

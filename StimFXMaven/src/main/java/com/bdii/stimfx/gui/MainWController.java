@@ -111,8 +111,6 @@ public class MainWController implements Controller {
 
 
     //MENU BAR
-    /*@FXML
-    VBox menuBar;*/
     @FXML
     HBox comMenu;
     @FXML
@@ -121,9 +119,6 @@ public class MainWController implements Controller {
     HBox adminMenu;
 
     public void initializeWindow() {
-        //if(!(fg.fa.usuario instanceof UsuarioJugadorCompetitivo)) menuBar.getChildren().remove(comMenu);
-        //if(!(fg.fa.usuario instanceof UsuarioEditor)) menuBar.getChildren().remove(editMenu);
-        //if(!(fg.fa.usuario instanceof UsuarioAdministrador)) menuBar.getChildren().remove(adminMenu);
 
         fg.loading();
 
@@ -134,6 +129,10 @@ public class MainWController implements Controller {
             List<Videojuego> topSellers = fg.fa.consultaVideoJuegosInicio();
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
 
                 if (demoGame != null) {
                     demoIconImage.setImage(demoGame.getImagen());

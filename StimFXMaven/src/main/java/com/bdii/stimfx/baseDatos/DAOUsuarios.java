@@ -4,10 +4,7 @@
  */
 package com.bdii.stimfx.baseDatos;
 
-import com.bdii.stimfx.aplicacion.Editor;
-import com.bdii.stimfx.aplicacion.FachadaAplicacion;
-import com.bdii.stimfx.aplicacion.Usuario;
-import com.bdii.stimfx.aplicacion.Videojuego;
+import com.bdii.stimfx.aplicacion.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -545,6 +542,99 @@ public class DAOUsuarios extends AbstractDAO{
         }
         return resultado;
     }
+
+    public void hacerAdmin(String u_id)
+    {
+        Connection con;
+        PreparedStatement stmUsuario=null;
+
+        con=super.getConexion();
+
+        try {
+            stmUsuario=con.prepareStatement("insert into tipo_usuario(user_id, tipo) "+
+                    "values (?,?)");
+
+            stmUsuario.setString(1, u_id);
+            stmUsuario .setString(2, TIpoUsuario.ADMINISTRADOR);
+            stmUsuario.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public void quitarAdmin(String u_id)
+    {
+        Connection con;
+        PreparedStatement stmUsuario=null;
+
+        con=super.getConexion();
+
+        try {
+            stmUsuario=con.prepareStatement("delete from tipo_usuario "+
+                    " where user_id = ? and tipo = ?");
+
+            stmUsuario.setString(1, u_id);
+            stmUsuario .setString(2, TIpoUsuario.ADMINISTRADOR);
+            stmUsuario.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public void hacerJugadorCompetitivo(String u_id)
+    {
+        Connection con;
+        PreparedStatement stmUsuario=null;
+
+        con=super.getConexion();
+
+        try {
+            stmUsuario=con.prepareStatement("insert into tipo_usuario(user_id, tipo) "+
+                    "values (?,?)");
+
+            stmUsuario.setString(1, u_id);
+            stmUsuario .setString(2, TIpoUsuario.JUGADOR_COMPETITIVO);
+            stmUsuario.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public void hacerEditor(String u_id)
+    {
+        Connection con;
+        PreparedStatement stmUsuario=null;
+
+        con=super.getConexion();
+
+        try {
+            stmUsuario=con.prepareStatement("insert into tipo_usuario(user_id, tipo) "+
+                    "values (?,?)");
+
+            stmUsuario.setString(1, u_id);
+            stmUsuario .setString(2, TIpoUsuario.EDITOR);
+            stmUsuario.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
 
     
 /*

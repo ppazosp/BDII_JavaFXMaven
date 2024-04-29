@@ -31,6 +31,16 @@ public class GameWController implements Controller {
     @FXML
     AnchorPane rightPane;
 
+
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
+
     @FXML
     Hyperlink linkRef;
     @FXML
@@ -75,6 +85,12 @@ public class GameWController implements Controller {
             List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
+
                 bannerImage.setImage(game.getBanner());
                 nameLabel.setText(game.getNombre());
                 dateLabel.setText("Fecha de publicacion: "+game.getFechaSubida().toString());

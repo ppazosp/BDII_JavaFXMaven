@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -13,6 +14,15 @@ import java.util.List;
 
 public class LibraryWController implements Controller{
     FachadaGUI fg;
+
+
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
 
     @FXML
     VBox gamesVbox;
@@ -25,6 +35,11 @@ public class LibraryWController implements Controller{
 
             List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 gamesVbox.getChildren().clear();
 
                 try {

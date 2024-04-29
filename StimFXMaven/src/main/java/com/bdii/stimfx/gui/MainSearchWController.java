@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -16,12 +17,22 @@ public class MainSearchWController implements Controller {
 
     FachadaGUI fg;
 
+
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
     @FXML
     TextField searchBar;
     @FXML
     Label resultsLabel;
     @FXML
     VBox searchVbox;
+
 
     public void setSearchBar(String text) {
         searchBar.setText(text);
@@ -36,6 +47,11 @@ public class MainSearchWController implements Controller {
             List<Videojuego> gamesList = fg.fa.consultarVideojuegos(searchBar.getText());
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 searchVbox.getChildren().clear();
                 resultsLabel.setText("Resultados para \"" + searchBar.getText() + "\"");
                 searchBar.clear();

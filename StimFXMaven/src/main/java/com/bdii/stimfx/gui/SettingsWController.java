@@ -2,9 +2,27 @@ package com.bdii.stimfx.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 public class SettingsWController implements Controller {
     FachadaGUI fg;
+
+
+    //MENU BAR
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
+    public void initializeWindow()
+    {
+        if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+        if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+        if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+    }
 
     @FXML
     public void showProfileScene(MouseEvent event)

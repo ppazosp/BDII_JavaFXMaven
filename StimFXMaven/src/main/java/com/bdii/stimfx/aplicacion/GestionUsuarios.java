@@ -105,6 +105,26 @@ public class GestionUsuarios {
         return usuario;
     }
 
+    public void hacerAdmin(Usuario u)
+    {
+        fbd.hacerAdmin(u.getId());
+    }
+
+    public void quitarAdmin(Usuario u)
+    {
+        fbd.quitarAdmin(u.getId());
+    }
+
+    public void hacerJugadorCompetitivo(Usuario u)
+    {
+        fbd.hacerJugadorCompetitivo(u.getId());
+    }
+
+    public void hacerEditor(Usuario u)
+    {
+        fbd.hacerEditor(u.getId());
+    }
+
     // Funcion para borrar un usuario a partir de un id.
     public void borrarUsuario(Usuario u){
         fbd.borrarUsuario(u.getId());
