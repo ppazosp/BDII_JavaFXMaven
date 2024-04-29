@@ -146,11 +146,15 @@ public class FachadaAplicacion {
         //fbd.insertarDemo(d);
         //d = new Demo("RobinRun", 5, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "sara");
        //fbd.insertarDemo(d);
-        //insertarPlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
-        //insertarPlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
-        //insertarPlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
-        //insertarPlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
-        //insertarPlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
+
+        //updatePlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
+        //updatePlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
+        //updatePlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
+        //updatePlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
+        //updatePlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
+        //updatePlataforma("NintendoSwitch", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/NintendoSwitch.png");
+
+
         //fbd.inicializarbd();
     }
 
@@ -549,8 +553,8 @@ public class FachadaAplicacion {
     // -----------------------------------------------------------------------
 
     // Funcion para insertar una plataforma nueva
-    public void insertarPlataforma(String nombre, String path){
-        gpl.insertarPlataforma(nombre, path);
+    public void updatePlataforma(String nombre, String path){
+        gpl.updatePlataforma(nombre, path);
     }
     // Funcion para borrar una determinada plataforma
     public void borrarPlataforma(String nombre){

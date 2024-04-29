@@ -198,8 +198,8 @@ public class FachadaBaseDatos {
         daoD.borrarDLC(d);
     }
     
-    public void insertarPlataforma(String nombre, String path){
-        daoP.insertarPlataforma(nombre, path);
+    public void updatePlataforma(String nombre, String path){
+        daoP.updatePlataforma(nombre, path);
     }
     
     public void borrarPlataforma(String nombre){

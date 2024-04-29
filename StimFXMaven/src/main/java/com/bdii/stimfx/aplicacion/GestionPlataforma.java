@@ -12,8 +12,8 @@ public class GestionPlataforma {
         this.fbd = fbd;
     }
 
-    public void insertarPlataforma(String nombre, String path){
-        fbd.insertarPlataforma(nombre, path);
+    public void updatePlataforma(String nombre, String path){
+        fbd.updatePlataforma(nombre, path);
     }
     public void borrarPlataforma(String nombre){
         fbd.borrarPlataforma(nombre);

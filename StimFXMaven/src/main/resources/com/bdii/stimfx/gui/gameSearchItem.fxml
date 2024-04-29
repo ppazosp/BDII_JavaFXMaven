@@ -17,12 +17,12 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="70.0" prefWidth="515.0">
          <children>
-             <Label fx:id="nameLabel" prefHeight="21.0" prefWidth="488.0" text="xxxxxxxxxxxxx" textFill="WHITE">
+             <Label fx:id="nameLabel" prefHeight="22.0" prefWidth="488.0" text="xxxxxxxxxxxxx" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-             <HBox fx:id="iconsHbox" prefHeight="47.0" prefWidth="488.0" spacing="2.0">
+             <HBox fx:id="iconsHbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="488.0" spacing="2.0">
                  <VBox.margin>
                      <Insets bottom="5.0" />
                  </VBox.margin>

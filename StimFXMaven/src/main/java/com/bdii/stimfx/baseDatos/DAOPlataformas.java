@@ -5,19 +5,11 @@
 package com.bdii.stimfx.baseDatos;
 import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Plataforma;
-import javafx.scene.image.Image;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
 import java.sql.Connection;
 
 
 import java.sql.*;
-import java.time.LocalDate;
 
 /**
  *
@@ -30,7 +22,7 @@ public class DAOPlataformas extends AbstractDAO{
         super.setFachadaAplicacion(fa);
     }
         
-    public void insertarPlataforma(String nombre, String path){
+    public void updatePlataforma(String nombre, String path){
         Connection con;
         PreparedStatement stmPlataforma=null;
         
@@ -55,6 +47,7 @@ public class DAOPlataformas extends AbstractDAO{
               stmPlataforma.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
+
 
     public void borrarPlataforma(String nombre){
         Connection con;
