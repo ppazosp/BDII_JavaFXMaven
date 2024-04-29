@@ -22,7 +22,7 @@ public class Usuario {
     private boolean isAdmin;
     private boolean isEditor;
     private boolean isCompetitivePlayer;
-    float dinero;
+    double dinero;
 
     public Usuario(String id, String nombre, String contrasena, String email) {
         this.id = id;
@@ -109,8 +109,12 @@ public class Usuario {
     }
     public void setDinero(float dinero) {this.dinero = dinero;}
 
-    public float getDinero(){
+    public double getDinero(){
         return this.dinero;
+    }
+
+    public void modificarDinero(double dif){
+        this.dinero+=dif;
     }
 
     @Override

@@ -154,7 +154,7 @@ public class DAODLCs extends AbstractDAO {
 
     public void comprarDLC(DLC d, String id_u, Date date) {
         Connection con;
-        PreparedStatement stmDLC = null;
+        PreparedStatement stmDLC = null, stmMonedero = null;
 
         con = super.getConexion();
 
@@ -175,7 +175,30 @@ public class DAODLCs extends AbstractDAO {
             FachadaAplicacion.muestraExcepcion(e.getMessage());
         } finally {
             try {
+                assert stmDLC != null;
                 stmDLC.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        try {
+            stmMonedero = con.prepareStatement("UPDATE monedero\n" +
+                    "SET dinero = dinero - ?\n" +
+                    "WHERE id_comun = ?;");//Cambiar insert
+
+            // Obtener la fecha actual como un objeto java.sql.Date
+            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
+
+            stmMonedero.setDouble(1, d.getPrecio());
+            stmMonedero.setString(2, id_u);
+            stmMonedero.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                assert stmMonedero != null;
+                stmMonedero.close();
             } catch (SQLException e) {
                 System.out.println("Imposible cerrar cursores");
             }
