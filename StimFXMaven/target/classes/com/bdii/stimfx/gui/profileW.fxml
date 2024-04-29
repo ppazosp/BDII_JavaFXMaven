@@ -297,7 +297,7 @@
                </HBox>
             </children>
          </HBox>
-          <Label fx:id="changesLabel" alignment="CENTER" layoutX="326.0" layoutY="559.0" prefHeight="20.0" prefWidth="399.0" text="¡Cambios realizados correctamente!">
+          <Label fx:id="changesLabel" alignment="CENTER" layoutX="326.0" layoutY="559.0" prefHeight="20.0" prefWidth="399.0" text="¡Cambios realizados correctamente!" visible="false">
               <font>
                   <Font size="14.0" />
               </font>
