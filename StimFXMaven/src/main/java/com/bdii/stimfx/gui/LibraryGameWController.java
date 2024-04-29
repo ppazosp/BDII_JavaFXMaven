@@ -20,6 +20,15 @@ public class LibraryGameWController implements Controller{
     FachadaGUI fg;
     Videojuego game;
 
+
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
     @FXML
     ImageView bannerImage;
     @FXML
@@ -47,6 +56,11 @@ public class LibraryGameWController implements Controller{
             List<DLC> dlcList = fg.fa.consultarDLCsVideojuegoUsuario(game, fg.fa.usuario);
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 gamesVbox.getChildren().clear();
                 gamesVbox.setSpacing(2);
 

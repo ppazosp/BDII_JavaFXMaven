@@ -128,7 +128,28 @@ public class FachadaBaseDatos {
     public void insertarUsuario(Usuario u){
         daoU.insertarUsuario(u);
     }
-    
+
+    public void hacerAdmin(String u_id)
+    {
+        daoU.hacerAdmin(u_id);
+    }
+
+    public void quitarAdmin(String u_id)
+    {
+        daoU.quitarAdmin(u_id);
+    }
+
+    public void hacerJugadorCompetitivo(String u_id)
+    {
+        daoU.hacerJugadorCompetitivo(u_id);
+    }
+
+    public void hacerEditor(String u_id)
+    {
+        daoU.hacerEditor(u_id);
+    }
+
+
     public void insertarTorneo(Torneo t){
         daoT.insertarTorneo(t);
     }
@@ -137,12 +158,12 @@ public class FachadaBaseDatos {
         daoU.borrarUsuario(id);
     }
     
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return daoU.consultarUsuarios(id, nombre);
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(Integer id, String nombre){
+        return daoU.consultarUsuariosNoAdmins(id, nombre);
     }
 
-    public java.util.List<Usuario> consultarUsuarios(){
-        return daoU.consultarUsuarios();
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(){
+        return daoU.consultarUsuariosNoAdmins();
     }
 
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
@@ -177,8 +198,8 @@ public class FachadaBaseDatos {
         daoD.borrarDLC(d);
     }
     
-    public void insertarPlataforma(String nombre, String path){
-        daoP.insertarPlataforma(nombre, path);
+    public void updatePlataforma(String nombre, String path){
+        daoP.updatePlataforma(nombre, path);
     }
     
     public void borrarPlataforma(String nombre){

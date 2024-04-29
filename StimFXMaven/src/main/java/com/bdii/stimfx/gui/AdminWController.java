@@ -17,6 +17,16 @@ import java.util.List;
 public class AdminWController implements Controller {
     FachadaGUI fg;
 
+    //MENU BAR
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
+
     @FXML
     VBox compVbox;
     @FXML
@@ -38,9 +48,14 @@ public class AdminWController implements Controller {
 
             List<Torneo> myTorns = fg.fa.consultarTorneosAdmin(fg.fa.usuario);
             List <Demo> myDemos = fg.fa.consultarDemoAdmin(fg.fa.usuario);
-            List<Usuario> myUsers = fg.fa.consultarUsuarios();
+            List<Usuario> myUsers = fg.fa.consultarUsuariosNoAdmins();
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 compVbox.getChildren().clear();
                 try {
                     int count = 0;
@@ -108,6 +123,8 @@ public class AdminWController implements Controller {
                     row = new HBox();
                     row.setSpacing(5);
                     for (Usuario u : myUsers) {
+                        if(u.getId().equals(fg.fa.usuario.getId())) continue;
+
                         if (count > 2) {
                             userVbox.getChildren().add(row);
                             count = 0;
@@ -123,6 +140,7 @@ public class AdminWController implements Controller {
 
                         count++;
                     }
+                    userVbox.getChildren().add(row);
 
                 } catch (IOException e) {
                     e.printStackTrace();

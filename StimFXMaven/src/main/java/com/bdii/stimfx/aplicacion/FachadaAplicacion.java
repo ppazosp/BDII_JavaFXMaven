@@ -146,11 +146,15 @@ public class FachadaAplicacion {
         //fbd.insertarDemo(d);
         //d = new Demo("RobinRun", 5, 2024, FachadaAplicacion.pathToImage("/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/RobinRun.png"), "sara");
        //fbd.insertarDemo(d);
-        //insertarPlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
-        //insertarPlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
-        //insertarPlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
-        //insertarPlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
-        //insertarPlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
+
+        //updatePlataforma("PC", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PC.png");
+        //updatePlataforma("PlayStation", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/PlayStation.png");
+        //updatePlataforma("Xbox", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Xbox.png");
+        //updatePlataforma("Android", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Android.png");
+        //updatePlataforma("Apple", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/Apple.png");
+        //updatePlataforma("NintendoSwitch", "/home/p3peat/Documents/POO/BDII_JavaFXMaven/StimFXMaven/src/imagenes/NintendoSwitch.png");
+
+
         //fbd.inicializarbd();
     }
 
@@ -265,14 +269,35 @@ public class FachadaAplicacion {
             this.usuario = u;
         }
     }
+
+    public void hacerAdmin(Usuario u)
+    {
+        gu.hacerAdmin(u);
+    }
+
+    public void quitarAdmin(Usuario u)
+    {
+        gu.quitarAdmin(u);
+    }
+
+    public void hacerJugadorCompetitivo(Usuario u)
+    {
+        gu.hacerJugadorCompetitivo(u);
+    }
+
+    public void hacerEditor(Usuario u)
+    {
+        gu.hacerEditor(u);
+    }
+
     // Funcion para buscar usuarios en la base
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return gu.consultarUsuarios(id, nombre);
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(Integer id, String nombre){
+        return gu.consultarUsuariosNoAdmins(id, nombre);
     }
 
 
-    public java.util.List<Usuario> consultarUsuarios(){
-        return gu.consultarUsuarios();
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(){
+        return gu.consultarUsuariosNoAdmins();
     }
 
     // Funcion para buscar a los usuarios que no seguimos
@@ -532,8 +557,8 @@ public class FachadaAplicacion {
     // -----------------------------------------------------------------------
 
     // Funcion para insertar una plataforma nueva
-    public void insertarPlataforma(String nombre, String path){
-        gpl.insertarPlataforma(nombre, path);
+    public void updatePlataforma(String nombre, String path){
+        gpl.updatePlataforma(nombre, path);
     }
     // Funcion para borrar una determinada plataforma
     public void borrarPlataforma(String nombre){

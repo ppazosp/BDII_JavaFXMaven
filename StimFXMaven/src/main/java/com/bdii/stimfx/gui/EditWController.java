@@ -16,6 +16,15 @@ public class EditWController implements Controller {
     FachadaGUI fg;
 
     @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
+
+    @FXML
     VBox gamesVbox;
     @FXML
     VBox addVbox;
@@ -29,6 +38,11 @@ public class EditWController implements Controller {
             List<Videojuego> myGames = fg.fa.consultarVideosjuegosEditor(fg.fa.usuario.getId());
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 gamesVbox.getChildren().clear();
 
                 try {

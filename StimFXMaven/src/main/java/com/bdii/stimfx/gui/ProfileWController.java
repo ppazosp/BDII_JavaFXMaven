@@ -13,6 +13,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -20,6 +21,16 @@ import java.util.List;
 
 public class ProfileWController implements Controller {
     FachadaGUI fg;
+
+
+    //MENU BAR
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
 
     @FXML
     ImageView profileImage;
@@ -42,6 +53,12 @@ public class ProfileWController implements Controller {
     Timeline changesWait;
 
     public void initializeWindow() {
+
+        if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+        if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+        if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
+
         changesWait = new Timeline(new KeyFrame(Duration.seconds(2), e -> hideChangesLabel()));
 
         if(fg.fa.usuario.getFotoPerfil() != null) profileImage.setImage(fg.fa.usuario.getFotoPerfil());

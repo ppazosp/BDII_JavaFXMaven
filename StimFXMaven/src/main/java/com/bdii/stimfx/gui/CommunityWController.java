@@ -21,6 +21,16 @@ import java.util.List;
 public class CommunityWController implements Controller {
     FachadaGUI fg;
     Comunidad userCom;
+
+    //MENU BAR
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
+
     @FXML
     ComboBox<String> filter;
     @FXML
@@ -69,6 +79,11 @@ public class CommunityWController implements Controller {
 
             userCom = fg.fa.consultarEquipoJugador(fg.fa.usuario.getId());
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 if (userCom != null) {
                     myComIcon.setImage(userCom.getEscudo());
                     myComName.setText(userCom.getNombre());

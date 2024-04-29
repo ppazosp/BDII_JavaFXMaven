@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -16,6 +17,16 @@ import java.util.List;
 public class SocialWController implements Controller{
 
     FachadaGUI fg;
+
+
+    //MENU BAR
+    @FXML
+    HBox comMenu;
+    @FXML
+    HBox editMenu;
+    @FXML
+    HBox adminMenu;
+
 
     @FXML
     TextField searchBar;
@@ -44,6 +55,11 @@ public class SocialWController implements Controller{
             List<Usuario> followers = fg.fa.consultarSeguidos(fg.fa.usuario);
 
             Platform.runLater(() -> {
+
+                if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
+                if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
+                if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
                 followersVbox.getChildren().clear();
 
                 try {

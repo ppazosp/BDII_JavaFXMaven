@@ -39,7 +39,6 @@ public class FachadaGUI extends Application {
         //this.primaryStage.setMaxWidth(1000);
         //this.primaryStage.setMinHeight(630);
         //this.primaryStage.setMaxHeight(630);
-        createLoadingScene();
         showLoginWindow();
     }
 
@@ -66,13 +65,15 @@ public class FachadaGUI extends Application {
         }
     }
 
-    public void createLoadingScene() {
+    private void createLoadingScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/loadingW.fxml"));
             LoadingWController loadingWController = new LoadingWController();
             loader.setController(loadingWController);
             Parent root = loader.load();
             loadingScene = new Scene(root);
+            loadingWController.setMainApp(this);
+            loadingWController.initializeWindow();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -114,6 +115,8 @@ public class FachadaGUI extends Application {
     }
 
     public void showMainWindow(boolean createWindow) {
+        createLoadingScene();
+
         Stage old = primaryStage;
 
         if(createWindow)
@@ -158,6 +161,7 @@ public class FachadaGUI extends Application {
         SettingsWController settingsWController = loadFXML("/com/bdii/stimfx/gui/settingsW.fxml", null, null, SettingsWController.class);
         assert settingsWController != null;
         settingsWController.setMainApp(this);
+        settingsWController.initializeWindow();
     }
 
     public void loadGameWindow(String url)
