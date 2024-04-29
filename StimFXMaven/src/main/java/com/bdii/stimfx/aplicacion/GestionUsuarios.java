@@ -9,13 +9,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 import com.bdii.stimfx.gui.FachadaGUI;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 //PONER A TODOS LOS USUARIOS RESPONABILIDADES DE PASAR DE IMAGE A BYTES
 /**
@@ -157,12 +152,12 @@ public class GestionUsuarios {
     }
 
     // Funcion para buscar usuarios en la base
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return fbd.consultarUsuarios(id, nombre);
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(Integer id, String nombre){
+        return fbd.consultarUsuariosNoAdmins(id, nombre);
     }
 
-    public java.util.List<Usuario> consultarUsuarios(){
-        return fbd.consultarUsuarios();
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(){
+        return fbd.consultarUsuariosNoAdmins();
     }
 
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){

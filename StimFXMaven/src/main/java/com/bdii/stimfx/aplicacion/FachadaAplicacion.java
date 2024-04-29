@@ -287,13 +287,13 @@ public class FachadaAplicacion {
     }
 
     // Funcion para buscar usuarios en la base
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return gu.consultarUsuarios(id, nombre);
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(Integer id, String nombre){
+        return gu.consultarUsuariosNoAdmins(id, nombre);
     }
 
 
-    public java.util.List<Usuario> consultarUsuarios(){
-        return gu.consultarUsuarios();
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(){
+        return gu.consultarUsuariosNoAdmins();
     }
 
     // Funcion para buscar a los usuarios que no seguimos

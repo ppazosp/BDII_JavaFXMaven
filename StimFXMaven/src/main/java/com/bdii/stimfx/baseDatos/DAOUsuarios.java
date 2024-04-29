@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -95,7 +97,7 @@ public class DAOUsuarios extends AbstractDAO{
         return null;
     }
 
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(Integer id, String nombre){
         java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
         Usuario usuarioActual;
         Connection con;
@@ -146,19 +148,24 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
 
-    public java.util.List<Usuario> consultarUsuarios(){
-        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+    public List<Usuario> consultarUsuariosNoAdmins(){
+        List<Usuario> resultado = new ArrayList<Usuario>();
         Usuario usuarioActual;
         Connection con;
         PreparedStatement stmUsuarios=null;
+        PreparedStatement stmTipoUsuarios=null;
         ResultSet rsUsuarios;
+        ResultSet rsTipoUsuarios;
 
         con=this.getConexion();
 
-        String consulta = "select * from usuario ";
+        String consulta = "select * from usuario u where u.id not in " +
+                " (select user_id from tipo_usuario where tipo = ?)" +
+                "order by u.id";
 
         try  {
             stmUsuarios=con.prepareStatement(consulta);
+            stmUsuarios.setString(1, TipoUsuario.ADMINISTRADOR);
             rsUsuarios=stmUsuarios.executeQuery();
 
             while (rsUsuarios.next())
@@ -555,7 +562,7 @@ public class DAOUsuarios extends AbstractDAO{
                     "values (?,?)");
 
             stmUsuario.setString(1, u_id);
-            stmUsuario .setString(2, TIpoUsuario.ADMINISTRADOR);
+            stmUsuario .setString(2, TipoUsuario.ADMINISTRADOR);
             stmUsuario.executeUpdate();
 
         } catch (SQLException e){
@@ -578,7 +585,7 @@ public class DAOUsuarios extends AbstractDAO{
                     " where user_id = ? and tipo = ?");
 
             stmUsuario.setString(1, u_id);
-            stmUsuario .setString(2, TIpoUsuario.ADMINISTRADOR);
+            stmUsuario .setString(2, TipoUsuario.ADMINISTRADOR);
             stmUsuario.executeUpdate();
 
         } catch (SQLException e){
@@ -601,7 +608,7 @@ public class DAOUsuarios extends AbstractDAO{
                     "values (?,?)");
 
             stmUsuario.setString(1, u_id);
-            stmUsuario .setString(2, TIpoUsuario.JUGADOR_COMPETITIVO);
+            stmUsuario .setString(2, TipoUsuario.JUGADOR_COMPETITIVO);
             stmUsuario.executeUpdate();
 
         } catch (SQLException e){
@@ -624,7 +631,7 @@ public class DAOUsuarios extends AbstractDAO{
                     "values (?,?)");
 
             stmUsuario.setString(1, u_id);
-            stmUsuario .setString(2, TIpoUsuario.EDITOR);
+            stmUsuario .setString(2, TipoUsuario.EDITOR);
             stmUsuario.executeUpdate();
 
         } catch (SQLException e){

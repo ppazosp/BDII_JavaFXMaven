@@ -32,7 +32,6 @@ public class AdminUserItemController implements Controller {
         iconImage.setImage(user.getFotoPerfil());
         nameLabel.setText(user.getId());
 
-        if(user.isAdmin()) adminLabel.setText("Quitar");
     }
 
     @FXML
@@ -42,13 +41,10 @@ public class AdminUserItemController implements Controller {
 
         new Thread(() -> {
 
-            if(user.isAdmin()) fg.fa.quitarAdmin(user);
-            else fg.fa.hacerAdmin(user);
+            fg.fa.hacerAdmin(user);
 
             Platform.runLater(() -> {
                 fg.showAdminScene();
-
-                fg.loaded();
             });
         }).start();
 

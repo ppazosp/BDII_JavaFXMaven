@@ -158,12 +158,12 @@ public class FachadaBaseDatos {
         daoU.borrarUsuario(id);
     }
     
-    public java.util.List<Usuario> consultarUsuarios(Integer id, String nombre){
-        return daoU.consultarUsuarios(id, nombre);
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(Integer id, String nombre){
+        return daoU.consultarUsuariosNoAdmins(id, nombre);
     }
 
-    public java.util.List<Usuario> consultarUsuarios(){
-        return daoU.consultarUsuarios();
+    public java.util.List<Usuario> consultarUsuariosNoAdmins(){
+        return daoU.consultarUsuariosNoAdmins();
     }
 
     public java.util.List<Usuario> consultarUsuariosNoSeguidos(String id, String busq){
