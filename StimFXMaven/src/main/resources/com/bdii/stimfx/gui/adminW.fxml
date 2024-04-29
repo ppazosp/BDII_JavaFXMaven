@@ -176,7 +176,7 @@
             <content>
                <VBox fx:id="compVbox" prefHeight="480.0" prefWidth="464.0" spacing="5.0" style="-fx-background-radius: 15;" styleClass="secondary-color" stylesheets="@../css/styles.css">
                   <children>
-                     <VBox fx:id="addCompVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="110.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
+                     <VBox fx:id="addCompVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#editComp" prefHeight="152.0" prefWidth="110.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                         <children>
                            <ImageView fx:id="iconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                               <image>

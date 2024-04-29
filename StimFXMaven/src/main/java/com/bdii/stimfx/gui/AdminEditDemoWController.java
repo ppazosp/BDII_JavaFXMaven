@@ -28,6 +28,8 @@ public class AdminEditDemoWController implements Controller {
     TextField monthField;
     @FXML
     TextField yearField;
+    @FXML
+    TextField urlField;
 
 
     public void initializeWindow(Demo d, Stage window) {
@@ -40,6 +42,7 @@ public class AdminEditDemoWController implements Controller {
             nameField.setText(demo.getNombre());
             monthField.setText(String.valueOf(demo .getMes()));
             yearField.setText(String.valueOf(demo .getAno()));
+            urlField.setText(demo.getUrl());
         }
     }
 
@@ -53,7 +56,8 @@ public class AdminEditDemoWController implements Controller {
                         Integer.parseInt(monthField.getText()),
                         Integer.parseInt(yearField.getText()),
                         iconImage.getImage(),
-                        fg.fa.usuario.getId());
+                        fg.fa.usuario.getId(),
+                        urlField.getText());
 
                 fg.fa.publicarDemo(d);
 

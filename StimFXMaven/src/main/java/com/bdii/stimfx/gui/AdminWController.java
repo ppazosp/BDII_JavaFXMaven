@@ -139,6 +139,11 @@ public class AdminWController implements Controller {
         fg.showEditDemoW(null);
     }
 
+    @FXML
+    public void editComp(MouseEvent event) {
+        fg.showEditCompW(null);
+    }
+
 
     @FXML
     public void showProfileScene(MouseEvent event) {

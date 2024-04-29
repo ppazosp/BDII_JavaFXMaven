@@ -45,7 +45,7 @@
                                              <Font name="System Bold" size="16.0" />
                                           </font>
                                        </Label>
-                                       <DatePicker fx:id="startPicker" />
+                                       <DatePicker fx:id="startPicker" focusTraversable="false" />
                                     </children>
                                  </HBox>
                                  <HBox alignment="CENTER" prefHeight="24.0" prefWidth="200.0" spacing="10.0">
@@ -55,7 +55,7 @@
                                              <Font name="System Bold" size="16.0" />
                                           </font>
                                        </Label>
-                                       <DatePicker fx:id="endPicker" />
+                                       <DatePicker fx:id="endPicker" focusTraversable="false" />
                                     </children>
                                  </HBox>
                               </children>
@@ -67,7 +67,7 @@
                                        <Font name="System Bold" size="16.0" />
                                     </font>
                                  </Label>
-                                 <TextField fx:id="priceField" focusTraversable="false" prefHeight="28.0" prefWidth="80.0">
+                                 <TextField fx:id="prizeField" focusTraversable="false" prefHeight="28.0" prefWidth="80.0">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -80,7 +80,7 @@
                                        <Insets right="30.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <ChoiceBox fx:id="choiceBox" prefHeight="24.0" prefWidth="204.0" />
+                                 <ChoiceBox fx:id="choiceBox" focusTraversable="false" prefHeight="24.0" prefWidth="204.0" />
                               </children>
                            </HBox>
                         </children>

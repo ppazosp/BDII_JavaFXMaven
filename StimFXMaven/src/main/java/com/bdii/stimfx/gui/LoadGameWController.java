@@ -7,17 +7,16 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoadGameWController implements Initializable, Controller {
+public class LoadGameWController implements Controller {
     FachadaGUI fg;
 
     @FXML
     WebView gameLoaded;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initializeWindow(String url) {
         // Load the URL into the WebView
         gameLoaded.getEngine().setJavaScriptEnabled(true);
-        gameLoaded.getEngine().load("https://ppazosp.itch.io/robin-run");
+        gameLoaded.getEngine().load(url);
     }
 
     public void setMainApp(FachadaGUI mainApp)

@@ -5,6 +5,7 @@ import com.bdii.stimfx.aplicacion.Torneo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class AdminCompItemController implements Controller {
 
@@ -28,6 +29,11 @@ public class AdminCompItemController implements Controller {
         nameLabel.setText(torn.getNombre());
         dateLabel.setText(torn.getFecha_inicio().toString());
 
+    }
+
+    @FXML
+    public void editComp(MouseEvent event) {
+        fg.showEditCompW(torn);
     }
 
     public void setMainApp(FachadaGUI fg)

@@ -174,11 +174,6 @@ public class GameWController implements Controller {
     }
 
     @FXML
-    public void loadGameWindow(MouseEvent event) {
-        fg.loadGameWindow();
-    }
-
-    @FXML
     public void showProfileScene(MouseEvent event)
     {
         fg.showProfileScene();
@@ -211,7 +206,7 @@ public class GameWController implements Controller {
     @FXML
     public void showAdminScene(MouseEvent event)
     {
-
+        fg.showAdminScene();
     }
 
     @FXML

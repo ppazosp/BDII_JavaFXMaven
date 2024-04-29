@@ -41,26 +41,21 @@ public class AdminEditCompWController implements Controller {
 
 
     public void initializeWindow(Torneo t, Stage window) {
-        new Thread(() -> {
-            this.window = window;
-            this.torn = t;
 
-            List<String> allGames = fg.fa.consultarVideojuegos();
+        this.window = window;
+        this.torn = t;
 
-            choiceBox.getItems().addAll(allGames);
+        List<String> allGames = fg.fa.consultarVideojuegos();
 
-            Platform.runLater(() -> {
-                if (t != null) {
-                    nameField.setText(torn.getNombre());
-                    startPicker.setValue(torn.getFecha_inicio().toLocalDate());
-                    endPicker.setValue(torn.getFecha_final().toLocalDate());
-                    prizeField.setText(String.valueOf(torn.getPremio()));
+        choiceBox.getItems().addAll(allGames);
 
-                }
-
-                fg.loaded();
-            });
-        }).start();
+        if (t != null) {
+            nameField.setText(torn.getNombre());
+            startPicker.setValue(torn.getFecha_inicio().toLocalDate());
+            endPicker.setValue(torn.getFecha_final().toLocalDate());
+            prizeField.setText(String.valueOf(torn.getPremio()));
+            choiceBox.getSelectionModel().select(choiceBox.getItems().indexOf(torn.getVideojuego().getNombre()));
+        }
     }
 
     @FXML

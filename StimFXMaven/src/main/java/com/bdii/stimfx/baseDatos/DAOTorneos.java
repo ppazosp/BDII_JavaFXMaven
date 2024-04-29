@@ -175,7 +175,7 @@ public class DAOTorneos extends AbstractDAO{
         con=this.getConexion();
 
         try{
-            stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, id_usradmin, imagen " +
+            stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, v.nombre as v_nombre, id_usradmin, imagen " +
                                                 "from torneo t join videojuego v on id_videojuego = v.id " +
                     " where LOWER(t.nombre) like LOWER(?)" +
                     "order by t.nombre");
@@ -183,7 +183,8 @@ public class DAOTorneos extends AbstractDAO{
             rsTorneos=stmTorneos.executeQuery();
             while (rsTorneos.next())
             {
-                Videojuego v = new Videojuego(rsTorneos.getInt("id_videojuego"), FachadaAplicacion.bytesToImage(rsTorneos.getBytes("imagen")));
+                Videojuego v = new Videojuego(rsTorneos.getInt("id_videojuego"), rsTorneos.getString("v_nombre"),
+                        FachadaAplicacion.bytesToImage(rsTorneos.getBytes("imagen")));
                 Usuario u = new Usuario(rsTorneos.getString("id_usradmin"));
                 torneoActual = new Torneo(rsTorneos.getInt("id"), rsTorneos.getString("nombre"), rsTorneos.getDate("fecha_inicio"),
                 rsTorneos.getDate("fecha_fin"), rsTorneos.getInt("premio"), rsTorneos.getString("ganador"), v, u);
@@ -210,7 +211,7 @@ public class DAOTorneos extends AbstractDAO{
         con=this.getConexion();
 
         try{
-            stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, id_usradmin, imagen " +
+            stmTorneos=con.prepareStatement(" select t.id, t.nombre, fecha_inicio, fecha_fin, premio, ganador, id_videojuego, v.nombre as v_nombre, id_usradmin, imagen " +
                     "from torneo t join videojuego v on id_videojuego = v.id " +
                     " where t.id_usradmin like ? " +
                     "order by t.fecha_inicio desc");
@@ -219,7 +220,8 @@ public class DAOTorneos extends AbstractDAO{
             rsTorneos=stmTorneos.executeQuery();
             while (rsTorneos.next())
             {
-                Videojuego v = new Videojuego(rsTorneos.getInt("id_videojuego"), FachadaAplicacion.bytesToImage(rsTorneos.getBytes("imagen")));
+                Videojuego v = new Videojuego(rsTorneos.getInt("id_videojuego"), rsTorneos.getString("v_nombre"),
+                        FachadaAplicacion.bytesToImage(rsTorneos.getBytes("imagen")));
                 Usuario u = new Usuario(rsTorneos.getString("id_usradmin"));
                 torneoActual = new Torneo(rsTorneos.getInt("id"), rsTorneos.getString("nombre"), rsTorneos.getDate("fecha_inicio"),
                         rsTorneos.getDate("fecha_fin"), rsTorneos.getInt("premio"), rsTorneos.getString("ganador"), v, u);

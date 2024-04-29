@@ -26,14 +26,15 @@ public class DAODemos extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            stmDemo = con.prepareStatement("insert into demo(nombre, mes, ano, imagen, id_usradmin) " +
-                    "values (?,?,?,?,?)");
+            stmDemo = con.prepareStatement("insert into demo(nombre, mes, ano, imagen, id_usradmin, url) " +
+                    "values (?,?,?,?,?,?)");
 
             stmDemo.setString(1, d.getNombre());
             stmDemo.setInt(2, d.getMes());
             stmDemo.setInt(3, d.getAno());
             stmDemo.setBytes(4, FachadaAplicacion.imageToBytes(d.getImagen()));
             stmDemo.setString(5, d.getId_usreditor());
+            stmDemo.setString(6, d.getUrl());
             stmDemo.executeUpdate();
 
         } catch (SQLException e) {
@@ -58,12 +59,14 @@ public class DAODemos extends AbstractDAO {
         try {
             stmDemo = con.prepareStatement("update demo set" +
                     " nombre = ?," +
-                    " imagen = ? " +
+                    " imagen = ?, " +
+                    " url = ? " +
                     " where mes = ? and ano = ? ;");
 
             stmDemo.setString(1, d.getNombre());
             stmDemo.setInt(3, d.getMes());
             stmDemo.setInt(4, d.getAno());
+            stmDemo.setString(5, d.getUrl());
             stmDemo.setBytes(2, FachadaAplicacion.imageToBytes(d.getImagen()));
             stmDemo.executeUpdate();
 
@@ -91,7 +94,7 @@ public class DAODemos extends AbstractDAO {
 
         con=this.getConexion();
 
-        String consulta = "select nombre, mes, ano, imagen, id_usradmin" +
+        String consulta = "select nombre, mes, ano, imagen, id_usradmin, url" +
                 "   from demo  \n" +
                 "   where mes = ? and ano = ?;";
 
@@ -105,7 +108,7 @@ public class DAODemos extends AbstractDAO {
                 resultado = new Demo(rsDemos.getString("nombre"),
                         rsDemos.getInt("mes"), rsDemos.getInt("ano"),
                         FachadaAplicacion.bytesToImage(rsDemos.getBytes("imagen")),
-                        rsDemos.getString("id_usradmin"));
+                        rsDemos.getString("id_usradmin"), rsDemos.getString("url"));
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -127,14 +130,15 @@ public class DAODemos extends AbstractDAO {
         con=this.getConexion();
 
         try{
-            stmDemos=con.prepareStatement(" select nombre, mes, ano, imagen from demo where id_usradmin = ? order by ano, mes desc ");
+            stmDemos=con.prepareStatement(" select nombre, mes, ano, imagen, url from demo where id_usradmin = ? order by ano, mes desc ");
 
             stmDemos.setString(1, a_id);
             rsDemos=stmDemos.executeQuery();
             while (rsDemos.next())
             {
                 demoActual = new Demo(rsDemos.getString("nombre"), rsDemos.getInt("mes"),
-                        rsDemos.getInt("ano"), FachadaAplicacion.bytesToImage(rsDemos.getBytes("imagen")), a_id);
+                        rsDemos.getInt("ano"), FachadaAplicacion.bytesToImage(rsDemos.getBytes("imagen")),
+                        a_id, rsDemos.getString("url"));
 
                 resultado.add(demoActual);
             }

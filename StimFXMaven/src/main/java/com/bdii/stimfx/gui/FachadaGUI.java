@@ -4,10 +4,7 @@
  */
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Demo;
-import com.bdii.stimfx.aplicacion.FachadaAplicacion;
-import com.bdii.stimfx.aplicacion.Plataforma;
-import com.bdii.stimfx.aplicacion.Videojuego;
+import com.bdii.stimfx.aplicacion.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -163,7 +160,7 @@ public class FachadaGUI extends Application {
         settingsWController.setMainApp(this);
     }
 
-    public void loadGameWindow()
+    public void loadGameWindow(String url)
     {
         Stage old = primaryStage;
         primaryStage = new Stage();
@@ -246,6 +243,16 @@ public class FachadaGUI extends Application {
         assert adminDemoWController != null;
         adminDemoWController.setMainApp(this);
         adminDemoWController.initializeWindow(d, s);
+    }
+
+    public void showEditCompW(Torneo t) {
+        Stage s = new Stage();
+        s.setResizable(false);
+
+        AdminEditCompWController adminEditCompWController = loadFXML("/com/bdii/stimfx/gui/adminEditCompW.fxml", null, s, AdminEditCompWController.class);
+        assert adminEditCompWController != null;
+        adminEditCompWController.setMainApp(this);
+        adminEditCompWController.initializeWindow(t, s);
     }
 
 

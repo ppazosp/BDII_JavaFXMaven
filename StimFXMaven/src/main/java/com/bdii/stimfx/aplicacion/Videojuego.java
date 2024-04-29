@@ -88,9 +88,10 @@ public class Videojuego {
     }
 
     //para torneos
-    public Videojuego(int id, Image imagen)
+    public Videojuego(int id, String nombre, Image imagen)
     {
         this.id = id;
+        this.nombre = nombre;
         this.imagen = imagen;
     }
 

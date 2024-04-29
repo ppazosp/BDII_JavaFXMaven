@@ -202,7 +202,7 @@ public class MainWController implements Controller {
 
     @FXML
     public void loadGameWindow(MouseEvent event) {
-        fg.loadGameWindow();
+        fg.loadGameWindow(demoGame.getUrl());
     }
 
     @FXML
