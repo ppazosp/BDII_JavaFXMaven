@@ -71,6 +71,20 @@
                                  </TextField>
                               </children>
                            </HBox>
+                           <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="280.0" spacing="10.0">
+                              <children>
+                                 <Label prefHeight="25.0" prefWidth="36.0" text="URL" textFill="WHITE">
+                                    <font>
+                                       <Font name="System Bold" size="16.0" />
+                                    </font>
+                                 </Label>
+                                 <TextField fx:id="urlField" focusTraversable="false" prefHeight="28.0" prefWidth="190.0">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </TextField>
+                              </children>
+                           </HBox>
                         </children>
                         <HBox.margin>
                            <Insets />
