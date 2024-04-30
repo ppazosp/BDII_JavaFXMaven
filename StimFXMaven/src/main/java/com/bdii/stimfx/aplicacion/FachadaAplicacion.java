@@ -343,6 +343,11 @@ public class FachadaAplicacion {
         return gu.consultarVideojuegosUsuario(id);
     }
 
+
+    public void insertarFondos(Usuario u, Double valor)
+    {
+        gu.insertarFondos(u, valor);
+    }
     // -----------------------------------------------------------------------
 
 
@@ -461,8 +466,8 @@ public class FachadaAplicacion {
         gcom.insertarCompra(v, usuario.getId());
     }
 
-    public boolean compraVideojuego(Videojuego v){
-        return  gcom.compraVideojuego(v,usuario);
+    public void compraVideojuego(Videojuego v){
+        gcom.compraVideojuego(v,usuario);
     }
 
     // Funcion para contar la cantidad de juegos que un usario tiene en propiedad

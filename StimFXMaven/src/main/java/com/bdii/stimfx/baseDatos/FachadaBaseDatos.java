@@ -173,6 +173,11 @@ public class FachadaBaseDatos {
     public void insertarCompra(int id_videojuego, double precio,  String id_usuario){
         daoCompras.insertarCompra(id_videojuego, precio,  id_usuario);
     }
+
+    public void insertarFondos(String u_id, double valor)
+    {
+        daoU.insertarFondos(u_id, valor);
+    }
     
     public void insertarCategoria(Categoria c){
         daoCategorias.insertarCategoria(c);

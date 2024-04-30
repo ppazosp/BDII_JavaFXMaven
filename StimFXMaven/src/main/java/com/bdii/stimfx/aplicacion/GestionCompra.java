@@ -14,13 +14,9 @@ public class GestionCompra {
         this.fbd = fbd;
     }
 
-    public boolean compraVideojuego(Videojuego v, Usuario u){
-        if (u.tieneDineroSuficiente(v.getPrecio())){
+    public void compraVideojuego(Videojuego v, Usuario u){
             insertarCompra(v, u.getId());
             u.modificarDinero(-v.getPrecio());
-            return true;
-        }
-        return false;
     }
     public void insertarCompra(Videojuego v, String id_usr) {
         fbd.insertarCompra(v.getId(), v.getPrecio(), id_usr);

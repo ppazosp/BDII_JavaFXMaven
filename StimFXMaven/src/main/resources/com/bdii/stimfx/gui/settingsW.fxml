@@ -234,7 +234,7 @@
                                              </TextField>
                                           </children>
                                        </VBox>
-                                       <HBox fx:id="purseHbox" prefHeight="40.0" prefWidth="12.0" style="-fx-background-radius: 100;" styleClass="selected" stylesheets="@../css/styles.css">
+                                       <HBox fx:id="purseHbox" onMouseClicked="#addFounds" prefHeight="40.0" prefWidth="12.0" style="-fx-background-radius: 100;" styleClass="selected" stylesheets="@../css/styles.css">
                                           <children>
                                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -306,7 +306,7 @@
                            </ImageView>
                         </children>
                      </HBox>
-                     <VBox fx:id="beEditorVbox1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#beEditor" prefHeight="50.0" prefWidth="350.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
+                     <VBox fx:id="bePlayerVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#bePlayer" prefHeight="50.0" prefWidth="350.0" spacing="5.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #1B2631; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                         <children>
                            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="450.0">
                               <children>

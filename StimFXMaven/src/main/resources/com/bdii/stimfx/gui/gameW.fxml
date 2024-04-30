@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +20,7 @@
       <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../../images/steam.png" />
       </ImageView>
-      <VBox layoutY="110.0" prefHeight="530.0" prefWidth="200.0" spacing="10.0">
+      <VBox layoutY="110.0" prefHeight="338.0" prefWidth="200.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER" onMouseClicked="#showMainScene" prefHeight="33.0" prefWidth="190.0" spacing="10.0" stylesheets="@../css/styles.css">
                <children>
@@ -176,7 +177,7 @@
    <AnchorPane fx:id="rightPane" focusTraversable="true" layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
          <ImageView fx:id="bannerImage" fitHeight="332.0" fitWidth="710.0" layoutX="50.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-         <VBox layoutX="50.0" layoutY="416.0" prefHeight="290.0" prefWidth="710.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+         <VBox layoutX="50.0" layoutY="416.0" prefHeight="290.0" prefWidth="710.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;" visible="false">
             <children>
                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="890.0">
                   <children>
@@ -243,7 +244,7 @@
                <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
             </padding>
          </VBox>
-         <VBox layoutX="790.0" layoutY="47.0" prefHeight="332.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+         <VBox layoutX="790.0" layoutY="119.0" prefHeight="260.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
             <children>
                <VBox prefHeight="30.0" prefWidth="185.0">
                   <children>
@@ -309,7 +310,7 @@
             <padding>
                <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
             </padding></VBox>
-         <VBox layoutX="790.0" layoutY="416.0" prefHeight="290.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+         <VBox layoutX="790.0" layoutY="416.0" prefHeight="290.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;" visible="false">
             <children>
                <VBox prefHeight="278.0" prefWidth="185.0" spacing="10.0">
                   <children>
@@ -371,5 +372,153 @@
                <Font size="14.0" />
             </font>
          </Hyperlink>
+         <VBox layoutX="865.0" layoutY="47.0" prefHeight="46.0" prefWidth="135.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+            <children>
+               <HBox alignment="CENTER" prefHeight="36.0" prefWidth="113.0" spacing="10.0">
+                  <children>
+                     <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../images/money.png" />
+                        </image></ImageView>
+                     <Label fx:id="moneyLabel" text="XX.XX" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
+               <VBox prefHeight="32.0" prefWidth="128.0">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  </children>
+               </VBox>
+            </children>
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+         </VBox>
+         <ScrollPane hbarPolicy="NEVER" layoutX="49.0" layoutY="416.0" prefHeight="290.0" prefWidth="967.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+            <content>
+               <VBox alignment="TOP_CENTER" prefHeight="290.0" prefWidth="951.0" spacing="5.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+                  <children>
+                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                        <children>
+                           <TextField prefHeight="75.0" prefWidth="760.0" style="-fx-background-color: #AEB6BF;" />
+                           <VBox alignment="CENTER" prefHeight="90.0" prefWidth="300.0" spacing="10.0">
+                              <children>
+                                 <HBox alignment="CENTER" prefHeight="5.0" prefWidth="138.0" spacing="5.0">
+                                    <children>
+                                       <HBox prefHeight="0.0" prefWidth="24.0">
+                                          <children>
+                                             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@../../../../images/like.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </HBox>
+                                       <Label prefHeight="40.0" prefWidth="27.0" text="100" textFill="WHITE">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="21.0" prefWidth="138.0" spacing="5.0">
+                                    <children>
+                                       <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../../images/dislike.png" />
+                                          </image>
+                                       </ImageView>
+                                       <Label prefHeight="40.0" prefWidth="27.0" text="100" textFill="WHITE">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="90.0" prefWidth="139.0" spacing="10.0">
+                              <children>
+                                 <HBox prefHeight="11.0" prefWidth="140.0">
+                                    <children>
+                                       <Label prefHeight="25.0" prefWidth="180.0" text="pablo" textFill="WHITE">
+                                          <font>
+                                             <Font name="System Bold" size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="23.0" prefWidth="180.0" spacing="5.0">
+                                    <children>
+                                       <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@../../../../images/Star.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </HBox>
+                                       <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@../../../../images/Star.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </HBox>
+                                       <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@../../../../images/Star.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </HBox>
+                                       <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@../../../../images/Star.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </HBox>
+                                       <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@../../../../images/Star.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </HBox>
+                              </children>
+                              <padding>
+                                 <Insets bottom="10.0" right="10.0" top="10.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                        </padding>
+                     </HBox>
+                  </children>
+               </VBox>
+            </content>
+         </ScrollPane>
       </children></AnchorPane>
 </AnchorPane>

@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -69,6 +70,10 @@ public class GameWController implements Controller {
     HBox addHbox;
     @FXML
     Label buyLabel;
+    @FXML
+    Label moneyLabel;
+
+    float dlcsPrice;
 
     @FXML
     List<DLCCheckItemController> itemsList;
@@ -101,6 +106,12 @@ public class GameWController implements Controller {
                 }
                 priceLabel.setText(game.getPrecio()+"€");
                 descrpArea.setText(game.getDescripcion());
+                moneyLabel.setText(String.valueOf(fg.fa.usuario.getDinero()));
+                if(fg.fa.usuario.getDinero() < game.getPrecio())
+                {
+                    moneyLabel.setTextFill(Color.RED);
+                    buyHbox.setDisable(true);
+                }
                 creatorLabel.setText("Creador: "+game.getEditor().getId());
                 downloadsLabel.setText("Descargas: " + game.getNumDescargas());
                 catVbox.getChildren().clear();
@@ -120,7 +131,7 @@ public class GameWController implements Controller {
 
                         DLCCheckItemController controller = loader.getController();
                         controller.setMainApp(fg);
-                        controller.initializeWindow(d);
+                        controller.initializeWindow(d, this);
 
                         itemsList.add(controller);
                     }

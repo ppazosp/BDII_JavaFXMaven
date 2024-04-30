@@ -43,16 +43,18 @@ public class SettingsWController implements Controller {
         if(!(fg.fa.usuario.isCompetitivePlayer())) comMenu.setVisible(false);
         else
         {
-            playerPreLabel.setText("Ya eres");
+            playerPreLabel.setText("Ya eres PLAYER");
             bePlayerVbox.setDisable(true);
         }
         if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
         else
         {
-            editorPreLabel.setText("Ya eres");
+            editorPreLabel.setText("Ya eres EDITOR");
             beEditorVbox.setDisable(true);
         }
         if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
+
+        purseLabel.setText(String.valueOf(fg.fa.usuario.getDinero()));
     }
 
     @FXML
@@ -84,6 +86,32 @@ public class SettingsWController implements Controller {
             fg.fa.usuario.setCompetitivePlayer(true);
 
             Platform.runLater(() ->{
+                fg.showSettingsScene();
+
+                fg.loaded();
+            });
+        }).start();
+    }
+
+    @FXML
+    public void addFounds(MouseEvent event)
+    {
+        fg.loading();
+
+        new Thread(() -> {
+
+            double value;
+            try{
+                value = Double.parseDouble(purseField.getText());
+            }catch (NumberFormatException e)
+            {
+                value = 0;
+            }
+
+            fg.fa.insertarFondos(fg.fa.usuario, value);
+
+            Platform.runLater(() ->{
+
                 fg.showSettingsScene();
 
                 fg.loaded();

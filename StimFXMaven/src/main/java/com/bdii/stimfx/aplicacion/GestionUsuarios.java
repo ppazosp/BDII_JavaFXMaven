@@ -12,6 +12,8 @@ import java.util.Base64;
 
 import com.bdii.stimfx.gui.FachadaGUI;
 import javafx.scene.image.Image;
+
+import static java.lang.Math.abs;
 //PONER A TODOS LOS USUARIOS RESPONABILIDADES DE PASAR DE IMAGE A BYTES
 /**
  *
@@ -158,6 +160,12 @@ public class GestionUsuarios {
 
     public java.util.List<Usuario> consultarUsuariosNoAdmins(){
         return fbd.consultarUsuariosNoAdmins();
+    }
+
+    public void insertarFondos (Usuario u, double valor)
+    {
+        fbd.insertarFondos(u.getId(), valor);
+        u.setDinero((float)(u.getDinero() + Math.abs(valor)));
     }
 
     public java.util.List<Videojuego> consultarVideojuegosUsuario(String id){
