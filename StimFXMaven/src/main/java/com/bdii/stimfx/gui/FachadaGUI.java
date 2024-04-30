@@ -191,14 +191,13 @@ public class FachadaGUI extends Application {
         mainSearchWController.showSearchResults();
     }
 
-    public void showGameScene(Videojuego v)
+    public void showGameScene(Videojuego v, String search)
     {
         GameWController gameWController = loadFXML("/com/bdii/stimfx/gui/gameW.fxml", null, null, GameWController.class);
         assert gameWController != null;
         gameWController.setMainApp(this);
-        gameWController.setVideojuego(v);
         gameWController.setApp(this);
-        gameWController.initializeWindow();
+        gameWController.initializeWindow(v, search);
     }
 
     public void showGameLibraryScene(Videojuego v)

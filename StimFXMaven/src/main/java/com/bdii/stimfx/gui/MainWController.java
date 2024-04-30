@@ -270,7 +270,7 @@ public class MainWController implements Controller {
 
     public void callShowGameScene(Videojuego v)
     {
-        fg.showGameScene(v);
+        fg.showGameScene(v, searchBar.getText());
     }
 
     public void setMainApp(FachadaGUI mainApp)

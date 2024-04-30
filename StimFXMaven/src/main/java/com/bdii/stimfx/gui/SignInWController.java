@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class SignInWController implements Controller{
 
@@ -27,7 +28,7 @@ public class SignInWController implements Controller{
         this.fg = mainApp;
     }
 
-    public void signInCheck (ActionEvent event)
+    public void signInCheck (MouseEvent event)
     {
         if(!userField.getText().isEmpty() && !passField.getText().isEmpty() && !pass2Field.getText().isEmpty()
         && !nameField.getText().isEmpty()) {
@@ -41,7 +42,6 @@ public class SignInWController implements Controller{
             } else {
                 errorLabel.setText("Las dos contraseñas no coinciden!");
                 errorLabel.setVisible(true);
-                //credentialsErrorLabel.setVisible(true);
             }
             userField.clear();
             passField.clear();
@@ -52,9 +52,9 @@ public class SignInWController implements Controller{
             errorLabel.setVisible(true);
         }
     }
-
-    public void showMainWindow()
+    public void showLoginWindow(MouseEvent event)
     {
-        fg.showMainWindow(true);
+        fg.showLoginWindow();
     }
+
 }

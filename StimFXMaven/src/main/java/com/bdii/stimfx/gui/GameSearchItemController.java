@@ -12,6 +12,9 @@ public class GameSearchItemController implements Controller {
 
     FachadaGUI fg;
     Videojuego game;
+    MainSearchWController superController;
+
+
     @FXML
     ImageView iconImage;
     @FXML
@@ -23,9 +26,11 @@ public class GameSearchItemController implements Controller {
     @FXML
     Label priceLabel;
 
-    public void initializeWindow(Videojuego game)
+    public void initializeWindow(Videojuego game, MainSearchWController superController)
     {
         this.game = game;
+        this.superController = superController;
+
         iconImage.setImage(game.getImagen());
         nameLabel.setText(game.getNombre());
         fg.showPlatforms(game, iconsHbox);
@@ -36,7 +41,7 @@ public class GameSearchItemController implements Controller {
     @FXML
     public void showGameScene ()
     {
-        fg.showGameScene(game);
+        fg.showGameScene(game, superController.searchBar.getText());
     }
 
     public void setMainApp(FachadaGUI fg)

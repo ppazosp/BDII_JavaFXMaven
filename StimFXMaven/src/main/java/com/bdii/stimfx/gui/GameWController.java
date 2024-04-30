@@ -12,6 +12,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,8 @@ public class GameWController implements Controller {
     Application app;
     Videojuego game;
 
+    String search;
+
     //PANE
     @FXML
     AnchorPane rightPane;
@@ -43,6 +46,8 @@ public class GameWController implements Controller {
     HBox adminMenu;
 
 
+    @FXML
+    ImageView photoImage;
 
     @FXML
     Hyperlink linkRef;
@@ -62,8 +67,6 @@ public class GameWController implements Controller {
     Label creatorLabel;
     @FXML
     Label downloadsLabel;
-    @FXML
-    VBox catVbox;
     @FXML
     VBox checkVbox;
     @FXML
@@ -91,13 +94,15 @@ public class GameWController implements Controller {
     @FXML
     List<DLCCheckItemController> itemsList;
 
-    public void setVideojuego(Videojuego v) {this.game = v;}
 
-    public void initializeWindow()
+    public void initializeWindow(Videojuego game, String search)
     {
         fg.loading();
 
         new Thread(() -> {
+            this.game = game;
+            this.search = search;
+
             boolean tieneVideojuego = fg.fa.tieneVideojeugo(fg.fa.usuario, game);
             fg.fa.consultarResenhas(game);
             List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
@@ -110,6 +115,7 @@ public class GameWController implements Controller {
                 if(!(fg.fa.usuario.isEditor())) editMenu.setVisible(false);
                 if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
 
+                photoImage.setImage(fg.fa.usuario.getFotoPerfil());
 
                 bannerImage.setImage(game.getBanner());
                 nameLabel.setText(game.getNombre());
@@ -129,12 +135,6 @@ public class GameWController implements Controller {
                 }
                 creatorLabel.setText("Creador: "+game.getEditor().getId());
                 downloadsLabel.setText("Descargas: " + game.getNumDescargas());
-                catVbox.getChildren().clear();
-
-                for(String s : cats){
-                    Label l = new Label(s);
-                    catVbox.getChildren().add(l);
-                }
 
                 itemsList = new ArrayList<>();
                 checkVbox.getChildren().clear();
@@ -178,6 +178,13 @@ public class GameWController implements Controller {
 
         }).start();
 
+    }
+
+    @FXML
+    public void back(MouseEvent event)
+    {
+        if(search == null) fg.showMainWindow(false);
+        else fg.showSearchScene(search);
     }
 
     @FXML

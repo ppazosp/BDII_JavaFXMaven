@@ -379,7 +379,7 @@
                <Font size="14.0" />
             </font>
          </Hyperlink>
-         <VBox layoutX="865.0" layoutY="47.0" prefHeight="46.0" prefWidth="135.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
+         <VBox fx:id="moneyVbox" layoutX="865.0" layoutY="47.0" onMouseClicked="#showSettingsScene" prefHeight="46.0" prefWidth="135.0" style="-fx-background-radius: 10;" stylesheets="@../css/styles.css">
             <children>
                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="113.0" spacing="10.0">
                   <children>
@@ -403,6 +403,10 @@
             <padding>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
+            <styleClass>
+               <String fx:value="primary-color" />
+               <String fx:value="selected" />
+            </styleClass>
          </VBox>
          <ScrollPane fx:id="reviewsPanel" hbarPolicy="NEVER" layoutX="49.0" layoutY="416.0" prefHeight="290.0" prefWidth="967.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" visible="false">
             <content>
@@ -413,5 +417,30 @@
                </VBox>
             </content>
          </ScrollPane>
+         <HBox fx:id="backHbox" alignment="CENTER" layoutX="50.0" layoutY="47.0" onMouseClicked="#back" prefHeight="46.0" prefWidth="45.0" style="-fx-background-radius: 5;" stylesheets="@../css/styles.css">
+            <children>
+               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/back.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <styleClass>
+               <String fx:value="selected" />
+               <String fx:value="primary-color" />
+            </styleClass>
+         </HBox>
+         <HBox alignment="CENTER" layoutX="790.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showProfileScene" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 5;" stylesheets="@../css/styles.css">
+            <children>
+               <ImageView fx:id="photoImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+            <styleClass>
+               <String fx:value="selected" />
+               <String fx:value="primary-color" />
+            </styleClass>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
       </children></AnchorPane>
 </AnchorPane>

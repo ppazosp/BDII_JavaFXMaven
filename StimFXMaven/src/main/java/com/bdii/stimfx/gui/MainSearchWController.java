@@ -63,7 +63,7 @@ public class MainSearchWController implements Controller {
 
                         GameSearchItemController controller = loader.getController();
                         controller.setMainApp(fg);
-                        controller.initializeWindow(v);
+                        controller.initializeWindow(v, this);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
