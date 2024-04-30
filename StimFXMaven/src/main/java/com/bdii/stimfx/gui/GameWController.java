@@ -218,6 +218,7 @@ public class GameWController implements Controller {
                     cb.add(c);
                 }
             }
+            moneyLabel.setText(String.valueOf(fg.fa.usuario.getDinero()));
             Platform.runLater(() -> {
                 for (DLCCheckItemController c : cb) {
                     c.checkHbox.setDisable(true);
