@@ -32,6 +32,7 @@ public class GameWController implements Controller {
     Videojuego game;
 
     String search;
+    int from;
 
     //PANE
     @FXML
@@ -88,6 +89,10 @@ public class GameWController implements Controller {
     VBox reviewsVbox;
     @FXML
     Label resLabel;
+    @FXML
+    Label newResLabel;
+    @FXML
+    Label valLabel;
 
     float dlcsPrice;
 
@@ -95,18 +100,20 @@ public class GameWController implements Controller {
     List<DLCCheckItemController> itemsList;
 
 
-    public void initializeWindow(Videojuego game, String search)
+    public void initializeWindow(Videojuego game, String search, int from)
     {
         fg.loading();
 
         new Thread(() -> {
             this.game = game;
             this.search = search;
+            this.from = from;
 
             boolean tieneVideojuego = fg.fa.tieneVideojeugo(fg.fa.usuario, game);
+            game.setResenhas(new ArrayList<>());
             fg.fa.consultarResenhas(game);
-            List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
             List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
+            float avgVal = fg.fa.consultarMediaResenhas(game);
 
 
             Platform.runLater(() -> {
@@ -135,12 +142,13 @@ public class GameWController implements Controller {
                 }
                 creatorLabel.setText("Creador: "+game.getEditor().getId());
                 downloadsLabel.setText("Descargas: " + game.getNumDescargas());
+                valLabel.setText(String.format("%.1f", avgVal));
 
                 itemsList = new ArrayList<>();
                 checkVbox.getChildren().clear();
 
                 try {
-                    for (DLC d : dlcList) { // Add 10 instances as an example
+                    for (DLC d : dlcList) {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/dlcCheckItem.fxml"));
                         checkVbox.getChildren().add(loader.load());
 
@@ -156,11 +164,11 @@ public class GameWController implements Controller {
                     e.printStackTrace();
                 }
 
-
+                reviewsPanel.setVisible(true);
                 reviewsVbox.getChildren().clear();
 
                 try {
-                    for (Resenha r : game.getReseñas()) { // Add 10 instances as an example
+                    for (Resenha r : game.getReseñas()) {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/reviewItem.fxml"));
                         reviewsVbox.getChildren().add(loader.load());
 
@@ -172,6 +180,7 @@ public class GameWController implements Controller {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                reviewsPanel.setVisible(false);
 
                 fg.loaded();
             });
@@ -183,8 +192,16 @@ public class GameWController implements Controller {
     @FXML
     public void back(MouseEvent event)
     {
-        if(search == null) fg.showMainWindow(false);
+        if(from == 0) fg.showMainWindow(false);
         else fg.showSearchScene(search);
+    }
+
+    @FXML
+    public void myReview(MouseEvent event)
+    {
+        Resenha r = fg.fa.consultarResenha(game.getId(), fg.fa.usuario.getId());
+
+        fg.showEditReviewW(r, game, search, from);
     }
 
     @FXML

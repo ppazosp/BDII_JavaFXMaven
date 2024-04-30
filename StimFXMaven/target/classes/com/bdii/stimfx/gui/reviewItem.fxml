@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="930.0" spacing="15.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: FFFFFF; -fx-border-width: 5; -fx-background-color: #1B2631;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.ReviewItemController">
+<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="930.0" spacing="15.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: FFFFFF; -fx-border-width: 5; -fx-background-color: #1B2631;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bdii.stimfx.gui.ReviewItemController">
    <children>
-      <TextArea fx:id="reviewArea" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="700.0" wrapText="true">
+      <ImageView fx:id="iconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea fx:id="reviewArea" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="625.0" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -21,9 +22,9 @@
       </TextArea>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="180.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="21.0" prefWidth="184.0">
+            <HBox alignment="CENTER" prefHeight="21.0" prefWidth="184.0" spacing="5.0">
                <children>
-                  <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="180.0" text="username" textFill="WHITE">
+                  <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" text="username" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -86,6 +87,6 @@
       </VBox>
    </children>
    <padding>
-      <Insets bottom="30.0" left="15.0" right="30.0" top="30.0" />
+      <Insets bottom="30.0" left="30.0" right="10.0" top="30.0" />
    </padding>
 </HBox>

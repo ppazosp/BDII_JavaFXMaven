@@ -261,18 +261,37 @@
                </VBox>
                <VBox alignment="BOTTOM_CENTER" prefHeight="180.0" prefWidth="185.0" spacing="10.0">
                   <children>
+                     <Label alignment="CENTER" text="Media valoraciones" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="14.0" />
+                        </font>
+                     </Label>
+                     <HBox alignment="CENTER" prefHeight="51.0" prefWidth="185.0">
+                        <children>
+                           <Label fx:id="valLabel" alignment="CENTER" prefHeight="67.0" prefWidth="75.0" text="0.0" textFill="WHITE">
+                              <font>
+                                 <Font size="36.0" />
+                              </font>
+                           </Label>
+                           <ImageView fitHeight="43.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../images/star.png" />
+                              </image>
+                           </ImageView>
+                        </children>
+                     </HBox>
                      <VBox prefHeight="32.0" prefWidth="128.0">
                         <children>
                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                               <children>
-                                 <HBox fx:id="reviewsHbox1" alignment="CENTER" onMouseClicked="#alterView" prefHeight="54.0" prefWidth="166.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
+                                 <HBox alignment="CENTER" onMouseClicked="#myReview" prefHeight="54.0" prefWidth="166.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
                                     <children>
                                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
-                                             <Image url="@../../../../images/addW.png" />
+                                             <Image url="@../../../../images/pencil.png" />
                                           </image>
                                        </ImageView>
-                                       <Label fx:id="resLabel1" alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="Nueva reseña" textFill="WHITE">
+                                       <Label fx:id="newResLabel" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Mi reseña" textFill="WHITE">
                                           <font>
                                              <Font size="14.0" />
                                           </font>
@@ -285,6 +304,9 @@
                               </children>
                            </HBox>
                         </children>
+                        <VBox.margin>
+                           <Insets top="10.0" />
+                        </VBox.margin>
                      </VBox>
                       <VBox prefHeight="32.0" prefWidth="128.0">
                           <children>
@@ -297,7 +319,7 @@
                                                       <Image url="@../../../../images/eye.png" />
                                                   </image>
                                               </ImageView>
-                                              <Label fx:id="resLabel" alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="Ver reseñas" textFill="WHITE">
+                                              <Label fx:id="resLabel" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Ver reseñas" textFill="WHITE">
                                                   <font>
                                                       <Font size="14.0" />
                                                   </font>
@@ -432,11 +454,7 @@
          </HBox>
          <HBox alignment="CENTER" layoutX="790.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showProfileScene" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 5;" stylesheets="@../css/styles.css">
             <children>
-               <ImageView fx:id="photoImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../../../images/minecraft.png" />
-                  </image>
-               </ImageView>
+               <ImageView fx:id="photoImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
             </children>
             <styleClass>
                <String fx:value="selected" />

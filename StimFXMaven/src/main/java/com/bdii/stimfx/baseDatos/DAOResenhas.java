@@ -5,10 +5,9 @@
 package com.bdii.stimfx.baseDatos;
 import java.sql.Connection;
 
+import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Resenha;
 import com.bdii.stimfx.aplicacion.Videojuego;
-
-import java.time.LocalDate;
 
 import java.sql.*;
 
@@ -30,20 +29,12 @@ public class DAOResenhas extends AbstractDAO {
         con=super.getConexion();
         
         try {
-            stmResenhas=con.prepareStatement("insert into resenha(id_videojuego, id_usr, comentario, fecha, likes, dislikes) "+
-                                            "values (?,?,?,?,?,?)");
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
-            // Convertir la fecha actual a LocalDate
-            LocalDate localDate = fechaActual.toLocalDate();
+            stmResenhas=con.prepareStatement("insert into resenha(id_videojuego, id_usr, comentario) "+
+                                            "values (?,?,?)");
 
-            r.setFecha(fechaActual);
             stmResenhas.setInt(1, r.getId_videojuego());
             stmResenhas.setString(2, r.getId_usuario());
             stmResenhas.setString(3, r.getComentario());
-            stmResenhas.setDate(4, fechaActual);
-            stmResenhas.setInt(5, r.getLikes());
-            stmResenhas.setInt(6, r.getDislikes());
             stmResenhas.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -53,7 +44,68 @@ public class DAOResenhas extends AbstractDAO {
         }
     }
 
-    public void consultarResenha(Videojuego v){
+    public void updateResenha(Resenha r) {
+        Connection con;
+        PreparedStatement stmResenha = null;
+
+        con = super.getConexion();
+
+        try {
+            stmResenha = con.prepareStatement("update resenha set" +
+                    " comentario = ?," +
+                    " valoracion = ?" +
+                    " where id_videojuego = ? and id_usr = ?;");
+
+            stmResenha.setInt(3, r.getId_videojuego());
+            stmResenha.setString(4, r.getId_usuario());
+            stmResenha.setString(1, r.getComentario());
+            stmResenha.setInt(2, r.getValoracion());
+
+            stmResenha.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmResenha.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+
+    public Resenha consultarResenha(int id_v, String id_usr){
+        Connection con;
+        Resenha r = null;
+        PreparedStatement stmResenhas=null;
+        ResultSet rsResenha = null;
+
+        con=super.getConexion();
+
+
+        String consulta= "select * from resenha where id_videojuego = ? and id_usr = ?;";
+        try {
+            stmResenhas=con.prepareStatement(consulta);
+            stmResenhas.setInt(1, id_v);
+            stmResenhas.setString(2, id_usr);
+            rsResenha=stmResenhas.executeQuery();
+
+            if(rsResenha.next()){
+                r = new Resenha(id_v, rsResenha.getInt("id_resenha"), id_usr, rsResenha.getString("comentario"),
+                        rsResenha.getInt("valoracion"));
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmResenhas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return r;
+    }
+
+    public void consultarResenhas(Videojuego v){
         Connection con;
         PreparedStatement stmResenhas=null;
         ResultSet rsResenha = null;
@@ -69,7 +121,7 @@ public class DAOResenhas extends AbstractDAO {
             
             while(rsResenha.next()){
                 Resenha resenha = new Resenha(v.getId(), rsResenha.getInt("id_resenha"), rsResenha.getString("id_usr"), rsResenha.getString("comentario"),
-                      rsResenha.getInt("valoracion"), rsResenha.getDate("fecha"));
+                      rsResenha.getInt("valoracion"));
                 v.addResenha(resenha);
             }
             
@@ -79,6 +131,44 @@ public class DAOResenhas extends AbstractDAO {
         }finally{
           try {stmResenhas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
+    }
+
+    public float consultarMediaResenhas(Videojuego v)
+    {
+        Connection con;
+        PreparedStatement stmResenhas=null;
+        ResultSet rsResenha = null;
+
+        float avg = 0;
+        int count = 0;
+
+        con=super.getConexion();
+
+
+        String consulta= "select valoracion from resenha where id_videojuego = ?;";
+        try {
+            stmResenhas=con.prepareStatement(consulta);
+            stmResenhas.setInt(1, v.getId());
+            rsResenha=stmResenhas.executeQuery();
+
+            while(rsResenha.next()){
+                avg+=rsResenha.getFloat("valoracion");
+                count++;
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmResenhas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        if(avg!=0 && count!=0)
+        {
+            avg /= count;
+            return avg;
+        }
+
+        else return 0;
     }
 
 }

@@ -121,8 +121,18 @@ public class FachadaBaseDatos {
         return daoCategorias.consultarVideojuegosCategoria(c);
     }
     
-    public void insertarReseña(Resenha r){
+    public void insertarResenha(Resenha r){
         daoR.insertarResenha(r);
+    }
+
+    public void updateResenha(Resenha r)
+    {
+        daoR.updateResenha(r);
+    }
+
+    public Resenha consultarResenha(int id_v, String id_usr)
+    {
+        return daoR.consultarResenha(id_v, id_usr);
     }
     
     public void insertarUsuario(Usuario u){
@@ -377,10 +387,18 @@ public class FachadaBaseDatos {
         return daoV.consultarVideojuegosEditor(id_editor);
     }
 
-    public void consultarReseña(Videojuego v)
+    public void consultarResenhas(Videojuego v)
     {
-        daoR.consultarResenha(v);
-    }    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
+        daoR.consultarResenhas(v);
+    }
+
+    public float consultarMediaResenhas(Videojuego v)
+    {
+        return daoR.consultarMediaResenhas(v);
+    }
+
+
+    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
     public void hashAllPasswords() {
         daoOpUnicas.hashAllPasswords();
     }

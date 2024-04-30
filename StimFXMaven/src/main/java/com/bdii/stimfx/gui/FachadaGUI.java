@@ -191,13 +191,13 @@ public class FachadaGUI extends Application {
         mainSearchWController.showSearchResults();
     }
 
-    public void showGameScene(Videojuego v, String search)
+    public void showGameScene(Videojuego v, String search, int from)
     {
         GameWController gameWController = loadFXML("/com/bdii/stimfx/gui/gameW.fxml", null, null, GameWController.class);
         assert gameWController != null;
         gameWController.setMainApp(this);
         gameWController.setApp(this);
-        gameWController.initializeWindow(v, search);
+        gameWController.initializeWindow(v, search, from);
     }
 
     public void showGameLibraryScene(Videojuego v)
@@ -259,6 +259,16 @@ public class FachadaGUI extends Application {
         assert adminEditCompWController != null;
         adminEditCompWController.setMainApp(this);
         adminEditCompWController.initializeWindow(t, s);
+    }
+
+    public void showEditReviewW(Resenha r, Videojuego v, String search, int from) {
+        Stage s = new Stage();
+        s.setResizable(false);
+
+        ReviewEditWController reviewEditWController = loadFXML("/com/bdii/stimfx/gui/reviewEditW.fxml", null, s, ReviewEditWController.class);
+        assert reviewEditWController != null;
+        reviewEditWController.setMainApp(this);
+        reviewEditWController.initializeWindow(r, s, v, search, from);
     }
 
 

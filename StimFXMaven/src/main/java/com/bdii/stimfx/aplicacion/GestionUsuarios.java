@@ -130,7 +130,7 @@ public class GestionUsuarios {
     //pasar id desde FA
     public Usuario modificarUsuario(String id, String nombre, String claveAntigua, String clave, String email, Image imagen){
         Usuario usuario;
-        if (claveAntigua.equals(hashPassword(clave))){
+        if (claveAntigua.equals(clave)){
             usuario = new Usuario(id, nombre, clave, email, imagen);}
         //Si cambio contraseña rehshear
         else{

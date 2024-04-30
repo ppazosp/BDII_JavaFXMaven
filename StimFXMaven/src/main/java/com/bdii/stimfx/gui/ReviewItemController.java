@@ -22,9 +22,7 @@ public class ReviewItemController implements Controller {
     @FXML
     TextArea reviewArea;
     @FXML
-    Label likesLabel;
-    @FXML
-    Label dislikesLabel;
+    ImageView iconImage;
     @FXML
     Label nameLabel;
 
@@ -49,6 +47,7 @@ public class ReviewItemController implements Controller {
 
         reviewArea.setText(res.getComentario());
         nameLabel.setText(res.getId_usuario());
+        iconImage.setImage(fg.fa.usuario.getFotoPerfil());
 
         switch(res.getValoracion())
         {

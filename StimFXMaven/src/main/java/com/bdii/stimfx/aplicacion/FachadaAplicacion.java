@@ -25,7 +25,7 @@ public class FachadaAplicacion {
     private final GestionTorneos gt;
     private final GestionCompra gcom;
     private final GestionPlataforma gpl;
-    private final GestionReseña gr;
+    private final GestionResenhas gr;
 
     private final GestionCategoria gcat;
 
@@ -117,7 +117,7 @@ public class FachadaAplicacion {
         gt = new GestionTorneos(this.fg, fbd);
         gcom = new GestionCompra(this.fg, fbd);
         gpl = new GestionPlataforma(this.fg, fbd);
-        gr = new GestionReseña(this.fg, fbd);
+        gr = new GestionResenhas(this.fg, fbd);
         gcat = new GestionCategoria(this.fg, fbd);
 
         //pruebas_DAO();
@@ -444,8 +444,8 @@ public class FachadaAplicacion {
     // -----------------------------------------------------------------------
 
     // Escribir una nueva reseña
-    public void insertarReseña(String texto, int valoracion, int id_juego){
-        gr.insertarReseña(texto, valoracion, this.usuario.getId(), id_juego);
+    public void insertarReseña(Resenha r){
+        gr.insertarResenha(r);
     }
 
     // -----------------------------------------------------------------------
@@ -667,6 +667,22 @@ public class FachadaAplicacion {
     {
         gr.consultarResenhas(v);
     }
+
+    public float consultarMediaResenhas(Videojuego v)
+    {
+        return gr.consultarMediaResenhas(v);
+    }
+
+    public void publicarResenha(Resenha r)
+    {
+        gr.publicarResenha(r);
+    }
+
+    public Resenha consultarResenha(int id_v, String id_usr)
+    {
+        return gr.consultarResenha(id_v, id_usr);
+    }
+
     // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.
     // Si pones un buscador se añade facil.
     // DEVUELVE LOS VIDEOJUEGOS DIERECTAMENTE

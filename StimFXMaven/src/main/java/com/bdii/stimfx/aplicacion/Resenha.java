@@ -15,7 +15,6 @@ public class Resenha {
     private String id_usuario;
     private int idReseña;
     private String comentario;
-    private Date fecha;
     private int valoracion;
     private int likes;
     private int dislikes;
@@ -26,13 +25,12 @@ public class Resenha {
         this.comentario = comentario;
     }
 
-    public Resenha(int id_videojuego, int idReseña, String id_usuario, String comentario, int valoracion, Date fecha) {
+    public Resenha(int id_videojuego, int idReseña, String id_usuario, String comentario, int valoracion) {
         this.id_videojuego = id_videojuego;
         this.id_usuario = id_usuario;
         this.idReseña = idReseña;
         this.comentario = comentario;
         this.valoracion = valoracion;
-        this.fecha= fecha;
     }
 
 
@@ -52,10 +50,6 @@ public class Resenha {
         return comentario;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
     public int getValoracion() {
         return valoracion;
     }
@@ -68,14 +62,9 @@ public class Resenha {
         return id_videojuego;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     public int getLikes() {
         return likes;
     }
-
     public int getDislikes() {
         return dislikes;
     }
