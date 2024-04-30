@@ -268,7 +268,7 @@
                      <Font name="System Bold" size="20.0" />
                   </font>
                </Label>
-               <HBox fx:id="top1Hbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="74.0" prefWidth="620.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
+               <HBox fx:id="top1Hbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="74.0" prefWidth="620.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fx:id="top1IconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                         <HBox.margin>
@@ -313,8 +313,12 @@
                         </HBox.margin>
                      </VBox>
                   </children>
+                  <styleClass>
+                     <String fx:value="button" />
+                     <String fx:value="selected2" />
+                  </styleClass>
                </HBox>
-               <HBox fx:id="top2Hbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
+               <HBox fx:id="top2Hbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fx:id="top2IconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                         <HBox.margin>
@@ -356,8 +360,12 @@
                         </children>
                      </VBox>
                   </children>
+                  <styleClass>
+                     <String fx:value="button" />
+                     <String fx:value="selected2" />
+                  </styleClass>
                </HBox>
-               <HBox fx:id="top3Hbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" styleClass="button" stylesheets="@../css/styles.css">
+               <HBox fx:id="top3Hbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="65.0" prefWidth="650.0" spacing="20.0" style="-fx-border-color: #1B2631; -fx-border-radius: 25; -fx-border-width: 5;" stylesheets="@../css/styles.css">
                   <children>
                      <ImageView fx:id="top3IconImage" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                         <HBox.margin>
@@ -399,6 +407,10 @@
                         </children>
                      </VBox>
                   </children>
+                  <styleClass>
+                     <String fx:value="button" />
+                     <String fx:value="selected2" />
+                  </styleClass>
                </HBox>
             </children>
          </VBox>
@@ -412,7 +424,7 @@
                      <Insets bottom="10.0" />
                   </VBox.margin>
                </Label>
-               <HBox fx:id="nextLaunchHbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="440.0" prefWidth="284.0" spacing="20.0" style="-fx-border-radius: 25; -fx-border-width: 10; -fx-border-color: #1B2631;" styleClass="button" stylesheets="@../css/styles.css">
+               <HBox fx:id="nextLaunchHbox" alignment="CENTER_LEFT" onMouseClicked="#showGameScene" prefHeight="440.0" prefWidth="284.0" spacing="20.0" style="-fx-border-radius: 25; -fx-border-width: 10; -fx-border-color: #1B2631;" stylesheets="@../css/styles.css">
                   <children>
                      <VBox alignment="TOP_CENTER" prefHeight="340.0" prefWidth="232.0" spacing="10.0">
                         <children>
@@ -456,6 +468,10 @@
                         </HBox.margin>
                      </VBox>
                   </children>
+                  <styleClass>
+                     <String fx:value="button" />
+                     <String fx:value="selected2" />
+                  </styleClass>
                </HBox>
             </children>
          </VBox>

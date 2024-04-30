@@ -140,7 +140,7 @@ public class EditGameWController implements Controller {
 
     @FXML
     public void showAdminScene(MouseEvent event) {
-
+        fg.showAdminScene();
     }
 
     @FXML

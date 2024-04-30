@@ -508,8 +508,8 @@ public class DAOUsuarios extends AbstractDAO{
         con=this.getConexion();
 
         String consulta = "select  v.id, v.nombre , v.fechasubida , v.id_usreditor , v.precio , v.descripcion, v.imagen, v.banner, v.trailer, c.id_usr\n" +
-                "from comprar as c join videojuego as v on c.id_videojuego=v.id\n" +
-                "where c.id_usr like ?;";
+                "from comprar as c join videojuego as v on c.id_videojuego = v.id " +
+                "where c.id_usr = ? and c.fecha_devolucion is null;";
         //un segundo porfa
         try{
             stmVideojuego=con.prepareStatement(consulta);

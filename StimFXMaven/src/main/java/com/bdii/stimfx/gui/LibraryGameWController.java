@@ -136,7 +136,7 @@ public class LibraryGameWController implements Controller{
     @FXML
     public void showAdminScene(MouseEvent event)
     {
-
+        fg.showAdminScene();
     }
 
     @FXML

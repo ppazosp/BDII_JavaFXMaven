@@ -65,6 +65,7 @@ public class GestionTorneos {
             idGanador = participantes.get(random.nextInt(participantes.size() - 1)).getId();
         }
         fbd.setGanador(idGanador, t.getId());
+        fbd.insertarFondos(idGanador, t.getPremio());
         t.setGanador(idGanador);
     }
     public List<Torneo> consultarTorneosAdmin(Usuario u)

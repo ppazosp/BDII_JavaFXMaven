@@ -193,6 +193,7 @@ public class GameWController implements Controller {
         new Thread(() -> {
             //METER AQUI IF/ELSE
             fg.fa.compraVideojuego(game);
+            moneyLabel.setText(String.valueOf(fg.fa.usuario.getDinero()));
 
             Platform.runLater(() ->{
                 buyLabel.setText("Comprado");

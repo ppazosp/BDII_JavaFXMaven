@@ -115,7 +115,7 @@ public class EditWController implements Controller {
 
     @FXML
     public void showAdminScene(MouseEvent event) {
-
+        fg.showAdminScene();
     }
 
     @FXML
