@@ -25,7 +25,7 @@ public class Videojuego {
     private List<DLC> DLCs;
     private double precio;
     private int numDescargas;
-    private List<Reseña> reseñas;
+    private List<Resenha> resenhas;
     private Image imagen;
     private Image banner;
     private String trailer;
@@ -148,15 +148,15 @@ public class Videojuego {
         this.fechaSubida = fechaSubida;
     }
 
-    public List<Reseña> getReseñas() {
-        return reseñas;
+    public List<Resenha> getReseñas() {
+        return resenhas;
     }
 
-    public void setReseñas(List<Reseña> reseñas) {
-        this.reseñas = reseñas;
+    public void setResenhas(List<Resenha> resenhas) {
+        this.resenhas = resenhas;
     }
-    public void addReseña(Reseña rs){
-        this.reseñas.add(rs);
+    public void addResenha(Resenha rs){
+        this.resenhas.add(rs);
     }
 
     public Image getImagen() {

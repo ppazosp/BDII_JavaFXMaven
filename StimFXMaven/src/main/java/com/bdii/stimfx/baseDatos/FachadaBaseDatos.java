@@ -20,7 +20,7 @@ public class FachadaBaseDatos {
     private final DAOVideojuegos daoV;
     private final DAODLCs daoD;
     private final DAOCategorias daoCategorias;
-    private final DAOReseñas daoR;
+    private final DAOResenhas daoR;
     private final DAOUsuarios daoU;
     private final DAOTorneos daoT;
     private final DAOCompras daoCompras;
@@ -56,7 +56,7 @@ public class FachadaBaseDatos {
         daoD = new DAODLCs(conexion, fa);
         daoCompras = new DAOCompras(conexion, fa);
         daoComunidades = new DAOComunidades(conexion, fa);
-        daoR = new DAOReseñas(conexion, fa);
+        daoR = new DAOResenhas(conexion, fa);
         daoT = new DAOTorneos(conexion, fa);
         daoP = new DAOPlataformas(conexion, fa);
         daoDemos = new DAODemos(conexion, fa);
@@ -121,8 +121,8 @@ public class FachadaBaseDatos {
         return daoCategorias.consultarVideojuegosCategoria(c);
     }
     
-    public void insertarReseña(Reseña r){
-        daoR.insertarReseña(r);
+    public void insertarReseña(Resenha r){
+        daoR.insertarResenha(r);
     }
     
     public void insertarUsuario(Usuario u){
@@ -379,7 +379,7 @@ public class FachadaBaseDatos {
 
     public void consultarReseña(Videojuego v)
     {
-        daoR.consultarReseña(v);
+        daoR.consultarResenha(v);
     }    // SOLO UNA VEZ POR FAVOR POR FAVOR POR FAVOR POR FAVOR POR FAVOR
     public void hashAllPasswords() {
         daoOpUnicas.hashAllPasswords();

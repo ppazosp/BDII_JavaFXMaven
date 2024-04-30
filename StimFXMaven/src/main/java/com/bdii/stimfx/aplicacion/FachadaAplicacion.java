@@ -120,7 +120,7 @@ public class FachadaAplicacion {
         gr = new GestionReseña(this.fg, fbd);
         gcat = new GestionCategoria(this.fg, fbd);
 
-        pruebas_DAO();
+        //pruebas_DAO();
     }
 
     private void pruebas_DAO(){
@@ -162,10 +162,7 @@ public class FachadaAplicacion {
     }
 
     public static void main(String[] args) {
-        String currentDirectory = System.getProperty("user.dir");
-        System.out.println("Current working directory: " + currentDirectory);
         Application.launch(FachadaGUI.class, args);
-
     }
 
     public static void muestraExcepcion(String e) {
@@ -447,7 +444,7 @@ public class FachadaAplicacion {
     // -----------------------------------------------------------------------
 
     // Escribir una nueva reseña
-    public void insertarReseña(String texto, float valoracion, int id_juego){
+    public void insertarReseña(String texto, int valoracion, int id_juego){
         gr.insertarReseña(texto, valoracion, this.usuario.getId(), id_juego);
     }
 
@@ -664,6 +661,11 @@ public class FachadaAplicacion {
 
     public List<Videojuego> consultarVideosjuegosEditor(String id_editor) {
         return fbd.consultarVideosjuegosEditor(id_editor);
+    }
+
+    public void consultarResenhas(Videojuego v)
+    {
+        gr.consultarResenhas(v);
     }
     // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.
     // Si pones un buscador se añade facil.

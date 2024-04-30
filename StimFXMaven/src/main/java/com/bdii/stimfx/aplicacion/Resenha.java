@@ -10,21 +10,23 @@ import java.sql.*;
  *
  * @author alumnogreibd
  */
-public class Reseña {
+public class Resenha {
     private int id_videojuego;
     private String id_usuario;
     private int idReseña;
     private String comentario;
     private Date fecha;
-    private float valoracion;
+    private int valoracion;
+    private int likes;
+    private int dislikes;
 
-    public Reseña(int id_videojuego, int idReseña, String comentario) {
+    public Resenha(int id_videojuego, int idReseña, String comentario) {
         this.id_videojuego = id_videojuego;
         this.idReseña = idReseña;
         this.comentario = comentario;
     }
 
-    public Reseña(int id_videojuego, int idReseña, String id_usuario,  String comentario, float valoracion,Date fecha) {
+    public Resenha(int id_videojuego, int idReseña, String id_usuario, String comentario, int valoracion, Date fecha) {
         this.id_videojuego = id_videojuego;
         this.id_usuario = id_usuario;
         this.idReseña = idReseña;
@@ -34,7 +36,7 @@ public class Reseña {
     }
 
 
-    public Reseña(String texto, float valoracion, String id_usr,int id_juego) {
+    public Resenha(String texto, int valoracion, String id_usr, int id_juego) {
         this.id_videojuego = id_juego;
         this.idReseña = -1;
         this.comentario = texto;
@@ -54,7 +56,7 @@ public class Reseña {
         return fecha;
     }
 
-    public float getValoracion() {
+    public int getValoracion() {
         return valoracion;
     }
 
@@ -68,5 +70,13 @@ public class Reseña {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
     }
 }

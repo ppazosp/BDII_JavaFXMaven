@@ -9,11 +9,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -39,6 +41,7 @@ public class FachadaGUI extends Application {
         //this.primaryStage.setMaxWidth(1000);
         //this.primaryStage.setMinHeight(630);
         //this.primaryStage.setMaxHeight(630);
+
         showLoginWindow();
     }
 

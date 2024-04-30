@@ -1,6 +1,7 @@
 package com.bdii.stimfx.gui;
 
 import com.bdii.stimfx.aplicacion.DLC;
+import com.bdii.stimfx.aplicacion.Resenha;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -73,6 +74,13 @@ public class GameWController implements Controller {
     @FXML
     Label moneyLabel;
 
+    @FXML
+    VBox buyVbox;
+    @FXML
+    VBox addVbox;
+    @FXML
+    VBox reviewsVbox;
+
     float dlcsPrice;
 
     @FXML
@@ -86,8 +94,10 @@ public class GameWController implements Controller {
 
         new Thread(() -> {
             boolean tieneVideojuego = fg.fa.tieneVideojeugo(fg.fa.usuario, game);
+            fg.fa.consultarResenhas(game);
             List<String> cats = fg.fa.consultarCategoriasVideojuego(game);
             List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(game);
+
 
             Platform.runLater(() -> {
 
@@ -136,6 +146,23 @@ public class GameWController implements Controller {
                         itemsList.add(controller);
                     }
                     if (dlcList.isEmpty() || !tieneVideojuego) addHbox.setVisible(false);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                reviewsVbox.getChildren().clear();
+
+                try {
+                    for (Resenha r : game.getReseñas()) { // Add 10 instances as an example
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/reviewItem.fxml"));
+                        reviewsVbox.getChildren().add(loader.load());
+
+                        ReviewItemController controller = loader.getController();
+                        controller.setMainApp(fg);
+                        controller.initializeWindow(r);
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
