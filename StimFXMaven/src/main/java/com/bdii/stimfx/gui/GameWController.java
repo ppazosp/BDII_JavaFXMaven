@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -79,7 +80,11 @@ public class GameWController implements Controller {
     @FXML
     VBox addVbox;
     @FXML
+    ScrollPane reviewsPanel;
+    @FXML
     VBox reviewsVbox;
+    @FXML
+    Label resLabel;
 
     float dlcsPrice;
 
@@ -220,6 +225,25 @@ public class GameWController implements Controller {
                 fg.loaded();
             });
         }).start();
+    }
+
+    @FXML
+    public void alterView()
+    {
+        if(!reviewsPanel.isVisible())
+        {
+            reviewsPanel.setVisible(true);
+            buyVbox.setVisible(false);
+            addVbox.setVisible(false);
+            resLabel.setText("Ver info");
+
+        }else
+        {
+            reviewsPanel.setVisible(false);
+            buyVbox.setVisible(true);
+            addVbox.setVisible(true);
+            resLabel.setText("Ver reseñas");
+        }
     }
 
     @FXML

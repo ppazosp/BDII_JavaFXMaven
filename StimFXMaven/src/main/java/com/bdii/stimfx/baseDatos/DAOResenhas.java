@@ -68,7 +68,7 @@ public class DAOResenhas extends AbstractDAO {
             rsResenha=stmResenhas.executeQuery();
             
             while(rsResenha.next()){
-                Resenha resenha = new Resenha(v.getId(), rsResenha.getInt("id_resenha"), rsResenha.getString("id_usuario"), rsResenha.getString("comentario"),
+                Resenha resenha = new Resenha(v.getId(), rsResenha.getInt("id_resenha"), rsResenha.getString("id_usr"), rsResenha.getString("comentario"),
                       rsResenha.getInt("valoracion"), rsResenha.getDate("fecha"));
                 v.addResenha(resenha);
             }

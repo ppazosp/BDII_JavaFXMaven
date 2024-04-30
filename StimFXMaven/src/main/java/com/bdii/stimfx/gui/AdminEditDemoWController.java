@@ -41,7 +41,9 @@ public class AdminEditDemoWController implements Controller {
             iconImage.setImage(demo.getImagen());
             nameField.setText(demo.getNombre());
             monthField.setText(String.valueOf(demo .getMes()));
+            monthField.setDisable(true);
             yearField.setText(String.valueOf(demo .getAno()));
+            yearField.setDisable(true);
             urlField.setText(demo.getUrl());
         }
     }

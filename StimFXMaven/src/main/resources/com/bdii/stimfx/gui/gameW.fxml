@@ -176,7 +176,7 @@
    <AnchorPane fx:id="rightPane" focusTraversable="true" layoutX="200.0" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #FFFFFF;">
       <children>
          <ImageView fx:id="bannerImage" fitHeight="332.0" fitWidth="710.0" layoutX="50.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-         <VBox fx:id="buyVbox" layoutX="50.0" layoutY="416.0" prefHeight="290.0" prefWidth="710.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;" visible="false">
+         <VBox fx:id="buyVbox" layoutX="50.0" layoutY="416.0" prefHeight="290.0" prefWidth="710.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
             <children>
                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="890.0">
                   <children>
@@ -232,7 +232,7 @@
                <HBox prefHeight="0.0" prefWidth="890.0" />
                <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                   <content>
-                     <TextArea fx:id="descrpArea" editable="false" prefHeight="184.0" prefWidth="633.0" text="vbygoygg6gggy" wrapText="true" />
+                     <TextArea fx:id="descrpArea" editable="false" prefHeight="184.0" prefWidth="633.0" text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" wrapText="true" />
                   </content>
                </ScrollPane>
             </children>
@@ -284,14 +284,14 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#showLibraryScene" prefHeight="32.0" prefWidth="148.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
+                                <HBox fx:id="reviewsHbox" alignment="CENTER" onMouseClicked="#alterView" prefHeight="32.0" prefWidth="166.0" spacing="5.0" style="-fx-background-radius: 25; -fx-border-color: FFFFFF; -fx-border-radius: 25; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
                                     <children>
                                         <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../../../images/eye.png" />
                                             </image>
                                         </ImageView>
-                                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="87.0" text="Ver resenhas" textFill="WHITE">
+                                        <Label fx:id="resLabel" alignment="CENTER" prefHeight="20.0" prefWidth="100.0" text="Ver reseñas" textFill="WHITE">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
@@ -309,7 +309,7 @@
             <padding>
                <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
             </padding></VBox>
-         <VBox fx:id="addVbox" layoutX="790.0" layoutY="416.0" prefHeight="290.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;" visible="false">
+         <VBox fx:id="addVbox" layoutX="790.0" layoutY="416.0" prefHeight="290.0" prefWidth="210.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
             <children>
                <VBox prefHeight="278.0" prefWidth="185.0" spacing="10.0">
                   <children>
@@ -396,7 +396,7 @@
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
          </VBox>
-         <ScrollPane hbarPolicy="NEVER" layoutX="49.0" layoutY="416.0" prefHeight="290.0" prefWidth="967.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+         <ScrollPane fx:id="reviewsPanel" hbarPolicy="NEVER" layoutX="49.0" layoutY="416.0" prefHeight="290.0" prefWidth="967.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" visible="false">
             <content>
                <VBox fx:id="reviewsVbox" alignment="TOP_CENTER" prefHeight="290.0" prefWidth="951.0" spacing="10.0" style="-fx-background-color: #1B2631; -fx-background-radius: 10;">
                   <padding>

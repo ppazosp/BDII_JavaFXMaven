@@ -64,9 +64,9 @@ public class DAODemos extends AbstractDAO {
                     " where mes = ? and ano = ? ;");
 
             stmDemo.setString(1, d.getNombre());
-            stmDemo.setInt(3, d.getMes());
-            stmDemo.setInt(4, d.getAno());
-            stmDemo.setString(5, d.getUrl());
+            stmDemo.setInt(4, d.getMes());
+            stmDemo.setInt(5, d.getAno());
+            stmDemo.setString(3, d.getUrl());
             stmDemo.setBytes(2, FachadaAplicacion.imageToBytes(d.getImagen()));
             stmDemo.executeUpdate();
 
