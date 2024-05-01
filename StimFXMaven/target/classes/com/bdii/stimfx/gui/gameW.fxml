@@ -291,7 +291,7 @@
                                              <Image url="@../../../../images/pencil.png" />
                                           </image>
                                        </ImageView>
-                                       <Label fx:id="newResLabel" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Mi reseña" textFill="WHITE">
+                                       <Label fx:id="newResLabel" alignment="CENTER" prefHeight="20.0" prefWidth="99.0" text="Nueva reseña" textFill="WHITE">
                                           <font>
                                              <Font size="14.0" />
                                           </font>

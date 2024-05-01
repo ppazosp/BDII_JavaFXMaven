@@ -50,21 +50,50 @@ public class AdminEditDemoWController implements Controller {
 
     @FXML
     public void publishEdit(MouseEvent event) {
+
+        if(monthField.getText().isEmpty())
+        {
+            monthField.requestFocus();
+            return;
+        }else if(yearField.getText().isEmpty())
+        {
+            yearField.requestFocus();
+            return;
+        }
+
+        int month;
+        int year;
+        try{
+           month = Integer.parseInt(monthField.getText());
+        }catch (NumberFormatException e)
+        {
+            monthField.requestFocus();
+            return;
+        }
+
+        try{
+            year = Integer.parseInt(yearField.getText());
+        }catch (NumberFormatException e)
+        {
+            yearField.requestFocus();
+            return;
+        }
+
         window.close();
         fg.loading();
 
-            new Thread(() -> {
-                Demo d = new Demo(nameField.getText(),
-                        Integer.parseInt(monthField.getText()),
-                        Integer.parseInt(yearField.getText()),
-                        iconImage.getImage(),
-                        fg.fa.usuario.getId(),
-                        urlField.getText());
+        new Thread(() -> {
+            Demo d = new Demo(nameField.getText(),
+                    month,
+                    year,
+                    iconImage.getImage(),
+                    fg.fa.usuario.getId(),
+                    urlField.getText());
 
-                fg.fa.publicarDemo(d);
+            fg.fa.publicarDemo(d);
 
-                Platform.runLater(() -> fg.showAdminScene());
-            }).start();
+            Platform.runLater(() -> fg.showAdminScene());
+        }).start();
     }
 
     @FXML

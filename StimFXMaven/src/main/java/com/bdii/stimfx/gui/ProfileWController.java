@@ -88,6 +88,12 @@ public class ProfileWController implements Controller {
 
     }
 
+    @FXML
+    public void showLoginWindow(MouseEvent event)
+    {
+        fg.showLoginWindow();
+    }
+
     private void hideChangesLabel() {
         changesLabel.setVisible(false);
     }

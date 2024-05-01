@@ -34,16 +34,15 @@ public class DAOTorneos extends AbstractDAO{
         con=super.getConexion();
 
         try {
-            stmTorneo=con.prepareStatement("insert into torneo(id, nombre, fecha_inicio, fecha_fin, premio, id_videojuego, id_usradmin) "+
-                                            "values (?,?,?,?,?,?,?)");
+            stmTorneo=con.prepareStatement("insert into torneo(nombre, fecha_inicio, fecha_fin, premio, id_videojuego, id_usradmin) "+
+                                            "values (?,?,?,?,?,?)");
 
-            stmTorneo.setInt(1, t.getId());
-            stmTorneo.setString(2, t.getNombre());
-            stmTorneo.setDate(3, t.getFecha_inicio());
-            stmTorneo.setDate(4, t.getFecha_final());
-            stmTorneo.setInt(5, t.getPremio());
-            stmTorneo.setInt(6, t.getVideojuego().getId());
-            stmTorneo.setString(7, t.getAdministrador().getId());
+            stmTorneo.setString(1, t.getNombre());
+            stmTorneo.setDate(2, t.getFecha_inicio());
+            stmTorneo.setDate(3, t.getFecha_final());
+            stmTorneo.setInt(4, t.getPremio());
+            stmTorneo.setInt(5, t.getVideojuego().getId());
+            stmTorneo.setString(6, t.getAdministrador().getId());
             stmTorneo.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());

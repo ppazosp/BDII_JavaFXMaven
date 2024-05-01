@@ -22,9 +22,9 @@
       </TextArea>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="60.0" spacing="5.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="46.0" style="-fx-border-color: #FFFFFF; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
+            <HBox alignment="CENTER" onMouseClicked="#heartOnAction" prefHeight="40.0" prefWidth="46.0" style="-fx-border-color: #FFFFFF; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="selected" stylesheets="@../css/styles.css">
                <children>
-                  <ImageView fx:id="heartImage" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#heartOnAction" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="heartImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../../images/heart.png" />
                      </image>

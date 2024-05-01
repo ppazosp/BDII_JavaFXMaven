@@ -298,5 +298,18 @@
                   <Font size="14.0" />
               </font>
           </Label>
+         <HBox fx:id="backHbox" alignment="CENTER" layoutX="981.0" layoutY="14.0" onMouseClicked="#showLoginWindow" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 5;" stylesheets="@../css/styles.css">
+            <children>
+               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/logout.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <styleClass>
+               <String fx:value="selected" />
+               <String fx:value="primary-color" />
+            </styleClass>
+         </HBox>
       </children></AnchorPane>
 </AnchorPane>

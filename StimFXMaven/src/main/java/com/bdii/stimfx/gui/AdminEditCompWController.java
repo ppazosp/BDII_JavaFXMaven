@@ -60,23 +60,42 @@ public class AdminEditCompWController implements Controller {
 
     @FXML
     public void publishEdit(MouseEvent event) {
+
+        if(startPicker.getValue() == null)
+        {
+            startPicker.show();
+            return;
+        }else if (endPicker.getValue() == null)
+        {
+            endPicker.show();
+            return;
+        }
+
+        if(choiceBox.getSelectionModel().getSelectedItem() == null)
+        {
+            choiceBox.show();
+            return;
+        }
+
         window.close();
         fg.loading();
 
-            new Thread(() -> {
-                Videojuego v = fg.fa.consultarVideojuego(choiceBox.getValue());
+        new Thread(() -> {
+            Videojuego v = fg.fa.consultarVideojuego(choiceBox.getValue());
 
-                Torneo t = new Torneo(
-                        (torn != null) ? torn.getId() : -1,
-                        nameField.getText(),
-                        Date.valueOf(startPicker.getValue()),
-                        Date.valueOf(endPicker.getValue()),
-                        Integer.parseInt(prizeField.getText()), v, fg.fa.usuario);
+            Torneo t = new Torneo(
+                    (torn != null) ? torn.getId() : -1,
+                    nameField.getText(),
+                    Date.valueOf(startPicker.getValue()),
+                    Date.valueOf(endPicker.getValue()),
+                    (!prizeField.getText().isEmpty()) ? Integer.parseInt(prizeField.getText()) : 0,
+                    v,
+                    fg.fa.usuario);
 
-                fg.fa.publicarTorneo(t);
+            fg.fa.publicarTorneo(t);
 
-                Platform.runLater(() -> fg.showAdminScene());
-            }).start();
+            Platform.runLater(() -> fg.showAdminScene());
+        }).start();
     }
 
     @FXML
