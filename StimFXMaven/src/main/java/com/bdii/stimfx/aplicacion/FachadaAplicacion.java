@@ -448,9 +448,44 @@ public class FachadaAplicacion {
     // FUNCIONES RELACIONADAS CON GESTIONRESEÑA
     // -----------------------------------------------------------------------
 
-    // Escribir una nueva reseña
-    public void insertarReseña(Resenha r){
-        gr.insertarResenha(r);
+    public void consultarResenhas(Videojuego v)
+    {
+        gr.consultarResenhas(v);
+    }
+
+    public float consultarMediaResenhas(Videojuego v)
+    {
+        return gr.consultarMediaResenhas(v);
+    }
+
+    public void publicarResenha(Resenha r)
+    {
+        gr.publicarResenha(r);
+    }
+
+    public Resenha consultarResenha(int id_v, String id_usr)
+    {
+        return gr.consultarResenha(id_v, id_usr);
+    }
+
+    public void insertarMeGusta( String id_usr, int id_v, int i_res)
+    {
+        gr.insertarMeGusta(id_usr, id_v, i_res);
+    }
+
+    public void borrarMeGusta(String id_usr, int id_v, int i_res)
+    {
+        gr.borrarMeGusta(id_usr, id_v, i_res);
+    }
+
+    public boolean isLiked(String id_usr, int id_v, int i_res)
+    {
+        return gr.isLiked(id_usr, id_v, i_res);
+    }
+
+    public void updateLikes(Resenha r)
+    {
+        gr.updateLikes(r);
     }
 
     // -----------------------------------------------------------------------
@@ -676,26 +711,6 @@ public class FachadaAplicacion {
 
     public List<Videojuego> consultarVideosjuegosEditor(String id_editor) {
         return fbd.consultarVideosjuegosEditor(id_editor);
-    }
-
-    public void consultarResenhas(Videojuego v)
-    {
-        gr.consultarResenhas(v);
-    }
-
-    public float consultarMediaResenhas(Videojuego v)
-    {
-        return gr.consultarMediaResenhas(v);
-    }
-
-    public void publicarResenha(Resenha r)
-    {
-        gr.publicarResenha(r);
-    }
-
-    public Resenha consultarResenha(int id_v, String id_usr)
-    {
-        return gr.consultarResenha(id_v, id_usr);
     }
 
     // Funcion para mostrar los videojuegos de un usuario en el scroll de biblioteca.

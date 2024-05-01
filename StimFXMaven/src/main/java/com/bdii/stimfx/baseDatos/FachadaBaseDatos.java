@@ -139,6 +139,26 @@ public class FachadaBaseDatos {
     {
         return daoR.consultarResenha(id_v, id_usr);
     }
+
+    public void insertarMeGusta( String id_usr, int id_v, int i_res)
+    {
+        daoR.insertarMeGusta(id_usr, id_v, i_res);
+    }
+
+    public void borrarMeGusta(String id_usr, int id_v, int i_res)
+    {
+        daoR.borrarMeGusta(id_usr, id_v, i_res);
+    }
+
+    public boolean isLiked(String id_usr, int id_v, int i_res)
+    {
+        return daoR.isLiked(id_usr, id_v, i_res);
+    }
+
+    public void updateLikes(Resenha r)
+    {
+        daoR.updateLikes(r);
+    }
     
     public void insertarUsuario(Usuario u){
         daoU.insertarUsuario(u);

@@ -22,8 +22,9 @@ public class GestionResenhas {
     }
 
     public void publicarResenha(Resenha r) {
-        if (existsResenha(r)) updateResenha(r);
-        else insertarResenha(r);
+        //if (existsResenha(r)) updateResenha(r);
+        //else insertarResenha(r);
+        insertarResenha(r);
     }
 
     public boolean existsResenha(Resenha r) {
@@ -44,4 +45,23 @@ public class GestionResenhas {
         return fbd.consultarMediaResenhas(v);
     }
 
+    public void insertarMeGusta( String id_usr, int id_v, int i_res)
+    {
+        fbd.insertarMeGusta(id_usr, id_v, i_res);
+    }
+
+    public void borrarMeGusta(String id_usr, int id_v, int i_res)
+    {
+        fbd.borrarMeGusta(id_usr, id_v, i_res);
+    }
+
+    public boolean isLiked(String id_usr, int id_v, int i_res)
+    {
+        return fbd.isLiked(id_usr, id_v, i_res);
+    }
+
+    public void updateLikes(Resenha r)
+    {
+        fbd.updateLikes(r);
+    }
 }

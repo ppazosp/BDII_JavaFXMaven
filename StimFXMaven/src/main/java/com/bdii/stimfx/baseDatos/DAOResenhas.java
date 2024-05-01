@@ -29,12 +29,13 @@ public class DAOResenhas extends AbstractDAO {
         con=super.getConexion();
         
         try {
-            stmResenhas=con.prepareStatement("insert into resenha(id_videojuego, id_usr, comentario) "+
-                                            "values (?,?,?)");
+            stmResenhas=con.prepareStatement("insert into resenha(id_videojuego, id_usr, comentario, valoracion) "+
+                                            "values (?,?,?,?)");
 
             stmResenhas.setInt(1, r.getId_videojuego());
             stmResenhas.setString(2, r.getId_usuario());
             stmResenhas.setString(3, r.getComentario());
+            stmResenhas.setFloat(4, r.getValoracion());
             stmResenhas.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -123,14 +124,14 @@ public class DAOResenhas extends AbstractDAO {
                 Resenha resenha = new Resenha(v.getId(), rsResenha.getInt("id_resenha"), rsResenha.getString("id_usr"), rsResenha.getString("comentario"),
                       rsResenha.getInt("valoracion"));
 
-                String consulta1= "SELECT id_videojuego, id_reseña, COUNT(*) AS numero_megustas\n" +
-                        "FROM public.MeGusta\n" +
-                        "WHERE id_videojuego = ? AND id_reseña = ?\n" +
-                        "GROUP BY id_videojuego, id_reseña;";
+                String consulta1= "SELECT id_videojuego, id_resenha, COUNT(*) AS numero_megustas\n" +
+                        "FROM me_gusta " +
+                        "WHERE id_videojuego = ? AND id_resenha = ?\n" +
+                        "GROUP BY id_videojuego, id_resenha;";
                 try {
                     stmMeGusta=con.prepareStatement(consulta1);
                     stmMeGusta.setInt(1, v.getId());
-                    stmMeGusta.setInt(2, resenha.getIdReseña());
+                    stmMeGusta.setInt(2, resenha.getIdResenha());
                     rsMeGusta=stmMeGusta.executeQuery();
 
                     if(rsMeGusta.next()){
@@ -141,11 +142,9 @@ public class DAOResenhas extends AbstractDAO {
                     System.out.println(e.getMessage());
                     this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
                 }finally{
-                    try {stmResenhas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+                    try {stmMeGusta.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
                 }
                 v.addResenha(resenha);
-
-
             }
             
         } catch (SQLException e){
@@ -201,8 +200,8 @@ public class DAOResenhas extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmResenha = con.prepareStatement("insert into MeGusta(id_usuario, id_videojuego, id_resenha) \"+\n" +
-                    "                                            \"values (?,?,?)");
+            stmResenha = con.prepareStatement("insert into me_gusta(id_usuario, id_videojuego, id_resenha) " +
+                                                               " values (?,?,?)");
 
             stmResenha.setString(1, id_usr);
             stmResenha.setInt(2, id_v);
@@ -218,6 +217,99 @@ public class DAOResenhas extends AbstractDAO {
             } catch (SQLException e) {
                 System.out.println("Imposible cerrar cursores");
             }
+        }
+    }
+
+    public void borrarMeGusta(String id_usr, int id_v, int id_resenha){
+        Connection con;
+        PreparedStatement stmResenha = null;
+
+        con = super.getConexion();
+
+        try {
+            stmResenha = con.prepareStatement("delete from me_gusta " +
+                    "where id_usuario = ? and id_videojuego = ? and id_resenha = ? ");
+
+            stmResenha.setString(1, id_usr);
+            stmResenha.setInt(2, id_v);
+            stmResenha.setInt(3, id_resenha);
+
+            stmResenha.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmResenha.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+
+    public boolean isLiked(String id_usr, int id_v, int id_resenha)
+    {
+        Connection con;
+        PreparedStatement stmResenhas=null;
+        ResultSet rsResenha = null;
+
+        con=super.getConexion();
+
+
+        String consulta= "select * from me_gusta " +
+                "where id_usuario = ? and id_videojuego = ? and id_resenha = ? ;";
+        try {
+            stmResenhas=con.prepareStatement(consulta);
+            stmResenhas.setString(1, id_usr);
+            stmResenhas.setInt(2, id_v);
+            stmResenhas.setInt(3, id_resenha);
+
+            rsResenha=stmResenhas.executeQuery();
+
+            if(rsResenha.next()){
+                return true;
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmResenhas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return false;
+
+    }
+
+    public void updateLikes(Resenha r)
+    {
+        Connection con;
+        PreparedStatement stmResenhas=null;
+        ResultSet rsResenha = null;
+
+        con=super.getConexion();
+
+
+        String consulta= "SELECT COUNT(*) AS numero_megustas " +
+                "FROM me_gusta " +
+                "WHERE id_videojuego = ? AND id_resenha = ? ;";
+
+        try {
+            stmResenhas=con.prepareStatement(consulta);
+            stmResenhas.setInt(1, r.getId_videojuego());
+            stmResenhas.setInt(2, r.getIdResenha());
+
+            rsResenha=stmResenhas.executeQuery();
+
+            if(rsResenha.next()){
+                r.setLikes(rsResenha.getInt("numero_megustas"));
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmResenhas.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
 }

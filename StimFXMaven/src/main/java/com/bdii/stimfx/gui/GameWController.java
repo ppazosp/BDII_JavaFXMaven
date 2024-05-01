@@ -199,9 +199,8 @@ public class GameWController implements Controller {
     @FXML
     public void myReview(MouseEvent event)
     {
-        Resenha r = fg.fa.consultarResenha(game.getId(), fg.fa.usuario.getId());
 
-        fg.showEditReviewW(r, game, search, from);
+        fg.showEditReviewW(null , game, search, from);
     }
 
     @FXML

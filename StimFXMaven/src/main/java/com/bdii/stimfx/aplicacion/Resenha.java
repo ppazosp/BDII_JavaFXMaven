@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.bdii.stimfx.aplicacion;
-import java.sql.*;
 //import java.time.LocalDate;
 
 /**
@@ -41,7 +40,7 @@ public class Resenha {
         this.id_usuario = id_usr;
     }
 
-    public int getIdReseña() {
+    public int getIdResenha() {
         return idReseña;
     }
 

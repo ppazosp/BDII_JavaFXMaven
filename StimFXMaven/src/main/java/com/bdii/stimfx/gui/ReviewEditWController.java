@@ -25,7 +25,7 @@ import java.util.List;
 
 public class ReviewEditWController implements Controller {
     FachadaGUI fg;
-    Resenha res;
+    //Resenha res;
     Stage window;
 
     Videojuego game;
@@ -58,7 +58,7 @@ public class ReviewEditWController implements Controller {
         this.search = search;
         this.from = from;
 
-        if(res != null)
+        /*if(res != null)
         {
             this.res = res;
 
@@ -77,7 +77,7 @@ public class ReviewEditWController implements Controller {
                     break;
                 default:
             }
-        }
+        }*/
 
     }
 
@@ -128,6 +128,8 @@ public class ReviewEditWController implements Controller {
             istar3.setVisible(true);
             istar4.setVisible(true);
             istar5.setVisible(true);
+
+            val = 5;
         }
     }
 

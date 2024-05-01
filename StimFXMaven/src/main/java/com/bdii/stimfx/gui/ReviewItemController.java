@@ -1,23 +1,17 @@
 package com.bdii.stimfx.gui;
 
-import com.bdii.stimfx.aplicacion.Demo;
-import com.bdii.stimfx.aplicacion.FachadaAplicacion;
 import com.bdii.stimfx.aplicacion.Resenha;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-
-import java.io.InputStream;
 
 public class ReviewItemController implements Controller {
 
     FachadaGUI fg;
     Resenha res;
-
 
     @FXML
     TextArea reviewArea;
@@ -55,6 +49,9 @@ public class ReviewItemController implements Controller {
         nameLabel.setText(res.getId_usuario());
         iconImage.setImage(fg.fa.consultarUsuario(res.getId_usuario()).getFotoPerfil());
 
+        heartImage.setVisible(fg.fa.isLiked(fg.fa.usuario.getId(), res.getId_videojuego(), res.getIdResenha()));
+        nLikesLabel.setText(String.valueOf(res.getLikes()));
+
         switch(res.getValoracion())
         {
             case 1:
@@ -70,11 +67,25 @@ public class ReviewItemController implements Controller {
         }
     }
 
+
+    @FXML
     public void heartOnAction(MouseEvent e)
     {
-        heartImage.setVisible(true);
-        //fg.fa.meGusta();
-        //fg.fa.noMeGusta();
+        if(!heartImage.isVisible())
+        {
+            fg.fa.insertarMeGusta(fg.fa.usuario.getId(), res.getId_videojuego(), res.getIdResenha());
+            fg.fa.updateLikes(res);
+            nLikesLabel.setText(String.valueOf(res.getLikes()));
+            heartImage.setVisible(true);
+        }
+        else
+        {
+            fg.fa.borrarMeGusta(fg.fa.usuario.getId(), res.getId_videojuego(), res.getIdResenha());
+            fg.fa.updateLikes(res);
+            nLikesLabel.setText(String.valueOf(res.getLikes()));
+            heartImage.setVisible(false);
+
+        }
     }
 
 
