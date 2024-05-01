@@ -12,7 +12,6 @@ import com.bdii.stimfx.aplicacion.Videojuego;
 
 
 import java.sql.*;
-import java.time.LocalDate;
 
 /**
  *
@@ -33,13 +32,11 @@ public class DAOCompras extends AbstractDAO{
         
         try {   // ID DE COMPRA AUTOMATICO???
             stmCompra=con.prepareStatement("insert into comprar(id_videojuego, id_usr, fecha_compra) "+
-                                            "values (?,?,?)");
+                                            "values (?,?,current_timestamp)");
             // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
             
             stmCompra.setInt(1, id_videojuego);
             stmCompra.setString(2, id_usuario);
-            stmCompra.setDate(3, fechaActual);
             stmCompra.executeUpdate();
         } catch (SQLException e){
           System.out.println(e.getMessage());
@@ -162,6 +159,35 @@ public class DAOCompras extends AbstractDAO{
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
             try {stmCompras.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+
+    public void devolverCompra(int id_v, String id_usr) {
+        Connection con;
+        PreparedStatement stmCompra = null;
+
+        con = super.getConexion();
+
+        try {
+            stmCompra = con.prepareStatement("update comprar set fecha_devolucion = ? " +
+                    "where id_videojuego = ? and id_usr  = ? and fecha_devolucion is null");
+
+            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
+
+            stmCompra.setInt(2, id_v);
+            stmCompra.setString(3, id_usr);
+            stmCompra.setDate(1, fechaActual);
+            stmCompra.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmCompra.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
         }
     }
 

@@ -15696,7 +15696,7 @@
 10021258||10021257|c|G
 10021258||10021257|C|G
 10021258||10021257|T|G</Grants>
-      <IntrospectionStateNumber>93904886</IntrospectionStateNumber>
+      <IntrospectionStateNumber>93905694</IntrospectionStateNumber>
       <ServerVersion>11.18</ServerVersion>
       <StartupTime>1687338877</StartupTime>
       <TimeZones>true ACDT
@@ -35737,7 +35737,7 @@ true posixrules
 12825||10|C|G
 12825||-9223372036854775808|U|G
 12825||10|U|G</Grants>
-      <IntrospectionStateNumber>93904886</IntrospectionStateNumber>
+      <IntrospectionStateNumber>93905694</IntrospectionStateNumber>
       <ObjectId>9866237</ObjectId>
       <OwnerName>vzgfiqrg</OwnerName>
     </database>
@@ -71265,8 +71265,8 @@ true posixrules
 18318||10|t|G
 18318||10|D|G
 18318||10|w|G</Grants>
-      <IntrospectionStateNumber>93904886</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-05-01.01:11:23</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>93905694</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-05-01.02:24:17</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>359</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -83854,7 +83854,7 @@ true posixrules
     </table>
     <table id="12296" parent="11262" name="comprar">
       <ObjectId>9907244</ObjectId>
-      <StateNumber>93641904</StateNumber>
+      <StateNumber>93905693</StateNumber>
       <OwnerName>vzgfiqrg</OwnerName>
     </table>
     <table id="12297" parent="11262" name="comprardlc">
@@ -94289,11 +94289,11 @@ true posixrules
       <TypeId>1043</TypeId>
     </column>
     <column id="14865" parent="12296" name="fecha_compra">
-      <DasType>date|0s</DasType>
+      <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>93641904</StateNumber>
-      <TypeId>1082</TypeId>
+      <StateNumber>93905693</StateNumber>
+      <TypeId>1114</TypeId>
     </column>
     <column id="14866" parent="12296" name="fecha_devolucion">
       <DasType>date|0s</DasType>
@@ -94323,9 +94323,9 @@ true posixrules
       <ColNames>id_videojuego
 id_usr
 fecha_compra</ColNames>
-      <ObjectId>9907250</ObjectId>
+      <ObjectId>10059273</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>93641904</StateNumber>
+      <StateNumber>93905693</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -94336,10 +94336,10 @@ pg_catalog</CollationParentNames>
 default</CollationNames>
     </index>
     <key id="14870" parent="12296" name="comprar_pk">
-      <ObjectId>9907251</ObjectId>
+      <ObjectId>10059274</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>93641904</StateNumber>
-      <UnderlyingIndexId>9907250</UnderlyingIndexId>
+      <StateNumber>93905693</StateNumber>
+      <UnderlyingIndexId>10059273</UnderlyingIndexId>
     </key>
     <column id="14871" parent="12297" name="id_videojuego">
       <DasType>integer|0s</DasType>

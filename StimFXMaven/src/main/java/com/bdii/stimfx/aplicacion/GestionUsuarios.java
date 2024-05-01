@@ -193,4 +193,9 @@ public class GestionUsuarios {
     public java.util.List<Usuario> consultarSeguidos(Usuario u1){
         return fbd.consultarSeguidos(u1.getId());
     }
+
+    public Usuario consultarUsuario(String id_usr)
+    {
+        return fbd.consultarUsuario(id_usr);
+    }
 }

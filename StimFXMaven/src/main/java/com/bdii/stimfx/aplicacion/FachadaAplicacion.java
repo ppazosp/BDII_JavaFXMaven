@@ -345,6 +345,11 @@ public class FachadaAplicacion {
     {
         gu.insertarFondos(u, valor);
     }
+
+    public Usuario consultarUsuario(String id_usr)
+    {
+        return gu.consultarUsuario(id_usr);
+    }
     // -----------------------------------------------------------------------
 
 
@@ -481,6 +486,11 @@ public class FachadaAplicacion {
     // Comprueba si un usuario tiene un juego en especifico
     public boolean tieneVideojeugo(Usuario usuario, Videojuego videojuego){
         return gcom.tieneVideojuego(usuario, videojuego);
+    }
+
+    public void devolverVideojuego(Videojuego v, Usuario u)
+    {
+        gcom.devolverVideojuego(v, u);
     }
 
     // -----------------------------------------------------------------------

@@ -50,6 +50,8 @@ public class LibraryGameWController implements Controller{
     {
         fg.loading();
 
+        this.game = game;
+
         new Thread(() -> {
 
             List<Videojuego> userGames = fg.fa.consultarVideojuegosUsuario(fg.fa.usuario.getId());
@@ -94,6 +96,20 @@ public class LibraryGameWController implements Controller{
 
                 fg.loaded();
             });
+        }).start();
+    }
+
+    @FXML
+    public void returnGame(MouseEvent event)
+    {
+        fg.loading();
+
+        new Thread(() -> {
+
+            fg.fa.devolverVideojuego(game, fg.fa.usuario);
+
+            Platform.runLater(() -> fg.showLibraryScene());
+
         }).start();
     }
 

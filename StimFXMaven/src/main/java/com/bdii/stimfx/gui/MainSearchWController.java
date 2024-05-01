@@ -17,6 +17,8 @@ public class MainSearchWController implements Controller {
 
     FachadaGUI fg;
 
+    String lastSearch;
+
 
     @FXML
     HBox comMenu;
@@ -53,8 +55,10 @@ public class MainSearchWController implements Controller {
                 if(!(fg.fa.usuario.isAdmin())) adminMenu.setVisible(false);
 
                 searchVbox.getChildren().clear();
-                resultsLabel.setText("Resultados para \"" + searchBar.getText() + "\"");
+                lastSearch = searchBar.getText();
                 searchBar.clear();
+                resultsLabel.setText("Resultados para \"" + lastSearch + "\"");
+
 
                 try {
                     for (Videojuego v : gamesList) {

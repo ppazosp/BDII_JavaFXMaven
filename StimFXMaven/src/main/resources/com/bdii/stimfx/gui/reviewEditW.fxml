@@ -25,59 +25,77 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <HBox prefHeight="5.0" prefWidth="500.0" spacing="25.0">
+            <HBox prefHeight="5.0" prefWidth="500.0" spacing="20.0">
                <children>
                   <Label fx:id="valLabel" prefHeight="32.0" prefWidth="96.0" text="Valoracion" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="starsHbox" alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="162.0" spacing="10.0">
+                  <HBox fx:id="starsHbox" alignment="CENTER_LEFT" prefHeight="24.0" prefWidth="162.0" spacing="5.0">
                      <children>
-                        <HBox fx:id="star1" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="10.0" style="-fx-background-radius: 5;" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox fx:id="star1" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="10.0" style="-fx-border-radius: 10; -fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="selected" stylesheets="@../css/styles.css">
                            <children>
-                              <ImageView fx:id="istar1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="istar1" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../images/star.png" />
                                  </image>
                               </ImageView>
                            </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </HBox>
-                        <HBox fx:id="star2" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="16.0" style="-fx-background-radius: 5;" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox fx:id="star2" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="10.0" style="-fx-border-radius: 10; -fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="selected" stylesheets="@../css/styles.css">
                            <children>
-                              <ImageView fx:id="istar2" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="istar2" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../images/star.png" />
                                  </image>
                               </ImageView>
                            </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </HBox>
-                        <HBox fx:id="star3" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="18.0" style="-fx-background-radius: 5;" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox fx:id="star3" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="10.0" style="-fx-border-radius: 10; -fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="selected" stylesheets="@../css/styles.css">
                            <children>
-                              <ImageView fx:id="istar3" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="istar3" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../images/star.png" />
                                  </image>
                               </ImageView>
                            </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </HBox>
-                        <HBox fx:id="star4" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="8.0" style="-fx-background-radius: 5;" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox fx:id="star4" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="10.0" style="-fx-border-radius: 10; -fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="selected" stylesheets="@../css/styles.css">
                            <children>
-                              <ImageView fx:id="istar4" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="istar4" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../images/star.png" />
                                  </image>
                               </ImageView>
                            </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </HBox>
-                        <HBox fx:id="star5" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="19.0" style="-fx-background-radius: 5;" styleClass="selected" stylesheets="@../css/styles.css">
+                        <HBox fx:id="star5" onMouseClicked="#starPressed" prefHeight="24.0" prefWidth="10.0" style="-fx-border-radius: 10; -fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="selected" stylesheets="@../css/styles.css">
                            <children>
-                              <ImageView fx:id="istar5" fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="istar5" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../images/star.png" />
                                  </image>
                               </ImageView>
                            </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </HBox>
                      </children>
                   </HBox>

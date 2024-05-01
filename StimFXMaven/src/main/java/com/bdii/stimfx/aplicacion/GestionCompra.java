@@ -15,11 +15,22 @@ public class GestionCompra {
     }
 
     public void compraVideojuego(Videojuego v, Usuario u){
-            insertarCompra(v, u.getId());
-            u.modificarDinero(-v.getPrecio());
+        insertarCompra(v, u.getId());
+        u.modificarDinero(-v.getPrecio());
     }
     public void insertarCompra(Videojuego v, String id_usr) {
         fbd.insertarCompra(v.getId(), v.getPrecio(), id_usr);
+    }
+
+    public void devolverVideojuego(Videojuego v, Usuario u)
+    {
+        devolverCompra(v, u);
+        u.modificarDinero(v.getPrecio());
+    }
+
+    public void devolverCompra(Videojuego v, Usuario u)
+    {
+        fbd.devolverCompra(v.getId(), u.getId());
     }
 
     public Integer contarJuegosUsuario(String id_usuario){

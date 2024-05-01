@@ -72,6 +72,11 @@ public class FachadaBaseDatos {
         return daoCompras.consultarJuegosUsuario(id_usuario);
     }
 
+    public void devolverCompra(int id_v, String id_usr)
+    {
+        daoCompras.devolverCompra(id_v, id_usr);
+    }
+
     public void consultarNumeroDescargas(Videojuego v){
         daoCompras.contarComprasJuego(v);
     }
@@ -159,6 +164,10 @@ public class FachadaBaseDatos {
         daoU.hacerEditor(u_id);
     }
 
+    public Usuario consultarUsuario(String id_usr)
+    {
+        return daoU.consultarUsuario(id_usr);
+    }
 
     public void insertarTorneo(Torneo t){
         daoT.insertarTorneo(t);

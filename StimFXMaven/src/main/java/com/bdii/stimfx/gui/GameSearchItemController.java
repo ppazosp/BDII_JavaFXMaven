@@ -41,7 +41,7 @@ public class GameSearchItemController implements Controller {
     @FXML
     public void showGameScene ()
     {
-        fg.showGameScene(game, superController.searchBar.getText(), 1);
+        fg.showGameScene(game, superController.lastSearch, 1);
     }
 
     public void setMainApp(FachadaGUI fg)

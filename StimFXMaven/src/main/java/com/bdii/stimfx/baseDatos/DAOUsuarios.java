@@ -253,7 +253,7 @@ public class DAOUsuarios extends AbstractDAO{
         return resultado;
     }
 
-    public Usuario consultarUsuario(Integer id){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
+    public Usuario consultarUsuario(String id){
         Usuario usuario=null;
         Connection con;
         PreparedStatement stmUsuario=null;
@@ -268,11 +268,12 @@ public class DAOUsuarios extends AbstractDAO{
 
         try{
             stmUsuario=con.prepareStatement(consulta);
-            stmUsuario.setInt(1, id);
+            stmUsuario.setString(1, id);
             rsUsuario=stmUsuario.executeQuery();
             if (rsUsuario.next()){
                 usuario = new Usuario(rsUsuario.getString("id"), rsUsuario.getString("nombre"),
-                        rsUsuario.getString("contraseña"), rsUsuario.getString("email"));
+                        rsUsuario.getString("contraseña"), rsUsuario.getString("email"),
+                        FachadaAplicacion.bytesToImage(rsUsuario.getBytes("foto")));
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());

@@ -47,7 +47,7 @@ public class ReviewItemController implements Controller {
 
         reviewArea.setText(res.getComentario());
         nameLabel.setText(res.getId_usuario());
-        iconImage.setImage(fg.fa.usuario.getFotoPerfil());
+        iconImage.setImage(fg.fa.consultarUsuario(res.getId_usuario()).getFotoPerfil());
 
         switch(res.getValoracion())
         {

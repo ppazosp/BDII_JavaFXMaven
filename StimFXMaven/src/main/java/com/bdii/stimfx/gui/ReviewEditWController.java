@@ -87,6 +87,7 @@ public class ReviewEditWController implements Controller {
         HBox star = (HBox)(event.getSource());
         if((star.getChildren().contains(istar1)))
         {
+            istar1.setVisible(true);
             istar2.setVisible(false);
             istar3.setVisible(false);
             istar4.setVisible(false);
@@ -95,6 +96,8 @@ public class ReviewEditWController implements Controller {
             val = 1;
         }else if((star.getChildren().contains(istar2)))
         {
+            istar1.setVisible(true);
+            istar2.setVisible(true);
             istar3.setVisible(false);
             istar4.setVisible(false);
             istar5.setVisible(false);
@@ -102,15 +105,29 @@ public class ReviewEditWController implements Controller {
             val = 2;
         }else if((star.getChildren().contains(istar3)))
         {
+            istar1.setVisible(true);
+            istar2.setVisible(true);
+            istar3.setVisible(true);
             istar4.setVisible(false);
             istar5.setVisible(false);
 
             val = 3;
         }else if (star.getChildren().contains(istar4))
         {
+            istar1.setVisible(true);
+            istar2.setVisible(true);
+            istar3.setVisible(true);
+            istar4.setVisible(true);
             istar5.setVisible(false);
 
             val = 4;
+        }else if (star.getChildren().contains(istar5))
+        {
+            istar1.setVisible(true);
+            istar2.setVisible(true);
+            istar3.setVisible(true);
+            istar4.setVisible(true);
+            istar5.setVisible(true);
         }
     }
 
