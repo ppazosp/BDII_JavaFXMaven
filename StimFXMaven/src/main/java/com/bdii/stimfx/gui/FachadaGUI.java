@@ -173,11 +173,12 @@ public class FachadaGUI extends Application {
         primaryStage = new Stage();
         primaryStage.setResizable(true);
         this.primaryStage.setWidth(1920);
-        this.primaryStage.setHeight(1105);
+        this.primaryStage.setHeight(1080);
 
         LoadGameWController loadGameWController = loadFXML("/com/bdii/stimfx/gui/loadGameW.fxml", null, null, LoadGameWController.class);
         assert loadGameWController != null;
         loadGameWController.setMainApp(this);
+        loadGameWController.initializeWindow(url);
 
         primaryStage = old;
     }
@@ -269,6 +270,16 @@ public class FachadaGUI extends Application {
         assert reviewEditWController != null;
         reviewEditWController.setMainApp(this);
         reviewEditWController.initializeWindow(r, s, v, search, from);
+    }
+
+    public void showEditDLCW(DLC d, Videojuego v) {
+        Stage s = new Stage();
+        s.setResizable(false);
+
+        DLCEditWController dlcEditWController = loadFXML("/com/bdii/stimfx/gui/dlcEditW.fxml", null, s, DLCEditWController.class);
+        assert dlcEditWController != null;
+        dlcEditWController.setMainApp(this);
+        dlcEditWController.initializeWindow(d, v, s);
     }
 
 

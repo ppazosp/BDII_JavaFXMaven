@@ -14,7 +14,7 @@ public class LoadGameWController implements Controller {
     WebView gameLoaded;
 
     public void initializeWindow(String url) {
-        // Load the URL into the WebView
+
         gameLoaded.getEngine().setJavaScriptEnabled(true);
         gameLoaded.getEngine().load(url);
     }

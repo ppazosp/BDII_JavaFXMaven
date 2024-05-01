@@ -14,17 +14,13 @@ public class DLC {
     private int idVideojuego;
     private int idDLC;
     private String nombre;
-    private String descripcion;
     private double precio;
-    private Date fechaLanzamiento;
 
-    public DLC(int idVideojuego, int idDLC, String nombre, String descripcion, double precio, Date fechaLanzamiento) {
+    public DLC(int idVideojuego, int idDLC, String nombre, double precio) {
         this.idVideojuego = idVideojuego;
         this.idDLC = idDLC;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.precio= precio;
-        this.fechaLanzamiento = fechaLanzamiento;
     }
 
     public int getIdVideojuego() {
@@ -39,16 +35,8 @@ public class DLC {
         return nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
     public double getPrecio() {
         return precio;
-    }
-
-    public Date getFechaLanzamiento() {
-        return fechaLanzamiento;
     }
 
     @Override

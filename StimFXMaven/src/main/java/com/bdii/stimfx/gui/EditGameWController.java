@@ -1,9 +1,11 @@
 package com.bdii.stimfx.gui;
 
+import com.bdii.stimfx.aplicacion.DLC;
 import com.bdii.stimfx.aplicacion.Editor;
 import com.bdii.stimfx.aplicacion.Videojuego;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,9 +15,12 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -40,6 +45,12 @@ public class EditGameWController implements Controller {
     TextField trailerField;
 
 
+    @FXML
+    VBox dlcsVbox;
+    @FXML
+    HBox addDLCHbox;
+
+
     public void initializeWindow(Videojuego v, Stage window) {
         this.window = window;
 
@@ -53,11 +64,39 @@ public class EditGameWController implements Controller {
             prizeField.setText(String.valueOf(game.getPrecio()));
             datePicker.setValue(game.getFechaSubida().toLocalDate());
             trailerField.setText(game.getTrailer());
+
+            List<DLC> dlcList = fg.fa.consultarDLCsVideojuego(v);
+            dlcsVbox.getChildren().clear();
+
+            try {
+                for (DLC d : dlcList) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bdii/stimfx/gui/dlcItem.fxml"));
+                    dlcsVbox.getChildren().add(loader.load());
+
+                    DLCItemController controller = loader.getController();
+                    controller.setMainApp(fg);
+                    controller.initializeWindow(d, this);
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            dlcsVbox.getChildren().add(addDLCHbox);
+
         }
     }
 
     @FXML
     public void publishEdit(MouseEvent event) {
+
+        if(datePicker.getValue() == null)
+        {
+            datePicker.show();
+            return;
+        }
+
         window.close();
         fg.loading();
 
@@ -67,14 +106,23 @@ public class EditGameWController implements Controller {
                 nameField.getText(),
                 Date.valueOf(datePicker.getValue()),
                 (game != null) ? game.getEditor() : new Editor(fg.fa.usuario.getId()),
-                descrpArea.getText(), Double.parseDouble(prizeField.getText()),
+                descrpArea.getText(),
+                (!prizeField.getText().isEmpty()) ? Double.parseDouble(prizeField.getText()) : 0,
                 iconImage.getImage(),
                 bannerImage.getImage(),
                 trailerField.getText());
+
+
                 fg.fa.publicarVideojuego(v);
 
                 Platform.runLater(() -> fg.showEditScene());
             }).start();
+    }
+
+    @FXML
+    public void newDLC(MouseEvent event) {
+        fg.showEditDLCW(null, game);
+        this.window.close();
     }
 
     @FXML

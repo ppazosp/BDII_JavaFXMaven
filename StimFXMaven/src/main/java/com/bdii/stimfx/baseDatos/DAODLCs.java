@@ -27,18 +27,14 @@ public class DAODLCs extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmDLC = con.prepareStatement("insert into dlc(id_videojuego, id_dlc, nombre, descripcion, precio, fecha_lanzamiento) " +
-                    "values (?,?,?,?,?,?)");
+            stmDLC = con.prepareStatement("insert into dlc(id_videojuego, nombre, precio) " +
+                    "values (?,?,?)");
 
-            // Obtener la fecha actual como un objeto java.sql.Date
-            java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
 
             stmDLC.setInt(1, d.getIdVideojuego());
-            stmDLC.setInt(2, d.getIdDLC());
-            stmDLC.setString(3, d.getNombre());
-            stmDLC.setString(4, d.getDescripcion());
-            stmDLC.setDouble(5, d.getPrecio());
-            stmDLC.setDate(6, fechaActual);
+            stmDLC.setString(2, d.getNombre());
+            stmDLC.setDouble(3, d.getPrecio());
+
             stmDLC.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -50,6 +46,68 @@ public class DAODLCs extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
+    }
+
+    public void updateDLC(DLC d) {
+        Connection con;
+        PreparedStatement stmDLC = null;
+
+        con = super.getConexion();
+
+        try {
+            stmDLC = con.prepareStatement("update dlc set" +
+                    " nombre = ?," +
+                    " precio = ? " +
+                    "where id_videojuego = ? and id_dlc = ?;");
+
+            stmDLC.setString(1, d.getNombre());
+            stmDLC.setDouble(2, d.getPrecio());
+            stmDLC.setInt(3, d.getIdVideojuego());
+            stmDLC.setInt(4, d.getIdDLC());
+
+            stmDLC.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmDLC.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+
+    public DLC consultarDLC(int id_v, int id_dlc){  // Sirve para la transaccion de obtener el videojuego asociado a un dlc y tmbn para obtener videojuegos asociados a una cartegoria
+        DLC dlc = null;
+        Connection con;
+        PreparedStatement stmDLCs=null;
+        ResultSet rsDLCs;
+
+        con=this.getConexion();
+
+        String consulta = "select * "+
+                "from dlc "+
+                "where id_videojuego = ? and id_dlc = ?";
+
+
+        try{
+            stmDLCs=con.prepareStatement(consulta);
+            stmDLCs.setInt(1, id_v);
+            stmDLCs.setInt(2, id_dlc);
+            rsDLCs=stmDLCs.executeQuery();
+            if (rsDLCs.next()){
+                dlc = new DLC(rsDLCs.getInt("id_videojuego"), rsDLCs.getInt("id_dlc"),
+                        rsDLCs.getString("nombre"), rsDLCs.getDouble("precio"));
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            FachadaAplicacion.muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmDLCs.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+
+        return dlc;
     }
 
     public void borrarDLC(int id) {
@@ -96,7 +154,7 @@ public class DAODLCs extends AbstractDAO {
             rsDLC = stmDLC.executeQuery();
             while (rsDLC.next()) {
                 dlcActual = new DLC(v.getId(), rsDLC.getInt("id_dlc"), rsDLC.getString("nombre"),
-                        rsDLC.getString("nombre"), rsDLC.getInt("precio"), rsDLC.getDate("fecha_lanzamiento"));
+                         rsDLC.getInt("precio"));
                 resultado.add(dlcActual);
             }
         } catch (SQLException e) {
@@ -135,7 +193,7 @@ public class DAODLCs extends AbstractDAO {
             rsDLC = stmDLC.executeQuery();
             while (rsDLC.next()) {
                 dlcActual = new DLC(id_v, rsDLC.getInt("id_dlc"), rsDLC.getString("nombre"),
-                        rsDLC.getString("descripcion"), rsDLC.getInt("precio"), rsDLC.getDate("fecha_lanzamiento"));
+                        rsDLC.getInt("precio"));
                 resultado.add(dlcActual);
             }
         } catch (SQLException e) {

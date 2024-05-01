@@ -545,6 +545,11 @@ public class FachadaAplicacion {
         return gd.consultarDLCsVideojuego(v);
     }
 
+    public void publicarDLC(DLC d)
+    {
+        gd.publicarDLC(d);
+    }
+
 
     // -----------------------------------------------------------------------
 

@@ -238,8 +238,7 @@ public class DAOVideojuegos extends AbstractDAO{
             rsDLC= stmDLC.executeQuery();
             while(rsDLC.next()){
                 DLC dlc= new DLC(id, rsDLC.getInt("id_dlc"),rsDLC.getString("nombre"),
-                        rsDLC.getString("descripcion"), rsDLC.getDouble("precio"),
-                        rsDLC.getDate("fecha_lanzamiento"));
+                        rsDLC.getDouble("precio"));
                 videojuego.addDLC(dlc);
             }
                    // (idVideojuego, idDLC, nombre, descripcion, precio, fechaLanzamiento)

@@ -212,6 +212,16 @@ public class FachadaBaseDatos {
     public void borrarDLC(int d){
         daoD.borrarDLC(d);
     }
+
+    public DLC consultarDLC(int id_v, int id_dlc)
+    {
+        return daoD.consultarDLC(id_v, id_dlc);
+    }
+
+    public void updateDLC(DLC d)
+    {
+        daoD.updateDLC(d);
+    }
     
     public void updatePlataforma(String nombre, String path){
         daoP.updatePlataforma(nombre, path);
