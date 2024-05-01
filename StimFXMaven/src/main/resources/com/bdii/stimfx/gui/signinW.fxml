@@ -45,11 +45,11 @@
                       <Font size="16.0" />
                   </font>
               </TextField>
-              <TextField fx:id="passField" focusTraversable="false" prefHeight="50.0" prefWidth="400.0" promptText="Contraseña">
-                  <font>
-                      <Font size="16.0" />
-                  </font>
-              </TextField>
+            <PasswordField fx:id="passField" focusTraversable="false" prefHeight="50.0" prefWidth="400.0" promptText="Contraseña">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </PasswordField>
               <PasswordField fx:id="pass2Field" focusTraversable="false" prefHeight="50.0" prefWidth="400.0" promptText="Repetir contraseña">
                   <font>
                       <Font size="16.0" />

@@ -17,7 +17,6 @@ public class Resenha {
     private String comentario;
     private int valoracion;
     private int likes;
-    private int dislikes;
 
     public Resenha(int id_videojuego, int idReseña, String comentario) {
         this.id_videojuego = id_videojuego;
@@ -65,7 +64,8 @@ public class Resenha {
     public int getLikes() {
         return likes;
     }
-    public int getDislikes() {
-        return dislikes;
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

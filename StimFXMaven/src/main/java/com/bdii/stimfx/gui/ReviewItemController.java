@@ -41,6 +41,12 @@ public class ReviewItemController implements Controller {
     HBox star5;
 
 
+    @FXML
+    ImageView heartImage;
+    @FXML
+    Label nLikesLabel;
+
+
     public void initializeWindow(Resenha res)
     {
         this.res = res;
@@ -62,6 +68,13 @@ public class ReviewItemController implements Controller {
             default:
 
         }
+    }
+
+    public void heartOnAction(MouseEvent e)
+    {
+        heartImage.setVisible(true);
+        //fg.fa.meGusta();
+        //fg.fa.noMeGusta();
     }
 
 

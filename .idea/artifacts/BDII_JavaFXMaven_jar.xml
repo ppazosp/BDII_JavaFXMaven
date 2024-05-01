@@ -1,0 +1,52 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BDII_JavaFXMaven:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BDII_JavaFXMaven_jar</output-path>
+    <root id="archive" name="BDII_JavaFXMaven.jar">
+      <element id="module-output" name="StimFXMaven" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/21/javafx-base-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/21/javafx-media-21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21/javafx-controls-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/21/javafx-swing-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/21/javafx-graphics-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-web/21/javafx-web-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/21/javafx-base-21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/StimFXMaven/postgresql-42.7.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21/javafx-controls-21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/21/javafx-media-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/21/javafx-fxml-21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/21/javafx-fxml-21-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/21/javafx-swing-21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-web/21/javafx-web-21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/21/javafx-graphics-21.jar" path-in-jar="/" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jar" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jarsigner" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/java" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/javac" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/javadoc" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/javap" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jcmd" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jconsole" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jdb" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jdeprscan" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jdeps" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jfr" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jhsdb" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jimage" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jinfo" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jlink" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jmap" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jmod" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jpackage" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jps" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jrunscript" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jshell" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jstack" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jstat" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jstatd" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/jwebserver" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/keytool" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/rmiregistry" />
+      <element id="file-copy" path="$USER_HOME$/.jdks/azul-21.0.2/bin/serialver" />
+    </root>
+  </artifact>
+</component>
